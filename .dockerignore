@@ -11,3 +11,13 @@ infra/cdk.out
 .vinext
 .wrangler
 .sites-runtime
+deliverables
+handoff
+reference
+.aws
+.codex
+.agents
+.npmrc
+*.key
+*.p12
+*.pfx

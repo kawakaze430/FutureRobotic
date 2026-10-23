@@ -1,18 +1,26 @@
-ARG NODE_IMAGE=node:22-alpine
+ARG NODE_IMAGE=node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914
 FROM ${NODE_IMAGE} AS build
 WORKDIR /app
-RUN npm install --global pnpm@11.25.0
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+RUN --mount=type=secret,id=build_ca \
+    if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
+    npm install --global pnpm@11.25.0
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN --mount=type=secret,id=build_ca \
+    if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
+    pnpm install --frozen-lockfile
 COPY portable/ portable/
 RUN pnpm api:build
 
 FROM ${NODE_IMAGE} AS runtime
 ENV NODE_ENV=production HOST=0.0.0.0 PORT=3001 PG_CA_FILE=/app/portable/certs/rds-global-bundle.pem
 WORKDIR /app
-RUN npm install --global pnpm@11.25.0
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --prod --frozen-lockfile && pnpm store prune
+RUN --mount=type=secret,id=build_ca \
+    if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
+    npm install --global pnpm@11.25.0
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN --mount=type=secret,id=build_ca \
+    if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
+    pnpm install --prod --frozen-lockfile && pnpm store prune
 RUN mkdir -p /data/objects && chown node:node /data/objects
 COPY --from=build /app/portable/dist portable/dist
 COPY portable/migrations portable/migrations

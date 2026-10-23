@@ -5,7 +5,7 @@ Does not fall back to PGlite. Missing native facilities return exit 2.
 An externally supplied TEST_DATABASE_URL requires FR_DISPOSABLE_NATIVE_DB=true.
 """
 from __future__ import annotations
-import argparse,json,os,re,secrets,shutil,subprocess,time
+import argparse,json,os,re,secrets,shutil,subprocess,tempfile,time
 from pathlib import Path
 from _test_common import Evidence,Blocked,StepFailed
 
@@ -81,6 +81,27 @@ def main():
         counts={k:int(v) for k,v in re.findall(r'^# (tests|pass|fail|skipped|cancelled) (\d+)\s*$',tap,re.M)}
         extra['tap_counts']=counts;extra['scope']='All existing backend suites, native connections and advisory exclusion; no live provider/payment/AWS/runner acceptance.'
         if code or not counts.get('tests') or not counts.get('pass') or counts.get('fail',1) or counts.get('cancelled',1):raise StepFailed('Native backend suite failed or did not produce a complete TAP summary with actual passes.')
+        if container:
+            runtime=root/'.sites-runtime';runtime.mkdir(exist_ok=True)
+            with tempfile.TemporaryDirectory(prefix='native-restart-',dir=runtime) as directory:
+                state_file=str(Path(directory)/'state.json')
+                restart_env=env.copy();restart_env['FR_DISPOSABLE_NATIVE_DB']='true'
+                ev.run('native-restart-seed',['node','portable/scripts/verify-native-restart.mjs','seed',state_file],env=restart_env,timeout=45)
+                ev.run('native-postgres-restart',['docker','restart','--time','5',container],timeout=30)
+                _,mapping=ev.run('postgres-port-after-restart',['docker','port',container,'5432/tcp'],timeout=10)
+                match=re.fullmatch(r'127\.0\.0\.1:(\d+)',mapping.strip())
+                if not match:raise StepFailed('Restarted PostgreSQL test port must remain loopback-only.')
+                restart_url=f'postgresql://postgres:{password}@127.0.0.1:{match[1]}/postgres'
+                ev.secrets.append(restart_url);restart_env['TEST_DATABASE_URL']=restart_url
+                end=time.monotonic()+45
+                while time.monotonic()<end:
+                    probe=subprocess.run(['docker','exec',container,'pg_isready','-U','postgres'],capture_output=True,timeout=5)
+                    if probe.returncode==0:break
+                    time.sleep(.5)
+                else:raise StepFailed('Owned PostgreSQL did not become ready after restart.')
+                _,proof=ev.run('native-restart-verify',['node','portable/scripts/verify-native-restart.mjs','verify',state_file],env=restart_env,timeout=45)
+                extra['native_restart_proof']=json.loads(proof.strip())
+        else:extra['native_restart_proof']={'verification_status':'NOT_ATTEMPTED_SCOPE','reason':'Runner does not own the supplied external database and must not restart it.'}
         state='PASSED_NATIVE_WITH_SKIPS' if counts.get('skipped') else 'PASSED_NATIVE';detail='Native backend suites completed. Inspect counts/skips and exact scenario scope before closing any feature gate; skipped scenarios remain unverified.'
     except Blocked as e:state='BLOCKED_ENVIRONMENT' if 'ENVIRONMENT' in str(e) else 'BLOCKED_ACCOUNT' if 'ACCOUNT' in str(e) else 'BLOCKED_DEPENDENCY' if 'DEPENDENCY' in str(e) else 'BLOCKED_SOURCE';detail=str(e)
     except (StepFailed,subprocess.SubprocessError,ValueError,OSError) as e:state='FAILED_NATIVE';detail=str(e)

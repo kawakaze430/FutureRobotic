@@ -1,40 +1,195 @@
+# Official action tag commits verified using git ls-remote.
 name: Verify FutureRobotic AI
-on:
-  pull_request:
+'on':
   push:
-    branches: [main]
+    branches:
+    - main
+  pull_request: null
+  workflow_dispatch: null
 permissions:
   contents: read
 concurrency:
-  group: verify-${{ github.ref }}
+  group: verify-${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
 jobs:
-  verify:
+  workflow:
+    name: Validate GitHub Actions workflows
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - name: Verified actionlint release
+      run: |-
+        curl -fsSL --retry 2 https://github.com/rhysd/actionlint/releases/download/v1.7.7/actionlint_1.7.7_linux_amd64.tar.gz -o "$RUNNER_TEMP/actionlint.tar.gz"
+        printf '%s  %s\n' '023070a287cd8cccd71515fedc843f1985bf96c436b7effaecce67290e7e0757' "$RUNNER_TEMP/actionlint.tar.gz" | sha256sum --check
+        tar -xzf "$RUNNER_TEMP/actionlint.tar.gz" -C "$RUNNER_TEMP" actionlint
+        "$RUNNER_TEMP/actionlint" -color
+  checks:
+    name: Source, unit tests and builds (Node ${{ matrix.node }})
     runs-on: ubuntu-24.04
     timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        node:
+        - '22'
+        - '24'
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7, resolved via official GitHub API
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7
-        with:
-          node-version: '22'
-      - run: npm install --global pnpm@11.25.0
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm exec tsc --noEmit
-      - run: pnpm api:build && pnpm api:test
-      - run: pnpm test:ui && pnpm runner:test
-      - run: pnpm api:test:native
-      - run: pnpm web:build
-      - run: pnpm infra:build && INFRA_SYNTH_ONLY=true pnpm infra:synth && pnpm infra:test
-      - run: pnpm audit --prod --audit-level high
-      - run: docker build --tag futurerobotic-api:ci --file portable/Dockerfile.api .
-      - run: docker build --tag futurerobotic-web:ci --file portable/Dockerfile.web .
-      - name: Compose smoke
-        run: |
-          export LOCAL_DB_PASSWORD=$(node -e "process.stdout.write(require('crypto').randomBytes(32).toString('base64url'))")
-          docker compose -f portable/compose.yml up --detach --wait
-          curl --fail --silent http://127.0.0.1:8080/health
-          curl --fail --silent http://127.0.0.1:8080/api/status
-      - if: always()
-        run: LOCAL_DB_PASSWORD=cleanup-only docker compose -f portable/compose.yml down --volumes
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+      with:
+        node-version: ${{ matrix.node }}
+    - name: Install pinned tools and locked dependencies
+      id: install
+      run: |-
+        mkdir -p work/ci
+        git rev-parse HEAD > work/ci/source-commit.txt
+        npm install --global pnpm@11.25.0
+        pnpm install --frozen-lockfile 2>&1 | tee work/ci/install.log
+    - name: TypeScript
+      if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+      run: pnpm exec tsc --noEmit 2>&1 | tee work/ci/typescript.log
+    - name: Backend build and PGlite suites
+      if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+      run: |-
+        pnpm api:build 2>&1 | tee work/ci/api-build.log
+        node --test --test-reporter=tap portable/dist/tests/*.test.js 2>&1 | tee work/ci/backend-pglite.tap
+      env:
+        TEST_DATABASE_URL: ''
+    - name: UI rendering and export
+      if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+      run: pnpm test:ui 2>&1 | tee work/ci/ui.tap
+    - name: Existing utility and API regression
+      if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+      run: node tests/tools.test.mjs 2>&1 | tee work/ci/tools.log
+    - name: Runner policy and release gates (no untrusted execution)
+      if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+      run: node --test --test-reporter=tap runner/tests/*.test.mjs tests/release-gates.test.mjs 2>&1 | tee work/ci/policy-release.tap
+    - name: Portable web build and prerender
+      if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+      run: pnpm web:build 2>&1 | tee work/ci/web-build.log
+    - name: Existing Sites framework build
+      if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+      run: pnpm build 2>&1 | tee work/ci/sites-build.log
+    - name: Infrastructure build, offline synthesis and templates
+      if: ${{ !cancelled() && steps.install.outcome == 'success' }}
+      run: |-
+        pnpm infra:build 2>&1 | tee work/ci/infra-build.log
+        pnpm infra:synth 2>&1 | tee work/ci/infra-synth.log
+        pnpm infra:test 2>&1 | tee work/ci/infra.tap
+      env:
+        INFRA_SYNTH_ONLY: 'true'
+    - name: Retain source-bound evidence even on failure
+      if: ${{ always() }}
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+      with:
+        name: checks-node-${{ matrix.node }}-${{ github.sha }}
+        path: work/ci/
+        if-no-files-found: error
+        retention-days: 14
+  native:
+    name: All native PostgreSQL suites and actual restart
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      FR_EVIDENCE_ROOT: work/ci
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+      with:
+        node-version: '22'
+    - name: Locked dependencies
+      run: |-
+        npm install --global pnpm@11.25.0
+        pnpm install --frozen-lockfile
+    - name: Native connections, locks, every backend suite and restart
+      run: pnpm api:test:native
+    - name: Retain source-bound evidence even on failure
+      if: ${{ always() }}
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+      with:
+        name: native-postgres-${{ github.sha }}
+        path: work/ci/
+        if-no-files-found: warn
+        retention-days: 14
+  containers:
+    name: Container images, migrations and HTTP readiness
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      FR_EVIDENCE_ROOT: work/ci
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - name: Build and verify disposable Compose stack
+      run: python3 handoff/cloud-only/run_containers.py
+    - name: Retain source-bound evidence even on failure
+      if: ${{ always() }}
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+      with:
+        name: containers-${{ github.sha }}
+        path: work/ci/
+        if-no-files-found: warn
+        retention-days: 14
+  audit:
+    name: Production dependency audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+    - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      with:
+        persist-credentials: false
+    - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+      with:
+        node-version: '22'
+    - name: Audit locked production dependencies
+      run: |-
+        mkdir -p work/ci
+        git rev-parse HEAD > work/ci/source-commit.txt
+        npm install --global pnpm@11.25.0
+        pnpm audit --prod --audit-level high --json > work/ci/audit.json
+    - name: Retain source-bound evidence even on failure
+      if: ${{ always() }}
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+      with:
+        name: dependency-audit-${{ github.sha }}
+        path: work/ci/
+        if-no-files-found: error
+        retention-days: 14
+  verification:
+    name: Required verification result
+    runs-on: ubuntu-24.04
+    if: ${{ always() }}
+    needs:
+    - workflow
+    - checks
+    - native
+    - containers
+    - audit
+    timeout-minutes: 5
+    steps:
+    - name: Report every gate and preserve a failing overall result
+      env:
+        GATE_RESULTS: ${{ toJSON(needs) }}
+      run: |-
+        python3 - <<'PY'
+        import json, os
+        gates = json.loads(os.environ['GATE_RESULTS'])
+        with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:
+            summary.write('| Gate | Result |\n| --- | --- |\n')
+            for name, gate in gates.items():
+                summary.write(f"| {name} | {gate['result']} |\n")
+            summary.write('\nNative restart is local disposable PostgreSQL, not RDS failover. Sandbox, browser/device, live-provider, merchant, OAuth/email and AWS acceptance require documented protected prerequisites.\n')
+        if any(gate['result'] != 'success' for gate in gates.values()):
+            raise SystemExit('Required jobs failed, were cancelled or did not run; inspect retained evidence.')
+        PY

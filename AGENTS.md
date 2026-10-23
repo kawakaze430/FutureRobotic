@@ -4,6 +4,8 @@ Read `START_HERE.md`, `handoff/PROJECT_HANDOFF.md`, `handoff/CURRENT_TASK_REGIST
 
 ## Ownership
 
+- Owner delivery instruction, 24 October 2026: use the existing `main` branch, commit and push directly to `origin/main`; do not create another branch, worktree or pull request. Fetch and integrate remote changes without force pushes, resets or overwriting other work. This replaces the older cloud-only return-branch delivery convention for current work.
+
 - Communicate in English. Treat the owner as technically experienced.
 - Own engineering: implementation, migrations, tests, bug fixes, infrastructure, CI, runbooks, packaging and available deployment work. Do not transfer coding work to the owner because final acceptance needs credentials.
 - Continue independent work when an operation is blocked. Record the exact operation, observed reason, affected IDs, unblock action and responsible party.

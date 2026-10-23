@@ -1,18 +1,19 @@
-ARG NODE_IMAGE=node:22-alpine
+ARG NODE_IMAGE=node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914
 FROM ${NODE_IMAGE} AS build
 WORKDIR /app
-RUN npm install --global pnpm@11.25.0
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
-COPY ops/prerender.mjs ops/prerender.mjs
-COPY app app
-COPY lib lib
-COPY portable/src portable/src
-COPY portable/web portable/web
-COPY public public
+RUN --mount=type=secret,id=build_ca \
+    if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
+    npm install --global pnpm@11.25.0
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+RUN --mount=type=secret,id=build_ca \
+    if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi; \
+    pnpm install --frozen-lockfile
+# A single source layer avoids duplicating the full dependency tree for every
+# COPY on VFS-based development Docker hosts. The context excludes local data.
+COPY . .
 RUN pnpm web:build
 
-FROM nginxinc/nginx-unprivileged:stable-alpine
+FROM nginxinc/nginx-unprivileged:stable-alpine@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03
 COPY portable/web/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/outputs/web /usr/share/nginx/html
 USER 101

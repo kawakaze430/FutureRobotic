@@ -34,7 +34,7 @@ services:
    OBJECT_DIRECTORY: /data/objects
    PROCESS_ROLE: all
   read_only: true
-  tmpfs: [/tmp:size=128m,mode=1777]
+  tmpfs: ["/tmp:size=128m,mode=1777"]
   volumes: [object-data:/data/objects]
   security_opt: [no-new-privileges:true]
   cap_drop: [ALL]
