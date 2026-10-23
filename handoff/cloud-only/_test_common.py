@@ -40,6 +40,12 @@ class Evidence:
         body=self.clean(body)
         log=self.out/(label+'.log');log.write_text(body)
         self.steps.append({'step':label,'command':self.clean(shlex.join(map(str,args))),'exit_code':code,'seconds':round(time.monotonic()-started,2),'log':str(log.relative_to(self.root))})
+        if code!=0:
+            lines=body.splitlines();failures=[i for i,line in enumerate(lines) if line.startswith('not ok ')]
+            if failures:
+                for index in failures[:10]:print('\n'.join(lines[max(0,index-2):index+45]),flush=True)
+                print('\n'.join(lines[-12:]),flush=True)
+            else:print(body[-12000:],flush=True)
         if required and code!=0:raise StepFailed(f'{label} failed with exit {code}; inspect its sanitized log.')
         return code,body
     def finish(self,state,detail,**extra):

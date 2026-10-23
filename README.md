@@ -35,8 +35,8 @@ The reference language logos, four tool previews, workspace image, and backgroun
 This project uses the supplied Sites Vinext starter, React 19, TypeScript, Vite, and Cloudflare Workers. Preserve the existing Sites build integration and project identity.
 
 ```sh
-node /root/.codex/plugins/cache/openai-curated-remote/sites/1.1.0/scripts/install-dependencies.mjs
-sites-preview start /workspace/sites/codeshift-studio
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
 The supervised managed preview is available for internal QA at `http://terminal.local:4173/`.
@@ -44,10 +44,18 @@ The supervised managed preview is available for internal QA at `http://terminal.
 ```sh
 ./node_modules/.bin/tsc --noEmit
 node tests/tools.test.mjs
-node /root/.codex/plugins/cache/openai-curated-remote/sites/1.1.0/scripts/build-site.mjs
+pnpm build
 ```
 
 The checked-in hosting manifest identifies the existing Site. Do not register a second Site for edits.
+
+## Main-branch CI and continued development
+
+Use Node >=22.13 and the pinned pnpm 11.25.0. The owner has authorized committing and pushing directly to `main`; do not create another branch, worktree or pull request. Preserve other work and never force-push. Read [the current handoff](CLOUD_RETURN.md) and [the complete next Codex prompt](handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md).
+
+`Verify FutureRobotic AI` runs independent workflow-validation, Node 22/24 checks/builds, native PostgreSQL, container and production-audit jobs. Failures retain source-bound artifacts and the required final job fails if a required gate does not pass. The workflow tests code; it does not deploy or grant an AI agent repository-write credentials.
+
+`pnpm api:test` uses PGlite when `TEST_DATABASE_URL` is absent. `pnpm api:test:native` delegates to the canonical Python runner, discovers every backend suite including completion, proves distinct native connections/locking, and verifies recovery after restarting only its own disposable PostgreSQL container. `python3 handoff/cloud-only/run_containers.py` builds the portable stack, migrates, checks API/database health, product status, homepage, SVG and font, and removes its own resources. An optional injected public CA bundle is mounted through BuildKit for npm/pnpm trust; TLS stays enabled. See [the portable application](portable/README.md) for long-lived local API configuration. Live provider, merchant, identity, sandbox and AWS acceptance require their documented protected prerequisites and remain separate from CI passes.
 
 ## Runtime contracts
 

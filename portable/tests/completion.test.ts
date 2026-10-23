@@ -84,11 +84,16 @@ test('CHT-003 newest chat page and earlier cursors recover all messages without 
 test('CHT-008 applied results preserve original and reject stale, cross-account, and changed retries',async()=>{
  const a=await account(db),b=await account(db),runs=new RunService(db),r=await runs.create(a.p,input,'apply-version-run','c'.repeat(32));
  await db.query("UPDATE tool_runs SET status='completed' WHERE id=$1",[r.id]);await db.query('INSERT INTO result_versions(id,run_id,workspace_id,owner_id,version,content) VALUES($1,$2,$3,$4,1,$5)',[id(),r.id,a.p.workspaceId,a.p.userId,'original']);
- const attempts=await Promise.allSettled([runs.applyResult(a.p,r.id,'reviewed',1,'apply-request-1'),runs.applyResult(a.p,r.id,'stale',1,'apply-request-2')]);assert.equal(attempts.filter(r=>r.status==='fulfilled').length,1);
- assert.equal((await runs.applyResult(a.p,r.id,'reviewed',1,'apply-request-1')).replayed,true);
- await assert.rejects(runs.applyResult(a.p,r.id,'changed',1,'apply-request-1'),error('IDEMPOTENCY_CONFLICT'));
+ const requests=[{content:'reviewed',key:'apply-request-1'},{content:'alternative',key:'apply-request-2'}];
+ const attempts=await Promise.allSettled(requests.map(request=>runs.applyResult(a.p,r.id,request.content,1,request.key)));
+ assert.equal(attempts.filter(result=>result.status==='fulfilled').length,1);
+ const winnerIndex=attempts.findIndex(result=>result.status==='fulfilled'),winner=requests[winnerIndex];
+ const losingAttempt=attempts[1-winnerIndex];assert.equal(losingAttempt.status,'rejected');
+ if(losingAttempt.status==='rejected')assert.equal(losingAttempt.reason.code,'VERSION_CONFLICT');
+ const replay=await runs.applyResult(a.p,r.id,winner.content,1,winner.key);assert.equal(replay.replayed,true);assert.equal(replay.version,2);
+ await assert.rejects(runs.applyResult(a.p,r.id,'changed',1,winner.key),error('IDEMPOTENCY_CONFLICT'));
  await assert.rejects(runs.applyResult(b.p,r.id,'other',2,'apply-other-1'),error('NOT_FOUND'));
- const result=await runs.get(a.p,r.id);assert.equal(result.results[0].content,'original');assert.equal(result.results[1].origin,'user_applied_assistant');
+ const result=await runs.get(a.p,r.id);assert.equal(result.results.length,2);assert.equal(result.results[0].content,'original');assert.equal(result.results[1].content,winner.content);assert.equal(result.results[1].origin,'user_applied_assistant');
 });
 test('HIS-004 ephemeral requests stay out of history and evaluation, and delete derived notes/output',async()=>{
  const a=await account(db),runs=new RunService(db),accounts=new AccountService(db),life=new LifecycleService(db);await accounts.update(a.p,{evaluationOptOut:false});

@@ -40,11 +40,10 @@ services:
   cap_drop: [ALL]
   depends_on: {migrate: {condition: service_completed_successfully}}
  web:
-  build: {context: .., dockerfile: portable/Dockerfile.web}
+  build: {context: .., dockerfile: portable/Dockerfile.web, args: {NGINX_CONFIG: portable/web/nginx.compose.conf}}
   ports: [127.0.0.1:8080:8080]
   read_only: true
   tmpfs: ["/tmp:size=64m,mode=1777"]
-  volumes: [./web/nginx.compose.conf:/etc/nginx/conf.d/default.conf:ro]
   depends_on: [api]
 volumes:
  postgres-data:
