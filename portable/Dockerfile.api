@@ -23,8 +23,10 @@ RUN --mount=type=secret,id=build_ca \
     pnpm install --prod --frozen-lockfile && pnpm store prune
 RUN mkdir -p /data/objects && chown node:node /data/objects
 COPY --from=build /app/portable/dist portable/dist
-COPY portable/migrations portable/migrations
-COPY portable/certs portable/certs
+# Source archives may retain owner-only modes; the non-root runtime must read
+# migration SQL and the public RDS trust bundle without changing their bytes.
+COPY --chown=node:node portable/migrations portable/migrations
+COPY --chown=node:node portable/certs portable/certs
 USER node
 EXPOSE 3001
 HEALTHCHECK --interval=30s --timeout=5s CMD node -e "fetch('http://127.0.0.1:3001/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"

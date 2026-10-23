@@ -60,6 +60,11 @@ def main():
             body=response.read(2_000_000)
             if response.status!=200 or b'FutureRobotic' not in body:raise StepFailed('Built static homepage did not contain the expected brand.')
             observed.append({'path':'/','status':200,'brand_marker_found':True})
+        for path,marker in [('/favicon.svg',b'<svg'),('/fonts/geist-sans.woff2',b'wOF2')]:
+            with opener.open('http://127.0.0.1:8080'+path,timeout=10) as response:
+                body=response.read(2_000_000)
+                if response.status!=200 or marker not in body[:4096]:raise StepFailed('A required static asset is missing or unreadable by the non-root web server.')
+                observed.append({'path':path,'status':200,'bytes':len(body),'content_type':response.headers.get('Content-Type')})
         extra['http_checks']=observed;state='PASSED_CONTAINER';detail='Existing Compose image build/migration/public readiness passed; authenticated and external integration gates remain pending.'
     except Blocked as e:state='BLOCKED_DEPENDENCY' if 'DEPENDENCY' in str(e) else 'BLOCKED_SOURCE' if 'SOURCE' in str(e) else 'BLOCKED_ENVIRONMENT';detail=str(e)
     except (StepFailed,OSError,ValueError) as e:state='FAILED_CONTAINER';detail=str(e)
