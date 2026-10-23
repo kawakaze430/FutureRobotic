@@ -1,0 +1,23 @@
+{
+  "baseline": "BUILD-03",
+  "as_of": "2026-10-22",
+  "total_tasks": 196,
+  "totals": {
+    "Implemented": 73,
+    "Partial": 59,
+    "Blocked": 64,
+    "Not started": 0
+  },
+  "reference_totals": {
+    "Partial": 32,
+    "Implemented": 58,
+    "Blocked": 26
+  },
+  "build_outcomes": {
+    "Implemented": 23,
+    "Blocked": 44,
+    "Partial": 59
+  },
+  "production_ready": false,
+  "verification_database": "PGlite0.3.16 PostgreSQL WASM. Serialized transactions; native multi-connection PostgreSQL/RDS remain blocked B01/B02."
+}

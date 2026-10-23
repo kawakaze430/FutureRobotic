@@ -1,0 +1,47 @@
+{
+  "prepared_at": "2026-10-23T16:12:35.397073+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "application_source_files": 382,
+  "all_application_file_hashes_match": true,
+  "all_application_modes_preserved": true,
+  "application_files_changed": 0,
+  "canonical_statuses_changed": 0,
+  "feature_counts": {
+    "Implemented": 73,
+    "Partial": 59,
+    "Blocked": 64,
+    "Not started": 0
+  },
+  "new_helpers": "Prepared; syntax and unavailable-capability behavior checked only",
+  "actual_native_tests_executed": false,
+  "actual_container_builds_executed": false,
+  "preparation_checks": {
+    "syntax_checked": [
+      "run_native.py",
+      "run_containers.py",
+      "_test_common.py"
+    ],
+    "observed_preflights": [
+      {
+        "runner": "run_native.py",
+        "exit": 2,
+        "verification_status": "BLOCKED_ENVIRONMENT",
+        "detail": "BLOCKED_ENVIRONMENT B01: Docker client is absent and no explicitly disposable native database was supplied.",
+        "result": "handoff/cloud-only/results/native-postgres/20261023T160841124281Z/result.json"
+      },
+      {
+        "runner": "run_containers.py",
+        "exit": 2,
+        "verification_status": "BLOCKED_ENVIRONMENT",
+        "detail": "BLOCKED_ENVIRONMENT B01: Docker client is absent.",
+        "result": "handoff/cloud-only/results/containers/20261023T160841191608Z/result.json"
+      }
+    ],
+    "native_tests_executed": false,
+    "containers_built": false,
+    "embedded_native_probe_javascript_syntax": "passed",
+    "prepared_at": "2026-10-23T16:12:35.397073+00:00"
+  },
+  "production_ready": false,
+  "aws_deployed": false
+}

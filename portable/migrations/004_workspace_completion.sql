@@ -1,0 +1,11 @@
+ALTER TABLE tool_runs ADD COLUMN history_mode text NOT NULL DEFAULT 'cloud' CHECK(history_mode IN('cloud','local','none'));
+ALTER TABLE tool_runs ADD COLUMN history_deleted_at timestamptz;
+ALTER TABLE result_versions ADD COLUMN origin text NOT NULL DEFAULT 'provider' CHECK(origin IN('provider','local_tool','user_applied_assistant'));
+ALTER TABLE result_versions ADD COLUMN operation_key text;
+CREATE UNIQUE INDEX result_operation ON result_versions(run_id,operation_key) WHERE operation_key IS NOT NULL;
+ALTER TABLE run_context_files ADD COLUMN original_characters integer NOT NULL DEFAULT 0;
+ALTER TABLE run_context_files ADD COLUMN included_characters integer NOT NULL DEFAULT 0;
+ALTER TABLE jobs DROP CONSTRAINT jobs_kind_check;
+ALTER TABLE jobs ADD CONSTRAINT jobs_kind_check CHECK(kind IN('dispatch','cleanup','reconcile','export','delete_account','delete_object','extract_text','delete_history','history_export'));
+CREATE INDEX history_visible ON tool_runs(workspace_id,owner_id,created_at DESC,id DESC) WHERE history_deleted_at IS NULL AND history_mode='cloud';
+CREATE INDEX message_page ON chat_messages(thread_id,created_at DESC,id DESC);

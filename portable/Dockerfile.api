@@ -1,0 +1,23 @@
+ARG NODE_IMAGE=node:22-alpine
+FROM ${NODE_IMAGE} AS build
+WORKDIR /app
+RUN npm install --global pnpm@11.25.0
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
+COPY portable/ portable/
+RUN pnpm api:build
+
+FROM ${NODE_IMAGE} AS runtime
+ENV NODE_ENV=production HOST=0.0.0.0 PORT=3001 PG_CA_FILE=/app/portable/certs/rds-global-bundle.pem
+WORKDIR /app
+RUN npm install --global pnpm@11.25.0
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --prod --frozen-lockfile && pnpm store prune
+RUN mkdir -p /data/objects && chown node:node /data/objects
+COPY --from=build /app/portable/dist portable/dist
+COPY portable/migrations portable/migrations
+COPY portable/certs portable/certs
+USER node
+EXPOSE 3001
+HEALTHCHECK --interval=30s --timeout=5s CMD node -e "fetch('http://127.0.0.1:3001/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+CMD ["node","portable/dist/src/main.js"]

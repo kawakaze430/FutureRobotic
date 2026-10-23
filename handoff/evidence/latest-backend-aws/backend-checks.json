@@ -1,0 +1,14 @@
+[
+  {
+    "name": "backend_build",
+    "exit_code": 0,
+    "seconds": 3.46,
+    "log": "/workspace/scratch/1de288ae8275/outputs/futurerobotic-backend-aws-check/backend_build.log"
+  },
+  {
+    "name": "backend_tests",
+    "exit_code": 0,
+    "seconds": 9.17,
+    "log": "/workspace/scratch/1de288ae8275/outputs/futurerobotic-backend-aws-check/backend_tests.log"
+  }
+]

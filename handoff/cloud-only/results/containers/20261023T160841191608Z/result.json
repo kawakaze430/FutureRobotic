@@ -1,0 +1,12 @@
+{
+  "scope": "Existing image builds, development migrations and public health/status only. No real account/provider/payment/AWS acceptance.",
+  "verification_status": "BLOCKED_ENVIRONMENT",
+  "detail": "BLOCKED_ENVIRONMENT B01: Docker client is absent.",
+  "recorded_at": "2026-10-23T16:08:41.193822+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": null,
+  "steps": [],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "compose_project": "fr-cloud-85fb7c11b772"
+}

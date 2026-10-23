@@ -1,0 +1,3 @@
+import {tools,type ToolId} from './studio-data';
+export function workspacePin(tool:ToolId,source:string,target:string){return `${tool==='convert'?'':tool+': '}${source} → ${tool==='convert'||tool==='generate'?target:source}`;}
+export function readPin(value:string){const [from,target]=value.split(' → '),parts=from.split(': '),tool=parts.length>1&&tools.some(t=>t.id===parts[0])?parts[0] as ToolId:'convert',source=tool==='convert'?from:parts.slice(1).join(': ');return {tool,source,target:target??source,title:tool==='convert'?`${source} → ${target}`:`${tools.find(t=>t.id===tool)?.short} · ${source}${tool==='generate'?' → '+target:''}`};}

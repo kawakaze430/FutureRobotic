@@ -1,0 +1,20 @@
+[
+  {
+    "name": "infra_build",
+    "exit_code": 0,
+    "seconds": 5.38,
+    "log": "/workspace/scratch/1de288ae8275/outputs/futurerobotic-backend-aws-check/infra_build.log"
+  },
+  {
+    "name": "infra_synth",
+    "exit_code": 0,
+    "seconds": 3.67,
+    "log": "/workspace/scratch/1de288ae8275/outputs/futurerobotic-backend-aws-check/infra_synth.log"
+  },
+  {
+    "name": "infra_tests",
+    "exit_code": 0,
+    "seconds": 0.19,
+    "log": "/workspace/scratch/1de288ae8275/outputs/futurerobotic-backend-aws-check/infra_tests.log"
+  }
+]

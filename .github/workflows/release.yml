@@ -1,0 +1,52 @@
+name: Controlled AWS release
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        options: [staging, production]
+        required: true
+permissions:
+  contents: read
+  id-token: write
+concurrency:
+  group: aws-release-${{ inputs.environment }}
+  cancel-in-progress: false
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    environment: ${{ inputs.environment }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+      - name: Require approved, measured release gates
+        run: |
+          node -e "require('fs').writeFileSync('/tmp/fr-release-gates.json',process.env.RELEASE_GATES_JSON||'{}',{mode:0o600})"
+          node ops/check-release.mjs /tmp/fr-release-gates.json
+          node -e "const c=require('/tmp/fr-release-gates.json');if(c.sourceCommit!==process.env.GITHUB_SHA||c.environment!==process.env.RELEASE_ENVIRONMENT)throw Error('Release evidence must match this exact source and environment')"
+        env:
+          RELEASE_GATES_JSON: ${{ vars.RELEASE_GATES_JSON }}
+          RELEASE_ENVIRONMENT: ${{ inputs.environment }}
+      - name: Assume protected environment role
+        env:
+          AWS_ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
+          AWS_REGION: ${{ vars.AWS_REGION }}
+        run: node ops/oidc-session.mjs
+      - name: Validate selected release digests
+        env:
+          RELEASE_IMAGES_JSON: ${{ vars.RELEASE_IMAGES_JSON }}
+        run: node -e "const g=require('/tmp/fr-release-gates.json'),i=JSON.parse(process.env.RELEASE_IMAGES_JSON);for(const n of ['api','worker','web'])if(!i[n]?.endsWith('@'+g[n==='web'?'webDigest':'apiDigest']))throw Error('Gate and image digests differ')"
+      - name: Roll out digests and restore previous definitions on smoke failure
+        env:
+          AWS_REGION: ${{ vars.AWS_REGION }}
+          ECS_CLUSTER: ${{ vars.ECS_CLUSTER }}
+          ECS_SERVICES_JSON: ${{ vars.ECS_SERVICES_JSON }}
+          RELEASE_IMAGES_JSON: ${{ vars.RELEASE_IMAGES_JSON }}
+          RELEASE_ORIGIN: ${{ vars.RELEASE_ORIGIN }}
+        run: node ops/deploy-service.mjs

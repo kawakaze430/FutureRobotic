@@ -1,0 +1,197 @@
+﻿id,status,priority,category,feature,blockers,full_record
+ENV-001,Blocked,P0,External access and environment,Docker image build and execution verification,B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+ENV-002,Blocked,P0,External access and environment,AWS account deployment and infrastructure verification,B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+ENV-003,Blocked,P0,External access and environment,Real AI tools and chatbot provider verification,B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+ENV-004,Blocked,P0,External access and environment,"Live subscription, renewal and refund verification",B04,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+ENV-005,Blocked,P0,External access and environment,Production domain and DNS control,B05,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+ENV-006,Blocked,P0,External access and environment,Google and GitHub production OAuth credentials,B06,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+ENV-007,Blocked,P0,External access and environment,Transactional email delivery and sender approval,B07,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+ENV-008,Blocked,P0,External access and environment,"Business, country, pricing and policy approval",B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+ENV-010,Blocked,P0,External access and environment,CI repository and deployment-role trust,B09,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QAS-006,Blocked,P0,Quality and release verification,Live low-value payment and refund verification,B04,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+API-003,Partial,P0,Portable backend contracts,OpenAPI specification and typed web client,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AUT-001,Partial,P0,Authentication and accounts,"Portable public signup, login and logout",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AUT-007,Implemented,P0,Authentication and accounts,"Account profile, preferences and notification settings",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AUT-008,Partial,P0,Authentication and accounts,Account export and deletion,B02/B04/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+DAT-004,Partial,P0,Database and durable jobs,"Files, revisions, extraction and share records",B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+DAT-005,Partial,P0,Database and durable jobs,"Plans, prices, subscriptions and provider events",B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+DAT-006,Partial,P0,Database and durable jobs,Usage reservations and append-only allowance ledger,B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-003,Partial,P0,Shared editor and result controls,Syntax highlighting in editable source panels,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-004,Implemented,P0,Shared editor and result controls,Line numbers and editor preferences,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-005,Implemented,P0,Shared editor and result controls,Expanded input/output editor views,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-007,Implemented,P0,Shared editor and result controls,Code copy and correct file-extension downloads,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-009,Implemented,P0,Shared editor and result controls,Markdown copy and .md downloads,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-010,Implemented,P0,Shared editor and result controls,Per-plan counters and input limits,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-011,Partial,P0,Shared editor and result controls,"Progress, cancellation, errors and retry",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-012,Implemented,P0,Shared editor and result controls,Reference page-specific explanatory content,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WRK-003,Implemented,P0,Signed-in workspace,Personal workspace selection and home,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WRK-004,Implemented,P0,Signed-in workspace,Pinned tools and saved language pairs,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WRK-005,Implemented,P1,Signed-in workspace,Popular tools list,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WRK-006,Partial,P0,Signed-in workspace,Personal notes tied to results,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WRK-007,Partial,P0,Signed-in workspace,"Plan card, balance and account navigation",B02/B04,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+CHT-002,Blocked,P0,Right-side AI chatbot,Contextual real follow-up chat,B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+CHT-004,Implemented,P0,Right-side AI chatbot,Current result and reference-file grounding,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+CHT-005,Partial,P0,Right-side AI chatbot,"Attach, inspect and remove chat files",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+CHT-008,Implemented,P0,Right-side AI chatbot,Apply assistant code to the current result,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+CHT-009,Implemented,P0,Right-side AI chatbot,Sanitized Markdown and fenced code in chat,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-001,Blocked,P0,AI coding tools,Arbitrary source-to-target code conversion,B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-002,Blocked,P0,AI coding tools,Natural-language code generation,B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-003,Blocked,P0,AI coding tools,Code explanation with examples and complexity,B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-004,Partial,P0,AI coding tools,Code checking with issues and corrected snippets,B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-005,Blocked,P0,AI coding tools,Complete corrected code from fixer,B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-009,Implemented,P0,AI coding tools,Comment-remover coverage for the advertised catalog,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-012,Partial,P0,AI coding tools,Grounded tool evaluation suite,B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+FIL-003,Implemented,P0,Files and context,70-plus context-file types and parser matrix,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+FIL-006,Blocked,P0,Files and context,Plan-based file and storage limits,B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+FIL-007,Implemented,P0,Files and context,Reference-file selection and bounded AI context,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+HIS-004,Implemented,P0,History and privacy preferences,Local-only history mode,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+HIS-005,Implemented,P0,History and privacy preferences,Bulk history deletion and account export jobs,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+PDF-002,Implemented,P0,Code-to-PDF,"50,000-character PDF input and live preview",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+PDF-006,Implemented,P0,Code-to-PDF,"Line-number, title and custom-title controls",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+RUN-002,Partial,P0,Execution service,"Python, JavaScript, C, C++ and Java remote runtimes",B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+RUN-003,Partial,P0,Execution service,Searchable five-language runner selector,B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+RUN-004,Blocked,P0,Execution service,"stdout, stderr, exit code and elapsed time",B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+RUN-009,Blocked,P0,Execution service,"No network, packages or interactive stdin policy",B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-001,Blocked,P0,Billing and subscriptions,"Versioned Free, Pro and Premium catalog",B04/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-011,Partial,P0,Billing and subscriptions,Billing account page and allowance display,B04,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QTA-002,Blocked,P0,Quotas and AI cost control,Free-account initial credits,B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QTA-003,Partial,P0,Quotas and AI cost control,Plan request and context limits,B02/B03/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QTA-004,Partial,P0,Quotas and AI cost control,"Durable reservation, settle and release ledger",B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QTA-005,Blocked,P0,Quotas and AI cost control,Distributed rate and concurrency limits,B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-006,Implemented,P0,Public website and discovery,"Resource, legal and tools footer",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-009,Implemented,P0,Public website and discovery,Complete categorized FAQ content,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-010,Partial,P0,Public website and discovery,Contact page and message form,B07,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-012,Blocked,P0,Public website and discovery,Production Privacy Policy and Terms,B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-013,Implemented,P0,Public website and discovery,Source-language directory routes,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-015,Partial,P0,Public website and discovery,English and French website localization,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-016,Partial,P0,Public website and discovery,"Search metadata, sitemap and indexing policy",B02/B05/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-017,Partial,P0,Public website and discovery,Mobile and tablet reference adaptation,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-018,Blocked,P1,Public website and discovery,Partnerships or affiliate destination,B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QAS-002,Partial,P0,Quality and release verification,Frontend reference screenshots and interaction regression,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QAS-010,Partial,P0,Quality and release verification,Accessibility and cross-browser compatibility,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-002,Blocked,P0,Security and data handling,Secret management and short-lived AWS roles,B02/B09,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-003,Partial,P0,Security and data handling,"Secure HTTP, cookies, CSRF and content policies",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-004,Blocked,P0,Security and data handling,Untrusted code isolation verification,B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-008,Partial,P0,Security and data handling,Consent and privacy implementation,B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-010,Partial,P0,Security and data handling,"Dependency, container and supply-chain checks",B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-012,Partial,P0,Security and data handling,Commercial asset/font rights and own artwork,B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+API-006,Partial,P0,Portable backend contracts,Account/files/history/billing/support CRUD,B02/B04/B07,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AUT-002,Blocked,P0,Authentication and accounts,Google login,B05/B06,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AUT-003,Partial,P0,Authentication and accounts,GitHub login,B05/B06,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AUT-004,Blocked,P0,Authentication and accounts,Email one-time-code login,B05/B07,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AUT-005,Partial,P0,Authentication and accounts,Human verification and account-abuse controls,B02/B05,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AUT-009,Partial,P0,Authentication and accounts,Operator access with MFA and role checks,B02/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+DAT-009,Blocked,P0,Database and durable jobs,"Indexes, pooling and paginated query plans",B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+DAT-010,Blocked,P0,Database and durable jobs,"Backup, point-in-time recovery and restore drill",B02/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-008,Implemented,P0,Shared editor and result controls,Rendered and sanitized Markdown results,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+CHT-003,Partial,P0,Right-side AI chatbot,Persisted chat sessions and messages,B02/B06,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+CHT-006,Implemented,P0,Right-side AI chatbot,Assistant model and tier selection,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+CHT-007,Blocked,P0,Right-side AI chatbot,"Stream, stop, retry and recover chat replies",B02/B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-006,Implemented,P0,AI coding tools,Fixer inline diff and plain fixed-code tabs,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-007,Implemented,P0,AI coding tools,Fixer What I Changed summary,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-010,Implemented,P0,AI coding tools,Model capability registry and Standard/Advanced routing,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-011,Blocked,P0,AI coding tools,Provider response streaming,B02/B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+FIL-002,Blocked,P0,Files and context,Private cloud uploads and downloads,B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+FIL-004,Implemented,P0,Files and context,ZIP project import,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+FIL-005,Implemented,P0,Files and context,Automatic dependency/build-folder exclusion,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+FIL-008,Partial,P0,Files and context,Upload quarantine and extraction jobs,B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+FIL-009,Blocked,P0,Files and context,"Cloud file visibility, deletion and cleanup",B02/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+FIL-010,Partial,P0,Files and context,"File revisions, checksums and stale-context handling",B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+HIS-003,Partial,P0,History and privacy preferences,Cloud history with pagination and cross-device sync,B02/B06,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+HIS-006,Implemented,P0,History and privacy preferences,Internal-evaluation opt-out,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+HIS-007,Blocked,P0,History and privacy preferences,Provider data-retention disclosure and exceptions,B03/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SHR-001,Implemented,P0,Shared results,Explicit share-result creation and copy link,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SHR-002,Implemented,P0,Shared results,Read-only shared-result page,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SHR-003,Implemented,P0,Shared results,"Share expiration, revocation and noindex",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+PDF-003,Implemented,P0,Code-to-PDF,Five selectable PDF font sizes,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+PDF-004,Implemented,P0,Code-to-PDF,Light and dark PDF themes,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+PDF-005,Implemented,P0,Code-to-PDF,Five page margins,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+PDF-007,Partial,P0,Code-to-PDF,Browser print and Unicode-aware syntax export,B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+RUN-005,Partial,P0,Execution service,"10,000-character runner policy and daily usage",B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+RUN-006,Blocked,P0,Execution service,Separate execution worker fleet and network boundary,B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+RUN-007,Blocked,P0,Execution service,"CPU, memory, process, disk and output limits",B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+RUN-008,Blocked,P0,Execution service,"Execution queue, fairness and concurrency admission",B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+RUN-010,Partial,P0,Execution service,"Sandbox lifecycle, patching and abuse response",B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-002,Blocked,P0,Billing and subscriptions,Secure hosted checkout,B04,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-003,Blocked,P0,Billing and subscriptions,"Signed, idempotent payment webhooks",B04,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-004,Partial,P0,Billing and subscriptions,Subscription state and entitlement synchronization,B04/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-005,Partial,P0,Billing and subscriptions,Renewal allowances and Advanced monthly usage,B04/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-006,Blocked,P0,Billing and subscriptions,"Upgrade, downgrade and proration policy",B04/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-007,Blocked,P0,Billing and subscriptions,"Cancel, resume and self-service billing portal",B04,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-008,Partial,P0,Billing and subscriptions,"Invoices, currencies, tax and country eligibility",B04/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-009,Blocked,P0,Billing and subscriptions,Refund policy and refund processing,B04/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-010,Partial,P0,Billing and subscriptions,"Payment failures, retries and reconciliation",B04,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+BIL-012,Partial,P0,Billing and subscriptions,"Chargebacks, fraud and administrative corrections",B04/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QTA-001,Partial,P0,Quotas and AI cost control,Anonymous daily tool and execution allowances,B01/B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QTA-006,Partial,P0,Quotas and AI cost control,Provider/model spending ceiling and emergency stop,B02/B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QTA-007,Blocked,P0,Quotas and AI cost control,Economically viable Standard fair-use policy,B03/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-008,Partial,P0,Public website and discovery,Detailed plan comparison table,B04/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-011,Implemented,P0,Public website and discovery,Dedicated Code Privacy page,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-014,Implemented,P0,Public website and discovery,Dedicated language-pair converter routes,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-001,Partial,P0,AWS platform and delivery,Separate staging and production infrastructure as code,B02/B05,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-002,Blocked,P0,AWS platform and delivery,Portable web/API Dockerfiles and local compose,B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-003,Blocked,P0,AWS platform and delivery,ECR image registry and artifact provenance,B01/B02/B09,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-004,Blocked,P0,AWS platform and delivery,"VPC, private service/database subnets and egress",B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-005,Partial,P0,AWS platform and delivery,ECS Fargate web/API services and ALB health,B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-006,Blocked,P0,AWS platform and delivery,"Route53, ACM and CloudFront edge distribution",B02/B05,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-007,Partial,P0,AWS platform and delivery,"WAF, origin restriction and public abuse limits",B02/B05,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-008,Blocked,P0,AWS platform and delivery,RDS PostgreSQL Multi-AZ and migrations,B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-009,Blocked,P0,AWS platform and delivery,Private S3 buckets and lifecycle policies,B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-010,Blocked,P0,AWS platform and delivery,"Shared limiter, SQS queues and scheduler",B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-011,Blocked,P0,AWS platform and delivery,Secrets Manager and configuration separation,B02/B09,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-012,Partial,P0,AWS platform and delivery,"SES domain, DKIM and delivery events",B02/B05/B07,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-013,Blocked,P0,AWS platform and delivery,CI test/build/scan and OIDC deployment workflow,B01/B02/B09,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-014,Partial,P0,AWS platform and delivery,"Metrics, logs, alerts and synthetic checks",B02/B07,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-015,Partial,P0,AWS platform and delivery,"Backups, restore and regional disaster recovery",B02/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AWS-016,Blocked,P0,AWS platform and delivery,"Budgets, autoscaling ceilings and runner kill switch",B02/B03/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QAS-003,Blocked,P0,Quality and release verification,Database/service integration and migrations,B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QAS-004,Blocked,P0,Quality and release verification,Real provider end-to-end quality and failures,B03/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QAS-005,Blocked,P0,Quality and release verification,Checkout/webhook sandbox integration,B04,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QAS-007,Blocked,P0,Quality and release verification,Five-runtime isolation and resource-abuse tests,B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QAS-008,Partial,P0,Quality and release verification,"Load, saturation and autoscaling checks",B01/B02/B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QAS-009,Blocked,P0,Quality and release verification,Backup restore and rollback drills,B02/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QAS-011,Blocked,P0,Quality and release verification,Public-country performance and availability probes,B02/B05/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-005,Partial,P0,Security and data handling,Upload/archive and content extraction safety,B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-007,Partial,P0,Security and data handling,"Account abuse, bot and spend protection",B01/B02/B03,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-009,Partial,P0,Security and data handling,Security audit trail and operator actions,B01/B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-011,Blocked,P0,Security and data handling,Backup confidentiality and deletion policy,B02/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+REL-003,Blocked,P0,Launch and operations,Staging acceptance and private beta,B02/B03/B04/B06/B07,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+REL-001,Blocked,P0,Launch and operations,"Approved launch countries, currency and service matrix",B04/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+REL-002,Blocked,P0,Launch and operations,Owner-reviewed release configuration and prices,B02/B03/B04/B05/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+REL-004,Blocked,P0,Launch and operations,Controlled worldwide production launch,B02/B03/B04/B05/B08/B09,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+REL-005,Partial,P0,Launch and operations,"Support, incident response and on-call runbooks",B02/B07/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+REL-006,Partial,P0,Launch and operations,Post-launch reconciliation and maintenance,B02/B03/B04,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+ENV-009,Implemented,P0,External access and environment,Existing application dependencies and local checks,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+REL-007,Implemented,P0,Launch and operations,Recurring implemented/partial/blocked/remaining report,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+API-001,Implemented,P0,Portable backend contracts,Portable Node API and health/readiness endpoints,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+API-002,Implemented,P0,Portable backend contracts,Validated request schemas and safe errors,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+API-004,Implemented,P0,Portable backend contracts,Idempotent tool dispatch and cancellation,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+API-005,Implemented,P0,Portable backend contracts,Metadata-only logs and distributed tracing,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+API-007,Implemented,P0,Portable backend contracts,Scheduled cleanup and reconciliation tasks,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+AUT-006,Implemented,P0,Authentication and accounts,Secure sessions and linked identities,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+DAT-001,Implemented,P0,Database and durable jobs,"PostgreSQL schema, migrations and constraints",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+DAT-002,Implemented,P0,Database and durable jobs,"Users, identities, sessions and personal workspaces",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+DAT-003,Implemented,P0,Database and durable jobs,"Tool runs, result versions, notes and chats",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+DAT-007,Implemented,P0,Database and durable jobs,"Outbox, job retries and dead-letter processing",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+DAT-008,Implemented,P0,Database and durable jobs,"Retention, deletion and account export jobs",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-001,Implemented,P0,Shared editor and result controls,Code input and additional instructions,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-002,Implemented,P0,Shared editor and result controls,Text/source file input,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+EDT-006,Implemented,P0,Shared editor and result controls,Code and execution-output tabs,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WRK-001,Implemented,P0,Signed-in workspace,"Dark workspace, sidebar and eight-tool navigation",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WRK-002,Implemented,P0,Signed-in workspace,Sidebar collapse and panel layout controls,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+CHT-001,Implemented,P0,Right-side AI chatbot,Right-hand assistant welcome and quick prompts,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+TOL-008,Implemented,P0,AI coding tools,Local comment removal for supported language families,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+FIL-001,Implemented,P0,Files and context,"Local file list, search, open and delete",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+HIS-001,Implemented,P0,History and privacy preferences,"Browser history list, search/filter and restore",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+HIS-002,Implemented,P0,History and privacy preferences,History JSON export and individual deletion,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+PDF-001,Implemented,P0,Code-to-PDF,Basic multi-page PDF export,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+RUN-001,Implemented,P0,Execution service,Local plain-JavaScript runner,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-001,Implemented,P0,Public website and discovery,"FutureRobotic AI brand, hero and public visual system",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-002,Implemented,P0,Public website and discovery,Eight-tool navigation and public routes,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-003,Implemented,P0,Public website and discovery,Homepage four tool cards and calls to action,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-004,Implemented,P0,Public website and discovery,Moving language-logo strip and language cards,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-005,Implemented,P0,Public website and discovery,Workspace promotional preview and benefits section,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+WEB-007,Implemented,P0,Public website and discovery,Monthly and yearly pricing display,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+QAS-001,Implemented,P0,Quality and release verification,Existing TypeScript and utility/API mock suite,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-001,Implemented,P0,Security and data handling,Tenant authorization and anti-IDOR tests,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+SEC-006,Implemented,P0,Security and data handling,Prompt/context trust boundaries,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID

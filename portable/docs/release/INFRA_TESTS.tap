@@ -1,0 +1,12 @@
+✔ AWS-001/004/008 staging and production isolate private RDS and application networks (1.102737ms)
+✔ AWS-003/009/011 images use digests, S3 denies public access and browser task gets no product secrets (0.400896ms)
+✔ AWS-006/007 CloudFront uses private VPC origin and cache-disabled dynamic requests (0.228686ms)
+✔ RUN-006 runner has separate VPC, zero default workers and no provider/DB IAM (0.310399ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 104.047106

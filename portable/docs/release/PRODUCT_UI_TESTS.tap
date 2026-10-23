@@ -1,0 +1,15 @@
+✔ EDT-008 Markdown renders tables/code but never raw HTML, scripts, remote images or unsafe links (26.788117ms)
+✔ TOL-006/007 missing-colon diff identifies one replaced line and exports clean fixed code (2.920797ms)
+✔ WEB-014 all 68 observed converter URLs resolve to valid language pairs (1.862567ms)
+✔ WEB-008 plans and comparison show the same billing amounts and server model tiers (14.135271ms)
+✔ FIL-004/005 browser ZIP import validates CRC and excludes secrets/dependencies (3.248071ms)
+✔ PDF-003/004/005 all font sizes, themes and margin presets export valid multipage PDFs (2598.54099ms)
+✔ PDF-007 long lines paginate, unsupported glyphs are explicit and print HTML escapes active content (441.048991ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3825.480425

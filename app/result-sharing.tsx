@@ -1,0 +1,9 @@
+'use client';
+import React,{useEffect,useState} from 'react';
+import {cloudRequest} from '../lib/cloud-workspace';
+export default function ResultSharing({runId}:{runId:string}){
+ const [items,setItems]=useState<{id:string;expires_at:string;revoked_at:string|null}[]>([]),[link,setLink]=useState(''),[message,setMessage]=useState('');
+ useEffect(()=>{let alive=true;setLink('');cloudRequest(`/v1/runs/${runId}/shares`).then(r=>{if(alive)setItems(r.items);}).catch(e=>{if(alive)setMessage((e as Error).message);});return()=>{alive=false;};},[runId]);
+ async function create(){try{const result=await cloudRequest(`/v1/runs/${runId}/shares`,'POST');const url=location.origin+'/shared#token='+encodeURIComponent(result.token);setLink(url);const rows=await cloudRequest(`/v1/runs/${runId}/shares`);setItems(rows.items);try{await navigator.clipboard.writeText(url);setMessage('Read-only result link copied. Source, instructions and attachments are excluded.');}catch{setMessage('Copy the link below. Anyone with this link can read the result until it expires or you revoke it.');}}catch(e){setMessage((e as Error).message);}}
+ return <details className="result-sharing"><summary>Share result</summary><p>Publish a read-only snapshot of the completed result. Share only content you intend others to read.</p><button className="button secondary small-button" onClick={create}>Create result link</button>{link&&<input aria-label="Shared result link" readOnly value={link}/>}<ul>{items.filter(s=>!s.revoked_at).map(s=><li key={s.id}><span>Expires {new Date(s.expires_at).toLocaleString()}</span><button onClick={async()=>{try{await cloudRequest(`/v1/shares/${s.id}`,'DELETE');setItems(old=>old.filter(x=>x.id!==s.id));setLink('');setMessage('Share revoked.');}catch(e){setMessage((e as Error).message);}}}>Revoke</button></li>)}</ul>{message&&<p role="status">{message}</p>}</details>;
+}

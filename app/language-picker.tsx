@@ -1,0 +1,10 @@
+'use client';
+import React,{useEffect,useRef,useState} from 'react';
+import {supportedLanguages,logoFor} from '../lib/reference-data';
+import {RIcon} from './reference-home';
+export default function LanguagePicker({value,onChange,label,disabled=false,choices=supportedLanguages}:{value:string;onChange:(value:string)=>void;label:string;disabled?:boolean;choices?:readonly string[]}){
+ const [open,setOpen]=useState(false),[search,setSearch]=useState('');const root=useRef<HTMLDivElement>(null),button=useRef<HTMLButtonElement>(null);
+ useEffect(()=>{if(!open)return;const close=(e:MouseEvent)=>{if(!root.current?.contains(e.target as Node))setOpen(false);};const key=(e:KeyboardEvent)=>{if(e.key==='Escape'){setOpen(false);button.current?.focus();}};document.addEventListener('mousedown',close);document.addEventListener('keydown',key);return()=>{document.removeEventListener('mousedown',close);document.removeEventListener('keydown',key);};},[open]);
+ const filteredChoices=[...choices].sort((a,b)=>a.localeCompare(b)).filter(l=>l.toLowerCase().includes(search.toLowerCase()));
+ return <div className="signed-language-picker" ref={root}><button type="button" ref={button} aria-label={label} disabled={disabled} aria-haspopup="listbox" aria-expanded={open} onClick={()=>{setOpen(!open);setSearch('');}}><img src={logoFor(value)} alt="" width={20} height={20}/><span>{value||'Select language…'}</span><RIcon type="chevron" size={14}/></button>{open&&<div className="signed-language-menu"><div className="signed-language-search"><span>⌕</span><input autoFocus aria-label={`Search ${label.toLowerCase()}`} placeholder="Search language…" value={search} onChange={e=>setSearch(e.target.value)}/></div><div role="listbox" aria-label={label}>{filteredChoices.map(language=><button key={language} type="button" role="option" aria-selected={value===language} onClick={()=>{onChange(language);setOpen(false);button.current?.focus();}}><img src={logoFor(language)} width={20} height={20} alt=""/>{language}</button>)}{!filteredChoices.length&&<p>No languages found.</p>}</div></div>}</div>
+}

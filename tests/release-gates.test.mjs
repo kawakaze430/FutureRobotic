@@ -1,0 +1,5 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {checkRelease,requiredGates} from '../ops/check-release.mjs';
+test('REL-004 release stays closed when owner approval or any measured evidence is missing',async()=>{const template=JSON.parse(await readFile('ops/release-gates.example.json','utf8'));assert.ok(checkRelease(template).length>10);const valid={...template,environment:'staging',ownerApproved:true,providerRetentionApproved:true,pricingAndFairUseApproved:true,supportOnCallApproved:true,sourceCommit:'a'.repeat(40),apiDigest:'sha256:'+'b'.repeat(64),webDigest:'sha256:'+'c'.repeat(64),approvedCountries:['IN'],gates:Object.fromEntries(requiredGates.map(g=>[g,{passed:true,evidence:'fixture://measured-log-reference'}]))};assert.deepEqual(checkRelease(valid),[]);valid.gates.backupRestoreAndRollback.passed=false;assert.ok(checkRelease(valid).includes('backupRestoreAndRollback'));assert.ok(!checkRelease(valid).includes('nativePostgres'));valid.gates.backupRestoreAndRollback.passed=true;valid.gates.nativePostgres.evidence='';assert.ok(checkRelease(valid).includes('nativePostgres'));});

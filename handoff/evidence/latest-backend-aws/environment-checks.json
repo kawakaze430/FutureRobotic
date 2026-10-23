@@ -1,0 +1,27 @@
+{
+  "native_checks": [
+    {
+      "name": "native_postgres",
+      "exit_code": 2,
+      "summary": "BLOCKED B01: Docker engine is unavailable. Use TEST_DATABASE_URL with a disposable PostgreSQL database or run this script on a Docker host."
+    },
+    {
+      "name": "native_runner",
+      "exit_code": 2,
+      "summary": "BLOCKED B01/B02: isolated gVisor gateway and protected test signing key are required."
+    }
+  ],
+  "tools": {
+    "docker": false,
+    "aws": false,
+    "psql": false
+  },
+  "configuration_present": {
+    "AWS_PROFILE": false,
+    "AWS_ACCESS_KEY_ID": false,
+    "AWS_WEB_IDENTITY_TOKEN_FILE": false,
+    "RELEASE_CONFIG_FILE": false,
+    "TEST_DATABASE_URL": false,
+    "RUNNER_TEST_ENDPOINT": false
+  }
+}

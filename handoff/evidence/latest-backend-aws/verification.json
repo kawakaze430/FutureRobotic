@@ -1,0 +1,69 @@
+{
+  "checked_at": "2026-10-22T13:23:26.709274+00:00",
+  "source_commit": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "source_changes": "",
+  "checks": [
+    {
+      "name": "backend_build",
+      "exit_code": 0,
+      "seconds": 3.46,
+      "log": "/workspace/scratch/1de288ae8275/outputs/futurerobotic-backend-aws-check/backend_build.log"
+    },
+    {
+      "name": "backend_tests",
+      "exit_code": 0,
+      "seconds": 9.17,
+      "log": "/workspace/scratch/1de288ae8275/outputs/futurerobotic-backend-aws-check/backend_tests.log"
+    },
+    {
+      "name": "infra_build",
+      "exit_code": 0,
+      "seconds": 5.38,
+      "log": "/workspace/scratch/1de288ae8275/outputs/futurerobotic-backend-aws-check/infra_build.log"
+    },
+    {
+      "name": "infra_synth",
+      "exit_code": 0,
+      "seconds": 3.67,
+      "log": "/workspace/scratch/1de288ae8275/outputs/futurerobotic-backend-aws-check/infra_synth.log"
+    },
+    {
+      "name": "infra_tests",
+      "exit_code": 0,
+      "seconds": 0.19,
+      "log": "/workspace/scratch/1de288ae8275/outputs/futurerobotic-backend-aws-check/infra_tests.log"
+    }
+  ],
+  "backend_tests": 77,
+  "infrastructure_tests": 4,
+  "database": "PGlite serialized PostgreSQL WASM; not native multi-connection PostgreSQL",
+  "aws_deployed": false,
+  "production_ready": false,
+  "environment": {
+    "native_checks": [
+      {
+        "name": "native_postgres",
+        "exit_code": 2,
+        "summary": "BLOCKED B01: Docker engine is unavailable. Use TEST_DATABASE_URL with a disposable PostgreSQL database or run this script on a Docker host."
+      },
+      {
+        "name": "native_runner",
+        "exit_code": 2,
+        "summary": "BLOCKED B01/B02: isolated gVisor gateway and protected test signing key are required."
+      }
+    ],
+    "tools": {
+      "docker": false,
+      "aws": false,
+      "psql": false
+    },
+    "configuration_present": {
+      "AWS_PROFILE": false,
+      "AWS_ACCESS_KEY_ID": false,
+      "AWS_WEB_IDENTITY_TOKEN_FILE": false,
+      "RELEASE_CONFIG_FILE": false,
+      "TEST_DATABASE_URL": false,
+      "RUNNER_TEST_ENDPOINT": false
+    }
+  }
+}

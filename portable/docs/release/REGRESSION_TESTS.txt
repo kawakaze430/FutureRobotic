@@ -1,0 +1,1 @@
+PASS: 72 language choices, 68 directory assets, 8 tool routes, 8 example directions, local utilities, PDF, authentication, origin checks, bounded chat context, reference files, and provider handling.

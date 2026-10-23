@@ -1,0 +1,14 @@
+{
+ "ownerApproved": false,
+ "launchCountries": [],
+ "currencyProposal": "USD",
+ "catalogSource": "portable/src/product-policy.ts",
+ "standardUsage": {"publishedUnlimited": false, "proposal": "bounded requests, output, concurrency and global daily maximum cost", "perUserPaidFairUse": "OWNER_DECISION_REQUIRED"},
+ "annualMonthlyAllowance": {"implemented": false, "decision": "monthly scheduled grants within a paid annual entitlement need implementation and merchant rehearsal"},
+ "proration": {"enabled": false, "amountPreviewRequired": true, "policy": "OWNER_DECISION_REQUIRED"},
+ "refund": {"automatic": false, "eligibilityWindow": "OWNER_DECISION_REQUIRED", "usedAllowanceTreatment": "OWNER_DECISION_REQUIRED"},
+ "retention": {"runContentDaysProvisional": 30, "exportsDays": 1, "shareMaximumDays": 7, "backupPolicyApproved": false, "providerPolicyApproved": false},
+ "countryEnforcement": {"selfDeclaredCheckoutAllowlist": true, "providerVerifiedCountryCheck": false, "restrictedServiceMatrixApproved": false},
+ "support": {"mailbox": null, "onCallOwner": null, "responseCommitment": null},
+ "productionLaunchAllowed": false
+}

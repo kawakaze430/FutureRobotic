@@ -1,0 +1,49 @@
+services:
+ db:
+  image: postgres:16
+  environment:
+   POSTGRES_USER: fr_dev
+   POSTGRES_DB: futurerobotic
+   POSTGRES_PASSWORD: ${LOCAL_DB_PASSWORD:?Generate a local database password}
+  volumes: [postgres-data:/var/lib/postgresql/data]
+  healthcheck:
+   test: [CMD-SHELL, "pg_isready -U fr_dev -d futurerobotic"]
+   interval: 5s
+   timeout: 3s
+   retries: 20
+ migrate:
+  build: {context: .., dockerfile: portable/Dockerfile.api}
+  environment:
+   NODE_ENV: development
+   DB_HOSTNAME: db
+   DB_USERNAME: fr_dev
+   DB_DATABASE: futurerobotic
+   DB_PASSWORD: ${LOCAL_DB_PASSWORD}
+  command: [node, portable/dist/src/migrate-cli.js]
+  depends_on: {db: {condition: service_healthy}}
+ api:
+  build: {context: .., dockerfile: portable/Dockerfile.api}
+  environment:
+   NODE_ENV: development
+   HOST: 0.0.0.0
+   APP_ORIGIN: http://localhost:8080
+   DB_HOSTNAME: db
+   DB_USERNAME: fr_dev
+   DB_DATABASE: futurerobotic
+   DB_PASSWORD: ${LOCAL_DB_PASSWORD}
+   OBJECT_DIRECTORY: /data/objects
+   PROCESS_ROLE: all
+  read_only: true
+  tmpfs: [/tmp:size=128m,mode=1777]
+  volumes: [object-data:/data/objects]
+  security_opt: [no-new-privileges:true]
+  cap_drop: [ALL]
+  depends_on: {migrate: {condition: service_completed_successfully}}
+ web:
+  build: {context: .., dockerfile: portable/Dockerfile.web}
+  ports: [127.0.0.1:8080:8080]
+  volumes: [./web/nginx.compose.conf:/etc/nginx/conf.d/default.conf:ro]
+  depends_on: [api]
+volumes:
+ postgres-data:
+ object-data:

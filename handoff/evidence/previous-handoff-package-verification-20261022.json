@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-10-22T13:55:10.167398+00:00",
+  "application_source_commit": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "application_files": 382,
+  "application_files_changed": 0,
+  "source_tests_rerun_for_documentation_only_batch": false,
+  "task_statuses_changed": 0,
+  "counts": {
+    "Implemented": 73,
+    "Partial": 59,
+    "Blocked": 64,
+    "Not started": 0
+  },
+  "next_packages_proposed": 20,
+  "real_test_scenarios_pending": 74,
+  "checks": {
+    "all_382_application_files_match_source_commit_and_modes": true,
+    "canonical_task_fields_statuses_and_counts_preserved": true,
+    "readable_register_has_each_task_exactly_once": true,
+    "csv_and_json_register_agree": true,
+    "74_pending_tests_cover_12_release_groups_plus_product": true,
+    "20_proposed_packages_reference_existing_ids": true,
+    "handoff_markdown_fences_balanced": true,
+    "actual_latest_test_logs_match_77_and_4_no_skips_native_blocked": true,
+    "original_57_image_reference_integrity_and_hash": true,
+    "no_private_environment_runtime_dependency_git_files_or_known_key_patterns": true,
+    "secret_scan_limit": "Pattern scan is not a complete security audit; reference screenshots are user-supplied public desktop captures."
+  },
+  "production_ready": false,
+  "aws_deployed": false,
+  "archive_note": "These are pre-archive input checks. Final ZIP integrity/checksum is recorded in the external package-verification.json and documentation companion."
+}

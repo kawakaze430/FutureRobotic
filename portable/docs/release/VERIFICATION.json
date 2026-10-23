@@ -1,0 +1,57 @@
+{
+  "build": "BUILD-02",
+  "date": "2026-10-22",
+  "time_zone": "Asia/Calcutta",
+  "database_service_tests": {
+    "pass": 64,
+    "fail": 0,
+    "skip": 0,
+    "database": "PGlite 0.3.16 PostgreSQL WASM; serialized transactions"
+  },
+  "product_ui_pdf_tests": {
+    "pass": 7,
+    "fail": 0,
+    "pdf_combinations": 50
+  },
+  "runner_policy_tests": {
+    "pass": 3,
+    "fail": 0,
+    "native_execution": false
+  },
+  "infra_template_tests": {
+    "pass": 4,
+    "fail": 0,
+    "offline_stacks": 6,
+    "aws_deployed": false
+  },
+  "release_gate_tests": {
+    "pass": 1,
+    "fail": 0
+  },
+  "total_node_tests": 79,
+  "existing_utility_api_regression": "passed",
+  "portable_typescript": "passed",
+  "root_typescript": "passed",
+  "infra_typescript": "passed",
+  "standalone_web_build": "passed; 68 observed pair routes prerendered",
+  "sites_preview_browser": "workspace/PDF controls, configured export UI result and local assistant inspected; browser download-path wait timed out, saved bytes not verified",
+  "http_sample": {
+    "scope": "loopback HTTP readiness only; no AWS/AI/runner saturation claim",
+    "requests": 100,
+    "concurrency": 10,
+    "errors": 0,
+    "p95Ms": 51,
+    "database": "WASM"
+  },
+  "query_fixture": {
+    "rows": 10000,
+    "index_scan": true,
+    "database": "WASM; no native latency claim"
+  },
+  "native_database": "blocked B01; Docker unavailable",
+  "native_runner": "blocked B01/B02; no configured isolated TLS host/signing key",
+  "production_ready": false,
+  "preview_database_wiring": false,
+  "live_provider_payment_oauth_email_aws": "not performed",
+  "dependency_install": "managed locked installation completed; not blocked"
+}

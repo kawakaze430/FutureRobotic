@@ -1,0 +1,31 @@
+{
+  "build": "BUILD-03",
+  "source_parent": "5a4ab1df59d22b1cf6b984893c59ceb9f13a8d8e",
+  "date": "2026-10-22",
+  "automated_tests": {
+    "backend": 77,
+    "ui_export": 15,
+    "runner_policy_release_gate": 4,
+    "infra": 4,
+    "total": 100
+  },
+  "database": "PGlite0.3.16; serialized PostgreSQL WASM",
+  "native_database": "Blocked B01; gate exit2",
+  "native_runner": "Blocked B01/B02; gate exit2",
+  "production_ready": false,
+  "browser": {
+    "engine": "desktop Chromium",
+    "viewport": [
+      1365,
+      937
+    ],
+    "local_execution_stdout": "55",
+    "pdf_input_characters": 50000,
+    "pdf_preview_without_numbering_characters": 50000,
+    "limits": [
+      "No live AI/merchant/account backend browser acceptance",
+      "No native execution or cloud operations",
+      "No mobile/cross-browser acceptance"
+    ]
+  }
+}

@@ -1,0 +1,1 @@
+BLOCKED B01/B02: isolated gVisor gateway and protected test signing key are required.

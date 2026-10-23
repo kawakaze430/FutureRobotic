@@ -1,0 +1,80 @@
+{
+  "database": "PostgreSQL-WASM",
+  "rows": 10000,
+  "plan": [
+    {
+      "Plan": {
+        "Node Type": "Limit",
+        "Parallel Aware": false,
+        "Async Capable": false,
+        "Startup Cost": 0.29,
+        "Total Cost": 2.41,
+        "Plan Rows": 20,
+        "Plan Width": 42,
+        "Actual Startup Time": 0.064,
+        "Actual Total Time": 0.115,
+        "Actual Rows": 20,
+        "Actual Loops": 1,
+        "Shared Hit Blocks": 3,
+        "Shared Read Blocks": 0,
+        "Shared Dirtied Blocks": 0,
+        "Shared Written Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Dirtied Blocks": 0,
+        "Local Written Blocks": 0,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0,
+        "Plans": [
+          {
+            "Node Type": "Index Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Scan Direction": "Forward",
+            "Index Name": "runs_page",
+            "Relation Name": "tool_runs",
+            "Alias": "tool_runs",
+            "Startup Cost": 0.29,
+            "Total Cost": 1062.22,
+            "Plan Rows": 10000,
+            "Plan Width": 42,
+            "Actual Startup Time": 0.059,
+            "Actual Total Time": 0.089,
+            "Actual Rows": 20,
+            "Actual Loops": 1,
+            "Index Cond": "(workspace_id = '38b3630f-bf86-4c94-84b1-d1fcc00f9055'::uuid)",
+            "Rows Removed by Index Recheck": 0,
+            "Filter": "(owner_id = '039d6712-33de-4655-b608-65e2c2410e3a'::uuid)",
+            "Rows Removed by Filter": 0,
+            "Shared Hit Blocks": 3,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          }
+        ]
+      },
+      "Planning": {
+        "Shared Hit Blocks": 67,
+        "Shared Read Blocks": 1,
+        "Shared Dirtied Blocks": 0,
+        "Shared Written Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Dirtied Blocks": 0,
+        "Local Written Blocks": 0,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0
+      },
+      "Planning Time": 0.794,
+      "Triggers": [],
+      "Execution Time": 0.222
+    }
+  ]
+}

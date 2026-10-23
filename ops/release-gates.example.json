@@ -1,0 +1,26 @@
+{
+  "environment": "staging",
+  "sourceCommit": "",
+  "apiDigest": "",
+  "webDigest": "",
+  "ownerApproved": false,
+  "approvedCountries": [],
+  "currency": "USD",
+  "providerRetentionApproved": false,
+  "pricingAndFairUseApproved": false,
+  "supportOnCallApproved": false,
+  "gates": {
+    "nativePostgres": {"passed": false, "evidence": "", "blocker": "B01"},
+    "dockerImagesAndCompose": {"passed": false, "evidence": "", "blocker": "B01"},
+    "fiveRuntimeIsolation": {"passed": false, "evidence": "", "blocker": "B01"},
+    "awsStagingSmokeAndFailover": {"passed": false, "evidence": "", "blocker": "B02"},
+    "oauthAndOtpDelivery": {"passed": false, "evidence": "", "blocker": "B06/B07"},
+    "realAiQualityAndCost": {"passed": false, "evidence": "", "blocker": "B03"},
+    "merchantSandboxAndRefund": {"passed": false, "evidence": "", "blocker": "B04"},
+    "dnsTlsEdgeAndCountryProbes": {"passed": false, "evidence": "", "blocker": "B05"},
+    "loadAndAutoscaling": {"passed": false, "evidence": "", "blocker": "B01/B02"},
+    "backupRestoreAndRollback": {"passed": false, "evidence": "", "blocker": "B02"},
+    "alertsAndIncidentDrill": {"passed": false, "evidence": "", "blocker": "B02/B07"},
+    "protectedOidcCi": {"passed": false, "evidence": "", "blocker": "B09"}
+  }
+}

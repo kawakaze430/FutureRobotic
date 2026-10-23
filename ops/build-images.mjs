@@ -1,0 +1,9 @@
+// Run in the protected owner CI environment after verify.yml succeeds at this commit.
+import {execFileSync,spawnSync} from 'node:child_process';
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+const region=process.env.AWS_REGION,api=process.env.ECR_API_REPOSITORY,web=process.env.ECR_WEB_REPOSITORY,sha=process.env.GITHUB_SHA;
+if(!region||!api||!web||!/^[a-f0-9]{40}$/.test(sha??'')||process.env.CI_VERIFICATION_PASSED!=='true')throw new Error('Protected verified CI commit, region and exact ECR repositories are required');
+const registry=api.split('/')[0];if(web.split('/')[0]!==registry)throw new Error('Repositories must share the approved registry');
+const password=execFileSync('aws',['ecr','get-login-password','--region',region],{encoding:'utf8',stdio:['ignore','pipe','ignore']});const login=spawnSync('docker',['login','--username','AWS','--password-stdin',registry],{input:password,stdio:['pipe','ignore','ignore']});if(login.status!==0)throw new Error('Registry login failed');
+await mkdir('outputs/images',{recursive:true});const images={};
+try{for(const [name,repo,file]of [['api',api,'portable/Dockerfile.api'],['web',web,'portable/Dockerfile.web']]){const metadata=`outputs/images/${name}-metadata.json`;execFileSync('docker',['buildx','build','--platform','linux/amd64','--file',file,'--tag',`${repo}:${sha}`,'--provenance=mode=max','--sbom=true','--metadata-file',metadata,'--push','.'],{stdio:'inherit'});const digest=JSON.parse(await readFile(metadata,'utf8'))['containerimage.digest'];if(!/^sha256:[a-f0-9]{64}$/.test(digest))throw new Error('Missing immutable image digest');images[name]=`${repo}@${digest}`;}images.worker=images.api;await writeFile('outputs/images/release-images.json',JSON.stringify({sourceCommit:sha,images,scanned:false},null,2));console.log('Images published with SBOM/provenance. ECR vulnerability review and release gates remain required.');}finally{spawnSync('docker',['logout',registry],{stdio:'ignore'});}

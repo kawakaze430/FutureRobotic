@@ -1,0 +1,43 @@
+{
+  "project": "FutureRobotic AI",
+  "application_release": "BUILD-03",
+  "application_source_commit": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "handoff_version": "BUILD03-HANDOFF-20261022",
+  "reviewed_at": "2026-10-22T13:50:06.880889+00:00",
+  "totals": {
+    "Implemented": 73,
+    "Partial": 59,
+    "Blocked": 64,
+    "Not started": 0
+  },
+  "total_tasks": 196,
+  "production_ready": false,
+  "aws_deployed": false,
+  "preview_kind": "owner-private Sites Worker/browser preview, separate from portable account backend",
+  "preview_url": "https://futurerobotic-ai.pearly-zebra-9453.chatgpt.site",
+  "preview_version": 5,
+  "test_evidence": {
+    "build03_unique_automated_tests": 100,
+    "latest_rechecked_subset": 81,
+    "latest_recheck_at": "2026-10-22T13:23:26.709274+00:00",
+    "native_database": "Blocked; exit 2",
+    "native_runner": "Blocked; exit 2"
+  },
+  "original_reference_images": 57,
+  "signed_in_video_included": false,
+  "next_work_packages": 20,
+  "pending_real_acceptance_scenarios": 74,
+  "application_files_changed_in_handoff": 0,
+  "canonical_task_statuses_changed_in_handoff": 0,
+  "cloud_test_preparation": {
+    "prepared_at": "2026-10-23T16:12:35.397073+00:00",
+    "source_files_changed": 0,
+    "test_utilities_added": 3,
+    "helper_syntax_checked": true,
+    "authoring_environment_native_gate": "BLOCKED_ENVIRONMENT; exit 2",
+    "authoring_environment_container_gate": "BLOCKED_ENVIRONMENT; exit 2",
+    "native_tests_executed": false,
+    "container_builds_executed": false,
+    "limited_prompt": "cloud-only/CLOUD_TEST_ONLY_PROMPT.md"
+  }
+}

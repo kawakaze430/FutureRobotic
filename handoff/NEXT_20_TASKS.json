@@ -1,0 +1,182 @@
+[
+  {
+    "sequence": 1,
+    "task_ids": "API-003",
+    "work_package": "Complete typed response contracts",
+    "scope": "Inventory every endpoint response/error/pagination shape, replace broad/default-any results, generate or validate the browser client against the actual OpenAPI contract.",
+    "acceptance": "Valid/invalid responses and client build agree across all endpoints; no silent any fallback.",
+    "dependencies": "Source can proceed; native/deployed contract acceptance follows.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 2,
+    "task_ids": "QAS-003,AWS-013",
+    "work_package": "Include every suite in native/CI verification",
+    "scope": "Extend the native wrapper to include completion tests and make CI retain source-bound results and blocker/failure exits.",
+    "acceptance": "All four compiled backend suites run on disposable native PostgreSQL; no suite is silently omitted.",
+    "dependencies": "Wrapper/CI source can proceed; execution needs B01/B09.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 3,
+    "task_ids": "QTA-001,QTA-003,SEC-007",
+    "work_package": "Wire guarded anonymous AI dispatch",
+    "scope": "Connect durable daily counters to bounded public requests, trusted edge IP/human verification, idempotency, budgets and ephemeral recovery.",
+    "acceptance": "Two-use policy cannot be bypassed across replicas/retries; spoofed headers and budget-off requests deny safely.",
+    "dependencies": "Source can proceed; policy/edge/provider acceptance needs B02/B03/B08.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 4,
+    "task_ids": "RUN-005,QTA-001",
+    "work_package": "Wire guarded anonymous execution dispatch",
+    "scope": "Use the same server abuse boundary with three-use source policy, fair admission and signed job binding; keep user code off the trusted host.",
+    "acceptance": "Retry uses one reservation; invalid/over-limit requests create no sandbox job; native isolation evidence remains separate.",
+    "dependencies": "Source can proceed; B01/B02/B08 for final policy/native acceptance.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 5,
+    "task_ids": "TOL-004,API-003",
+    "work_package": "Add structured checker output",
+    "scope": "Create a bounded issue/severity/location/corrected-snippet schema and validated renderer; preserve original and safe Markdown fallbacks.",
+    "acceptance": "Malformed or unsupported issue fields fail safely; Unicode locations and severity fixtures render correctly.",
+    "dependencies": "Source can proceed; real-model usefulness requires B03.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 6,
+    "task_ids": "TOL-012,QAS-004",
+    "work_package": "Build unseen grounded evaluations",
+    "scope": "Add non-leaking convert/generate/explain/check/fix/chat fixtures, semantic or reviewer rubrics, versioned scoring and provider run metadata.",
+    "acceptance": "Frozen fixture/scoring policy exists before real runs; test doubles are labeled; generated code is tested only on approved execution hosts.",
+    "dependencies": "Harness/fixtures can proceed; actual approved provider needs B03 and policy.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 7,
+    "task_ids": "WRK-006,HIS-003",
+    "work_package": "Persist local-tool cloud results and notes",
+    "scope": "Complete owned local-tool result creation, optimistic notes/version recovery and selected history mode behavior without losing originals.",
+    "acceptance": "Two-account, reload, conflict and cloud/local/none scenarios preserve the right data and never leak another workspace.",
+    "dependencies": "Source can proceed; native/device acceptance needs B01/B02.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 8,
+    "task_ids": "CHT-003,HIS-003,AUT-008",
+    "work_package": "Finish race-safe recovery",
+    "scope": "Guard late session/page responses; recover history/account export jobs after full reload; keep pagination stable during switches/deletion.",
+    "acceptance": "Out-of-order response fixtures and reload/browser scenarios cannot display or mutate the wrong session/result.",
+    "dependencies": "Source can proceed; deployed/second-device acceptance needs B02.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 9,
+    "task_ids": "CHT-005,FIL-010",
+    "work_package": "Finish attachment workflow acceptance",
+    "scope": "Inspect existing cloud attachment controls first; close replace/multi-file/stale-revision/accessibility gaps rather than reimplementing the picker.",
+    "acceptance": "Selected owned files show included/omitted content and exact revision; removal/replacement/race and keyboard tests pass.",
+    "dependencies": "Source can proceed; real S3/native races need B01/B02.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 10,
+    "task_ids": "AUT-009,SEC-009",
+    "work_package": "Implement protected operator enrollment",
+    "scope": "Add an owner-controlled one-time enrollment/rotation/revocation path with audited roles and protected MFA material; no public bootstrap endpoint.",
+    "acceptance": "Ordinary runtime cannot enroll itself or modify operator secrets; replay/role/rotation negative cases are tested.",
+    "dependencies": "Source can proceed; protected setup/native privileges need B02.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 11,
+    "task_ids": "API-006,AUT-009",
+    "work_package": "Complete operator console",
+    "scope": "Add least-privilege operations views/actions with fresh MFA, audit and bounded finance/support data; never repair ledger history.",
+    "acceptance": "Unauthorized/stale-MFA/cross-role actions deny; permitted actions append audit and idempotent correction events.",
+    "dependencies": "Source can proceed; merchant/refund policy/actions need B04/B08.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 12,
+    "task_ids": "WEB-010,AWS-012",
+    "work_package": "Add support acknowledgement outbox",
+    "scope": "Create idempotent delivery jobs, bounded retry/dead-letter/recovery and delivery status; integrate sender events without exposing ticket data.",
+    "acceptance": "No duplicate acknowledgement on retries; failed delivery can recover; unauthorized ticket access and message floods deny.",
+    "dependencies": "Source can proceed; external delivery requires B07.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 13,
+    "task_ids": "BIL-010,BIL-012,QTA-006,REL-006",
+    "work_package": "Add authoritative external reconciliation",
+    "scope": "Fetch/bind provider/merchant outcomes, detect missing/reordered events and invoice/credit mismatches; apply audited idempotent corrections.",
+    "acceptance": "Uncertain outcomes never blindly resend/refund; duplicate reconciliation is harmless and mismatches are inspectable.",
+    "dependencies": "Adapter/source can proceed; real fixtures/accounts and policy need B03/B04/B08.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 14,
+    "task_ids": "AWS-005,AWS-001,AWS-003",
+    "work_package": "Implement first-deploy bootstrap",
+    "scope": "Separate retained repository/image/secret/migration dependencies from steady-state ECS updates; add reviewed stage orchestration and rollback boundaries.",
+    "acceptance": "A fresh staging account can be provisioned in documented dependency order without placeholder images, serving DB owner credentials or falsified gates.",
+    "dependencies": "Source can proceed; actual apply requires B02/B09 and approved config.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 15,
+    "task_ids": "RUN-002,RUN-003,SEC-010",
+    "work_package": "Pin and publish runtime/build inputs",
+    "scope": "Create five pinned runtime artifacts and measured version catalog; pin base/build inputs, generate SBOM/provenance and scan before promotion.",
+    "acceptance": "Versions come from actual images; exact digests map to selectors; no moving-tag assumption establishes reproducibility.",
+    "dependencies": "Definitions can proceed; builds/native probes need B01/B09.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 16,
+    "task_ids": "RUN-010,RUN-006",
+    "work_package": "Automate runner drain and rotation",
+    "scope": "Implement controlled admission stop, active lease drain, image/host/key replacement, probe gate and safe recovery of crashed sent jobs.",
+    "acceptance": "Failed patch/probe cannot reopen admission; active/uncertain jobs are accounted for without host residue or blind replay.",
+    "dependencies": "Source can proceed; real fleet exercise needs B01/B02.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 17,
+    "task_ids": "AWS-014,REL-005",
+    "work_package": "Complete dashboards and alerts",
+    "scope": "Emit bounded latency/error/queue/DB/spend/finance metrics and meaningful dashboards/alerts with known operators; exclude source/tokens.",
+    "acceptance": "Synthetic alert and incident evidence demonstrates routing; metrics diagnose mismatch/latency without raw user code.",
+    "dependencies": "Source can proceed; real delivery and budgets need B02/B07/B08.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 18,
+    "task_ids": "AWS-015,SEC-011",
+    "work_package": "Implement regional recovery configuration",
+    "scope": "Add second-region backup/key-copy configuration, private restore/role procedure and deleted-user/accounting reconciliation.",
+    "acceptance": "Measured restore can recover approved data while reapplying deletion tombstones; RPO/RTO and key access are observed.",
+    "dependencies": "Source can proceed; region/policy and restore execution need B02/B08.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 19,
+    "task_ids": "QAS-002,QAS-010,WEB-017",
+    "work_package": "Add deterministic browser regression",
+    "scope": "Create stable state/action/screenshot baselines for public/workspace/tools/chat/files/PDF at four viewport sizes and supported engines.",
+    "acceptance": "Keyboard/focus and visual/action assertions pass in the approved browser/CI environment; no fabricated baseline screenshot.",
+    "dependencies": "Source can proceed; current runtime browser restrictions and real identity still apply.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  },
+  {
+    "sequence": 20,
+    "task_ids": "WEB-015,WEB-016",
+    "work_package": "Complete French and locale metadata",
+    "scope": "Centralize all user-facing strings, translate guides/help/account/errors, implement locale route/switch/persistence and correct alternate metadata.",
+    "acceptance": "No untranslated target flow; English/French routing, link state, guides and approved canonical/noindex policy are tested.",
+    "dependencies": "Source can proceed; production indexing/domain activation needs B05/B08.",
+    "batch_status": "Proposed; not implemented by this handoff"
+  }
+]
