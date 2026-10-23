@@ -1,0 +1,5 @@
+NAME                              IMAGE                           COMMAND                  SERVICE   CREATED          STATUS                              PORTS
+fr-cloud-655805a3812e-api-1       fr-cloud-655805a3812e-api       "docker-entrypoint.s…"   api       25 seconds ago   Created                             
+fr-cloud-655805a3812e-db-1        postgres:16                     "docker-entrypoint.s…"   db        44 seconds ago   Up 6 seconds (healthy)              5432/tcp
+fr-cloud-655805a3812e-migrate-1   fr-cloud-655805a3812e-migrate   "docker-entrypoint.s…"   migrate   41 seconds ago   Exited (1) Less than a second ago   
+fr-cloud-655805a3812e-web-1       fr-cloud-655805a3812e-web       "/docker-entrypoint.…"   web       7 seconds ago    Created                             

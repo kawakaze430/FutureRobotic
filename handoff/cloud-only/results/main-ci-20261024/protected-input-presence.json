@@ -1,0 +1,24 @@
+{
+  "variable_presence_only": {
+    "RUNNER_TEST_ENDPOINT": false,
+    "RUNNER_TEST_PRIVATE_KEY_FILE": false,
+    "AI_HTTP_ENDPOINT": false,
+    "AI_HTTP_API_KEY": false,
+    "APP_ENCRYPTION_KEY": false,
+    "AUTH_HASH_SECRET": false,
+    "PADDLE_API_KEY": false,
+    "PADDLE_WEBHOOK_SECRET": false,
+    "GOOGLE_CLIENT_ID": false,
+    "GOOGLE_CLIENT_SECRET": false,
+    "GITHUB_CLIENT_ID": false,
+    "GITHUB_CLIENT_SECRET": false,
+    "SES_FROM_EMAIL": false,
+    "S3_BUCKET": false,
+    "AWS_ROLE_ARN": false,
+    "AWS_WEB_IDENTITY_TOKEN_FILE": false,
+    "AWS_CONTAINER_CREDENTIALS_RELATIVE_URI": false,
+    "AWS_ACCESS_KEY_ID": false,
+    "RELEASE_CONFIG_FILE": false
+  },
+  "scope": "Names/presence only. Absence does not rule out other injected authentication. No live provider/AWS/merchant operation was attempted or validated in this batch."
+}

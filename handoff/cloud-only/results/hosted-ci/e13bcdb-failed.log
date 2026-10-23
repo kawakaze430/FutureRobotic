@@ -1,0 +1,61 @@
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	﻿2026-10-23T19:31:37.3379892Z ##[group]Run pnpm api:test:native
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:37.3380244Z [36;1mpnpm api:test:native[0m
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:37.3442859Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:37.3443207Z env:
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:37.3443402Z   FR_EVIDENCE_ROOT: work/ci
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:37.3443628Z ##[endgroup]
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:37.8357731Z $ node portable/scripts/test-native.mjs
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:37.9723662Z [native-postgres] docker-engine
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:38.3647876Z [native-postgres] postgres-start
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:48.3506346Z [native-postgres] postgres-port
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:48.3658873Z [native-postgres] postgres-image
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:48.3880147Z [native-postgres] api-build
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:54.1767413Z [native-postgres] native-connections
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:31:54.2649200Z [native-postgres] native-backend-tap
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:32:05.4786186Z [native-postgres] postgres-cleanup
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:32:05.6555464Z {
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:32:05.6569349Z   "verification_status": "FAILED_NATIVE",
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:32:05.6571045Z   "detail": "Native backend suite failed or did not produce a complete TAP summary with actual passes.",
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:32:05.6572697Z   "result": "work/ci/native-postgres/20261023T193137970160Z/result.json"
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:32:05.6574089Z }
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:32:05.6875144Z [ELIFECYCLE] Command failed with exit code 1.
+All native PostgreSQL suites and actual restart	Native connections, locks, every backend suite and restart	2026-10-23T19:32:05.7245630Z ##[error]Process completed with exit code 1.
+Required verification result	Report every gate and preserve a failing overall result	﻿2026-10-23T19:33:24.1382478Z ##[group]Run python3 - <<'PY'
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.1383395Z [36;1mpython3 - <<'PY'[0m
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.1384191Z [36;1mimport json, os[0m
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.1384894Z [36;1mgates = json.loads(os.environ['GATE_RESULTS'])[0m
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.1386100Z [36;1mwith open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as summary:[0m
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.1387073Z [36;1m    summary.write('| Gate | Result |\n| --- | --- |\n')[0m
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.1387953Z [36;1m    for name, gate in gates.items():[0m
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.1388800Z [36;1m        summary.write(f"| {name} | {gate['result']} |\n")[0m
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.1390644Z [36;1m    summary.write('\nNative restart is local disposable PostgreSQL, not RDS failover. Sandbox, browser/device, live-provider, merchant, OAuth/email and AWS acceptance require documented protected prerequisites.\n')[0m
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.1392485Z [36;1mif any(gate['result'] != 'success' for gate in gates.values()):[0m
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.1393702Z [36;1m    raise SystemExit('Required jobs failed, were cancelled or did not run; inspect retained evidence.')[0m
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.1394920Z [36;1mPY[0m
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.2240359Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.2241796Z env:
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.2243578Z   GATE_RESULTS: {
+Required verification result	Report every gate and preserve a failing overall result	  "workflow": {
+Required verification result	Report every gate and preserve a failing overall result	    "result": "success",
+Required verification result	Report every gate and preserve a failing overall result	    "outputs": {}
+Required verification result	Report every gate and preserve a failing overall result	  },
+Required verification result	Report every gate and preserve a failing overall result	  "checks": {
+Required verification result	Report every gate and preserve a failing overall result	    "result": "success",
+Required verification result	Report every gate and preserve a failing overall result	    "outputs": {}
+Required verification result	Report every gate and preserve a failing overall result	  },
+Required verification result	Report every gate and preserve a failing overall result	  "native": {
+Required verification result	Report every gate and preserve a failing overall result	    "result": "failure",
+Required verification result	Report every gate and preserve a failing overall result	    "outputs": {}
+Required verification result	Report every gate and preserve a failing overall result	  },
+Required verification result	Report every gate and preserve a failing overall result	  "containers": {
+Required verification result	Report every gate and preserve a failing overall result	    "result": "success",
+Required verification result	Report every gate and preserve a failing overall result	    "outputs": {}
+Required verification result	Report every gate and preserve a failing overall result	  },
+Required verification result	Report every gate and preserve a failing overall result	  "audit": {
+Required verification result	Report every gate and preserve a failing overall result	    "result": "success",
+Required verification result	Report every gate and preserve a failing overall result	    "outputs": {}
+Required verification result	Report every gate and preserve a failing overall result	  }
+Required verification result	Report every gate and preserve a failing overall result	}
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.2246062Z ##[endgroup]
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.2820890Z Required jobs failed, were cancelled or did not run; inspect retained evidence.
+Required verification result	Report every gate and preserve a failing overall result	2026-10-23T19:33:24.2856454Z ##[error]Process completed with exit code 1.

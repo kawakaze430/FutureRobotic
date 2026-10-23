@@ -1,0 +1,137 @@
+{
+  "scope": "project-regression",
+  "verification_status": "PASSED_PROJECT_CHECKS",
+  "detail": "Existing source, tests and builds; mocks/offline fixtures remain distinct from native/live acceptance.",
+  "recorded_at": "2026-10-23T19:13:15.998275+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "ee94fa267b04566e43410ba9246ac139bca26204",
+  "source_worktree_dirty": true,
+  "source_diff_sha256": "6e717ac2ad8eb9cd2b6685fb7087df572d249d547b4f0212e55a7972900f98bf",
+  "steps": [
+    {
+      "step": "typescript",
+      "command": "pnpm exec tsc --noEmit",
+      "exit_code": 0,
+      "seconds": 14.25,
+      "log": "handoff/cloud-only/results/project-regression/20261023T191230317433Z/typescript.log"
+    },
+    {
+      "step": "api-build",
+      "command": "pnpm api:build",
+      "exit_code": 0,
+      "seconds": 2.72,
+      "log": "handoff/cloud-only/results/project-regression/20261023T191230317433Z/api-build.log"
+    },
+    {
+      "step": "backend-pglite",
+      "command": "node --test --test-reporter=tap portable/dist/tests/completion.test.js portable/dist/tests/integration.test.js portable/dist/tests/operations.test.js portable/dist/tests/product.test.js",
+      "exit_code": 0,
+      "seconds": 8.28,
+      "log": "handoff/cloud-only/results/project-regression/20261023T191230317433Z/backend-pglite.log"
+    },
+    {
+      "step": "ui",
+      "command": "node --import tsx --test --test-reporter=tap tests/completion-ui.test.tsx tests/product-ui.test.tsx",
+      "exit_code": 0,
+      "seconds": 3.46,
+      "log": "handoff/cloud-only/results/project-regression/20261023T191230317433Z/ui.log"
+    },
+    {
+      "step": "tools",
+      "command": "node tests/tools.test.mjs",
+      "exit_code": 0,
+      "seconds": 0.34,
+      "log": "handoff/cloud-only/results/project-regression/20261023T191230317433Z/tools.log"
+    },
+    {
+      "step": "policy-release",
+      "command": "node --test --test-reporter=tap runner/tests/policy.test.mjs tests/release-gates.test.mjs",
+      "exit_code": 0,
+      "seconds": 0.09,
+      "log": "handoff/cloud-only/results/project-regression/20261023T191230317433Z/policy-release.log"
+    },
+    {
+      "step": "portable-web",
+      "command": "pnpm web:build",
+      "exit_code": 0,
+      "seconds": 2.02,
+      "log": "handoff/cloud-only/results/project-regression/20261023T191230317433Z/portable-web.log"
+    },
+    {
+      "step": "sites-build",
+      "command": "pnpm build",
+      "exit_code": 0,
+      "seconds": 8.29,
+      "log": "handoff/cloud-only/results/project-regression/20261023T191230317433Z/sites-build.log"
+    },
+    {
+      "step": "infra-build",
+      "command": "pnpm infra:build",
+      "exit_code": 0,
+      "seconds": 3.42,
+      "log": "handoff/cloud-only/results/project-regression/20261023T191230317433Z/infra-build.log"
+    },
+    {
+      "step": "infra-synth",
+      "command": "pnpm infra:synth",
+      "exit_code": 0,
+      "seconds": 2.34,
+      "log": "handoff/cloud-only/results/project-regression/20261023T191230317433Z/infra-synth.log"
+    },
+    {
+      "step": "infra-tests",
+      "command": "pnpm infra:test",
+      "exit_code": 0,
+      "seconds": 0.48,
+      "log": "handoff/cloud-only/results/project-regression/20261023T191230317433Z/infra-tests.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "checks": [
+    {
+      "scope": "typescript",
+      "exit": 0
+    },
+    {
+      "scope": "api-build",
+      "exit": 0
+    },
+    {
+      "scope": "backend-pglite",
+      "exit": 0
+    },
+    {
+      "scope": "ui",
+      "exit": 0
+    },
+    {
+      "scope": "tools",
+      "exit": 0
+    },
+    {
+      "scope": "policy-release",
+      "exit": 0
+    },
+    {
+      "scope": "portable-web",
+      "exit": 0
+    },
+    {
+      "scope": "sites-build",
+      "exit": 0
+    },
+    {
+      "scope": "infra-build",
+      "exit": 0
+    },
+    {
+      "scope": "infra-synth",
+      "exit": 0
+    },
+    {
+      "scope": "infra-tests",
+      "exit": 0
+    }
+  ]
+}

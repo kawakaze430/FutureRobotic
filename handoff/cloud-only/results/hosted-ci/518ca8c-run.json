@@ -1,0 +1,584 @@
+{
+  "conclusion": "success",
+  "createdAt": "2026-10-23T19:53:23Z",
+  "headSha": "518ca8cf430622bb3229ebe4f0519fe835835033",
+  "jobs": [
+    {
+      "name": "Production dependency audit",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-23T19:53:26Z",
+      "completedAt": "2026-10-23T19:53:40Z",
+      "url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240/job/120624495051",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-23T19:53:26Z",
+          "completed_at": "2026-10-23T19:53:29Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-23T19:53:29Z",
+          "completed_at": "2026-10-23T19:53:31Z"
+        },
+        {
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-23T19:53:31Z",
+          "completed_at": "2026-10-23T19:53:32Z"
+        },
+        {
+          "name": "Audit locked production dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-23T19:53:32Z",
+          "completed_at": "2026-10-23T19:53:36Z"
+        },
+        {
+          "name": "Retain source-bound evidence even on failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-23T19:53:36Z",
+          "completed_at": "2026-10-23T19:53:38Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-23T19:53:38Z",
+          "completed_at": "2026-10-23T19:53:38Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-23T19:53:38Z",
+          "completed_at": "2026-10-23T19:53:38Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-23T19:53:38Z",
+          "completed_at": "2026-10-23T19:53:38Z"
+        }
+      ]
+    },
+    {
+      "name": "Container images, migrations and HTTP readiness",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-23T19:53:26Z",
+      "completedAt": "2026-10-23T19:55:53Z",
+      "url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240/job/120624495350",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-23T19:53:26Z",
+          "completed_at": "2026-10-23T19:53:27Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-23T19:53:27Z",
+          "completed_at": "2026-10-23T19:53:29Z"
+        },
+        {
+          "name": "Build and verify disposable Compose stack",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-23T19:53:29Z",
+          "completed_at": "2026-10-23T19:55:50Z"
+        },
+        {
+          "name": "Retain source-bound evidence even on failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-23T19:55:50Z",
+          "completed_at": "2026-10-23T19:55:51Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-23T19:55:51Z",
+          "completed_at": "2026-10-23T19:55:51Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-23T19:55:51Z",
+          "completed_at": "2026-10-23T19:55:51Z"
+        }
+      ]
+    },
+    {
+      "name": "Source, unit tests and builds (Node 22)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-23T19:53:26Z",
+      "completedAt": "2026-10-23T19:55:24Z",
+      "url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240/job/120624495448",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-23T19:53:26Z",
+          "completed_at": "2026-10-23T19:53:27Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-23T19:53:27Z",
+          "completed_at": "2026-10-23T19:53:29Z"
+        },
+        {
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-23T19:53:29Z",
+          "completed_at": "2026-10-23T19:53:30Z"
+        },
+        {
+          "name": "Install pinned tools and locked dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-23T19:53:30Z",
+          "completed_at": "2026-10-23T19:53:55Z"
+        },
+        {
+          "name": "TypeScript",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-23T19:53:55Z",
+          "completed_at": "2026-10-23T19:54:12Z"
+        },
+        {
+          "name": "Backend build and PGlite suites",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-23T19:54:12Z",
+          "completed_at": "2026-10-23T19:54:43Z"
+        },
+        {
+          "name": "UI rendering and export",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-23T19:54:43Z",
+          "completed_at": "2026-10-23T19:54:50Z"
+        },
+        {
+          "name": "Existing utility and API regression",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-23T19:54:50Z",
+          "completed_at": "2026-10-23T19:54:51Z"
+        },
+        {
+          "name": "Runner policy and release gates (no untrusted execution)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-23T19:54:51Z",
+          "completed_at": "2026-10-23T19:54:51Z"
+        },
+        {
+          "name": "Portable web build and prerender",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-23T19:54:51Z",
+          "completed_at": "2026-10-23T19:54:54Z"
+        },
+        {
+          "name": "Existing Sites framework build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-23T19:54:54Z",
+          "completed_at": "2026-10-23T19:55:09Z"
+        },
+        {
+          "name": "Infrastructure build, offline synthesis and templates",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-23T19:55:09Z",
+          "completed_at": "2026-10-23T19:55:21Z"
+        },
+        {
+          "name": "Retain source-bound evidence even on failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-23T19:55:21Z",
+          "completed_at": "2026-10-23T19:55:22Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-23T19:55:22Z",
+          "completed_at": "2026-10-23T19:55:22Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-23T19:55:22Z",
+          "completed_at": "2026-10-23T19:55:22Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-23T19:55:22Z",
+          "completed_at": "2026-10-23T19:55:23Z"
+        }
+      ]
+    },
+    {
+      "name": "Validate GitHub Actions workflows",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-23T19:53:26Z",
+      "completedAt": "2026-10-23T19:53:33Z",
+      "url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240/job/120624495455",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-23T19:53:27Z",
+          "completed_at": "2026-10-23T19:53:27Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-23T19:53:27Z",
+          "completed_at": "2026-10-23T19:53:30Z"
+        },
+        {
+          "name": "Verified actionlint release",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-23T19:53:30Z",
+          "completed_at": "2026-10-23T19:53:30Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-23T19:53:30Z",
+          "completed_at": "2026-10-23T19:53:31Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-23T19:53:31Z",
+          "completed_at": "2026-10-23T19:53:31Z"
+        }
+      ]
+    },
+    {
+      "name": "Source, unit tests and builds (Node 24)",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-23T19:53:26Z",
+      "completedAt": "2026-10-23T19:55:16Z",
+      "url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240/job/120624495481",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-23T19:53:26Z",
+          "completed_at": "2026-10-23T19:53:28Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-23T19:53:28Z",
+          "completed_at": "2026-10-23T19:53:30Z"
+        },
+        {
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-23T19:53:30Z",
+          "completed_at": "2026-10-23T19:53:30Z"
+        },
+        {
+          "name": "Install pinned tools and locked dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-23T19:53:30Z",
+          "completed_at": "2026-10-23T19:53:57Z"
+        },
+        {
+          "name": "TypeScript",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-23T19:53:57Z",
+          "completed_at": "2026-10-23T19:54:12Z"
+        },
+        {
+          "name": "Backend build and PGlite suites",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-23T19:54:12Z",
+          "completed_at": "2026-10-23T19:54:40Z"
+        },
+        {
+          "name": "UI rendering and export",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-10-23T19:54:40Z",
+          "completed_at": "2026-10-23T19:54:46Z"
+        },
+        {
+          "name": "Existing utility and API regression",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-10-23T19:54:46Z",
+          "completed_at": "2026-10-23T19:54:47Z"
+        },
+        {
+          "name": "Runner policy and release gates (no untrusted execution)",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-10-23T19:54:47Z",
+          "completed_at": "2026-10-23T19:54:47Z"
+        },
+        {
+          "name": "Portable web build and prerender",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-10-23T19:54:47Z",
+          "completed_at": "2026-10-23T19:54:50Z"
+        },
+        {
+          "name": "Existing Sites framework build",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-23T19:54:50Z",
+          "completed_at": "2026-10-23T19:55:03Z"
+        },
+        {
+          "name": "Infrastructure build, offline synthesis and templates",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-23T19:55:03Z",
+          "completed_at": "2026-10-23T19:55:13Z"
+        },
+        {
+          "name": "Retain source-bound evidence even on failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-23T19:55:13Z",
+          "completed_at": "2026-10-23T19:55:14Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 25,
+          "started_at": "2026-10-23T19:55:14Z",
+          "completed_at": "2026-10-23T19:55:14Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 26,
+          "started_at": "2026-10-23T19:55:14Z",
+          "completed_at": "2026-10-23T19:55:15Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 27,
+          "started_at": "2026-10-23T19:55:15Z",
+          "completed_at": "2026-10-23T19:55:15Z"
+        }
+      ]
+    },
+    {
+      "name": "All native PostgreSQL suites and actual restart",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-23T19:53:26Z",
+      "completedAt": "2026-10-23T19:54:35Z",
+      "url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240/job/120624495692",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-23T19:53:27Z",
+          "completed_at": "2026-10-23T19:53:28Z"
+        },
+        {
+          "name": "Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-23T19:53:28Z",
+          "completed_at": "2026-10-23T19:53:30Z"
+        },
+        {
+          "name": "Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-23T19:53:30Z",
+          "completed_at": "2026-10-23T19:53:31Z"
+        },
+        {
+          "name": "Locked dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-10-23T19:53:31Z",
+          "completed_at": "2026-10-23T19:53:59Z"
+        },
+        {
+          "name": "Native connections, locks, every backend suite and restart",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-10-23T19:53:59Z",
+          "completed_at": "2026-10-23T19:54:31Z"
+        },
+        {
+          "name": "Retain source-bound evidence even on failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-10-23T19:54:31Z",
+          "completed_at": "2026-10-23T19:54:32Z"
+        },
+        {
+          "name": "Post Run actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-10-23T19:54:32Z",
+          "completed_at": "2026-10-23T19:54:32Z"
+        },
+        {
+          "name": "Post Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-10-23T19:54:32Z",
+          "completed_at": "2026-10-23T19:54:33Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-10-23T19:54:33Z",
+          "completed_at": "2026-10-23T19:54:33Z"
+        }
+      ]
+    },
+    {
+      "name": "Required verification result",
+      "status": "completed",
+      "conclusion": "success",
+      "startedAt": "2026-10-23T19:55:55Z",
+      "completedAt": "2026-10-23T19:56:00Z",
+      "url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240/job/120625580495",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-10-23T19:55:56Z",
+          "completed_at": "2026-10-23T19:55:57Z"
+        },
+        {
+          "name": "Report every gate and preserve a failing overall result",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-10-23T19:55:57Z",
+          "completed_at": "2026-10-23T19:55:57Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-10-23T19:55:57Z",
+          "completed_at": "2026-10-23T19:55:57Z"
+        }
+      ]
+    }
+  ],
+  "status": "completed",
+  "updatedAt": "2026-10-23T19:56:00Z",
+  "url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240"
+}

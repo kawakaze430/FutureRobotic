@@ -1,0 +1,42 @@
+{
+  "scope": "final-security-remediation",
+  "verification_status": "PASSED_PRODUCTION_AUDIT",
+  "detail": "Targeted Babel, browser-baseline metadata and URI patch versions all exceed seven-day age policy; no policy exception.",
+  "recorded_at": "2026-10-23T19:51:49.007105+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "4ae97d128466f73e69f6de0d898fa632cf121cf1",
+  "source_worktree_dirty": true,
+  "source_diff_sha256": "3cc859884f8cfe70562bb9ed1a80804e938e733c2d083a674b2f5f91430c16ad",
+  "steps": [
+    {
+      "step": "targeted-low-moderate-patches",
+      "command": "pnpm install --no-frozen-lockfile --store-dir /workspace/FutureRobotic/.sites-runtime/pnpm-store --cache-dir /workspace/FutureRobotic/.sites-runtime/pnpm-store/policy-cache --reporter=append-only",
+      "exit_code": 0,
+      "seconds": 5.92,
+      "log": "handoff/cloud-only/results/final-security-remediation/20261023T195142372534Z/targeted-low-moderate-patches.log"
+    },
+    {
+      "step": "all-production-advisories",
+      "command": "pnpm audit --prod --audit-level low --json",
+      "exit_code": 0,
+      "seconds": 0.7,
+      "log": "handoff/cloud-only/results/final-security-remediation/20261023T195142372534Z/all-production-advisories.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "audit_exit": 0,
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0
+    },
+    "dependencies": 411,
+    "devDependencies": 0,
+    "optionalDependencies": 87,
+    "totalDependencies": 498
+  }
+}

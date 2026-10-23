@@ -1,0 +1,49 @@
+{
+  "scope": "owned-build-cache-reclaim",
+  "verification_status": "PASSED_CACHE_CLEANUP",
+  "detail": "Only unused Docker build cache from this isolated task was reclaimed; built application images and all source retained.",
+  "recorded_at": "2026-10-23T19:26:46.409757+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "9a9ccd0db1f69c3cafc211c420a3c1e5cd66c5bb",
+  "source_worktree_dirty": false,
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "steps": [
+    {
+      "step": "disk-before",
+      "command": "df -h /workspace",
+      "exit_code": 0,
+      "seconds": 0.0,
+      "log": "handoff/cloud-only/results/owned-build-cache-reclaim/20261023T192638858909Z/disk-before.log"
+    },
+    {
+      "step": "inodes-before",
+      "command": "df -i /workspace",
+      "exit_code": 0,
+      "seconds": 0.0,
+      "log": "handoff/cloud-only/results/owned-build-cache-reclaim/20261023T192638858909Z/inodes-before.log"
+    },
+    {
+      "step": "unused-task-build-cache",
+      "command": "docker builder prune --force",
+      "exit_code": 0,
+      "seconds": 7.54,
+      "log": "handoff/cloud-only/results/owned-build-cache-reclaim/20261023T192638858909Z/unused-task-build-cache.log"
+    },
+    {
+      "step": "disk-after",
+      "command": "df -h /workspace",
+      "exit_code": 0,
+      "seconds": 0.0,
+      "log": "handoff/cloud-only/results/owned-build-cache-reclaim/20261023T192638858909Z/disk-after.log"
+    },
+    {
+      "step": "inodes-after",
+      "command": "df -i /workspace",
+      "exit_code": 0,
+      "seconds": 0.0,
+      "log": "handoff/cloud-only/results/owned-build-cache-reclaim/20261023T192638858909Z/inodes-after.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false
+}

@@ -1,0 +1,38 @@
+{
+  "owned-compose-containers": {
+    "command": [
+      "docker",
+      "ps",
+      "--all",
+      "--quiet",
+      "--filter",
+      "name=fr-cloud-"
+    ],
+    "exit_code": 0,
+    "remaining": 0
+  },
+  "owned-native-containers": {
+    "command": [
+      "docker",
+      "ps",
+      "--all",
+      "--quiet",
+      "--filter",
+      "name=fr-native-"
+    ],
+    "exit_code": 0,
+    "remaining": 0
+  },
+  "owned-compose-volumes": {
+    "command": [
+      "docker",
+      "volume",
+      "ls",
+      "--quiet",
+      "--filter",
+      "label=com.docker.compose.project"
+    ],
+    "exit_code": 0,
+    "remaining": 0
+  }
+}

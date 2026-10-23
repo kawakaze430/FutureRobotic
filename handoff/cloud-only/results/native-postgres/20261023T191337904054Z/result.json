@@ -1,0 +1,114 @@
+{
+  "scope": "All existing backend suites, native connections and advisory exclusion; no live provider/payment/AWS/runner acceptance.",
+  "verification_status": "FAILED_NATIVE",
+  "detail": "native-restart-verify failed with exit 1; inspect its sanitized log.",
+  "recorded_at": "2026-10-23T19:13:53.013196+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "ee94fa267b04566e43410ba9246ac139bca26204",
+  "source_worktree_dirty": true,
+  "source_diff_sha256": "6e717ac2ad8eb9cd2b6685fb7087df572d249d547b4f0212e55a7972900f98bf",
+  "steps": [
+    {
+      "step": "docker-engine",
+      "command": "docker info --format '{{.ServerVersion}}'",
+      "exit_code": 0,
+      "seconds": 0.04,
+      "log": "handoff/cloud-only/results/native-postgres/20261023T191337904054Z/docker-engine.log"
+    },
+    {
+      "step": "postgres-start",
+      "command": "docker run --rm -d --name fr-native-f7129a1af0ca -e POSTGRES_PASSWORD -p 127.0.0.1::5432 postgres:16",
+      "exit_code": 0,
+      "seconds": 4.97,
+      "log": "handoff/cloud-only/results/native-postgres/20261023T191337904054Z/postgres-start.log"
+    },
+    {
+      "step": "postgres-port",
+      "command": "docker port fr-native-f7129a1af0ca 5432/tcp",
+      "exit_code": 0,
+      "seconds": 0.01,
+      "log": "handoff/cloud-only/results/native-postgres/20261023T191337904054Z/postgres-port.log"
+    },
+    {
+      "step": "postgres-image",
+      "command": "docker inspect --format '{{.Image}}' fr-native-f7129a1af0ca",
+      "exit_code": 0,
+      "seconds": 0.01,
+      "log": "handoff/cloud-only/results/native-postgres/20261023T191337904054Z/postgres-image.log"
+    },
+    {
+      "step": "api-build",
+      "command": "node node_modules/typescript/bin/tsc -p portable/tsconfig.json",
+      "exit_code": 0,
+      "seconds": 2.44,
+      "log": "handoff/cloud-only/results/native-postgres/20261023T191337904054Z/api-build.log"
+    },
+    {
+      "step": "native-connections",
+      "command": "node --input-type=module -e '\nimport pg from '\"'\"'pg'\"'\"';\nimport {randomInt} from '\"'\"'node:crypto'\"'\"';\nconst pool=new pg.Pool({connectionString:process.env.TEST_DATABASE_URL,max:2,connectionTimeoutMillis:5000,query_timeout:5000});\nlet a,b;\ntry {\n  a=await pool.connect();b=await pool.connect();\n  const first=(await a.query('\"'\"'SELECT version() AS version,pg_backend_pid() AS pid'\"'\"')).rows[0];\n  const second=(await b.query('\"'\"'SELECT pg_backend_pid() AS pid'\"'\"')).rows[0];\n  if(first.pid===second.pid)throw Error('\"'\"'Distinct native backends required'\"'\"');\n  const key=randomInt(1,2147483647);\n  await a.query('\"'\"'BEGIN'\"'\"');await b.query('\"'\"'BEGIN'\"'\"');\n  const owns=(await a.query('\"'\"'SELECT pg_try_advisory_xact_lock($1) AS ok'\"'\"',[key])).rows[0].ok;\n  const denied=(await b.query('\"'\"'SELECT pg_try_advisory_xact_lock($1) AS ok'\"'\"',[key])).rows[0].ok;\n  if(!owns||denied)throw Error('\"'\"'Native transaction lock exclusion failed'\"'\"');\n  await a.query('\"'\"'ROLLBACK'\"'\"');\n  const released=(await b.query('\"'\"'SELECT pg_try_advisory_xact_lock($1) AS ok'\"'\"',[key])).rows[0].ok;\n  if(!released)throw Error('\"'\"'Native transaction lock release failed'\"'\"');\n  await b.query('\"'\"'ROLLBACK'\"'\"');\n  console.log(JSON.stringify({database:'\"'\"'native-postgresql'\"'\"',version:first.version,distinctBackendPids:[first.pid,second.pid],transactionLockExclusion:true}));\n} catch(error) {\n  console.error('\"'\"'Native connection/transaction proof failed:'\"'\"',error?.code||'\"'\"'NATIVE_PROOF_FAILED'\"'\"');\n  process.exitCode=1;\n} finally {\n  for(const c of [a,b])if(c){await c.query('\"'\"'ROLLBACK'\"'\"').catch(()=>{});c.release();}\n  await pool.end();\n}\n'",
+      "exit_code": 0,
+      "seconds": 0.07,
+      "log": "handoff/cloud-only/results/native-postgres/20261023T191337904054Z/native-connections.log"
+    },
+    {
+      "step": "native-backend-tap",
+      "command": "node --test --test-reporter=tap portable/dist/tests/completion.test.js portable/dist/tests/integration.test.js portable/dist/tests/operations.test.js portable/dist/tests/product.test.js",
+      "exit_code": 0,
+      "seconds": 4.19,
+      "log": "handoff/cloud-only/results/native-postgres/20261023T191337904054Z/native-backend-tap.log"
+    },
+    {
+      "step": "native-restart-seed",
+      "command": "node portable/scripts/verify-native-restart.mjs seed /workspace/FutureRobotic/.sites-runtime/native-restart-cl4ebijm/state.json",
+      "exit_code": 0,
+      "seconds": 0.99,
+      "log": "handoff/cloud-only/results/native-postgres/20261023T191337904054Z/native-restart-seed.log"
+    },
+    {
+      "step": "native-postgres-restart",
+      "command": "docker restart --time 5 fr-native-f7129a1af0ca",
+      "exit_code": 0,
+      "seconds": 0.4,
+      "log": "handoff/cloud-only/results/native-postgres/20261023T191337904054Z/native-postgres-restart.log"
+    },
+    {
+      "step": "native-restart-verify",
+      "command": "node portable/scripts/verify-native-restart.mjs verify /workspace/FutureRobotic/.sites-runtime/native-restart-cl4ebijm/state.json",
+      "exit_code": 1,
+      "seconds": 0.15,
+      "log": "handoff/cloud-only/results/native-postgres/20261023T191337904054Z/native-restart-verify.log"
+    },
+    {
+      "step": "postgres-cleanup",
+      "command": "docker rm -f fr-native-f7129a1af0ca",
+      "exit_code": 0,
+      "seconds": 0.35,
+      "log": "handoff/cloud-only/results/native-postgres/20261023T191337904054Z/postgres-cleanup.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "native_connection_proof": {
+    "database": "native-postgresql",
+    "version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+    "distinctBackendPids": [
+      86,
+      87
+    ],
+    "transactionLockExclusion": true
+  },
+  "suites": [
+    "portable/dist/tests/completion.test.js",
+    "portable/dist/tests/integration.test.js",
+    "portable/dist/tests/operations.test.js",
+    "portable/dist/tests/product.test.js"
+  ],
+  "tap_counts": {
+    "tests": 77,
+    "pass": 76,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 1
+  },
+  "owned_container_cleanup_exit": 0
+}

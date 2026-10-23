@@ -1,0 +1,58 @@
+{
+  "scope": "main-container-runtime",
+  "verification_status": "FAILED_CONTAINER",
+  "detail": "compose-start failed with exit 1; inspect its sanitized log.",
+  "recorded_at": "2026-10-23T19:28:34.068716+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "9a9ccd0db1f69c3cafc211c420a3c1e5cd66c5bb",
+  "source_worktree_dirty": false,
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "steps": [
+    {
+      "step": "built-application-images",
+      "command": "docker image inspect --format '{{.Id}}' fr-cloud-655805a3812e-api fr-cloud-655805a3812e-migrate fr-cloud-655805a3812e-web",
+      "exit_code": 0,
+      "seconds": 0.02,
+      "log": "handoff/cloud-only/results/main-container-runtime/20261023T192746318247Z/built-application-images.log"
+    },
+    {
+      "step": "compose-start",
+      "command": "docker compose -p fr-cloud-655805a3812e -f portable/compose.yml up --no-build --detach --wait --wait-timeout 120",
+      "exit_code": 1,
+      "seconds": 43.87,
+      "log": "handoff/cloud-only/results/main-container-runtime/20261023T192746318247Z/compose-start.log"
+    },
+    {
+      "step": "compose-services",
+      "command": "docker compose -p fr-cloud-655805a3812e -f portable/compose.yml ps --all",
+      "exit_code": 0,
+      "seconds": 0.07,
+      "log": "handoff/cloud-only/results/main-container-runtime/20261023T192746318247Z/compose-services.log"
+    },
+    {
+      "step": "compose-logs",
+      "command": "docker compose -p fr-cloud-655805a3812e -f portable/compose.yml logs --no-color --tail 120",
+      "exit_code": 0,
+      "seconds": 0.08,
+      "log": "handoff/cloud-only/results/main-container-runtime/20261023T192746318247Z/compose-logs.log"
+    },
+    {
+      "step": "owned-compose-cleanup",
+      "command": "docker compose -p fr-cloud-655805a3812e -f portable/compose.yml down --volumes --remove-orphans",
+      "exit_code": 0,
+      "seconds": 3.72,
+      "log": "handoff/cloud-only/results/main-container-runtime/20261023T192746318247Z/owned-compose-cleanup.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "reused_build_evidence": "handoff/cloud-only/results/containers/20261023T192344954574Z/compose-build.log",
+  "build_outputs_reused": true,
+  "compose_project": "fr-cloud-655805a3812e",
+  "application_image_ids": [
+    "sha256:abdf73d141b67b59e8f78b066d62ce4082bbaa30ac6ee0d8f6f9d0f9eeaa289d",
+    "sha256:a27bf5b2ef8a28edbeeb3e22ef75349c0f7f25c1bc513ef10255eb05f42be66d",
+    "sha256:794366090d4d84db989b99b761128022287c7f88ff1108dec9e3e151781aba7c"
+  ],
+  "owned_cleanup_exit": 0
+}

@@ -1,0 +1,29 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from web.Dockerfile
+#1 transferring dockerfile: 184B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/fr-cloud-75f2134e1724-web:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 253B done
+#3 DONE 0.0s
+
+#4 [internal] load build context
+#4 transferring context: 746B done
+#4 DONE 0.0s
+
+#5 [1/2] FROM docker.io/library/fr-cloud-75f2134e1724-web:latest
+#5 DONE 0.0s
+
+#6 [2/2] COPY --chown=101:101 portable/web/nginx.compose.conf /etc/nginx/conf.d/default.conf
+#6 DONE 0.2s
+
+#7 exporting to image
+#7 exporting layers
+#7 exporting layers 1.0s done
+#7 writing image sha256:af1fccd629b47a400358bedc63515aed5a9b52b494fba12753bf6563dc82f38f done
+#7 naming to docker.io/library/fr-cloud-aad44081a3b6-web done
+#7 DONE 1.0s

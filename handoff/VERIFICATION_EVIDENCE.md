@@ -1,5 +1,7 @@
 # Recorded verification and its limits
 
+**24 October 2026 main update:** CI/build/test hardening is verified at `518ca8cf430622bb3229ebe4f0519fe835835033` ([seven successful hosted jobs](https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240)); full current-source local containers and native restart/recovery passed; production dependency audit has zero findings in all severities. Feature totals stay **73 / 59 / 64 / 0, total 196**. See [the current return](../CLOUD_RETURN.md) and `MAIN_CI_HARDENING_20261024.md`. Earlier environment-unavailable statements below are historical; production/live/isolated-runner acceptance is still pending.
+
 ## Bounded cloud verification, 23 October 2026
 
 Actual checkout: `f6b9556eb68598e6d22397db587a61b0e3fedb8d`; all 382 application files match the Build03 manifest. `python3 handoff/cloud-only/run_native.py` completed all four existing suites on disposable native PostgreSQL 16.15, including completion: 77 tests, **76 passed / 0 failed / 1 skipped / 0 cancelled**. Two distinct native backends and transaction advisory-lock exclusion/release were verified. The skipped DAT-003 restart/failover scenario requires a dedicated external environment. Do not add these repeated cases to historical totals.

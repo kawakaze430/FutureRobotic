@@ -1,0 +1,8 @@
+{
+  "minimumReleaseAge": 10080,
+  "strictDepBuilds": true,
+  "trustLockfile": false,
+  "minimumReleaseAgeIgnoreMissingTime": false,
+  "tls_verification_disabled": false,
+  "historical_migrations_modified": false
+}

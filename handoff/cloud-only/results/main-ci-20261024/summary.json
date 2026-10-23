@@ -1,0 +1,143 @@
+{
+  "code_commit": "518ca8cf430622bb3229ebe4f0519fe835835033",
+  "branch": "main",
+  "ci_url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240",
+  "ci_run": 40014946240,
+  "ci_jobs": 7,
+  "ci_all_passed": true,
+  "local_checks": "handoff/cloud-only/results/final-zero-audit-regression/20261023T195322988663Z/result.json",
+  "native_result": "handoff/cloud-only/results/native-postgres/20261023T195406973747Z/result.json",
+  "container_result": "handoff/cloud-only/results/containers/20261023T195623284876Z/result.json",
+  "native_counts": {
+    "tests": 77,
+    "pass": 76,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 1
+  },
+  "native_restart_proof": {
+    "phase": "verify",
+    "database": "native-postgresql",
+    "postgresRestartObserved": true,
+    "userRestored": true,
+    "completedResultRestored": true,
+    "noteRestored": true,
+    "chatRestored": true,
+    "cancelledRunRestored": true,
+    "failedRunRestored": true
+  },
+  "container_http_checks": [
+    {
+      "path": "/health",
+      "status": 200,
+      "json_keys": [
+        "service",
+        "status"
+      ]
+    },
+    {
+      "path": "/ready",
+      "status": 200,
+      "json_keys": [
+        "dependencies",
+        "status"
+      ]
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "json_keys": [
+        "aiConfigured",
+        "cloudEnabled",
+        "providers",
+        "signedIn"
+      ]
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "brand_marker_found": true
+    },
+    {
+      "path": "/favicon.svg",
+      "status": 200,
+      "bytes": 361,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "path": "/fonts/geist-sans.woff2",
+      "status": 200,
+      "bytes": 58512,
+      "content_type": "font/woff2"
+    }
+  ],
+  "container_image_ids": [
+    "066167ff39c2a612402ce99b734ea1cff92a9d1f2ac52f697a5f0384f0d88d6b",
+    "796d12153dc5073168c19e3b0809dda60ee9ecb1e318af358041d29f95eb9ee9",
+    "8d26c94764830bc2448ac1928cab32e46a0d98864757fed6c74f2bffa2e2ca14",
+    "d62da16abb1d78e762021917384c5c5d87be6db2b8418c4aad330af0349709b5"
+  ],
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "baseline_application_files": 382,
+  "changed_baseline_files": [
+    ".dockerignore",
+    ".github/workflows/verify.yml",
+    "README.md",
+    "package.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "portable/Dockerfile.api",
+    "portable/Dockerfile.web",
+    "portable/compose.yml",
+    "portable/scripts/test-native.mjs",
+    "portable/tests/completion.test.ts",
+    "portable/web/nginx.compose.conf"
+  ],
+  "implementation_config_document_files": [
+    ".dockerignore",
+    ".github/workflows/verify.yml",
+    "AGENTS.md",
+    "README.md",
+    "handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md",
+    "handoff/cloud-only/_test_common.py",
+    "handoff/cloud-only/environment-start.md",
+    "handoff/cloud-only/run_containers.py",
+    "handoff/cloud-only/run_native.py",
+    "package.json",
+    "pnpm-lock.yaml",
+    "pnpm-workspace.yaml",
+    "portable/Dockerfile.api",
+    "portable/Dockerfile.web",
+    "portable/compose.yml",
+    "portable/scripts/test-native.mjs",
+    "portable/scripts/verify-native-restart.mjs",
+    "portable/tests/completion.test.ts",
+    "portable/web/nginx.compose.conf"
+  ],
+  "historical_migration_bytes_unchanged": true,
+  "global_status": {
+    "Implemented": 73,
+    "Partial": 59,
+    "Blocked": 64,
+    "Not started": 0,
+    "total": 196
+  },
+  "status_changes": [],
+  "verification_notes_updated_ids": [
+    "QAS-003",
+    "AWS-013",
+    "SEC-010",
+    "DAT-003",
+    "CHT-008"
+  ],
+  "production_dependency_vulnerabilities": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0
+  },
+  "production_ready": false,
+  "aws_deployed": false,
+  "recorded_at": "2026-10-24T01:35:11.394904+05:30"
+}

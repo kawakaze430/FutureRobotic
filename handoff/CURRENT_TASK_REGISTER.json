@@ -722,11 +722,11 @@
       "acceptance": "Only an explicit user action updates the intended result; original version remains recoverable.",
       "reference": "V1; advertised",
       "blockers": "",
-      "last_reviewed": "2026-10-22",
-      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates",
+      "last_reviewed": "2026-10-24",
+      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: Corrected a scheduling assumption in the concurrency fixture: either competing request may win; assert exactly one winner, VERSION_CONFLICT for the loser, replay of the actual winner, changed-content rejection, tenant denial and original/result preservation. Application logic and acceptance were not weakened. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240.",
       "handoff_current_clarification": "Use the original evidence with the scope/limits in PROJECT_HANDOFF.md; inspect current source before implementing.",
       "reviewed_remaining_work": "",
-      "handoff_reviewed_at": "2026-10-22T13:50:06.880889+00:00",
+      "handoff_reviewed_at": "2026-10-24T01:35:11.394904+05:30",
       "status_changed_in_handoff": false
     },
     {
@@ -1583,11 +1583,11 @@
       "acceptance": "Release images have no unresolved policy-blocking findings and map to a source commit.",
       "reference": "Production requirement",
       "blockers": "B01",
-      "last_reviewed": "2026-10-22",
-      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates",
+      "last_reviewed": "2026-10-24",
+      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: Production dependency audit reduced from 18 findings to zero in every severity; targeted Next.js/transitive patches preserve seven-day release age. Node/nginx base digests, verified build-time public-CA secret mounts, non-root/read-only runtime and container asset requests verified. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240.",
       "handoff_current_clarification": "Final image-digest publication and workflow/SBOM scaffolding exist; base tags and combined runner packages remain unpinned.",
-      "reviewed_remaining_work": "Pin actual dependencies/base/runtime inputs, run clean protected CI scans and verify provenance; inspect findings and record approved remediation.",
-      "handoff_reviewed_at": "2026-10-22T13:50:06.880889+00:00",
+      "reviewed_remaining_work": "Complete release image/runtime CVE scans, five pinned/measured runner artifacts, SBOM/provenance promotion and applicable native/deployed security acceptance remain pending.",
+      "handoff_reviewed_at": "2026-10-24T01:35:11.394904+05:30",
       "status_changed_in_handoff": false
     },
     {
@@ -2990,11 +2990,11 @@
       "acceptance": "Untrusted branches cannot assume production role; a failed smoke test triggers controlled rollback.",
       "reference": "Production requirement",
       "blockers": "B01/B02/B09",
-      "last_reviewed": "2026-10-22",
-      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates",
+      "last_reviewed": "2026-10-24",
+      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: Main-only owner delivery tested; official pinned Actions, independent Node 22/24 checks, native/restart, container and audit jobs, always-retained source-bound diagnostics and a failing aggregate gate all executed successfully in the owner repository. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240.",
       "handoff_current_clarification": "Verification and protected OIDC service-release workflow source exist but were not run in the owner repository.",
-      "reviewed_remaining_work": "Configure authorized repository/environments, execute clean install/container/native/security checks, prove untrusted-branch denial and real rollout/rollback.",
-      "handoff_reviewed_at": "2026-10-22T13:50:06.880889+00:00",
+      "reviewed_remaining_work": "Protected production environments/OIDC role assumption and untrusted-branch denial, first deploy, real rollout/failed-smoke rollback and B02/B09 operational acceptance remain pending.",
+      "handoff_reviewed_at": "2026-10-24T01:35:11.394904+05:30",
       "status_changed_in_handoff": false
     },
     {
@@ -3074,11 +3074,11 @@
       "acceptance": "Concurrent ledger, identity and deletion fixtures pass on a clean and upgraded database.",
       "reference": "Production requirement",
       "blockers": "B01/B02",
-      "last_reviewed": "2026-10-22",
-      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates",
+      "last_reviewed": "2026-10-24",
+      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: All four backend suites including completion passed on native PostgreSQL 16.15 (76 pass, 0 fail, 1 existing skip); separate native connection/transaction-lock and actual restart/recovery proof passed; full Compose image/migration/HTTP readiness passed. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240.",
       "handoff_current_clarification": "Use the original evidence with the scope/limits in PROJECT_HANDOFF.md; inspect current source before implementing.",
-      "reviewed_remaining_work": "Run unchanged suite against native multiple connections and actual containers/RDS.",
-      "handoff_reviewed_at": "2026-10-22T13:50:06.880889+00:00",
+      "reviewed_remaining_work": "Native/local container gates are verified. Actual RDS, production privilege/contender/process-death/load/failover acceptance and applicable LIVE matrix requirements remain pending.",
+      "handoff_reviewed_at": "2026-10-24T01:35:11.394904+05:30",
       "status_changed_in_handoff": false
     },
     {
@@ -3641,11 +3641,11 @@
       "acceptance": "Completed/failed/cancelled runs and notes restore consistently after process restart.",
       "reference": "V1; advertised",
       "blockers": "",
-      "last_reviewed": "2026-10-22",
-      "verification": "34 passing PostgreSQL-in-WASM integration tests plus TypeScript and existing utility/API regression suite; native multi-connection/RDS/live-provider gates remain unverified.",
+      "last_reviewed": "2026-10-24",
+      "verification": "34 passing PostgreSQL-in-WASM integration tests plus TypeScript and existing utility/API regression suite; native multi-connection/RDS/live-provider gates remain unverified. | MAIN-CI-20261024: Native owned PostgreSQL was actually restarted between separate seed/verify processes; users, completed results, notes, chat, cancelled and failed runs restored. This is local restart evidence, not RDS failover. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240.",
       "handoff_current_clarification": "Use the original evidence with the scope/limits in PROJECT_HANDOFF.md; inspect current source before implementing.",
       "reviewed_remaining_work": "Frontend persistence migration and live chat streaming remain separate work.",
-      "handoff_reviewed_at": "2026-10-22T13:50:06.880889+00:00",
+      "handoff_reviewed_at": "2026-10-24T01:35:11.394904+05:30",
       "status_changed_in_handoff": false
     },
     {

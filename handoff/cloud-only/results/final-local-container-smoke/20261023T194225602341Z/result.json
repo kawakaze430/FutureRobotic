@@ -1,0 +1,101 @@
+{
+  "scope": "final-local-container-smoke",
+  "verification_status": "PASSED_CONTAINER",
+  "detail": "Fresh migrations and non-root/read-only API+web passed database/API health, product status, homepage, SVG and font requests; no live integration or browser acceptance claimed.",
+  "recorded_at": "2026-10-23T19:43:23.819583+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "4ae97d128466f73e69f6de0d898fa632cf121cf1",
+  "source_worktree_dirty": false,
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "steps": [
+    {
+      "step": "web-baked-config",
+      "command": "docker build -f /tmp/fr-final-smoke-31vnbkje/web.Dockerfile -t fr-cloud-aad44081a3b6-web /workspace/FutureRobotic",
+      "exit_code": 0,
+      "seconds": 1.43,
+      "log": "handoff/cloud-only/results/final-local-container-smoke/20261023T194225602341Z/web-baked-config.log"
+    },
+    {
+      "step": "compose-start",
+      "command": "docker compose -p fr-cloud-aad44081a3b6 -f portable/compose.yml -f /tmp/fr-final-smoke-31vnbkje/images.json up --no-build --detach --wait --wait-timeout 120",
+      "exit_code": 0,
+      "seconds": 52.45,
+      "log": "handoff/cloud-only/results/final-local-container-smoke/20261023T194225602341Z/compose-start.log"
+    },
+    {
+      "step": "running-images",
+      "command": "docker compose -p fr-cloud-aad44081a3b6 -f portable/compose.yml -f /tmp/fr-final-smoke-31vnbkje/images.json images --quiet",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "log": "handoff/cloud-only/results/final-local-container-smoke/20261023T194225602341Z/running-images.log"
+    },
+    {
+      "step": "compose-logs",
+      "command": "docker compose -p fr-cloud-aad44081a3b6 -f portable/compose.yml -f /tmp/fr-final-smoke-31vnbkje/images.json logs --no-color --tail 120",
+      "exit_code": 0,
+      "seconds": 0.07,
+      "log": "handoff/cloud-only/results/final-local-container-smoke/20261023T194225602341Z/compose-logs.log"
+    },
+    {
+      "step": "owned-cleanup",
+      "command": "docker compose -p fr-cloud-aad44081a3b6 -f portable/compose.yml -f /tmp/fr-final-smoke-31vnbkje/images.json down --volumes --remove-orphans",
+      "exit_code": 0,
+      "seconds": 4.18,
+      "log": "handoff/cloud-only/results/final-local-container-smoke/20261023T194225602341Z/owned-cleanup.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "compose_project": "fr-cloud-aad44081a3b6",
+  "compiled_output_source": "9a9ccd0db1f69c3cafc211c420a3c1e5cd66c5bb (application TypeScript unchanged in subsequent container/test-only fixes)",
+  "reused_image_layers": "Previously built dependency/static outputs plus tested non-root ownership; current nginx config is copied into the image. Full Dockerfiles are verified independently in GitHub Actions.",
+  "image_ids": [
+    "066167ff39c2a612402ce99b734ea1cff92a9d1f2ac52f697a5f0384f0d88d6b",
+    "af1fccd629b47a400358bedc63515aed5a9b52b494fba12753bf6563dc82f38f",
+    "c2ed6ef14d0f0e600f986ed7f8a125f80bc3d202df9e8f97abffd70315da269c"
+  ],
+  "http_checks": [
+    {
+      "path": "/health",
+      "status": 200,
+      "json_keys": [
+        "service",
+        "status"
+      ]
+    },
+    {
+      "path": "/ready",
+      "status": 200,
+      "json_keys": [
+        "dependencies",
+        "status"
+      ]
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "json_keys": [
+        "aiConfigured",
+        "cloudEnabled",
+        "providers",
+        "signedIn"
+      ]
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "bytes": 512
+    },
+    {
+      "path": "/favicon.svg",
+      "status": 200,
+      "bytes": 361
+    },
+    {
+      "path": "/fonts/geist-sans.woff2",
+      "status": 200,
+      "bytes": 58512
+    }
+  ],
+  "owned_cleanup_exit": 0
+}

@@ -1,0 +1,53 @@
+{
+  "scope": "stale-task-image-cleanup",
+  "verification_status": "PASSED_STALE_IMAGE_CLEANUP",
+  "detail": "Removed only image tags belonging to recorded disposable projects from this task, plus unused task build cache. Source, dependencies, PostgreSQL image and unrelated data remain.",
+  "recorded_at": "2026-10-23T19:55:26.622076+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "518ca8cf430622bb3229ebe4f0519fe835835033",
+  "source_worktree_dirty": false,
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "steps": [
+    {
+      "step": "capacity-before",
+      "command": "df -h /workspace",
+      "exit_code": 0,
+      "seconds": 0.0,
+      "log": "handoff/cloud-only/results/stale-task-image-cleanup/20261023T195513337293Z/capacity-before.log"
+    },
+    {
+      "step": "remove-obsolete-task-images",
+      "command": "docker image rm fr-cloud-aad44081a3b6-web:latest fr-cloud-75f2134e1724-web:latest fr-cloud-75f2134e1724-api:latest fr-cloud-655805a3812e-api:latest fr-cloud-655805a3812e-migrate:latest fr-cloud-655805a3812e-web:latest fr-cloud-6a71880ef96c-web:latest fr-cloud-6a71880ef96c-api:latest fr-cloud-6a71880ef96c-migrate:latest",
+      "exit_code": 0,
+      "seconds": 0.04,
+      "log": "handoff/cloud-only/results/stale-task-image-cleanup/20261023T195513337293Z/remove-obsolete-task-images.log"
+    },
+    {
+      "step": "unused-task-build-cache",
+      "command": "docker builder prune --force",
+      "exit_code": 0,
+      "seconds": 13.22,
+      "log": "handoff/cloud-only/results/stale-task-image-cleanup/20261023T195513337293Z/unused-task-build-cache.log"
+    },
+    {
+      "step": "capacity-after",
+      "command": "df -h /workspace",
+      "exit_code": 0,
+      "seconds": 0.0,
+      "log": "handoff/cloud-only/results/stale-task-image-cleanup/20261023T195513337293Z/capacity-after.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "removed_tags": [
+    "fr-cloud-aad44081a3b6-web:latest",
+    "fr-cloud-75f2134e1724-web:latest",
+    "fr-cloud-75f2134e1724-api:latest",
+    "fr-cloud-655805a3812e-api:latest",
+    "fr-cloud-655805a3812e-migrate:latest",
+    "fr-cloud-655805a3812e-web:latest",
+    "fr-cloud-6a71880ef96c-web:latest",
+    "fr-cloud-6a71880ef96c-api:latest",
+    "fr-cloud-6a71880ef96c-migrate:latest"
+  ]
+}

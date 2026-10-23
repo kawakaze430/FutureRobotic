@@ -1,0 +1,58 @@
+{
+  "scope": "nonroot-container-smoke",
+  "verification_status": "FAILED_CONTAINER",
+  "detail": "compose-start failed with exit 1; inspect its sanitized log.",
+  "recorded_at": "2026-10-23T19:35:56.332540+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "e13bcdb32c763767f4ab1258373ef81958491fbb",
+  "source_worktree_dirty": false,
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "steps": [
+    {
+      "step": "api-runtime-ownership",
+      "command": "docker build -f /tmp/fr-nonroot-lwj2gg8q/api.Dockerfile -t fr-cloud-75f2134e1724-api /workspace/FutureRobotic",
+      "exit_code": 0,
+      "seconds": 17.95,
+      "log": "handoff/cloud-only/results/nonroot-container-smoke/20261023T193436336477Z/api-runtime-ownership.log"
+    },
+    {
+      "step": "web-runtime-ownership",
+      "command": "docker build -f /tmp/fr-nonroot-lwj2gg8q/web.Dockerfile -t fr-cloud-75f2134e1724-web /workspace/FutureRobotic",
+      "exit_code": 0,
+      "seconds": 1.72,
+      "log": "handoff/cloud-only/results/nonroot-container-smoke/20261023T193436336477Z/web-runtime-ownership.log"
+    },
+    {
+      "step": "compose-start",
+      "command": "docker compose -p fr-cloud-75f2134e1724 -f portable/compose.yml -f /tmp/fr-nonroot-lwj2gg8q/images.json up --no-build --detach --wait --wait-timeout 120",
+      "exit_code": 1,
+      "seconds": 55.95,
+      "log": "handoff/cloud-only/results/nonroot-container-smoke/20261023T193436336477Z/compose-start.log"
+    },
+    {
+      "step": "compose-logs",
+      "command": "docker compose -p fr-cloud-75f2134e1724 -f portable/compose.yml -f /tmp/fr-nonroot-lwj2gg8q/images.json logs --no-color --tail 120",
+      "exit_code": 0,
+      "seconds": 0.08,
+      "log": "handoff/cloud-only/results/nonroot-container-smoke/20261023T193436336477Z/compose-logs.log"
+    },
+    {
+      "step": "owned-compose-cleanup",
+      "command": "docker compose -p fr-cloud-75f2134e1724 -f portable/compose.yml -f /tmp/fr-nonroot-lwj2gg8q/images.json down --volumes --remove-orphans",
+      "exit_code": 0,
+      "seconds": 4.27,
+      "log": "handoff/cloud-only/results/nonroot-container-smoke/20261023T193436336477Z/owned-compose-cleanup.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "compose_project": "fr-cloud-75f2134e1724",
+  "compiled_outputs_reused_from_commit": "9a9ccd0db1f69c3cafc211c420a3c1e5cd66c5bb",
+  "reused_build_log": "handoff/cloud-only/results/containers/20261023T192344954574Z/compose-build.log",
+  "full_build_verification": "Current Dockerfiles are rebuilt separately by hosted GitHub Actions; this local test reuses compiled outputs and applies the same runtime COPY ownership.",
+  "base_image_ids": [
+    "sha256:abdf73d141b67b59e8f78b066d62ce4082bbaa30ac6ee0d8f6f9d0f9eeaa289d",
+    "sha256:794366090d4d84db989b99b761128022287c7f88ff1108dec9e3e151781aba7c"
+  ],
+  "owned_cleanup_exit": 0
+}

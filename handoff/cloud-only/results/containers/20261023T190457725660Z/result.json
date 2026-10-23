@@ -1,0 +1,65 @@
+{
+  "scope": "Existing image builds, development migrations and public health/status only. No real account/provider/payment/AWS acceptance.",
+  "verification_status": "FAILED_CONTAINER",
+  "detail": "compose-start failed with exit 1; inspect its sanitized log.",
+  "recorded_at": "2026-10-23T19:07:12.841339+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "ee94fa267b04566e43410ba9246ac139bca26204",
+  "steps": [
+    {
+      "step": "docker-engine",
+      "command": "docker info --format '{{.ServerVersion}}'",
+      "exit_code": 0,
+      "seconds": 0.04,
+      "log": "handoff/cloud-only/results/containers/20261023T190457725660Z/docker-engine.log"
+    },
+    {
+      "step": "compose-version",
+      "command": "docker compose version",
+      "exit_code": 0,
+      "seconds": 0.05,
+      "log": "handoff/cloud-only/results/containers/20261023T190457725660Z/compose-version.log"
+    },
+    {
+      "step": "compose-build",
+      "command": "docker compose -p fr-cloud-6a71880ef96c -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-lqswbnr6/trust.json build",
+      "exit_code": 0,
+      "seconds": 125.3,
+      "log": "handoff/cloud-only/results/containers/20261023T190457725660Z/compose-build.log"
+    },
+    {
+      "step": "built-image-ids",
+      "command": "docker compose -p fr-cloud-6a71880ef96c -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-lqswbnr6/trust.json images --quiet",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "log": "handoff/cloud-only/results/containers/20261023T190457725660Z/built-image-ids.log"
+    },
+    {
+      "step": "compose-start",
+      "command": "docker compose -p fr-cloud-6a71880ef96c -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-lqswbnr6/trust.json up --detach --wait --wait-timeout 120",
+      "exit_code": 1,
+      "seconds": 9.3,
+      "log": "handoff/cloud-only/results/containers/20261023T190457725660Z/compose-start.log"
+    },
+    {
+      "step": "compose-logs",
+      "command": "docker compose -p fr-cloud-6a71880ef96c -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-lqswbnr6/trust.json logs --no-color --tail 120",
+      "exit_code": 0,
+      "seconds": 0.07,
+      "log": "handoff/cloud-only/results/containers/20261023T190457725660Z/compose-logs.log"
+    },
+    {
+      "step": "owned-compose-cleanup",
+      "command": "docker compose -p fr-cloud-6a71880ef96c -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-lqswbnr6/trust.json down --volumes --remove-orphans",
+      "exit_code": 0,
+      "seconds": 0.3,
+      "log": "handoff/cloud-only/results/containers/20261023T190457725660Z/owned-compose-cleanup.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "compose_project": "fr-cloud-6a71880ef96c",
+  "build_ca_sha256": "7fa2d7d439db8bfa7c191457e61af5e3f4eb412314eb148766ac09e93786e4c3",
+  "built_image_ids": [],
+  "owned_compose_cleanup_exit": 0
+}

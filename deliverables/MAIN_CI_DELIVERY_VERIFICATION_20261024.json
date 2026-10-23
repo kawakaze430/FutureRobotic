@@ -1,0 +1,28 @@
+{
+  "archive": "deliverables/FutureRobotic_AI_Main_CI_Hardening_20261024.zip",
+  "sha256": "3f580d81ad1454359187d260e09daab90ee2137d56e75ea508c6585e588a0928",
+  "bytes": 16640934,
+  "file_count": 683,
+  "zip_crc": "PASS",
+  "all_selected_file_hashes_verified": true,
+  "all_tracked_source_included_except_delivery_archives": true,
+  "all_382_baseline_application_paths_included": true,
+  "reference_archive_included": true,
+  "reference_archive_sha256": "b7fb97c46d925f3aa3a07f16576aa4b481e454e3f1660417cbe0ad73d97cc42b",
+  "public_RDS_CA_included_no_private_key": true,
+  "normalized_source_modes": true,
+  "code_commit": "518ca8cf430622bb3229ebe4f0519fe835835033",
+  "code_ci_url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240",
+  "branch": "main",
+  "global_status": {
+    "Implemented": 73,
+    "Partial": 59,
+    "Blocked": 64,
+    "Not started": 0,
+    "total": 196
+  },
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "packaged_at": "2026-10-23T20:08:54.641335+00:00",
+  "verified_at": "2026-10-23T20:08:55.330431+00:00",
+  "publication": "Actual ZIP is committed/pushed as a main-branch file; no artifact-service attachment is claimed."
+}

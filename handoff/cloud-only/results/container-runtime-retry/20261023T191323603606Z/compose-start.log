@@ -1,0 +1,13 @@
+ Network fr-cloud-6a71880ef96c_default  Creating
+ Network fr-cloud-6a71880ef96c_default  Created
+ Volume fr-cloud-6a71880ef96c_object-data  Creating
+ Volume fr-cloud-6a71880ef96c_object-data  Created
+ Volume fr-cloud-6a71880ef96c_postgres-data  Creating
+ Volume fr-cloud-6a71880ef96c_postgres-data  Created
+ Container fr-cloud-6a71880ef96c-db-1  Creating
+ Container fr-cloud-6a71880ef96c-db-1  Created
+ Container fr-cloud-6a71880ef96c-migrate-1  Creating
+ Container fr-cloud-6a71880ef96c-migrate-1  Created
+ Container fr-cloud-6a71880ef96c-api-1  Creating
+ Container fr-cloud-6a71880ef96c-api-1  Error response from daemon: invalid mount path: 'mode=1777' mount path must be absolute
+Error response from daemon: invalid mount path: 'mode=1777' mount path must be absolute

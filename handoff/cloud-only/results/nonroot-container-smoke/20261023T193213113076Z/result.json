@@ -1,0 +1,26 @@
+{
+  "scope": "nonroot-container-smoke",
+  "verification_status": "FAILED_CONTAINER",
+  "detail": "api-runtime-ownership failed with exit 1; inspect its sanitized log.",
+  "recorded_at": "2026-10-23T19:32:14.835614+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "e13bcdb32c763767f4ab1258373ef81958491fbb",
+  "source_worktree_dirty": false,
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "steps": [
+    {
+      "step": "api-runtime-ownership",
+      "command": "docker build -f /tmp/fr-nonroot-0rlk4vk7/api.Dockerfile -t fr-cloud-982ffb650a21-api /workspace/FutureRobotic",
+      "exit_code": 1,
+      "seconds": 1.68,
+      "log": "handoff/cloud-only/results/nonroot-container-smoke/20261023T193213113076Z/api-runtime-ownership.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "compose_project": "fr-cloud-982ffb650a21",
+  "compiled_outputs_reused_from_commit": "9a9ccd0db1f69c3cafc211c420a3c1e5cd66c5bb",
+  "reuse_build_evidence": "handoff/cloud-only/results/containers/20261023T192344954574Z/compose-build.log",
+  "runtime_permission_patch_commit": "e13bcdb",
+  "full_current_dockerfile_build": "Validated separately by hosted GitHub Actions; this local check reuses unchanged compiled outputs and applies runtime ownership changes."
+}

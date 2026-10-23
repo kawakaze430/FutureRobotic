@@ -1,0 +1,28 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from web.Dockerfile
+#1 DONE 0.0s
+
+#1 [internal] load build definition from web.Dockerfile
+#1 transferring dockerfile: 225B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/fr-cloud-655805a3812e-web:latest
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 253B done
+#3 DONE 0.0s
+
+#4 [built 1/1] FROM docker.io/library/fr-cloud-655805a3812e-web:latest
+#4 DONE 0.0s
+
+#5 [stage-1 2/2] COPY --chown=101:101 --from=built /usr/share/nginx/html /usr/share/nginx/html
+#5 DONE 0.7s
+
+#6 exporting to image
+#6 exporting layers
+#6 exporting layers 0.8s done
+#6 writing image sha256:c747b7cd208fb5ae2b887ca11e4869f59363ba61979ae2396480c919e38d4d11 done
+#6 naming to docker.io/library/fr-cloud-75f2134e1724-web done
+#6 DONE 0.8s

@@ -1,0 +1,22 @@
+{
+  "scope": "dependency-audit",
+  "verification_status": "FAILED_AUDIT",
+  "detail": "Production dependency audit, registry response retained; no dependency versions changed.",
+  "recorded_at": "2026-10-23T19:13:25.351387+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "ee94fa267b04566e43410ba9246ac139bca26204",
+  "source_worktree_dirty": true,
+  "source_diff_sha256": "6e717ac2ad8eb9cd2b6685fb7087df572d249d547b4f0212e55a7972900f98bf",
+  "steps": [
+    {
+      "step": "pnpm-audit",
+      "command": "pnpm audit --prod --audit-level high --json",
+      "exit_code": 1,
+      "seconds": 1.75,
+      "log": "handoff/cloud-only/results/dependency-audit/20261023T191323597248Z/pnpm-audit.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "audit_exit": 1
+}

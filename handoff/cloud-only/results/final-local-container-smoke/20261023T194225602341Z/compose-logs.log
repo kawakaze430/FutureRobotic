@@ -1,0 +1,84 @@
+api-1  | {"at":"2026-10-23T19:42:49.963Z","event":"job.started","traceId":"scheduler","jobId":"d7a952e2-6cad-4ae0-8fd4-9ebfc8bcd0d4"}
+api-1  | {"at":"2026-10-23T19:42:49.969Z","event":"job.completed","traceId":"scheduler","jobId":"d7a952e2-6cad-4ae0-8fd4-9ebfc8bcd0d4"}
+api-1  | {"at":"2026-10-23T19:42:49.973Z","event":"job.started","traceId":"scheduler","jobId":"eceacbf8-0426-4e06-b875-99a6cd61ee1c"}
+api-1  | {"at":"2026-10-23T19:42:49.975Z","event":"job.completed","traceId":"scheduler","jobId":"eceacbf8-0426-4e06-b875-99a6cd61ee1c"}
+api-1  | {"at":"2026-10-23T19:43:19.450Z","event":"api.completed","traceId":"93629068a58c6b2d4846e1484109f22f","requestId":"daed3780-c4d5-4ce6-887a-da74d6896c82","status":200,"durationMs":4}
+api-1  | {"at":"2026-10-23T19:43:19.551Z","event":"api.completed","traceId":"962a3eeb34c2ee7627aa49eb092cd32d","requestId":"21c97b56-3f36-4e81-827c-f88e641ae9e8","status":200,"durationMs":1}
+api-1  | {"at":"2026-10-23T19:43:19.554Z","event":"api.completed","traceId":"7965fc8ed6bd5c742571c8216687bc1e","requestId":"1e0b0f87-c53f-43c6-b1e0-77204cd8a6b6","status":200,"durationMs":1}
+api-1  | {"at":"2026-10-23T19:43:19.556Z","event":"api.completed","traceId":"b32c3fa764dbd706f69b6f823d4a0bfb","requestId":"5b86c175-69dc-4c78-b15b-7681ebe5ef76","status":200,"durationMs":0}
+db-1   | The files belonging to this database system will be owned by user "postgres".
+db-1   | This user must also own the server process.
+db-1   | 
+db-1   | The database cluster will be initialized with locale "en_US.utf8".
+db-1   | The default database encoding has accordingly been set to "UTF8".
+db-1   | The default text search configuration will be set to "english".
+db-1   | 
+db-1   | Data page checksums are disabled.
+db-1   | 
+db-1   | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1   | creating subdirectories ... ok
+db-1   | selecting dynamic shared memory implementation ... posix
+db-1   | selecting default max_connections ... 100
+db-1   | selecting default shared_buffers ... 128MB
+db-1   | selecting default time zone ... Etc/UTC
+db-1   | creating configuration files ... ok
+db-1   | running bootstrap script ... ok
+web-1  | /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+web-1  | /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+web-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+web-1  | 10-listen-on-ipv6-by-default.sh: info: can not modify /etc/nginx/conf.d/default.conf (read-only file system?)
+web-1  | /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+web-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+web-1  | /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+web-1  | /docker-entrypoint.sh: Configuration complete; ready for start up
+web-1  | 2026/10/23 19:42:49 [notice] 1#1: using the "epoll" event method
+web-1  | 2026/10/23 19:42:49 [notice] 1#1: nginx/1.30.6
+web-1  | 2026/10/23 19:42:49 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0) 
+web-1  | 2026/10/23 19:42:49 [notice] 1#1: OS: Linux 6.18.55
+web-1  | 2026/10/23 19:42:49 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 16384:16384
+web-1  | 2026/10/23 19:42:49 [notice] 1#1: start worker processes
+web-1  | 2026/10/23 19:42:49 [notice] 1#1: start worker process 20
+web-1  | 2026/10/23 19:42:49 [notice] 1#1: start worker process 21
+web-1  | 2026/10/23 19:42:49 [notice] 1#1: start worker process 22
+web-1  | 2026/10/23 19:42:49 [notice] 1#1: start worker process 23
+web-1  | 2026/10/23 19:42:49 [notice] 1#1: start worker process 24
+db-1   | performing post-bootstrap initialization ... ok
+db-1   | syncing data to disk ... ok
+db-1   | 
+db-1   | 
+db-1   | Success. You can now start the database server using:
+db-1   | 
+db-1   |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1   | 
+db-1   | initdb: warning: enabling "trust" authentication for local connections
+db-1   | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1   | waiting for server to start....2026-10-23 19:42:43.844 UTC [48] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+db-1   | 2026-10-23 19:42:43.845 UTC [48] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1   | 2026-10-23 19:42:43.847 UTC [51] LOG:  database system was shut down at 2026-10-23 19:42:43 UTC
+db-1   | 2026-10-23 19:42:43.850 UTC [48] LOG:  database system is ready to accept connections
+db-1   |  done
+db-1   | server started
+db-1   | CREATE DATABASE
+db-1   | 
+db-1   | 
+db-1   | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+db-1   | 
+db-1   | waiting for server to shut down....2026-10-23 19:42:44.040 UTC [48] LOG:  received fast shutdown request
+db-1   | 2026-10-23 19:42:44.040 UTC [48] LOG:  aborting any active transactions
+db-1   | 2026-10-23 19:42:44.041 UTC [48] LOG:  background worker "logical replication launcher" (PID 54) exited with exit code 1
+db-1   | 2026-10-23 19:42:44.042 UTC [49] LOG:  shutting down
+db-1   | 2026-10-23 19:42:44.042 UTC [49] LOG:  checkpoint starting: shutdown immediate
+db-1   | 2026-10-23 19:42:44.111 UTC [49] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.020 s, sync=0.048 s, total=0.069 s; sync files=301, longest=0.001 s, average=0.001 s; distance=4273 kB, estimate=4273 kB; lsn=0/191F0E8, redo lsn=0/191F0E8
+db-1   | 2026-10-23 19:42:44.114 UTC [48] LOG:  database system is shut down
+db-1   |  done
+db-1   | server stopped
+db-1   | 
+db-1   | PostgreSQL init process complete; ready for start up.
+db-1   | 
+db-1   | 2026-10-23 19:42:44.184 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+db-1   | 2026-10-23 19:42:44.185 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1   | 2026-10-23 19:42:44.185 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1   | 2026-10-23 19:42:44.186 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1   | 2026-10-23 19:42:44.187 UTC [64] LOG:  database system was shut down at 2026-10-23 19:42:44 UTC
+db-1   | 2026-10-23 19:42:44.190 UTC [1] LOG:  database system is ready to accept connections
+migrate-1  | Migrations verified: 4

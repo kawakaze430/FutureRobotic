@@ -1,0 +1,72 @@
+Unable to find image 'postgres:16' locally
+16: Pulling from library/postgres
+f2be67225471: Pulling fs layer
+d9b4aee93490: Pulling fs layer
+46109ed24d00: Pulling fs layer
+b1c4822f4553: Pulling fs layer
+48eee0ea92d8: Pulling fs layer
+ef42abb17c7a: Pulling fs layer
+c85ce0e29e80: Pulling fs layer
+9fbbdc3bcbff: Pulling fs layer
+c79a7210985e: Pulling fs layer
+e9da7c9f979b: Pulling fs layer
+852f46917486: Pulling fs layer
+393ce45a5829: Pulling fs layer
+25140b6d6501: Pulling fs layer
+f2010d5c8971: Pulling fs layer
+b1c4822f4553: Waiting
+48eee0ea92d8: Waiting
+ef42abb17c7a: Waiting
+c85ce0e29e80: Waiting
+9fbbdc3bcbff: Waiting
+c79a7210985e: Waiting
+e9da7c9f979b: Waiting
+852f46917486: Waiting
+393ce45a5829: Waiting
+25140b6d6501: Waiting
+f2010d5c8971: Waiting
+d9b4aee93490: Verifying Checksum
+d9b4aee93490: Download complete
+46109ed24d00: Verifying Checksum
+46109ed24d00: Download complete
+b1c4822f4553: Verifying Checksum
+b1c4822f4553: Download complete
+f2be67225471: Verifying Checksum
+f2be67225471: Download complete
+c85ce0e29e80: Verifying Checksum
+c85ce0e29e80: Download complete
+48eee0ea92d8: Verifying Checksum
+48eee0ea92d8: Download complete
+ef42abb17c7a: Verifying Checksum
+ef42abb17c7a: Download complete
+9fbbdc3bcbff: Verifying Checksum
+9fbbdc3bcbff: Download complete
+e9da7c9f979b: Verifying Checksum
+e9da7c9f979b: Download complete
+852f46917486: Verifying Checksum
+852f46917486: Download complete
+393ce45a5829: Verifying Checksum
+393ce45a5829: Download complete
+25140b6d6501: Verifying Checksum
+25140b6d6501: Download complete
+f2010d5c8971: Verifying Checksum
+f2010d5c8971: Download complete
+c79a7210985e: Verifying Checksum
+c79a7210985e: Download complete
+f2be67225471: Pull complete
+d9b4aee93490: Pull complete
+46109ed24d00: Pull complete
+b1c4822f4553: Pull complete
+48eee0ea92d8: Pull complete
+ef42abb17c7a: Pull complete
+c85ce0e29e80: Pull complete
+9fbbdc3bcbff: Pull complete
+c79a7210985e: Pull complete
+e9da7c9f979b: Pull complete
+852f46917486: Pull complete
+393ce45a5829: Pull complete
+25140b6d6501: Pull complete
+f2010d5c8971: Pull complete
+Digest: sha256:9e2cf6287f25c3151f4c9421ccce2b17f3e60061c111a29165e0d2cdd9ff0a97
+Status: Downloaded newer image for postgres:16
+32a7e66a8a3ad9b404d6b6b9ece5f48812cd14dcaf2f50d09c2bc30460ef4373

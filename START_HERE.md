@@ -1,11 +1,13 @@
 # FutureRobotic AI — complete source and continuation package
 
+**Current update, 24 October 2026:** Work and push directly on main. Tested code `518ca8cf430622bb3229ebe4f0519fe835835033` passed all seven hosted CI jobs, full local container/migration/HTTP checks, native database recovery and a zero-finding production dependency audit. Read [CLOUD_RETURN.md](CLOUD_RETURN.md) and [the next main-only Codex prompt](handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md) before the historical package notes below. Current hardening changes extend the original Build03 baseline; all historical SQL migration bytes and global feature counts remain unchanged. Production completion is still pending.
+
 **23 October cloud-test preparation:** For the limited Codex Cloud assignment, use `handoff/cloud-only/CLOUD_TEST_ONLY_PROMPT.md` and its README. Run only the missing native/container checks. Do not follow the older broad NEXT_20 prompt for that task. No application feature or native/cloud acceptance was completed by this preparation.
 
 **Application release:** Build03. **Source commit:** `76dda7b040a95e96c529073240056678d9f12ba4`.
 **Handoff reviewed:** 22 October 2026. **Production ready:** No. **AWS deployed:** No.
 
-This is the complete cumulative application source, not a patch. Application files match the recorded Git commit. Root `AGENTS.md`, this file, `HANDOFF_MANIFEST.json`, `handoff/` and `reference/` are a documentation overlay created for this handoff; they do not represent a new application implementation build.
+This is the complete cumulative application source, not a patch. The original imported application matched the recorded Build03 commit; current source extends it with the hardening changes recorded in CLOUD_RETURN.md. Root `AGENTS.md`, this file, `HANDOFF_MANIFEST.json`, `handoff/` and `reference/` are a documentation overlay created for this handoff; they do not represent a new application implementation build.
 
 ## Goal
 
@@ -22,7 +24,7 @@ Deliver **FutureRobotic AI**, matching the supplied CodeConvert reference appear
 | Total | 196 stable task IDs |
 | Build03 verification | 100 automated tests passed; local/mocked/offline scope |
 | Latest backend/AWS recheck | 77 backend + 4 infrastructure tests passed; six templates synthesized |
-| Native PostgreSQL / isolated runner | Blocked; gate exit 2, not passed |
+| Native PostgreSQL / isolated runner | Native suites + separate actual restart verified; approved isolated runner remains blocked |
 | Current hosting | Owner-private Sites preview; not the portable database backend |
 
 Counts describe work items, not a production-readiness percentage. The latest 81 checks repeat a subset of the recorded 100; **do not add them together**. Missing real AI/payment/AWS/native evidence remains missing.

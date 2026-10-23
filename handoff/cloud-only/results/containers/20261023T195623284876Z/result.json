@@ -1,0 +1,132 @@
+{
+  "scope": "Existing image builds, development migrations and public health/status only. No real account/provider/payment/AWS acceptance.",
+  "verification_status": "PASSED_CONTAINER",
+  "detail": "Existing Compose image build/migration/public readiness passed; authenticated and external integration gates remain pending.",
+  "recorded_at": "2026-10-23T19:59:50.965844+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "518ca8cf430622bb3229ebe4f0519fe835835033",
+  "source_worktree_dirty": false,
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "steps": [
+    {
+      "step": "docker-engine",
+      "command": "docker info --format '{{.ServerVersion}}'",
+      "exit_code": 0,
+      "seconds": 0.14,
+      "log": "handoff/cloud-only/results/containers/20261023T195623284876Z/docker-engine.log"
+    },
+    {
+      "step": "compose-version",
+      "command": "docker compose version",
+      "exit_code": 0,
+      "seconds": 0.09,
+      "log": "handoff/cloud-only/results/containers/20261023T195623284876Z/compose-version.log"
+    },
+    {
+      "step": "compose-build",
+      "command": "docker compose -p fr-cloud-db6779c08c85 -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-a_sl3e94/trust.json build",
+      "exit_code": 0,
+      "seconds": 139.53,
+      "log": "handoff/cloud-only/results/containers/20261023T195623284876Z/compose-build.log"
+    },
+    {
+      "step": "built-image-ids",
+      "command": "docker compose -p fr-cloud-db6779c08c85 -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-a_sl3e94/trust.json images --quiet",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "log": "handoff/cloud-only/results/containers/20261023T195623284876Z/built-image-ids.log"
+    },
+    {
+      "step": "compose-start",
+      "command": "docker compose -p fr-cloud-db6779c08c85 -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-a_sl3e94/trust.json up --detach --wait --wait-timeout 120",
+      "exit_code": 0,
+      "seconds": 63.27,
+      "log": "handoff/cloud-only/results/containers/20261023T195623284876Z/compose-start.log"
+    },
+    {
+      "step": "compose-services",
+      "command": "docker compose -p fr-cloud-db6779c08c85 -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-a_sl3e94/trust.json ps --all",
+      "exit_code": 0,
+      "seconds": 0.11,
+      "log": "handoff/cloud-only/results/containers/20261023T195623284876Z/compose-services.log"
+    },
+    {
+      "step": "running-image-ids",
+      "command": "docker compose -p fr-cloud-db6779c08c85 -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-a_sl3e94/trust.json images --quiet",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "log": "handoff/cloud-only/results/containers/20261023T195623284876Z/running-image-ids.log"
+    },
+    {
+      "step": "compose-logs",
+      "command": "docker compose -p fr-cloud-db6779c08c85 -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-a_sl3e94/trust.json logs --no-color --tail 120",
+      "exit_code": 0,
+      "seconds": 0.07,
+      "log": "handoff/cloud-only/results/containers/20261023T195623284876Z/compose-logs.log"
+    },
+    {
+      "step": "owned-compose-cleanup",
+      "command": "docker compose -p fr-cloud-db6779c08c85 -f portable/compose.yml -f /workspace/FutureRobotic/.sites-runtime/compose-trust-a_sl3e94/trust.json down --volumes --remove-orphans",
+      "exit_code": 0,
+      "seconds": 4.31,
+      "log": "handoff/cloud-only/results/containers/20261023T195623284876Z/owned-compose-cleanup.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "compose_project": "fr-cloud-db6779c08c85",
+  "build_ca_sha256": "7fa2d7d439db8bfa7c191457e61af5e3f4eb412314eb148766ac09e93786e4c3",
+  "built_image_ids": [],
+  "running_image_ids": [
+    "066167ff39c2a612402ce99b734ea1cff92a9d1f2ac52f697a5f0384f0d88d6b",
+    "796d12153dc5073168c19e3b0809dda60ee9ecb1e318af358041d29f95eb9ee9",
+    "8d26c94764830bc2448ac1928cab32e46a0d98864757fed6c74f2bffa2e2ca14",
+    "d62da16abb1d78e762021917384c5c5d87be6db2b8418c4aad330af0349709b5"
+  ],
+  "http_checks": [
+    {
+      "path": "/health",
+      "status": 200,
+      "json_keys": [
+        "service",
+        "status"
+      ]
+    },
+    {
+      "path": "/ready",
+      "status": 200,
+      "json_keys": [
+        "dependencies",
+        "status"
+      ]
+    },
+    {
+      "path": "/api/status",
+      "status": 200,
+      "json_keys": [
+        "aiConfigured",
+        "cloudEnabled",
+        "providers",
+        "signedIn"
+      ]
+    },
+    {
+      "path": "/",
+      "status": 200,
+      "brand_marker_found": true
+    },
+    {
+      "path": "/favicon.svg",
+      "status": 200,
+      "bytes": 361,
+      "content_type": "image/svg+xml"
+    },
+    {
+      "path": "/fonts/geist-sans.woff2",
+      "status": 200,
+      "bytes": 58512,
+      "content_type": "font/woff2"
+    }
+  ],
+  "owned_compose_cleanup_exit": 0
+}

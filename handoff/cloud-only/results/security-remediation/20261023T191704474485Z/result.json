@@ -1,0 +1,22 @@
+{
+  "scope": "security-remediation",
+  "verification_status": "PASSED_SECURITY_INSTALL",
+  "detail": "Targeted Next.js 16.4.1, matching lint config, sharp 0.35.5, browserslist 4.28.7 and source-map-js 1.2.2; seven-day age policy unchanged.",
+  "recorded_at": "2026-10-23T19:17:25.979535+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "ee94fa267b04566e43410ba9246ac139bca26204",
+  "source_worktree_dirty": true,
+  "source_diff_sha256": "b312f644e26967d7c11775f5669695b07017dead5693bc17d71a9208947bc7cc",
+  "steps": [
+    {
+      "step": "targeted-security-install",
+      "command": "pnpm install --no-frozen-lockfile --store-dir /workspace/FutureRobotic/.sites-runtime/pnpm-store --cache-dir /workspace/FutureRobotic/.sites-runtime/pnpm-store/policy-cache --reporter=append-only",
+      "exit_code": 0,
+      "seconds": 21.49,
+      "log": "handoff/cloud-only/results/security-remediation/20261023T191704474485Z/targeted-security-install.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "install_exit": 0
+}

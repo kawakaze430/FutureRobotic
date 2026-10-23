@@ -1,0 +1,74 @@
+db-1  | The files belonging to this database system will be owned by user "postgres".
+db-1  | This user must also own the server process.
+db-1  | 
+db-1  | The database cluster will be initialized with locale "en_US.utf8".
+db-1  | The default database encoding has accordingly been set to "UTF8".
+db-1  | The default text search configuration will be set to "english".
+db-1       | 
+db-1       | Data page checksums are disabled.
+db-1       | 
+db-1       | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1       | creating subdirectories ... ok
+db-1       | selecting dynamic shared memory implementation ... posix
+db-1       | selecting default max_connections ... 100
+db-1       | selecting default shared_buffers ... 128MB
+db-1       | selecting default time zone ... Etc/UTC
+db-1       | creating configuration files ... ok
+db-1       | running bootstrap script ... ok
+migrate-1  | node:internal/fs/promises:639
+migrate-1  |   return new FileHandle(await PromisePrototypeThen(
+migrate-1  |                         ^
+migrate-1  | 
+migrate-1  | Error: EACCES: permission denied, open '/app/portable/migrations//001_core.sql'
+migrate-1  |     at async open (node:internal/fs/promises:639:25)
+migrate-1  |     at async readFile (node:internal/fs/promises:1252:14)
+migrate-1  |     at async file:///app/portable/dist/src/migrate.js:14:25
+migrate-1  |     at async Postgres.transaction (file:///app/portable/dist/src/db.js:20:27)
+migrate-1  |     at async migrate (file:///app/portable/dist/src/migrate.js:6:5)
+migrate-1  |     at async file:///app/portable/dist/src/migrate-cli.js:5:19 {
+migrate-1  |   errno: -13,
+migrate-1  |   code: 'EACCES',
+migrate-1  |   syscall: 'open',
+migrate-1  |   path: '/app/portable/migrations//001_core.sql'
+migrate-1  | }
+migrate-1  | 
+migrate-1  | Node.js v22.23.4
+db-1       | performing post-bootstrap initialization ... ok
+db-1       | syncing data to disk ... ok
+db-1       | 
+db-1       | 
+db-1       | Success. You can now start the database server using:
+db-1       | 
+db-1       |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1       | 
+db-1       | initdb: warning: enabling "trust" authentication for local connections
+db-1       | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1       | waiting for server to start....2026-10-23 19:28:24.718 UTC [49] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+db-1       | 2026-10-23 19:28:24.718 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1       | 2026-10-23 19:28:24.720 UTC [52] LOG:  database system was shut down at 2026-10-23 19:28:24 UTC
+db-1       | 2026-10-23 19:28:24.723 UTC [49] LOG:  database system is ready to accept connections
+db-1       |  done
+db-1       | server started
+db-1       | CREATE DATABASE
+db-1       | 
+db-1       | 
+db-1       | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+db-1       | 
+db-1       | waiting for server to shut down....2026-10-23 19:28:24.880 UTC [49] LOG:  received fast shutdown request
+db-1       | 2026-10-23 19:28:24.880 UTC [49] LOG:  aborting any active transactions
+db-1       | 2026-10-23 19:28:24.882 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+db-1       | 2026-10-23 19:28:24.882 UTC [50] LOG:  shutting down
+db-1       | 2026-10-23 19:28:24.883 UTC [50] LOG:  checkpoint starting: shutdown immediate
+db-1       | 2026-10-23 19:28:24.949 UTC [50] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.059 s, total=0.067 s; sync files=301, longest=0.001 s, average=0.001 s; distance=4273 kB, estimate=4273 kB; lsn=0/191F0E8, redo lsn=0/191F0E8
+db-1       | 2026-10-23 19:28:24.954 UTC [49] LOG:  database system is shut down
+db-1       |  done
+db-1       | server stopped
+db-1       | 
+db-1       | PostgreSQL init process complete; ready for start up.
+db-1       | 
+db-1       | 2026-10-23 19:28:24.995 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+db-1       | 2026-10-23 19:28:24.996 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1       | 2026-10-23 19:28:24.996 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1       | 2026-10-23 19:28:24.998 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1       | 2026-10-23 19:28:24.999 UTC [65] LOG:  database system was shut down at 2026-10-23 19:28:24 UTC
+db-1       | 2026-10-23 19:28:25.002 UTC [1] LOG:  database system is ready to accept connections

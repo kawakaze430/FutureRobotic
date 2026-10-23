@@ -1,0 +1,222 @@
+{
+  "scope": "main-final-checks",
+  "verification_status": "PASSED_MAIN_CHECKS",
+  "detail": "Main commit validation after targeted security changes; native/container/live scopes remain separately labeled.",
+  "recorded_at": "2026-10-23T19:25:00.945523+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "9a9ccd0db1f69c3cafc211c420a3c1e5cd66c5bb",
+  "source_worktree_dirty": false,
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "steps": [
+    {
+      "step": "workflow-lint",
+      "command": "/tmp/futurerobotic-tools/actionlint .github/workflows/verify.yml .github/workflows/release.yml",
+      "exit_code": 0,
+      "seconds": 0.0,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/workflow-lint.log"
+    },
+    {
+      "step": "frozen-install",
+      "command": "pnpm install --frozen-lockfile --store-dir /workspace/FutureRobotic/.sites-runtime/pnpm-store --cache-dir /workspace/FutureRobotic/.sites-runtime/pnpm-store/policy-cache --reporter=append-only",
+      "exit_code": 0,
+      "seconds": 3.08,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/frozen-install.log"
+    },
+    {
+      "step": "typescript",
+      "command": "pnpm exec tsc --noEmit",
+      "exit_code": 0,
+      "seconds": 15.11,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/typescript.log"
+    },
+    {
+      "step": "api-build",
+      "command": "pnpm api:build",
+      "exit_code": 0,
+      "seconds": 3.11,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/api-build.log"
+    },
+    {
+      "step": "backend-pglite",
+      "command": "node --test --test-reporter=tap portable/dist/tests/completion.test.js portable/dist/tests/integration.test.js portable/dist/tests/operations.test.js portable/dist/tests/product.test.js",
+      "exit_code": 0,
+      "seconds": 11.31,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/backend-pglite.log"
+    },
+    {
+      "step": "ui",
+      "command": "node --import tsx --test --test-reporter=tap tests/completion-ui.test.tsx tests/product-ui.test.tsx",
+      "exit_code": 0,
+      "seconds": 3.83,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/ui.log"
+    },
+    {
+      "step": "tools",
+      "command": "node tests/tools.test.mjs",
+      "exit_code": 0,
+      "seconds": 0.5,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/tools.log"
+    },
+    {
+      "step": "policy-release",
+      "command": "node --test --test-reporter=tap runner/tests/policy.test.mjs tests/release-gates.test.mjs",
+      "exit_code": 0,
+      "seconds": 0.12,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/policy-release.log"
+    },
+    {
+      "step": "portable-web",
+      "command": "pnpm web:build",
+      "exit_code": 0,
+      "seconds": 2.24,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/portable-web.log"
+    },
+    {
+      "step": "sites-build",
+      "command": "pnpm build",
+      "exit_code": 0,
+      "seconds": 9.52,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/sites-build.log"
+    },
+    {
+      "step": "infra-build",
+      "command": "pnpm infra:build",
+      "exit_code": 0,
+      "seconds": 3.75,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/infra-build.log"
+    },
+    {
+      "step": "infra-synth",
+      "command": "pnpm infra:synth",
+      "exit_code": 0,
+      "seconds": 4.46,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/infra-synth.log"
+    },
+    {
+      "step": "infra-tests",
+      "command": "node --test --test-reporter=tap infra/tests/templates.test.mjs",
+      "exit_code": 0,
+      "seconds": 0.17,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/infra-tests.log"
+    },
+    {
+      "step": "production-audit",
+      "command": "pnpm audit --prod --audit-level high --json",
+      "exit_code": 0,
+      "seconds": 1.21,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/production-audit.log"
+    },
+    {
+      "step": "native",
+      "command": "pnpm api:test:native",
+      "exit_code": 0,
+      "seconds": 17.57,
+      "log": "handoff/cloud-only/results/main-final-checks/20261023T192344950104Z/native.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "checks": [
+    {
+      "check": "workflow-lint",
+      "exit_code": 0
+    },
+    {
+      "check": "frozen-install",
+      "exit_code": 0
+    },
+    {
+      "check": "typescript",
+      "exit_code": 0
+    },
+    {
+      "check": "api-build",
+      "exit_code": 0
+    },
+    {
+      "check": "backend-pglite",
+      "exit_code": 0,
+      "tap_counts": {
+        "tests": 77,
+        "pass": 77,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "check": "ui",
+      "exit_code": 0,
+      "tap_counts": {
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "check": "tools",
+      "exit_code": 0
+    },
+    {
+      "check": "policy-release",
+      "exit_code": 0,
+      "tap_counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "check": "portable-web",
+      "exit_code": 0
+    },
+    {
+      "check": "sites-build",
+      "exit_code": 0
+    },
+    {
+      "check": "infra-build",
+      "exit_code": 0
+    },
+    {
+      "check": "infra-synth",
+      "exit_code": 0
+    },
+    {
+      "check": "infra-tests",
+      "exit_code": 0,
+      "tap_counts": {
+        "tests": 4,
+        "pass": 4,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "check": "production-audit",
+      "exit_code": 0,
+      "metadata": {
+        "vulnerabilities": {
+          "info": 0,
+          "low": 1,
+          "moderate": 2,
+          "high": 0,
+          "critical": 0
+        },
+        "dependencies": 412,
+        "devDependencies": 0,
+        "optionalDependencies": 83,
+        "totalDependencies": 495
+      }
+    },
+    {
+      "check": "native",
+      "exit_code": 0
+    }
+  ]
+}

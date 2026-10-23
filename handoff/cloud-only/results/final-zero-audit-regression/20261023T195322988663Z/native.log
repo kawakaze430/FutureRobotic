@@ -1,0 +1,18 @@
+$ node portable/scripts/test-native.mjs
+[native-postgres] docker-engine
+[native-postgres] postgres-start
+[native-postgres] postgres-port
+[native-postgres] postgres-image
+[native-postgres] api-build
+[native-postgres] native-connections
+[native-postgres] native-backend-tap
+[native-postgres] native-restart-seed
+[native-postgres] native-postgres-restart
+[native-postgres] postgres-port-after-restart
+[native-postgres] native-restart-verify
+[native-postgres] postgres-cleanup
+{
+  "verification_status": "PASSED_NATIVE_WITH_SKIPS",
+  "detail": "Native backend suites completed. Inspect counts/skips and exact scenario scope before closing any feature gate; skipped scenarios remain unverified.",
+  "result": "handoff/cloud-only/results/native-postgres/20261023T195406973747Z/result.json"
+}

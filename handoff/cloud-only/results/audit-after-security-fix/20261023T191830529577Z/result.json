@@ -1,0 +1,35 @@
+{
+  "scope": "audit-after-security-fix",
+  "verification_status": "PASSED_AUDIT",
+  "detail": "Production high/critical audit after targeted fixes; lower-severity totals remain explicit.",
+  "recorded_at": "2026-10-23T19:18:31.450721+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "ee94fa267b04566e43410ba9246ac139bca26204",
+  "source_worktree_dirty": true,
+  "source_diff_sha256": "b312f644e26967d7c11775f5669695b07017dead5693bc17d71a9208947bc7cc",
+  "steps": [
+    {
+      "step": "pnpm-audit",
+      "command": "pnpm audit --prod --audit-level high --json",
+      "exit_code": 0,
+      "seconds": 0.91,
+      "log": "handoff/cloud-only/results/audit-after-security-fix/20261023T191830529577Z/pnpm-audit.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "audit_exit": 0,
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 1,
+      "moderate": 2,
+      "high": 0,
+      "critical": 0
+    },
+    "dependencies": 412,
+    "devDependencies": 0,
+    "optionalDependencies": 83,
+    "totalDependencies": 495
+  }
+}

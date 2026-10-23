@@ -1,0 +1,18 @@
+Native restart proof failed: ECONNREFUSED
+/workspace/FutureRobotic/node_modules/.pnpm/pg-pool@3.14.0_pg@8.23.1/node_modules/pg-pool/index.js:45
+    Error.captureStackTrace(err)
+          ^
+
+Error: connect ECONNREFUSED 127.0.0.1:32769
+    at /workspace/FutureRobotic/node_modules/.pnpm/pg-pool@3.14.0_pg@8.23.1/node_modules/pg-pool/index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async Postgres.query (file:///workspace/FutureRobotic/portable/dist/src/db.js:10:19)
+    at async file:///workspace/FutureRobotic/portable/scripts/verify-native-restart.mjs:75:5 {
+  errno: -111,
+  code: 'ECONNREFUSED',
+  syscall: 'connect',
+  address: '127.0.0.1',
+  port: 32769
+}
+
+Node.js v24.19.0

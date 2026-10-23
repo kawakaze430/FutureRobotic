@@ -1,0 +1,20 @@
+$ node infra/dist/src/app.js
+[WARNING] aws-cdk-lib.aws_autoscaling.HealthCheck#elb is deprecated.
+  Use HealthChecks instead
+  This API will be removed in the next major release.
+[WARNING] aws-cdk-lib.aws_autoscaling.ElbHealthCheckOptions#grace is deprecated.
+  Use AdditionalHealthChecksOptions instead
+  This API will be removed in the next major release.
+[WARNING] aws-cdk-lib.aws_autoscaling.CommonAutoScalingGroupProps#healthCheck is deprecated.
+  Use `healthChecks` instead
+  This API will be removed in the next major release.
+[WARNING] aws-cdk-lib.aws_autoscaling.HealthCheck#elb is deprecated.
+  Use HealthChecks instead
+  This API will be removed in the next major release.
+[WARNING] aws-cdk-lib.aws_autoscaling.ElbHealthCheckOptions#grace is deprecated.
+  Use AdditionalHealthChecksOptions instead
+  This API will be removed in the next major release.
+[WARNING] aws-cdk-lib.aws_autoscaling.CommonAutoScalingGroupProps#healthCheck is deprecated.
+  Use `healthChecks` instead
+  This API will be removed in the next major release.
+{"mode":"offline-unapproved-fixture","stacks":6,"output":"/workspace/FutureRobotic/outputs/cdk","deployed":false}

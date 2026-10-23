@@ -1,0 +1,45 @@
+{
+  "scope": "container-runtime-retry",
+  "verification_status": "FAILED_CONTAINER",
+  "detail": "compose-start failed with exit 1; inspect its sanitized log.",
+  "recorded_at": "2026-10-23T19:13:53.662151+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "ee94fa267b04566e43410ba9246ac139bca26204",
+  "source_worktree_dirty": true,
+  "source_diff_sha256": "6e717ac2ad8eb9cd2b6685fb7087df572d249d547b4f0212e55a7972900f98bf",
+  "steps": [
+    {
+      "step": "images-before-start",
+      "command": "docker image inspect --format '{{.Id}}' fr-cloud-6a71880ef96c-api fr-cloud-6a71880ef96c-migrate fr-cloud-6a71880ef96c-web",
+      "exit_code": 0,
+      "seconds": 0.01,
+      "log": "handoff/cloud-only/results/container-runtime-retry/20261023T191323603606Z/images-before-start.log"
+    },
+    {
+      "step": "compose-start",
+      "command": "docker compose -p fr-cloud-6a71880ef96c -f portable/compose.yml up --no-build --detach --wait --wait-timeout 120",
+      "exit_code": 1,
+      "seconds": 27.89,
+      "log": "handoff/cloud-only/results/container-runtime-retry/20261023T191323603606Z/compose-start.log"
+    },
+    {
+      "step": "compose-logs",
+      "command": "docker compose -p fr-cloud-6a71880ef96c -f portable/compose.yml logs --no-color --tail 120",
+      "exit_code": 0,
+      "seconds": 0.08,
+      "log": "handoff/cloud-only/results/container-runtime-retry/20261023T191323603606Z/compose-logs.log"
+    },
+    {
+      "step": "compose-cleanup",
+      "command": "docker compose -p fr-cloud-6a71880ef96c -f portable/compose.yml down --volumes --remove-orphans",
+      "exit_code": 0,
+      "seconds": 2.07,
+      "log": "handoff/cloud-only/results/container-runtime-retry/20261023T191323603606Z/compose-cleanup.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "reused_build_evidence": "handoff/cloud-only/results/containers/20261023T190457725660Z/compose-build.log",
+  "build_outputs_reused": true,
+  "owned_cleanup_exit": 0
+}

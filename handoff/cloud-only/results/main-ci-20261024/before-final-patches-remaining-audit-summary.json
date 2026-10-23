@@ -1,0 +1,41 @@
+{
+  "command": "pnpm audit --prod --audit-level low --json",
+  "exit_code": 1,
+  "high_critical_policy": "Passed separately with zero high and critical findings",
+  "remaining_findings": [
+    {
+      "module_name": "@babel/core",
+      "severity": "low",
+      "title": "@babel/core: Arbitrary File Read via sourceMappingURL Comment",
+      "patched_versions": ">=7.29.6",
+      "url": "https://github.com/advisories/GHSA-4x5r-pxfx-6jf8"
+    },
+    {
+      "module_name": "baseline-browser-mapping",
+      "severity": "moderate",
+      "title": "baseline-browser-mapping process termination on invalid input causes denial of service",
+      "patched_versions": ">=2.11.0",
+      "url": "https://github.com/advisories/GHSA-w5vr-8v7q-w6rv"
+    },
+    {
+      "module_name": "fast-uri",
+      "severity": "moderate",
+      "title": "fast-uri vulnerable to inconsistent host case normalization via percent-encoded octets",
+      "patched_versions": ">=3.1.8",
+      "url": "https://github.com/advisories/GHSA-hrr3-gc8f-f4qj"
+    }
+  ],
+  "metadata": {
+    "vulnerabilities": {
+      "info": 0,
+      "low": 1,
+      "moderate": 2,
+      "high": 0,
+      "critical": 0
+    },
+    "dependencies": 412,
+    "devDependencies": 0,
+    "optionalDependencies": 83,
+    "totalDependencies": 495
+  }
+}

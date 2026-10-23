@@ -1,59 +1,85 @@
-# FutureRobotic AI — bounded cloud verification return
+# FutureRobotic AI — main CI/build/test return, 24 October 2026
 
-Verification window: 2026-10-23 23:21:27 IST to 23:31:49 IST (622.8 seconds before packaging). Machine evidence uses UTC timestamps. One bounded run; no application implementation work.
+Implemented and pushed directly to `main`. Tested code revision: `518ca8cf430622bb3229ebe4f0519fe835835033`. Hosted verification: https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240 — **all seven jobs passed**, including Node 22 and Node 24, workflow lint, native PostgreSQL/restart, full container builds/migrations/readiness, production audit and the required aggregate result. No new branch, worktree or pull request was created for this batch. Delivery/evidence commits on top of this code do not change application behavior.
 
-Application baseline: `76dda7b040a95e96c529073240056678d9f12ba4`. Actual input checkout: `f6b9556eb68598e6d22397db587a61b0e3fedb8d`. Return branch: `codex/cloud-verification-20261023-1751`. All **382 application-file hashes** match `HANDOFF_MANIFEST.json`; application source, tests, migrations, manifests, lockfile and Dockerfiles are unchanged. This return changes only handoff documentation and adds sanitized evidence, reusable environment instructions and delivery artifacts. No narrow source fix was necessary and **no stable ID was closed**.
+The current engineering batch is complete. **The whole production project is not complete:** remaining source scope, real integrations, approved isolated execution and deployed operational acceptance are still required. Global feature status remains **73 Implemented / 59 Partial / 64 Blocked / 0 Not started / 196 total**. Verification notes changed for QAS-003, AWS-013, SEC-010, DAT-003 and CHT-008; no feature status or stable ID was closed.
 
-Global status: **73 Implemented / 59 Partial / 64 Blocked / 0 Not started / 196 total** (unchanged). Passing a verification sub-gate does not close an entire feature.
+## Concrete changes
 
-| Scope | State | Observed result |
+- Independent CI jobs retain source-bound diagnostics even when another job fails; a required aggregate fails on any failed/cancelled/unrun gate. Added manual dispatch, official pinned Actions, checksum-verified actionlint, Node 22/24 coverage, existing utility/API and release-gate checks, both web builds and all existing suites. Verification has read-only repository permissions and never deploys or writes arbitrary fixes.
+- The old native wrapper now delegates to the canonical runner, automatically including completion and future existing suites. It proves native connection/transaction exclusion and seeds/reads actual data across a restart of its own PostgreSQL container. It rediscovers a changed loopback port and never restarts an external database.
+- Container builds preserve the pnpm workspace/lock policy, use pinned Node/nginx digests and optionally mount the supplied public CA through BuildKit for npm/pnpm. TLS, checksums and dependency release-age verification remain enabled. Buildx state stays in the writable workspace.
+- Fixed the unquoted Compose tmpfs comma; nginx health/ready now test the API/database. Non-root users own readable migration/certificate/static files even when source imports retain mode 0600. The selected nginx configuration is baked into the image, avoiding a private-mode bind mount; API and web root filesystems are read-only. Smoke tests request JSON health/ready/status, HTML, SVG and WOFF2 bytes.
+- Fixed a failing native concurrency fixture that assumed the first-started request wins. The assertion now finds the actual winner and checks exactly one acceptance, the losing version conflict, same-winner replay, changed retries, cross-account denial and preservation of original/content/origin. Production service logic and acceptance were not weakened.
+- Targeted Next.js 16.4.1 and matching lint configuration, sharp 0.35.5, browserslist 4.28.7, source-map-js 1.2.2, Babel 7.29.6, baseline-browser-mapping 2.11.0 and fast-uri 3.1.8. Registry publication dates satisfy the unchanged seven-day policy. **Production audit: 18 findings before → 0 after (all severities).** This is dependency audit evidence, not an image/fleet CVE scan.
+
+## Tests actually executed
+
+All commands ran at `/workspace/FutureRobotic`; exact command/exit/duration/log paths are in `handoff/cloud-only/results/final-zero-audit-regression/20261023T195322988663Z/result.json`, `handoff/cloud-only/results/native-postgres/20261023T195406973747Z/result.json` and `handoff/cloud-only/results/containers/20261023T195623284876Z/result.json`. Hosted jobs bind their evidence to the exact source SHA above. Logs/metadata from earlier source revisions are retained and labelled historical; repeated cases are not added as new unique tests.
+
+| Scope / command | Actual result | Limits |
 | --- | --- | --- |
-| Prerequisites | PASSED_PREREQUISITES | Node v24.19.0, pnpm 11.25.0, Docker 28.4.0, Compose v2.40.3; one frozen-lockfile install, exit 0 |
-| All four native backend suites, including completion | PASSED_NATIVE_WITH_SKIPS | **77 tests: 76 passed, 0 failed, 1 skipped, 0 cancelled**; native PostgreSQL 16.15, distinct backend PIDs 85/86, transaction-lock exclusion and release passed |
-| Existing container stack | BLOCKED_ENVIRONMENT; raw runner FAILED_CONTAINER | Two runner attempts exited 1; first Buildx home-state issue corrected; second blocked by npm certificate trust before image completion, migrations or HTTP readiness |
-| Approved isolated runner | BLOCKED_ENVIRONMENT | 0 probes executed; approved gateway/signing variables absent |
-| Live integrations, PGlite/UI/offline infra, AWS/payment work | NOT_ATTEMPTED_SCOPE | Excluded by the assignment; no new claims |
+| `pnpm install --frozen-lockfile`; `pnpm exec tsc --noEmit`; `pnpm api:build`; actionlint | Passed | Exact pin/lock policy preserved |
+| `node --test portable/dist/tests/*.test.js` with no native URL | 77 passed / 0 failed / 0 skipped | PGlite SQL/services/HTTP and provider/merchant doubles |
+| `pnpm test:ui` | 15 passed / 0 failed | Rendering/export/grammar fixtures, not browser/device acceptance |
+| `node tests/tools.test.mjs` | Passed | Existing language/asset/route/utility/API fixtures |
+| Runner policy + release validator suites | 4 passed / 0 failed | No untrusted native execution or actual release |
+| `pnpm infra:build`; offline `INFRA_SYNTH_ONLY=true pnpm infra:synth`; `pnpm infra:test` | Build passed; six templates; 4 tests passed | Offline unapproved fixture, no AWS operation |
+| `pnpm web:build`; `pnpm build` | Both passed; 152 public candidate routes prerendered | Public indexing remains unapproved; bundle-size/deprecation warnings retained |
+| `pnpm api:test:native` / `python3 handoff/cloud-only/run_native.py` | 77 cases: **76 passed, 0 failed, 1 existing skip**, plus successful separate native locking and actual restart/recovery proof | The skipped PGlite-oriented restart fixture remains distinct; real RDS failover is unrun |
+| `python3 handoff/cloud-only/run_containers.py` | **PASSED_CONTAINER**: complete current-source image builds, four migrations, six successful HTTP checks, cleanup exit 0 | Local trusted development stack; no live account/provider/payment/storage acceptance |
+| `pnpm audit --prod --audit-level low --json` | Exit 0; **0 info/low/moderate/high/critical** | npm production dependency advisories only |
+| Hosted GitHub Actions | **7/7 jobs successful**, including both Node versions and the aggregate gate | Same cases under runtime variants; not new unique tests or production acceptance |
 
-## Commands and current-run evidence
+Native proof: `PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit`; distinct backend PIDs and advisory-lock exclusion/release recorded in the native result. Separate processes confirmed users, completed output, notes/chat and cancelled/failed run recovery after changing the actual PostgreSQL server start time. Test fixtures are disposable.
 
-All commands ran from `/workspace/FutureRobotic`.
+Actual full-stack image IDs:
 
-- `node --version`, `pnpm --version`, `docker --version`, `docker info --format '{{.ServerVersion}}'`, `docker compose version`: exit 0.
-- `pnpm install --frozen-lockfile --store-dir /workspace/FutureRobotic/.sites-runtime/pnpm-store --cache-dir /workspace/FutureRobotic/.sites-runtime/pnpm-store/policy-cache --reporter=append-only --fetch-retries=0 --fetch-timeout=30000`: exit 0; 894 packages installed, dependency policies preserved.
-- `python3 handoff/cloud-only/run_native.py`: exit 0. It compiled the API, proved two native backends/locking, and ran `node --test --test-reporter=tap portable/dist/tests/completion.test.js portable/dist/tests/integration.test.js portable/dist/tests/operations.test.js portable/dist/tests/product.test.js`.
-- `python3 handoff/cloud-only/run_containers.py`: exit 1 before the first image build because Buildx's default state directory is read-only.
-- `BUILDX_CONFIG=/workspace/FutureRobotic/.sites-runtime/buildx python3 handoff/cloud-only/run_containers.py`: exit 1 during pinned pnpm installation inside the Alpine image; supported writable state corrected the first failure.
+- `066167ff39c2a612402ce99b734ea1cff92a9d1f2ac52f697a5f0384f0d88d6b`
+- `796d12153dc5073168c19e3b0809dda60ee9ecb1e318af358041d29f95eb9ee9`
+- `8d26c94764830bc2448ac1928cab32e46a0d98864757fed6c74f2bffa2e2ca14`
+- `d62da16abb1d78e762021917384c5c5d87be6db2b8418c4aad330af0349709b5`
 
-Every underlying command, duration, exit code and log path is in the timestamped `result.json` files:
+Earlier failures are preserved: npm trust-chain rejection, read-only Buildx home, VFS disk exhaustion, private imported file permissions and the CHT-008 false scheduling assumption. Each was diagnosed and corrected; full current-source cold builds and readiness were rerun after clearing only obsolete images/cache belonging to recorded disposable projects from this task. Intermediate permission-only local reuse experiments are labelled as reused outputs and are superseded by the final full-stack pass. No unrelated runtime/user data was removed. No required check remains unexplained or failed in this batch.
 
-- `handoff/cloud-only/results/prerequisites/20261023T175201208461Z/`
-- `handoff/cloud-only/results/native-postgres/20261023T175224965050Z/`
-- `handoff/cloud-only/results/containers/20261023T175409258065Z/` (initial failure)
-- `handoff/cloud-only/results/containers/20261023T175432416367Z/` (supported-state retry)
-- `handoff/cloud-only/results/current-run/summary.json` and `cleanup-verification.json` (current rollup)
+## Source and status provenance
 
-Earlier timestamped results are retained as historical evidence, not reused as current passes. Generated passwords/DSNs were redacted by the supplied runners. No credentials, environment dump or resolved Compose configuration is included. No TLS, package-signature or checksum verification was disabled.
+Original application provenance remains `76dda7b040a95e96c529073240056678d9f12ba4` in `HANDOFF_MANIFEST.json`; it is a baseline record, not a claim that the current hardening source is byte-identical. All four historical migration files remain byte-identical. Current baseline differences and exact source/configuration file list are in `handoff/cloud-only/results/main-ci-20261024/summary.json`. Current implementation/configuration/document changes through the tested code revision:
 
-## Native proof, skips and images
+- `.dockerignore`
+- `.github/workflows/verify.yml`
+- `AGENTS.md`
+- `README.md`
+- `handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md`
+- `handoff/cloud-only/_test_common.py`
+- `handoff/cloud-only/environment-start.md`
+- `handoff/cloud-only/run_containers.py`
+- `handoff/cloud-only/run_native.py`
+- `package.json`
+- `pnpm-lock.yaml`
+- `pnpm-workspace.yaml`
+- `portable/Dockerfile.api`
+- `portable/Dockerfile.web`
+- `portable/compose.yml`
+- `portable/scripts/test-native.mjs`
+- `portable/scripts/verify-native-restart.mjs`
+- `portable/tests/completion.test.ts`
+- `portable/web/nginx.compose.conf`
 
-Native server: `PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit`. PostgreSQL image ID: `sha256:066167ff39c2a612402ce99b734ea1cff92a9d1f2ac52f697a5f0384f0d88d6b`. Native connection proof is in `native-connections.log`.
+Additional delivery changes update the current handoff/status/register verification notes and add sanitized evidence/inventories. Global classifications are unchanged. The original reference archive and all cumulative source/assets/tests/infra/CI remain included.
 
-The existing DAT-003 test `persisted PostgreSQL storage restores users, notes and results after database restart` was **skipped**: external database restart/failover requires a dedicated environment. Persistence/restart/failover acceptance remains unverified; this skip is not a pass.
+## Remaining scope and next Codex prompt
 
-No final API/web/migration application image was completed, so no application image IDs can be reported. Build logs record the actual pulled base manifest digests: `node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914` and `nginxinc/nginx-unprivileged:stable-alpine@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03`. Native and both Compose cleanup commands exited 0; follow-up checks found **zero owned test containers and zero owned Compose volumes**. Cached dependencies/images remain available.
+The requested copy/paste prompt is [handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md](handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md). It explicitly says **do not create a branch, worktree or PR; commit/push directly to main**, owns failure repair, lists current commands and all next acceptance groups, and directs the next agent to all 74 LIVE-* scenarios and the reviewed remaining feature work.
 
-## Exact blockers and ownership
+- Approved isolated sandbox gate is still **BLOCKED_ENVIRONMENT**: `RUNNER_TEST_ENDPOINT` and `RUNNER_TEST_PRIVATE_KEY_FILE` are not supplied. No untrusted native probes ran on this trusted host; no new fleet was installed.
+- Live AI, OAuth/email, merchant, S3/queues, RDS/AWS deployment, production OIDC/branch-denial/rollback, restore/country/operational and browser/device acceptance are **not verified by this batch**. Protected inputs/account authority and policy decisions are prerequisites; variable presence was checked without revealing values. Absent process variables alone do not rule out other injected authentication. No production/public cutover, real payment or AWS resource creation occurred.
+- The 59 Partial / 64 Blocked source/acceptance rows remain. The primary coding agent owns implementation and integration after supplied access; the owner supplies account authorization/protected bindings and business/policy decisions, not coding labor. Do not mark a whole feature complete because one CI sub-gate passed.
 
-1. **Container gate — BLOCKED_ENVIRONMENT:** `npm install --global pnpm@11.25.0` in the stock Node Alpine build stages fails with `SELF_SIGNED_CERT_IN_CHAIN` for `https://registry.npmjs.org/pnpm`. Host-side frozen installation succeeds using the supplied host CA configuration, but the Docker build stages do not inherit it. The primary project agent owns supported build-time trust configuration and rerunning the gate on an approved Docker/CI host; platform/CI access and trust provisioning remain environment-owner inputs. Do not disable TLS or bypass network/privilege controls. Container migrations, `/health`, `/api/status`, authenticated flows and application-image readiness were not verified.
-2. **Native DAT-003 — skipped:** a dedicated disposable environment permitting actual external PostgreSQL restart/failover is required. The primary agent schedules and verifies this separately; no native connection or transaction-lock problem was observed.
-3. **Isolated sandbox — BLOCKED_ENVIRONMENT B01/B02:** `RUNNER_TEST_ENDPOINT` and `RUNNER_TEST_PRIVATE_KEY_FILE` are absent. No approved isolated HTTPS gateway or protected test signing setup already exists in the supplied configuration. The owner supplies approved infrastructure/protected bindings; the primary agent owns subsequent probe execution/integration. No fleet was installed and no untrusted code ran on this host.
+**Next action for the primary project agent:** Use the main-only prompt, implement the reviewed source-owned P0 gaps with regression evidence, and execute the applicable 74 real acceptance scenarios only on approved environments with their required protected inputs; retain every unresolved gate explicitly.
 
-No new AI, merchant or AWS credential is needed for the native/container scope. Those external release gates remain pending and outside this run. No application test failure was reproduced, so there is no source repair patch.
+## Complete delivery and reusable environment
 
-## Reusable cloud setup and delivery
+Complete cumulative ZIP: `deliverables/FutureRobotic_AI_Main_CI_Hardening_20261024.zip`. External `.sha256`, CRC/completeness result and delivery metadata are saved beside it after assembly; the archive excludes its own delivery directory. The package contains all prior code/assets/migrations/tests/infra/CI/reference/status and current sanitized evidence. It excludes credentials, dependency directories, Git internals, build output and runtime databases/data; source file modes are normalized to Git modes for reproducible import. The real file is committed/pushed on main; no artifact or download URL is invented.
 
-Saved draft fields: **install_script** and **start_skill**. Their exact instructions are mirrored in `handoff/cloud-only/environment-install.sh` and `environment-start.md`. They preserve the existing checkout, pinned/frozen dependencies, supported Buildx state location, bounded runners, cleanup and unresolved trust gate. Network policy, secrets, environment-variable requirements and repository membership were not changed. Saving the draft does not apply or publish it; review and save changes in environment settings, then publish if retaining this prepared environment. Container readiness remains blocked.
-
-Complete cumulative ZIP: `deliverables/FutureRobotic_AI_Build03_Cloud_Verification_20261023.zip`. CRC/integrity result, SHA-256, size, inventory completeness and package timing are recorded in the sibling `.sha256` and `deliverables/DELIVERY_VERIFICATION.json` after assembly (the ZIP cannot include its own digest). The ZIP includes all prior source/assets/migrations/tests/infra/CI, original reference archive, updated handoff/status and current sanitized evidence. It excludes credentials, dependencies, runtime databases, build output, Git internals and the delivery directory itself. `deliverables/DELIVERY.md` records the actual delivery path and access status.
-
-**Next action for primary project agent:** Configure verified build-time CA trust in an approved Docker/CI environment and rerun handoff/cloud-only/run_containers.py; integrate this evidence without changing feature totals, then separately schedule the skipped restart/failover and already-approved isolated-runner gates.
+Reusable install/start fields were saved in the environment draft and mirrored in `handoff/cloud-only/environment-install.sh` / `environment-start.md`. Startup now follows main and current scope, supports the corrected native/container workflows and public-CA mounts, and documents VFS capacity/owned-cache handling. Exact GitHub API/log/artifact destinations observed during this work were added without replacing preset access or adding credentials. Draft saving is not publication; environment settings review/save and publication remain product actions, separate from the completed repository push and validation. No live process is assumed to survive a snapshot.
