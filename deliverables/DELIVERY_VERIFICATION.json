@@ -1,0 +1,27 @@
+{
+  "archive": "deliverables/FutureRobotic_AI_Build03_Cloud_Verification_20261023.zip",
+  "sha256": "12d0c8234b54d6dccd290652f05710e22ae15a913202515b81e9729b9eedf04a",
+  "bytes": 16247684,
+  "file_count": 476,
+  "zip_crc_result": "PASS (ZipFile.testzip returned None)",
+  "all_tracked_files_included": true,
+  "application_source_files_included_and_sha256_verified": 382,
+  "application_source_hash_mismatches": [],
+  "reference_archive_included": true,
+  "public_rds_ca_bundle_included": true,
+  "excluded": [
+    "dependency folders",
+    "runtime databases",
+    "build output",
+    "credentials and local environment files",
+    "Git internals",
+    "delivery directory"
+  ],
+  "package_started_at": "2026-10-23T18:03:28.077446+00:00",
+  "package_verified_at": "2026-10-23T18:03:28.642823+00:00",
+  "input_checkout_commit": "f6b9556eb68598e6d22397db587a61b0e3fedb8d",
+  "working_branch": "codex/cloud-verification-20261023-1751",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "artifact_service": "No artifact upload tool is available; actual ZIP is retained as a working-branch file.",
+  "assembly_guard_correction": "Initial selection guard caught over-exclusion of the tracked public RDS CA bundle; it is retained and verified in this complete archive."
+}

@@ -1,0 +1,22 @@
+{
+  "recorded_at": "2026-10-23T17:53:25.491903+00:00",
+  "actual_checkout_commit": "f6b9556eb68598e6d22397db587a61b0e3fedb8d",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "application_files_verified": 382,
+  "application_manifest_mismatches": [],
+  "global_status": {
+    "Implemented": 73,
+    "Partial": 59,
+    "Blocked": 64,
+    "Not started": 0,
+    "total": 196
+  },
+  "fixed_ids": [],
+  "gate_status": {
+    "native": "PREPARED_NOT_EXECUTED (runner currently active)",
+    "containers": "PREPARED_NOT_EXECUTED",
+    "isolated_runner": "BLOCKED_ENVIRONMENT: RUNNER_TEST_ENDPOINT and RUNNER_TEST_PRIVATE_KEY_FILE are absent; no probes executed",
+    "live_integrations": "NOT_ATTEMPTED_SCOPE"
+  },
+  "source_changes": []
+}

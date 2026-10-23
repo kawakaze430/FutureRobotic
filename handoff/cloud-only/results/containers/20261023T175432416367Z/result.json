@@ -1,0 +1,49 @@
+{
+  "scope": "Existing image builds, development migrations and public health/status only. No real account/provider/payment/AWS acceptance.",
+  "verification_status": "FAILED_CONTAINER",
+  "detail": "compose-build-start failed with exit 1; inspect its sanitized log.",
+  "recorded_at": "2026-10-23T17:56:09.522584+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "f6b9556eb68598e6d22397db587a61b0e3fedb8d",
+  "steps": [
+    {
+      "step": "docker-engine",
+      "command": "docker info --format '{{.ServerVersion}}'",
+      "exit_code": 0,
+      "seconds": 0.05,
+      "log": "handoff/cloud-only/results/containers/20261023T175432416367Z/docker-engine.log"
+    },
+    {
+      "step": "compose-version",
+      "command": "docker compose version",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "log": "handoff/cloud-only/results/containers/20261023T175432416367Z/compose-version.log"
+    },
+    {
+      "step": "compose-build-start",
+      "command": "docker compose -p fr-cloud-0a32801ac8ca -f portable/compose.yml up --build --detach --wait --wait-timeout 120",
+      "exit_code": 1,
+      "seconds": 96.86,
+      "log": "handoff/cloud-only/results/containers/20261023T175432416367Z/compose-build-start.log"
+    },
+    {
+      "step": "compose-logs",
+      "command": "docker compose -p fr-cloud-0a32801ac8ca -f portable/compose.yml logs --no-color --tail 120",
+      "exit_code": 0,
+      "seconds": 0.07,
+      "log": "handoff/cloud-only/results/containers/20261023T175432416367Z/compose-logs.log"
+    },
+    {
+      "step": "owned-compose-cleanup",
+      "command": "docker compose -p fr-cloud-0a32801ac8ca -f portable/compose.yml down --volumes --remove-orphans",
+      "exit_code": 0,
+      "seconds": 0.07,
+      "log": "handoff/cloud-only/results/containers/20261023T175432416367Z/owned-compose-cleanup.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "compose_project": "fr-cloud-0a32801ac8ca",
+  "owned_compose_cleanup_exit": 0
+}

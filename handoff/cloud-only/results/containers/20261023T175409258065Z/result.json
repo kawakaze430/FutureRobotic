@@ -1,0 +1,49 @@
+{
+  "scope": "Existing image builds, development migrations and public health/status only. No real account/provider/payment/AWS acceptance.",
+  "verification_status": "FAILED_CONTAINER",
+  "detail": "compose-build-start failed with exit 1; inspect its sanitized log.",
+  "recorded_at": "2026-10-23T17:54:09.625530+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "f6b9556eb68598e6d22397db587a61b0e3fedb8d",
+  "steps": [
+    {
+      "step": "docker-engine",
+      "command": "docker info --format '{{.ServerVersion}}'",
+      "exit_code": 0,
+      "seconds": 0.05,
+      "log": "handoff/cloud-only/results/containers/20261023T175409258065Z/docker-engine.log"
+    },
+    {
+      "step": "compose-version",
+      "command": "docker compose version",
+      "exit_code": 0,
+      "seconds": 0.05,
+      "log": "handoff/cloud-only/results/containers/20261023T175409258065Z/compose-version.log"
+    },
+    {
+      "step": "compose-build-start",
+      "command": "docker compose -p fr-cloud-136cb72e68c3 -f portable/compose.yml up --build --detach --wait --wait-timeout 120",
+      "exit_code": 1,
+      "seconds": 0.14,
+      "log": "handoff/cloud-only/results/containers/20261023T175409258065Z/compose-build-start.log"
+    },
+    {
+      "step": "compose-logs",
+      "command": "docker compose -p fr-cloud-136cb72e68c3 -f portable/compose.yml logs --no-color --tail 120",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "log": "handoff/cloud-only/results/containers/20261023T175409258065Z/compose-logs.log"
+    },
+    {
+      "step": "owned-compose-cleanup",
+      "command": "docker compose -p fr-cloud-136cb72e68c3 -f portable/compose.yml down --volumes --remove-orphans",
+      "exit_code": 0,
+      "seconds": 0.06,
+      "log": "handoff/cloud-only/results/containers/20261023T175409258065Z/owned-compose-cleanup.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "compose_project": "fr-cloud-136cb72e68c3",
+  "owned_compose_cleanup_exit": 0
+}

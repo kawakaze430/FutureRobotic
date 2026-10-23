@@ -1,5 +1,15 @@
 # Recorded verification and its limits
 
+## Bounded cloud verification, 23 October 2026
+
+Actual checkout: `f6b9556eb68598e6d22397db587a61b0e3fedb8d`; all 382 application files match the Build03 manifest. `python3 handoff/cloud-only/run_native.py` completed all four existing suites on disposable native PostgreSQL 16.15, including completion: 77 tests, **76 passed / 0 failed / 1 skipped / 0 cancelled**. Two distinct native backends and transaction advisory-lock exclusion/release were verified. The skipped DAT-003 restart/failover scenario requires a dedicated external environment. Do not add these repeated cases to historical totals.
+
+`python3 handoff/cloud-only/run_containers.py` first failed before building because Buildx attempted to create `/home/agent/.docker/buildx` on a read-only filesystem. A second attempt using supported `BUILDX_CONFIG=/workspace/FutureRobotic/.sites-runtime/buildx` reached the Docker builds, then npm failed with `SELF_SIGNED_CERT_IN_CHAIN` for `registry.npmjs.org`. This is a container build-trust **BLOCKED_ENVIRONMENT**, not passing container readiness. API/web image completion, migrations and HTTP smoke checks were not reached. TLS verification stayed enabled; no application fixes were made. All owned native/Compose resources were removed and absence was checked.
+
+Sandbox probes were not run: the approved isolated `RUNNER_TEST_ENDPOINT` and protected `RUNNER_TEST_PRIVATE_KEY_FILE` are absent. PGlite, UI, offline infrastructure, AWS, payments and other live acceptance were outside scope. Exact commands, exit codes, timing, native image ID, sanitized logs and next actions are in `../CLOUD_RETURN.md` and `cloud-only/results/current-run/summary.json`. Global feature counts remain 73 / 59 / 64 / 0, total 196; no stable ID was closed.
+
+The evidence below is historical and retains its original scope.
+
 Application source: `76dda7b040a95e96c529073240056678d9f12ba4`. No application changes were made by this handoff.
 
 | Evidence set | Actual scope | Result |

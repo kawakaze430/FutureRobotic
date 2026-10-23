@@ -1,0 +1,131 @@
+{
+  "recorded_at": "2026-10-23T18:01:49.836380+00:00",
+  "verification_start_utc": "2026-10-23T17:51:27+00:00",
+  "verification_end_utc": "2026-10-23T18:01:49.836380+00:00",
+  "verification_seconds": 622.8,
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "f6b9556eb68598e6d22397db587a61b0e3fedb8d",
+  "working_branch": "codex/cloud-verification-20261023-1751",
+  "source_provenance": {
+    "application_files_checked": 382,
+    "application_hash_mismatches": [],
+    "application_changes": [],
+    "dependency_or_lockfile_changes": [],
+    "fixed_stable_ids": []
+  },
+  "global_status": {
+    "Implemented": 73,
+    "Partial": 59,
+    "Blocked": 64,
+    "Not started": 0,
+    "total": 196
+  },
+  "prerequisites": {
+    "node": "24.19.0",
+    "pnpm": "11.25.0",
+    "docker": "28.4.0",
+    "compose": "2.40.3",
+    "locked_install_attempts": 1,
+    "locked_install_exit": 0,
+    "evidence": "handoff/cloud-only/results/prerequisites/20261023T175201208461Z/result.json"
+  },
+  "native": {
+    "verification_status": "PASSED_NATIVE_WITH_SKIPS",
+    "runner_command": "python3 handoff/cloud-only/run_native.py",
+    "runner_exit": 0,
+    "counts": {
+      "tests": 77,
+      "pass": 76,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 1
+    },
+    "suites": [
+      "portable/dist/tests/completion.test.js",
+      "portable/dist/tests/integration.test.js",
+      "portable/dist/tests/operations.test.js",
+      "portable/dist/tests/product.test.js"
+    ],
+    "connection_proof": {
+      "database": "native-postgresql",
+      "version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+      "distinctBackendPids": [
+        85,
+        86
+      ],
+      "transactionLockExclusion": true
+    },
+    "postgres_image_id": "sha256:066167ff39c2a612402ce99b734ea1cff92a9d1f2ac52f697a5f0384f0d88d6b",
+    "skipped": [
+      "ok 47 - DAT-003 persisted PostgreSQL storage restores users, notes and results after database restart # SKIP External database restart/failover requires a dedicated environment"
+    ],
+    "owned_cleanup_exit": 0,
+    "evidence": "handoff/cloud-only/results/native-postgres/20261023T175224965050Z/result.json"
+  },
+  "containers": {
+    "verification_status": "BLOCKED_ENVIRONMENT",
+    "raw_runner_status": "FAILED_CONTAINER",
+    "runner_attempts": [
+      {
+        "command": "python3 handoff/cloud-only/run_containers.py",
+        "runner_exit": 1,
+        "evidence": "handoff/cloud-only/results/containers/20261023T175409258065Z/result.json",
+        "build_seconds": 0.14,
+        "cleanup_exit": 0
+      },
+      {
+        "command": "BUILDX_CONFIG=/workspace/FutureRobotic/.sites-runtime/buildx python3 handoff/cloud-only/run_containers.py",
+        "runner_exit": 1,
+        "evidence": "handoff/cloud-only/results/containers/20261023T175432416367Z/result.json",
+        "build_seconds": 96.86,
+        "cleanup_exit": 0
+      }
+    ],
+    "initial_failure": "mkdir /home/agent/.docker/buildx: read-only file system",
+    "supported_initial_correction": "BUILDX_CONFIG points to ignored writable workspace state; existing authentication and HOME remain unchanged.",
+    "remaining_blocker": "npm install --global pnpm@11.25.0 fails with SELF_SIGNED_CERT_IN_CHAIN for https://registry.npmjs.org/pnpm inside stock node:22-alpine build stages. Host trust configuration is not propagated into these stages.",
+    "application_image_ids": [],
+    "build_migration_http_checks_not_reached": true,
+    "tls_verification_disabled": false,
+    "source_fixes": []
+  },
+  "isolated_runner": {
+    "verification_status": "BLOCKED_ENVIRONMENT",
+    "probes_executed": 0,
+    "missing_variable_names": [
+      "RUNNER_TEST_ENDPOINT",
+      "RUNNER_TEST_PRIVATE_KEY_FILE"
+    ],
+    "reason": "No already approved isolated HTTPS gateway and protected signing material supplied."
+  },
+  "out_of_scope": {
+    "verification_status": "NOT_ATTEMPTED_SCOPE",
+    "checks": [
+      "PGlite",
+      "UI",
+      "offline infrastructure",
+      "AWS provisioning/deployment",
+      "live AI",
+      "real authentication/email",
+      "payments",
+      "native untrusted execution on trusted host"
+    ]
+  },
+  "cleanup_evidence": "handoff/cloud-only/results/current-run/cleanup-verification.json",
+  "evidence_sanitization": {
+    "current_logs_checked_for_credential_bearing_postgres_dsns": true,
+    "dsn_like_matches": [],
+    "runner_generated_secret_redaction": "Existing runners redact generated test passwords and database URLs; no environment/credential dump or resolved Compose config was captured."
+  },
+  "environment_configuration": {
+    "status": "saved",
+    "fields": [
+      "install_script",
+      "start_skill"
+    ],
+    "requires_publish": true,
+    "runtime_application": "Commands were executed separately; draft saving does not apply changes or publish.",
+    "network_secrets_or_variables_changed": false
+  },
+  "primary_next_action": "Configure verified build-time CA trust in an approved Docker/CI environment and rerun handoff/cloud-only/run_containers.py; integrate this evidence without changing feature totals, then separately schedule the skipped restart/failover and already-approved isolated-runner gates."
+}

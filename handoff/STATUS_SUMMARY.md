@@ -1,5 +1,7 @@
 # Quick status and read map
 
+**23 October 2026 bounded cloud verification update:** Native PostgreSQL 16.15 ran all four backend suites, including completion: **76 passed, 0 failed, 1 skipped** (dedicated external restart/failover). Distinct native connections and transaction-lock exclusion passed. Container builds are **BLOCKED_ENVIRONMENT** by `SELF_SIGNED_CERT_IN_CHAIN` during npm access to `registry.npmjs.org` inside the stock Alpine build stages. Sandbox gateway/signing configuration is absent. No application source or feature status changed. See [CLOUD_RETURN.md](../CLOUD_RETURN.md) and `cloud-only/results/current-run/summary.json`; this update supersedes historical statements that native PostgreSQL was unavailable in earlier environments. Production and all other acceptance gates remain pending.
+
 **Build03: 73 Implemented / 59 Partial / 64 Blocked / 0 Not started, 196 total.** Application source is unchanged in this handoff. No AWS production deployment or real provider/merchant/native acceptance exists.
 
 The private Sites Worker/browser preview is separate from the portable Fastify/PostgreSQL backend. Source/local evidence is not deployed/live evidence. Build03 recorded 100 automated passes; the later 77-backend + 4-infrastructure checks repeat a subset. Six templates synthesize offline; native database/runner gates exit 2.

@@ -1,0 +1,182 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 1.95kB done
+#1 DONE 0.0s
+
+#2 [web internal] load build definition from Dockerfile.web
+#2 transferring dockerfile: 576B done
+#2 DONE 0.0s
+
+#3 [migrate internal] load build definition from Dockerfile.api
+#3 transferring dockerfile: 951B done
+#3 DONE 0.0s
+
+#4 [api internal] load metadata for docker.io/library/node:22-alpine
+#4 DONE 4.6s
+
+#5 [migrate internal] load .dockerignore
+#5 transferring context: 177B done
+#5 DONE 0.0s
+
+#6 [api internal] load build context
+#6 transferring context: 1.99MB 0.0s done
+#6 DONE 0.0s
+
+#7 [api build 1/7] FROM docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914
+#7 resolve docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914 done
+#7 sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914 6.41kB / 6.41kB done
+#7 sha256:025b8e975a61d94e33abeafaad1255ef44e4898cf1a1b6446860009c72e6d284 1.72kB / 1.72kB done
+#7 sha256:ae59e9992c6b3e963dd9dac9c476287048177ad8f90ac646669afb738705f56d 6.71kB / 6.71kB done
+#7 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 0B / 3.85MB 0.1s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 0B / 56.22MB 0.1s
+#7 sha256:7246d4c6a55dd0f8dd00d2e63aece3a68d91e6a5d04c4e748fc2706897d96312 0B / 1.26MB 0.1s
+#7 sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914 6.41kB / 6.41kB done
+#7 sha256:025b8e975a61d94e33abeafaad1255ef44e4898cf1a1b6446860009c72e6d284 1.72kB / 1.72kB done
+#7 sha256:ae59e9992c6b3e963dd9dac9c476287048177ad8f90ac646669afb738705f56d 6.71kB / 6.71kB done
+#7 ...
+
+#5 [web internal] load .dockerignore
+#5 transferring context: 177B done
+#5 DONE 0.0s
+
+#8 [web internal] load metadata for docker.io/nginxinc/nginx-unprivileged:stable-alpine
+#8 DONE 4.9s
+
+#9 [web internal] load build context
+#9 transferring context: 3.00MB 0.1s done
+#9 DONE 0.1s
+
+#7 [web build 1/7] FROM docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914
+#7 resolve docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914 done
+#7 sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914 6.41kB / 6.41kB done
+#7 sha256:025b8e975a61d94e33abeafaad1255ef44e4898cf1a1b6446860009c72e6d284 1.72kB / 1.72kB done
+#7 sha256:ae59e9992c6b3e963dd9dac9c476287048177ad8f90ac646669afb738705f56d 6.71kB / 6.71kB done
+#7 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 1.05MB / 3.85MB 1.7s
+#7 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 2.10MB / 3.85MB 2.0s
+#7 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 3.15MB / 3.85MB 2.4s
+#7 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 3.85MB / 3.85MB 2.6s done
+#7 sha256:7246d4c6a55dd0f8dd00d2e63aece3a68d91e6a5d04c4e748fc2706897d96312 1.05MB / 1.26MB 2.6s
+#7 sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 3.85MB / 3.85MB 2.6s done
+#7 sha256:7246d4c6a55dd0f8dd00d2e63aece3a68d91e6a5d04c4e748fc2706897d96312 1.26MB / 1.26MB 2.7s done
+#7 extracting sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788
+#7 sha256:304511616d6a6d472222f696b9045e20dc90e8043b2a8ba2acb61746595781f3 0B / 442B 2.7s
+#7 extracting sha256:7b229517ed222597277036d94892173207d01a731ab3a88eeb1de2e963a2c788 0.1s done
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 3.15MB / 56.22MB 3.1s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 6.29MB / 56.22MB 4.0s
+#7 sha256:304511616d6a6d472222f696b9045e20dc90e8043b2a8ba2acb61746595781f3 442B / 442B 4.3s done
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 9.44MB / 56.22MB 4.9s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 12.58MB / 56.22MB 5.9s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 15.73MB / 56.22MB 6.9s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 18.87MB / 56.22MB 7.7s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 22.02MB / 56.22MB 8.6s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 25.17MB / 56.22MB 9.5s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 28.31MB / 56.22MB 10.4s
+#7 ...
+
+#10 [web stage-1 1/3] FROM docker.io/nginxinc/nginx-unprivileged:stable-alpine@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03
+#10 resolve docker.io/nginxinc/nginx-unprivileged:stable-alpine@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03 done
+#10 sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03 6.79kB / 6.79kB done
+#10 sha256:e2a8fca8aa356d66159aaf8a877a9c126773635adf210503eefaaeaffeed6ad7 2.61kB / 2.61kB done
+#10 sha256:b252f703bfef51b61a4b369dfd6316b5acaa8f6b5eb0116b92de6fdc1aa42454 14.02kB / 14.02kB done
+#10 sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 3.85MB / 3.85MB 4.6s done
+#10 sha256:618365c073173c14719b1175033543c9185a5b93aa837004b92993c9d28cce43 4.36MB / 4.36MB 8.0s done
+#10 extracting sha256:e2de96513ba9eb53b431787ec8a65cdde380ac4772a3e4c4b714dcfde2a102b5 0.1s done
+#10 sha256:a13df183ba7f55b6feb80b286c9028f1c64432c5aeffa748f6c530e0abf4770e 2.79kB / 2.79kB 6.3s done
+#10 sha256:a13b501623601157699cbc90849b0c6c89c00d01ccaf41f038157454b44c2c9a 628B / 628B 7.8s done
+#10 sha256:0513567031b18f3d5d8fc07e4ce48950f2a51d493a05045755763fb41f76076f 964B / 964B 8.3s done
+#10 extracting sha256:618365c073173c14719b1175033543c9185a5b93aa837004b92993c9d28cce43 0.2s done
+#10 sha256:3cbf0502908f3bd4ec5e5dc3aeb3da0bc1c6690ac394a16fecebb8af91ae1c1f 404B / 404B 9.0s done
+#10 extracting sha256:a13df183ba7f55b6feb80b286c9028f1c64432c5aeffa748f6c530e0abf4770e done
+#10 extracting sha256:a13b501623601157699cbc90849b0c6c89c00d01ccaf41f038157454b44c2c9a done
+#10 sha256:511976c6ab3d18f06369d88a401beb8fa48862cb60d8a025a4dd51cc092a5565 1.20kB / 1.20kB 9.4s done
+#10 extracting sha256:0513567031b18f3d5d8fc07e4ce48950f2a51d493a05045755763fb41f76076f done
+#10 extracting sha256:3cbf0502908f3bd4ec5e5dc3aeb3da0bc1c6690ac394a16fecebb8af91ae1c1f done
+#10 sha256:911bd3a49d26bae1ce395def8d5e3c2b306275ffbbfd47355bac30d2e095935e 1.40kB / 1.40kB 10.0s done
+#10 extracting sha256:511976c6ab3d18f06369d88a401beb8fa48862cb60d8a025a4dd51cc092a5565 done
+#10 sha256:ff3fbed5e913226bf2387e1f4d75e910ef4959d6149f1e8fed749e924227e07e 0B / 17.35MB 10.1s
+#10 extracting sha256:911bd3a49d26bae1ce395def8d5e3c2b306275ffbbfd47355bac30d2e095935e done
+#10 ...
+
+#7 [web build 1/7] FROM docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 31.46MB / 56.22MB 11.3s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 34.60MB / 56.22MB 12.4s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 37.75MB / 56.22MB 13.2s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 40.89MB / 56.22MB 14.1s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 44.04MB / 56.22MB 15.0s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 47.19MB / 56.22MB 15.9s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 50.33MB / 56.22MB 16.8s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 53.48MB / 56.22MB 17.7s
+#7 sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 56.22MB / 56.22MB 18.6s done
+#7 extracting sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 0.1s
+#7 extracting sha256:8776aa3d2ba7247a375d06dcec03856b99dbb0e16e904a5672d3bf08c852d4f1 1.4s done
+#7 extracting sha256:7246d4c6a55dd0f8dd00d2e63aece3a68d91e6a5d04c4e748fc2706897d96312
+#7 extracting sha256:7246d4c6a55dd0f8dd00d2e63aece3a68d91e6a5d04c4e748fc2706897d96312 0.3s done
+#7 extracting sha256:304511616d6a6d472222f696b9045e20dc90e8043b2a8ba2acb61746595781f3
+#7 extracting sha256:304511616d6a6d472222f696b9045e20dc90e8043b2a8ba2acb61746595781f3 done
+#7 ...
+
+#10 [web stage-1 1/3] FROM docker.io/nginxinc/nginx-unprivileged:stable-alpine@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03
+#10 sha256:ff3fbed5e913226bf2387e1f4d75e910ef4959d6149f1e8fed749e924227e07e 17.35MB / 17.35MB 20.3s done
+#10 extracting sha256:ff3fbed5e913226bf2387e1f4d75e910ef4959d6149f1e8fed749e924227e07e
+#10 ...
+
+#7 [api build 1/7] FROM docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914
+#7 DONE 20.8s
+
+#10 [web stage-1 1/3] FROM docker.io/nginxinc/nginx-unprivileged:stable-alpine@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03
+#10 extracting sha256:ff3fbed5e913226bf2387e1f4d75e910ef4959d6149f1e8fed749e924227e07e 0.3s done
+#10 DONE 20.7s
+
+#11 [migrate build 2/7] WORKDIR /app
+#11 DONE 0.2s
+
+#12 [api build 3/7] RUN npm install --global pnpm@11.25.0
+#12 ...
+
+#13 [web stage-1 2/3] COPY portable/web/nginx.conf /etc/nginx/conf.d/default.conf
+#13 DONE 0.2s
+
+#14 [api runtime 3/9] RUN npm install --global pnpm@11.25.0
+#14 70.92 npm error code SELF_SIGNED_CERT_IN_CHAIN
+#14 70.92 npm error errno SELF_SIGNED_CERT_IN_CHAIN
+#14 70.92 npm error request to https://registry.npmjs.org/pnpm failed, reason: self-signed certificate in certificate chain
+#14 70.93 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-10-23T17_54_58_881Z-debug-0.log
+#14 ERROR: process "/bin/sh -c npm install --global pnpm@11.25.0" did not complete successfully: exit code: 1
+
+#12 [web build 3/7] RUN npm install --global pnpm@11.25.0
+#12 70.94 npm error code SELF_SIGNED_CERT_IN_CHAIN
+#12 70.94 npm error errno SELF_SIGNED_CERT_IN_CHAIN
+#12 70.94 npm error request to https://registry.npmjs.org/pnpm failed, reason: self-signed certificate in certificate chain
+#12 70.94 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-10-23T17_54_58_882Z-debug-0.log
+#12 ERROR: process "/bin/sh -c npm install --global pnpm@11.25.0" did not complete successfully: exit code: 1
+------
+ > [web build 3/7] RUN npm install --global pnpm@11.25.0:
+70.94 npm error code SELF_SIGNED_CERT_IN_CHAIN
+70.94 npm error errno SELF_SIGNED_CERT_IN_CHAIN
+70.94 npm error request to https://registry.npmjs.org/pnpm failed, reason: self-signed certificate in certificate chain
+70.94 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-10-23T17_54_58_882Z-debug-0.log
+------
+------
+ > [migrate runtime 3/9] RUN npm install --global pnpm@11.25.0:
+70.92 npm error code SELF_SIGNED_CERT_IN_CHAIN
+70.92 npm error errno SELF_SIGNED_CERT_IN_CHAIN
+70.92 npm error request to https://registry.npmjs.org/pnpm failed, reason: self-signed certificate in certificate chain
+70.93 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-10-23T17_54_58_881Z-debug-0.log
+------
+Dockerfile.api:13
+
+--------------------
+
+  11 |     ENV NODE_ENV=production HOST=0.0.0.0 PORT=3001 PG_CA_FILE=/app/portable/certs/rds-global-bundle.pem
+
+  12 |     WORKDIR /app
+
+  13 | >>> RUN npm install --global pnpm@11.25.0
+
+  14 |     COPY package.json pnpm-lock.yaml ./
+
+  15 |     RUN pnpm install --prod --frozen-lockfile && pnpm store prune
+
+--------------------
+
+target api: failed to solve: process "/bin/sh -c npm install --global pnpm@11.25.0" did not complete successfully: exit code: 1
+

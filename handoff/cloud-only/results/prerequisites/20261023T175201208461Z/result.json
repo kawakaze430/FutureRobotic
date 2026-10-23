@@ -1,0 +1,60 @@
+{
+  "scope": "prerequisites",
+  "verification_status": "PASSED_PREREQUISITES",
+  "detail": "Locked installation exit 0; Node/Docker/Compose checks recorded.",
+  "recorded_at": "2026-10-23T17:52:19.620909+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "f6b9556eb68598e6d22397db587a61b0e3fedb8d",
+  "steps": [
+    {
+      "step": "node-version",
+      "command": "node --version",
+      "exit_code": 0,
+      "seconds": 0.0,
+      "log": "handoff/cloud-only/results/prerequisites/20261023T175201208461Z/node-version.log"
+    },
+    {
+      "step": "pnpm-version",
+      "command": "pnpm --version",
+      "exit_code": 0,
+      "seconds": 0.33,
+      "log": "handoff/cloud-only/results/prerequisites/20261023T175201208461Z/pnpm-version.log"
+    },
+    {
+      "step": "docker-version",
+      "command": "docker --version",
+      "exit_code": 0,
+      "seconds": 0.01,
+      "log": "handoff/cloud-only/results/prerequisites/20261023T175201208461Z/docker-version.log"
+    },
+    {
+      "step": "docker-engine",
+      "command": "docker info --format '{{.ServerVersion}}'",
+      "exit_code": 0,
+      "seconds": 0.04,
+      "log": "handoff/cloud-only/results/prerequisites/20261023T175201208461Z/docker-engine.log"
+    },
+    {
+      "step": "compose-version",
+      "command": "docker compose version",
+      "exit_code": 0,
+      "seconds": 0.05,
+      "log": "handoff/cloud-only/results/prerequisites/20261023T175201208461Z/compose-version.log"
+    },
+    {
+      "step": "locked-dependency-install",
+      "command": "pnpm install --frozen-lockfile --store-dir /workspace/FutureRobotic/.sites-runtime/pnpm-store --cache-dir /workspace/FutureRobotic/.sites-runtime/pnpm-store/policy-cache --reporter=append-only --fetch-retries=0 --fetch-timeout=30000",
+      "exit_code": 0,
+      "seconds": 17.97,
+      "log": "handoff/cloud-only/results/prerequisites/20261023T175201208461Z/locked-dependency-install.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "required_variable_presence": {
+    "TEST_DATABASE_URL": false,
+    "FR_DISPOSABLE_NATIVE_DB": false,
+    "RUNNER_TEST_ENDPOINT": false,
+    "RUNNER_TEST_PRIVATE_KEY_FILE": false
+  }
+}
