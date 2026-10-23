@@ -2993,7 +2993,7 @@
       "last_reviewed": "2026-10-24",
       "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: Main-only owner delivery tested; official pinned Actions, independent Node 22/24 checks, native/restart, container and audit jobs, always-retained source-bound diagnostics and a failing aggregate gate all executed successfully in the owner repository. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240.",
       "handoff_current_clarification": "Verification and protected OIDC service-release workflow source exist but were not run in the owner repository.",
-      "reviewed_remaining_work": "Protected production environments/OIDC role assumption and untrusted-branch denial, first deploy, real rollout/failed-smoke rollback and B02/B09 operational acceptance remain pending.",
+      "reviewed_remaining_work": "Current delivery revalidation is BLOCKED_ACCOUNT: GitHub reports recent failed account payments or a spending limit requiring an increase. Account owner resolves Billing & plans; the primary agent then dispatches verification on current main. Protected production environments/OIDC role assumption and untrusted-branch denial, first deploy, real rollout/failed-smoke rollback and B02/B09 operational acceptance remain pending.",
       "handoff_reviewed_at": "2026-10-24T01:35:11.394904+05:30",
       "status_changed_in_handoff": false
     },

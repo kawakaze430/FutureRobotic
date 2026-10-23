@@ -1,5 +1,7 @@
 # FutureRobotic AI — complete source and continuation package
 
+**Current hosted-run blocker:** Delivery revalidation was not started by GitHub because recent account payments failed or the spending limit needs an increase. Resolve account Billing & plans before another hosted run. The same application/test/workflow code passed all seven jobs at `518ca8c`; see CLOUD_RETURN.md for exact evidence.
+
 **Current update, 24 October 2026:** Work and push directly on main. Tested code `518ca8cf430622bb3229ebe4f0519fe835835033` passed all seven hosted CI jobs, full local container/migration/HTTP checks, native database recovery and a zero-finding production dependency audit. Read [CLOUD_RETURN.md](CLOUD_RETURN.md) and [the next main-only Codex prompt](handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md) before the historical package notes below. Current hardening changes extend the original Build03 baseline; all historical SQL migration bytes and global feature counts remain unchanged. Production completion is still pending.
 
 **23 October cloud-test preparation:** For the limited Codex Cloud assignment, use `handoff/cloud-only/CLOUD_TEST_ONLY_PROMPT.md` and its README. Run only the missing native/container checks. Do not follow the older broad NEXT_20 prompt for that task. No application feature or native/cloud acceptance was completed by this preparation.

@@ -1,0 +1,11 @@
+{
+  "verification_status": "BLOCKED_ACCOUNT",
+  "platform_conclusion": "failure",
+  "run_id": 40017143274,
+  "run_url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40017143274",
+  "observed_commit": "01f9d580c4b417a4e6d3cc2c0a19fb5af95a7049",
+  "job_steps_executed": 0,
+  "github_annotation": "The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings",
+  "application_test_workflow_code_identical_to_passed_revision": "518ca8cf430622bb3229ebe4f0519fe835835033",
+  "required_action": "Account owner resolves GitHub Billing & plans; then dispatch Verify FutureRobotic AI on current main. Do not change financial limits or bypass account controls without explicit authorization."
+}

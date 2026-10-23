@@ -1,5 +1,7 @@
 # Quick status and read map
 
+**Current hosted-run blocker:** Delivery revalidation was not started by GitHub because recent account payments failed or the spending limit needs an increase. Resolve account Billing & plans before another hosted run. The same application/test/workflow code passed all seven jobs at `518ca8c`; see CLOUD_RETURN.md for exact evidence.
+
 **24 October 2026 main update:** CI/build/test hardening is verified at `518ca8cf430622bb3229ebe4f0519fe835835033` ([seven successful hosted jobs](https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240)); full current-source local containers and native restart/recovery passed; production dependency audit has zero findings in all severities. Feature totals stay **73 / 59 / 64 / 0, total 196**. See [the current return](../CLOUD_RETURN.md) and `MAIN_CI_HARDENING_20261024.md`. Earlier environment-unavailable statements below are historical; production/live/isolated-runner acceptance is still pending.
 
 The earlier 23 October bounded run is preserved in VERIFICATION_EVIDENCE.md and cloud-only/CLOUD_RETURN_20261023.md; its container trust blocker has now been resolved.

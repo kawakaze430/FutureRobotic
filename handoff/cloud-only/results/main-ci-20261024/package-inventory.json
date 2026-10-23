@@ -44,8 +44,8 @@
     },
     {
       "path": "CLOUD_RETURN.md",
-      "bytes": 11585,
-      "sha256": "e0d4f5fd5f0a425eeb03008e389cc95b434f9b3755a3f0031fbad5653d2b5804",
+      "bytes": 12779,
+      "sha256": "84c89f77e4a00b598979f93a521aca6d3ec6495ed60e3e87c819a9b394ef5670",
       "mode": "0o100644"
     },
     {
@@ -62,8 +62,8 @@
     },
     {
       "path": "START_HERE.md",
-      "bytes": 5278,
-      "sha256": "cc72187c296083cd96ebf46d53e761086a347889bc4522ab40014feb6883f61e",
+      "bytes": 5614,
+      "sha256": "fffdb3dc3c9fd1c59e5cfa49e7c55e1be2349ba1ea36cbf9db6185235cfe3c69",
       "mode": "0o100644"
     },
     {
@@ -782,8 +782,8 @@
     },
     {
       "path": "handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md",
-      "bytes": 10175,
-      "sha256": "f41f53bb50be70ff035b685bbb5a708cf02ffaf8de05fdb495b0abbc75d991fe",
+      "bytes": 10894,
+      "sha256": "6cb6524fbe407d9d99597f4ae7da6195af15b26705a7623c76e1b750cc10a4c2",
       "mode": "0o100644"
     },
     {
@@ -794,14 +794,14 @@
     },
     {
       "path": "handoff/CURRENT_TASK_REGISTER.csv",
-      "bytes": 164544,
-      "sha256": "f93a5ee1b40b73ca3afb417491034f39352b20670628e3c254d6bd0a2367edc3",
+      "bytes": 164787,
+      "sha256": "2dfecb192043da70a90580a7e8551b877d72985e4f3aa2ca8b10e0f855ee94ea",
       "mode": "0o100644"
     },
     {
       "path": "handoff/CURRENT_TASK_REGISTER.json",
-      "bytes": 261913,
-      "sha256": "82b2e285a614562ab6effe7be6dac10661af254e92426a5fd6c4578ef2588473",
+      "bytes": 262156,
+      "sha256": "125c8bd45f2e4f199fb15b99a7886a79d1718d3a35356362f7e4ad1781e65c82",
       "mode": "0o100644"
     },
     {
@@ -830,8 +830,8 @@
     },
     {
       "path": "handoff/MAIN_CI_HARDENING_20261024.md",
-      "bytes": 735,
-      "sha256": "d2d51719225e3e8e7e2387d1d7f293968a6d697914afef3bfdd25963ba4e865e",
+      "bytes": 1071,
+      "sha256": "46ddf102119ea0390ec43ecbb69d7dedb46c2d76977a7dc8508ebfb24a19f2a4",
       "mode": "0o100644"
     },
     {
@@ -896,8 +896,8 @@
     },
     {
       "path": "handoff/STATUS_SUMMARY.md",
-      "bytes": 4034,
-      "sha256": "03d3bca1bf1eadecb1b792625e6244ab1bce6878e454b16f29ab4ede1cf837fa",
+      "bytes": 4370,
+      "sha256": "49e8dfb9d3472f797ff7948608e56309bd03c74ec300ab47d5336048654cc7fa",
       "mode": "0o100644"
     },
     {
@@ -908,8 +908,8 @@
     },
     {
       "path": "handoff/VERIFICATION_EVIDENCE.md",
-      "bytes": 6102,
-      "sha256": "895f1704a7d8465a4036b5006b485a920ec48cf5e61ef616eb4e5b6a7bc350e7",
+      "bytes": 6438,
+      "sha256": "778bb14dbf04ef5ec166570f3fe333cea4c6a46dc2184c72af2482d8fa0289d6",
       "mode": "0o100644"
     },
     {
@@ -1549,6 +1549,24 @@
       "mode": "0o100644"
     },
     {
+      "path": "handoff/cloud-only/results/main-ci-20261024/delivery-account-block.json",
+      "bytes": 811,
+      "sha256": "3dfc59e4d7c080a3398a15aebdbae87d7e1d34b0c95129dbc03ec4901602b543",
+      "mode": "0o100644"
+    },
+    {
+      "path": "handoff/cloud-only/results/main-ci-20261024/delivery-check-run-annotations.json",
+      "bytes": 5261,
+      "sha256": "6579e4626a4ede0884f95c9337c9e2e1062caaf53899d1d8780cc3655608cf78",
+      "mode": "0o100644"
+    },
+    {
+      "path": "handoff/cloud-only/results/main-ci-20261024/delivery-run.json",
+      "bytes": 2807,
+      "sha256": "fa731c88fea347f09102de6ff94307fb832cc1a4236ac18edc74900c985c2507",
+      "mode": "0o100644"
+    },
+    {
       "path": "handoff/cloud-only/results/main-ci-20261024/policy-verification.json",
       "bytes": 214,
       "sha256": "183ee340511fc364dc70abb7c2920a768f07170e91dfe21e36d1cb8cec95d530",
@@ -1562,8 +1580,8 @@
     },
     {
       "path": "handoff/cloud-only/results/main-ci-20261024/summary.json",
-      "bytes": 3830,
-      "sha256": "b59e6d5c65f241163cc375c9d59a9c3fc4812aef10329d18ae466f461cb35dc2",
+      "bytes": 4689,
+      "sha256": "871dea922b7dddbc7b8641d824e6f8f10ad87717a78bc870a2043b69b3d49990",
       "mode": "0o100644"
     },
     {
@@ -4098,8 +4116,12 @@
     "deliverables/DELIVERY.md",
     "deliverables/DELIVERY_VERIFICATION.json",
     "deliverables/FutureRobotic_AI_Build03_Cloud_Verification_20261023.zip",
-    "deliverables/FutureRobotic_AI_Build03_Cloud_Verification_20261023.zip.sha256"
+    "deliverables/FutureRobotic_AI_Build03_Cloud_Verification_20261023.zip.sha256",
+    "deliverables/FutureRobotic_AI_Main_CI_Hardening_20261024.zip",
+    "deliverables/FutureRobotic_AI_Main_CI_Hardening_20261024.zip.sha256",
+    "deliverables/MAIN_CI_DELIVERY_20261024.md",
+    "deliverables/MAIN_CI_DELIVERY_VERIFICATION_20261024.json"
   ],
-  "source_modes": "Tracked Git modes retained; new source/evidence files use 0644.",
+  "source_modes": "Git modes; new files 0644",
   "historical_migrations_unchanged": true
 }

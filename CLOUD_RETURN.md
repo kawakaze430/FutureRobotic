@@ -2,6 +2,8 @@
 
 Implemented and pushed directly to `main`. Tested code revision: `518ca8cf430622bb3229ebe4f0519fe835835033`. Hosted verification: https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240 — **all seven jobs passed**, including Node 22 and Node 24, workflow lint, native PostgreSQL/restart, full container builds/migrations/readiness, production audit and the required aggregate result. No new branch, worktree or pull request was created for this batch. Delivery/evidence commits on top of this code do not change application behavior.
 
+**Delivery revalidation — BLOCKED_ACCOUNT:** The [delivery workflow](https://github.com/kawakaze430/FutureRobotic/actions/runs/40017143274) at `01f9d58` was rejected before any job step ran. GitHub reports: “The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings”. Its application, test and workflow code is byte-identical to the successfully verified `518ca8c` revision. This is an account/billing availability blocker, not a new application test failure. The account owner must resolve GitHub Billing & plans; the primary agent can then dispatch the current main workflow and inspect its exact SHA. No payment/spending limit was changed and no quota workaround was attempted. Evidence: `handoff/cloud-only/results/main-ci-20261024/delivery-account-block.json` and `delivery-check-run-annotations.json`.
+
 The current engineering batch is complete. **The whole production project is not complete:** remaining source scope, real integrations, approved isolated execution and deployed operational acceptance are still required. Global feature status remains **73 Implemented / 59 Partial / 64 Blocked / 0 Not started / 196 total**. Verification notes changed for QAS-003, AWS-013, SEC-010, DAT-003 and CHT-008; no feature status or stable ID was closed.
 
 ## Concrete changes
@@ -40,7 +42,7 @@ Actual full-stack image IDs:
 - `8d26c94764830bc2448ac1928cab32e46a0d98864757fed6c74f2bffa2e2ca14`
 - `d62da16abb1d78e762021917384c5c5d87be6db2b8418c4aad330af0349709b5`
 
-Earlier failures are preserved: npm trust-chain rejection, read-only Buildx home, VFS disk exhaustion, private imported file permissions and the CHT-008 false scheduling assumption. Each was diagnosed and corrected; full current-source cold builds and readiness were rerun after clearing only obsolete images/cache belonging to recorded disposable projects from this task. Intermediate permission-only local reuse experiments are labelled as reused outputs and are superseded by the final full-stack pass. No unrelated runtime/user data was removed. No required check remains unexplained or failed in this batch.
+Earlier failures are preserved: npm trust-chain rejection, read-only Buildx home, VFS disk exhaustion, private imported file permissions and the CHT-008 false scheduling assumption. Each was diagnosed and corrected; full current-source cold builds and readiness were rerun after clearing only obsolete images/cache belonging to recorded disposable projects from this task. Intermediate permission-only local reuse experiments are labelled as reused outputs and are superseded by the final full-stack pass. No unrelated runtime/user data was removed. No code check remains unexplained or failed at the verified revision; later delivery revalidation is blocked before execution by the account issue above.
 
 ## Source and status provenance
 
@@ -76,7 +78,7 @@ The requested copy/paste prompt is [handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.
 - Live AI, OAuth/email, merchant, S3/queues, RDS/AWS deployment, production OIDC/branch-denial/rollback, restore/country/operational and browser/device acceptance are **not verified by this batch**. Protected inputs/account authority and policy decisions are prerequisites; variable presence was checked without revealing values. Absent process variables alone do not rule out other injected authentication. No production/public cutover, real payment or AWS resource creation occurred.
 - The 59 Partial / 64 Blocked source/acceptance rows remain. The primary coding agent owns implementation and integration after supplied access; the owner supplies account authorization/protected bindings and business/policy decisions, not coding labor. Do not mark a whole feature complete because one CI sub-gate passed.
 
-**Next action for the primary project agent:** Use the main-only prompt, implement the reviewed source-owned P0 gaps with regression evidence, and execute the applicable 74 real acceptance scenarios only on approved environments with their required protected inputs; retain every unresolved gate explicitly.
+**Next action for the primary project agent:** Continue independent local engineering; after the account owner resolves GitHub Billing & plans, dispatch the current-main verification workflow and inspect its exact SHA. Use the main-only prompt, implement the reviewed source-owned P0 gaps with regression evidence, and execute the applicable 74 real acceptance scenarios only on approved environments with their required protected inputs; retain every unresolved gate explicitly.
 
 ## Complete delivery and reusable environment
 

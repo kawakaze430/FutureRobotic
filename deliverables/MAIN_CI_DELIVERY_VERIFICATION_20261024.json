@@ -1,8 +1,8 @@
 {
   "archive": "deliverables/FutureRobotic_AI_Main_CI_Hardening_20261024.zip",
-  "sha256": "3f580d81ad1454359187d260e09daab90ee2137d56e75ea508c6585e588a0928",
-  "bytes": 16640934,
-  "file_count": 683,
+  "sha256": "a70941813717682457fae877c05dc0e06d05eb7ec21ac0fe130792d911a7becb",
+  "bytes": 16645546,
+  "file_count": 686,
   "zip_crc": "PASS",
   "all_selected_file_hashes_verified": true,
   "all_tracked_source_included_except_delivery_archives": true,
@@ -23,6 +23,9 @@
   },
   "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
   "packaged_at": "2026-10-23T20:08:54.641335+00:00",
-  "verified_at": "2026-10-23T20:08:55.330431+00:00",
-  "publication": "Actual ZIP is committed/pushed as a main-branch file; no artifact-service attachment is claimed."
+  "verified_at": "2026-10-23T20:17:53.255591+00:00",
+  "publication": "Actual ZIP is committed/pushed as a main-branch file; no artifact-service attachment is claimed.",
+  "delivery_revalidation_status": "BLOCKED_ACCOUNT",
+  "observed_delivery_run": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40017143274",
+  "delivery_revalidation_reason": "GitHub account payments/spending limit; no job steps executed. Application/test/workflow code remains identical to the seven-job-passed code revision."
 }
