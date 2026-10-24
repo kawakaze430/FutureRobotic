@@ -5,8 +5,8 @@
   "handoff_version": "BUILD03-HANDOFF-20261022",
   "reviewed_at": "2026-10-22T13:50:06.880889+00:00",
   "totals": {
-    "Implemented": 73,
-    "Partial": 59,
+    "Implemented": 75,
+    "Partial": 57,
     "Blocked": 64,
     "Not started": 0
   },
@@ -39,5 +39,30 @@
     "native_tests_executed": false,
     "container_builds_executed": false,
     "limited_prompt": "cloud-only/CLOUD_TEST_ONLY_PROMPT.md"
+  },
+  "current_main_source_parent": "c1ac4ba86d362ee27df8f1ac17289280b9684101",
+  "current_counts_reviewed_on": "2026-10-24",
+  "current_evidence": {
+    "hosted_latest_prebatch": {
+      "commit": "c1ac4ba86d362ee27df8f1ac17289280b9684101",
+      "run_url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40082579138",
+      "status": "FAILED",
+      "failed_gate": "Chromium did not start",
+      "other_jobs": "Node22/24, containers, workflow validation and audit passed"
+    },
+    "prior_hosted_verified": {
+      "commit": "397d0e1fe2ac6907b7b690c60a36189622c5c6c2",
+      "run_url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40069616534",
+      "result": "7/7 PASS (reused)"
+    },
+    "new_work": {
+      "source": "Browser startup diagnostics only",
+      "task": "QAS-002/QAS-010",
+      "status": "Partial; new run required"
+    },
+    "source_of_truth": "handoff/CURRENT_TASK_REGISTER.json",
+    "inventory": "handoff/ALL_PARTIAL_AND_BLOCKED_20261024.md",
+    "codex_prompt": "handoff/CODEX_FINISH_121_TASKS_20261024.md",
+    "production_accepted": false
   }
 }
