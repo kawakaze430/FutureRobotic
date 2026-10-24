@@ -4,6 +4,14 @@ name: Verify FutureRobotic AI
   push:
     branches:
     - main
+    paths-ignore:
+    - '**/*.md'
+    - 'deliverables/**'
+    - 'handoff/evidence/**'
+    - 'handoff/cloud-only/results/**'
+    - 'handoff/*.json'
+    - 'handoff/*.csv'
+    - 'handoff/*.xlsx'
   pull_request: null
   workflow_dispatch: null
 permissions:

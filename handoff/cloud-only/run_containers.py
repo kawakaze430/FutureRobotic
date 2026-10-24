@@ -65,6 +65,12 @@ def main():
                 body=response.read(2_000_000)
                 if response.status!=200 or marker not in body[:4096]:raise StepFailed('A required static asset is missing or unreadable by the non-root web server.')
                 observed.append({'path':path,'status':200,'bytes':len(body),'content_type':response.headers.get('Content-Type')})
+        with opener.open('http://127.0.0.1:8080/runner-worker.js',timeout=10) as response:
+            body=response.read(100000)
+            policy=response.headers.get('Content-Security-Policy','')
+            if response.status!=200 or b'self.onmessage' not in body or "connect-src 'none'" not in policy:
+                raise StepFailed('The local JavaScript worker or its no-network security policy is missing from the portable image.')
+            observed.append({'path':'/runner-worker.js','status':200,'bytes':len(body),'no_network_policy':True})
         extra['http_checks']=observed;state='PASSED_CONTAINER';detail='Existing Compose image build/migration/public readiness passed; authenticated and external integration gates remain pending.'
     except Blocked as e:state='BLOCKED_DEPENDENCY' if 'DEPENDENCY' in str(e) else 'BLOCKED_SOURCE' if 'SOURCE' in str(e) else 'BLOCKED_ENVIRONMENT';detail=str(e)
     except (StepFailed,OSError,ValueError) as e:state='FAILED_CONTAINER';detail=str(e)
