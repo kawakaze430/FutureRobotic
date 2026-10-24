@@ -95,7 +95,7 @@ jobs:
         if-no-files-found: error
         retention-days: 14
   native:
-    name: All native PostgreSQL suites and actual restart
+    name: Native PostgreSQL, ledger processes and browser workflows
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
@@ -113,12 +113,20 @@ jobs:
         pnpm install --frozen-lockfile
     - name: Native connections, locks, every backend suite and restart
       run: pnpm api:test:native
+    - name: Build current browser application
+      if: ${{ !cancelled() }}
+      run: pnpm web:build
+    - name: Real Chromium account and workspace workflows
+      if: ${{ !cancelled() }}
+      run: pnpm test:browser
     - name: Retain source-bound evidence even on failure
       if: ${{ always() }}
       uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
       with:
         name: native-postgres-${{ github.sha }}
-        path: work/ci/
+        path: |
+          work/ci/
+          outputs/workspace-browser-evidence.json
         if-no-files-found: warn
         retention-days: 14
   containers:
@@ -189,7 +197,7 @@ jobs:
             summary.write('| Gate | Result |\n| --- | --- |\n')
             for name, gate in gates.items():
                 summary.write(f"| {name} | {gate['result']} |\n")
-            summary.write('\nNative restart is local disposable PostgreSQL, not RDS failover. Sandbox, browser/device, live-provider, merchant, OAuth/email and AWS acceptance require documented protected prerequisites.\n')
+            summary.write('\nNative restart is local disposable PostgreSQL, not RDS failover. Sandbox, physical-device/other-engine, live-provider, merchant, OAuth/email and AWS acceptance require documented protected prerequisites.\n')
         if any(gate['result'] != 'success' for gate in gates.values()):
             raise SystemExit('Required jobs failed, were cancelled or did not run; inspect retained evidence.')
         PY

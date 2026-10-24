@@ -27,8 +27,9 @@ export class AccountService {
    return (await tx.query('SELECT id,email,display_name,preferences,selected_chat_id FROM users WHERE id=$1',[p.userId])).rows[0];
   });
  }
- async selectChat(p:Principal,threadId:string){
-  await new ContentService(this.db,{} as ObjectStore).thread(p,threadId);
+ async selectChat(p:Principal,threadId:string|null){
+  await scope(this.db,p);
+  if(threadId!==null)await new ContentService(this.db,{} as ObjectStore).thread(p,threadId);
   await this.db.query('UPDATE users SET selected_chat_id=$2 WHERE id=$1',[p.userId,threadId]);return {id:threadId};
  }
  async ticket(p:Principal,subject:string,message:string){

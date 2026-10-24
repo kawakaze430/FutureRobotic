@@ -58,7 +58,7 @@ def main():
             ev.run('postgres-start',['docker','run','--rm','-d','--name',container,'-e','POSTGRES_PASSWORD','-p','127.0.0.1::5432','postgres:16'],env=db_env,timeout=180)
             end=time.monotonic()+45;ready=False
             while time.monotonic()<end:
-                probe=subprocess.run(['docker','exec',container,'pg_isready','-U','postgres'],capture_output=True,timeout=5)
+                probe=subprocess.run(['docker','exec',container,'pg_isready','-h','127.0.0.1','-U','postgres'],capture_output=True,timeout=5)
                 if probe.returncode==0:ready=True;break
                 time.sleep(.5)
             if not ready:raise StepFailed('Disposable PostgreSQL readiness timed out.')
@@ -79,8 +79,11 @@ def main():
         extra['suites']=[str(p.relative_to(root)) for p in suites]
         code,tap=ev.run('native-backend-tap',['node','--test','--test-reporter=tap',*[str(p.relative_to(root)) for p in suites]],env=env,timeout=360,required=False)
         counts={k:int(v) for k,v in re.findall(r'^# (tests|pass|fail|skipped|cancelled) (\d+)\s*$',tap,re.M)}
-        extra['tap_counts']=counts;extra['scope']='All existing backend suites, native connections and advisory exclusion; no live provider/payment/AWS/runner acceptance.'
+        extra['tap_counts']=counts;extra['scope']='All existing backend suites, native connections/advisory exclusion, independent-process ledger contention/replay/settlement and killed-transaction rollback; no live provider/payment/AWS/runner acceptance.'
         if code or not counts.get('tests') or not counts.get('pass') or counts.get('fail',1) or counts.get('cancelled',1):raise StepFailed('Native backend suite failed or did not produce a complete TAP summary with actual passes.')
+        ledger_env=env.copy();ledger_env['FR_DISPOSABLE_NATIVE_DB']='true'
+        _,proof=ev.run('native-ledger-concurrency',['node','portable/scripts/verify-ledger-concurrency.mjs'],env=ledger_env,timeout=120)
+        extra['native_ledger_concurrency_proof']=json.loads(proof.strip())
         if container:
             runtime=root/'.sites-runtime';runtime.mkdir(exist_ok=True)
             with tempfile.TemporaryDirectory(prefix='native-restart-',dir=runtime) as directory:
@@ -95,7 +98,7 @@ def main():
                 ev.secrets.append(restart_url);restart_env['TEST_DATABASE_URL']=restart_url
                 end=time.monotonic()+45
                 while time.monotonic()<end:
-                    probe=subprocess.run(['docker','exec',container,'pg_isready','-U','postgres'],capture_output=True,timeout=5)
+                    probe=subprocess.run(['docker','exec',container,'pg_isready','-h','127.0.0.1','-U','postgres'],capture_output=True,timeout=5)
                     if probe.returncode==0:break
                     time.sleep(.5)
                 else:raise StepFailed('Owned PostgreSQL did not become ready after restart.')

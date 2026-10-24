@@ -60,7 +60,7 @@ export class RunService {
   }
   async list(p:Principal,cursor?:string,limit=20) {
     await scope(this.db,p);const c=pageCursor(cursor);
-    const r=await this.db.query('SELECT id,tool,language,status,created_at FROM tool_runs WHERE workspace_id=$1 AND owner_id=$2 AND history_mode=\'cloud\' AND history_deleted_at IS NULL AND retention_until>now() AND ($3::timestamptz IS NULL OR (created_at,id)<($3::timestamptz,$4::uuid)) ORDER BY created_at DESC,id DESC LIMIT $5',[p.workspaceId,p.userId,c?.at??null,c?.id??null,Math.min(50,limit)]);
+    const r=await this.db.query('SELECT id,tool,language,status,created_at,(SELECT origin FROM result_versions v WHERE v.run_id=tool_runs.id ORDER BY version DESC LIMIT 1) AS result_origin FROM tool_runs WHERE workspace_id=$1 AND owner_id=$2 AND history_mode=\'cloud\' AND history_deleted_at IS NULL AND retention_until>now() AND ($3::timestamptz IS NULL OR (created_at,id)<($3::timestamptz,$4::uuid)) ORDER BY created_at DESC,id DESC LIMIT $5',[p.workspaceId,p.userId,c?.at??null,c?.id??null,Math.min(50,limit)]);
     return {items:r.rows,nextCursor:nextCursor(r.rows,Math.min(50,limit))};
   }
   async applyResult(p:Principal,runId:string,content:string,expectedVersion:number,key:string){

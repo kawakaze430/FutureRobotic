@@ -29,5 +29,5 @@ export const faqs = [
  {q:'Are paid plans available?',a:'The pricing page shows a proposed USD catalog. Checkout requires owner-approved prices, countries, merchant setup, and tested billing. Annual plans use monthly credit windows. No purchase occurs when previewing a plan.'},
  {q:'Should I review generated code?',a:'Yes. Inspect the result, dependencies, and error handling, then run your own tests. A chatbot change shows a diff before you apply it and preserves previous account result versions.'},
 ];
-export type HistoryItem={id:string;tool:ToolId;source:string;target:string;input:string;output:string;createdAt:string;title:string;kind:'example'|'ai'|'local'};
+export type HistoryItem={id:string;tool:ToolId;source:string;target:string;input:string;output:string;createdAt:string;title:string;kind:'example'|'ai'|'local';notes?:string;cloud?:boolean;ownerId?:string};
 export type ProjectFile={id:string;name:string;content:string;language:string;size:number;revision?:number;cloud?:boolean;sha256?:string;characters?:number;status?:string};

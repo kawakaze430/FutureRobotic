@@ -57,6 +57,7 @@ export async function registerProductRoutes(app:FastifyInstance,o:ProductOptions
  app.post('/v1/runs/:id/results',{schema:{...param,body:obj({content:str(200000),expectedVersion:{type:'integer',minimum:1,maximum:99}})}},async req=>{const b=req.body as {content:string;expectedVersion:number};return {data:await new RunService(db).applyResult(req.principal,principalId(req),b.content,b.expectedVersion,headerKey(req))};});
  for(const operation of ['delete','export'] as const)app.post(`/v1/history/${operation}`,{schema:{body:obj({runIds:{type:'array',items:uuid,minItems:1,maxItems:200,uniqueItems:true}})}},async(req,reply)=>reply.code(202).send({data:await new LifecycleService(db).historyJob(req.principal,operation==='delete'?'delete_history':'history_export',(req.body as {runIds:string[]}).runIds,headerKey(req),req.traceId)}));
  app.get('/v1/account/jobs/:id',{schema:param},async req=>({data:await new LifecycleService(db).job(req.principal,principalId(req))}));
+ app.get('/v1/history/jobs/pending',{},async req=>({data:{items:await new LifecycleService(db).recoverableJobs(req.principal,'history')}}));
  app.get('/v1/models',{},async req=>{
   const items=[];for(const model of modelCatalog){let allowed=true;try{await allowedModel(db,req.principal,model.id);}catch{allowed=false;}items.push({...model,allowed});}return {data:{items}};
  });
@@ -65,6 +66,7 @@ export async function registerProductRoutes(app:FastifyInstance,o:ProductOptions
   app.post('/v1/executions',{schema:{body:obj({language:{type:'string',enum:executionLanguages},source:str(10000)})}},async(req,reply)=>{const b=req.body as {language:string;source:string};return reply.code(202).send({data:await executions.create(req.principal,b.language,b.source,headerKey(req))});});
   app.get('/v1/executions/:id',{schema:param},async req=>({data:await executions.get(req.principal,principalId(req))}));
  }
+ app.post('/v1/chats/select',{schema:{body:obj({id:{anyOf:[uuid,{type:'null'}]}})}},async req=>({data:await accounts.selectChat(req.principal,(req.body as {id:string|null}).id)}));
  app.post('/v1/chats/:id/select',{schema:param},async req=>({data:await accounts.selectChat(req.principal,principalId(req))}));
  app.put('/v1/files/:id/revision',{schema:{...param,body:obj({content:str(100000),expectedRevision:{type:'integer',minimum:1}})}},async req=>{
   const b=req.body as {content:string;expectedRevision:number};return {data:await files.revision(req.principal,principalId(req),b.content,b.expectedRevision,headerKey(req))};

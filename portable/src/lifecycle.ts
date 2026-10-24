@@ -5,6 +5,14 @@ import {AccountService} from './account-services.js';
 import { QuotaService } from './quota.js';
 export class LifecycleService {
   constructor(private db:Db) {}
+  async recoverableJobs(p:Principal,kind:'account'):Promise<{jobId:string;status:string;created_at:Date|string;requestKey:string}[]>;
+  async recoverableJobs(p:Principal,kind:'history'):Promise<{id:string;kind:'history_export'|'delete_history';status:string;created_at:Date|string;requestKey:string}[]>;
+  async recoverableJobs(p:Principal,kind:'account'|'history') {
+    await scope(this.db,p);
+    const kinds=kind==='account'?['export']:['history_export','delete_history'];
+    const rows=await this.db.query("SELECT j.id,j.kind,j.status,j.created_at,j.dedupe_key FROM jobs j LEFT JOIN account_exports e ON e.id=j.id AND e.user_id=$1::uuid AND e.expires_at>now() WHERE j.payload->>'userId'=$1::text AND j.payload->>'workspaceId'=$2::text AND j.kind=ANY($3::text[]) AND (j.status<>'completed' OR j.kind='delete_history' OR e.id IS NOT NULL) AND j.created_at>now()-interval '7 days' ORDER BY j.created_at DESC,j.id DESC LIMIT 20",[p.userId,p.workspaceId,kinds]);
+    return rows.rows.map(row=>{const requestKey=String(row.dedupe_key).split(':').at(-1)!;return kind==='account'?{jobId:row.id as string,status:row.status as string,created_at:row.created_at,requestKey}:{id:row.id as string,kind:row.kind as 'history_export'|'delete_history',status:row.status as string,created_at:row.created_at,requestKey};});
+  }
   async requestExport(p:Principal,key:string,trace:string) {
     if(!/^[a-zA-Z0-9_-]{8,100}$/.test(key)) fail('INVALID_IDEMPOTENCY_KEY');
     return this.db.transaction(async tx=>{

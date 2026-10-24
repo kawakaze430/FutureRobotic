@@ -13,15 +13,19 @@ import { LifecycleService } from './lifecycle.js';
 import { Telemetry, traceFromParent } from './telemetry.js';
 import {registerProductRoutes,type ProductOptions} from './product-routes.js';
 import {AccountService,FileService,ShareService} from './account-services.js';
+import {LocalResultService,type LocalResultInput} from './local-results.js';
+import {z} from 'zod/v4';
+import {apiContracts,canonicalEndpoint,responseSchemaFor,responseSchemaDefinitionsFor,responseValidatorFor,nonJsonContracts,errorSchema as contractErrorSchema} from './api-contracts.js';
 declare module 'fastify' {interface FastifyRequest { principal:Principal; traceId:string }}
 export interface ApiOptions extends ProductOptions {telemetry?:Telemetry}
 const uuid={type:'string',format:'uuid'} as const;
 const text=(maxLength:number,minLength=0)=>({type:'string',maxLength,minLength});
 const object=(properties:Record<string,unknown>,required=Object.keys(properties))=>({type:'object',properties,required,additionalProperties:false});
 const params=object({id:uuid});
-const errorSchema=object({error:object({code:text(80),requestId:uuid})});
-const anyData={type:'object',required:['data'],properties:{data:{}},additionalProperties:false};
-const responses={200:anyData,201:anyData,202:anyData,400:errorSchema,401:errorSchema,402:errorSchema,403:errorSchema,404:errorSchema,409:errorSchema,410:errorSchema,413:errorSchema,415:errorSchema,429:errorSchema,500:errorSchema,503:errorSchema};
+const errorSchema=z.toJSONSchema(contractErrorSchema,{target:'draft-7'});
+const responses:Record<number,unknown>={400:errorSchema,401:errorSchema,402:errorSchema,403:errorSchema,404:errorSchema,409:errorSchema,410:errorSchema,413:errorSchema,415:errorSchema,429:errorSchema,500:errorSchema,503:errorSchema};
+const accepted=new Set(['POST /v1/runs','POST /v1/account/exports','DELETE /v1/account','POST /v1/history/delete','POST /v1/history/export','POST /v1/executions']);
+const created=new Set(['POST /v1/local-results','POST /v1/files','POST /v1/chats','POST /v1/support']);
 
 export async function buildApi(options:ApiOptions) {
   const {db,objects,origin,production=false}=options;
@@ -33,6 +37,40 @@ export async function buildApi(options:ApiOptions) {
   const app=Fastify({logger:false,bodyLimit:120000,genReqId:()=>id(),requestIdHeader:false,trustProxy:(_address,hop)=>hop<(options.proxyHops??0),ajv:{customOptions:{removeAdditional:false,coerceTypes:false}}});
   await app.register(cookie);
   await app.register(swagger,{openapi:{info:{title:'FutureRobotic AI Portable API',version:'0.1.0'},servers:[{url:origin}],components:{securitySchemes:{sessionCookie:{type:'apiKey',in:'cookie',name:cookieName}}},security:[{sessionCookie:[]}]}});
+  app.addHook('onRoute',route=>{
+    const method=Array.isArray(route.method)?route.method[0]:route.method;
+    const verb=method==='HEAD'?'GET':method,key=canonicalEndpoint(verb,route.url);
+    const transport=nonJsonContracts[`${verb} ${route.url}` as keyof typeof nonJsonContracts];
+    // Several routes deliberately reuse a params schema object. Give each route
+    // its own wrapper before attaching its response/media-type contract.
+    route.schema={...route.schema};
+    if((route.config as {public?:boolean}|undefined)?.public)route.schema.security=[];
+    const errors={...responses,...route.schema.response as Record<string,unknown>|undefined};
+    if(key){
+      const status=accepted.has(key)?202:created.has(key)?201:200;
+      for(const definition of responseSchemaDefinitionsFor(verb,route.url))if(!app.getSchema(definition.$id))app.addSchema(definition);
+      const schema=responseSchemaFor(verb,route.url)!;
+      route.schema.response={...errors,[status]:schema,...(route.url==='/ready'?{503:schema}:{})};
+      if(apiContracts[key].idempotency)route.schema.headers={type:'object',properties:{'idempotency-key':{type:'string',minLength:8,maxLength:100}},required:['idempotency-key']};
+    }else if(transport){
+      const success='contentType' in transport?{content:{[transport.contentType]:{schema:{type:'string',...('events' in transport?{}:{format:'binary'})}}}}:{type:'string',description:'OAuth redirect with Location and session-binding cookies.'};
+      route.schema.response={...errors,[transport.status]:success};
+      if('reconnectHeader' in transport)route.schema.headers={type:'object',properties:{'last-event-id':{type:'string',pattern:'^\\d{1,15}$'}}};
+    }else throw new Error(`Missing response contract for ${verb} ${route.url}`);
+  });
+  app.addHook('preSerialization',async(req,reply,payload)=>{
+    if(req.method==='HEAD'||payload===undefined)return payload;
+    const method=req.method==='HEAD'?'GET':req.method,path=req.routeOptions.url;
+    if(!path)return payload;
+    // Date instances from native pg and PGlite have the same JSON wire contract.
+    let wire:unknown;
+    try{wire=JSON.parse(JSON.stringify(payload));}catch{return fail('RESPONSE_CONTRACT_VIOLATION',500);}
+    const isError=reply.statusCode>=400&&!(path==='/ready'&&reply.statusCode===503&&!(wire&&typeof wire==='object'&&'error' in wire));
+    if(isError){if(!contractErrorSchema.safeParse(wire).success)return fail('RESPONSE_CONTRACT_VIOLATION',500);return wire;}
+    const validator=responseValidatorFor(method,path);
+    if(validator&&!validator.safeParse(wire).success)return fail('RESPONSE_CONTRACT_VIOLATION',500);
+    return wire;
+  });
   app.decorateRequest('principal',null as unknown as Principal);app.decorateRequest('traceId','');
   app.addHook('onRequest',async(req,reply)=>{
     req.traceId=traceFromParent(req.headers.traceparent);
@@ -81,6 +119,7 @@ export async function buildApi(options:ApiOptions) {
   app.get('/v1/billing',{schema:{response:responses}},async req=>({data:{items:await new BillingService(db).get(req.principal)}}));
   const runBody=object({tool:{type:'string',enum:[...toolNames]},source:text(100000,1),instructions:text(3000),language:text(60,1),targetLanguage:text(60,1),modelId:{type:'string',enum:['standard-auto','advanced-code']},fileIds:{type:'array',items:uuid,maxItems:5,uniqueItems:true},chatThreadId:uuid,chatMessage:text(4000,1),historyMode:{type:'string',enum:['cloud','local','none']}},['tool','source','language']);
   app.post('/v1/runs',{schema:{body:runBody,response:responses}},async(req,reply)=>reply.code(202).send({data:await runs.create(req.principal,req.body as RunInput,idempotency(req),req.traceId)}));
+  app.post('/v1/local-results',{bodyLimit:2000000,schema:{body:object({tool:{type:'string',enum:['comments','pdf','run','convert']},kind:{type:'string',enum:['local','example']},source:text(100000,1),output:text(200000),language:text(60,1),targetLanguage:text(60,1),historyMode:{const:'cloud',type:'string'}},['tool','source','output','language','historyMode']),response:responses}},async(req,reply)=>reply.code(201).send({data:await new LocalResultService(db).record(req.principal,req.body as LocalResultInput,idempotency(req),req.traceId)}));
   app.get('/v1/runs',{schema:{querystring:object({cursor:text(500),limit:{type:'string',pattern:'^(?:[1-9]|[1-4][0-9]|50)$'}},[]),response:responses}},async req=>{
     const q=req.query as {cursor?:string;limit?:string};return {data:await runs.list(req.principal,q.cursor,q.limit?Number(q.limit):20)};
   });
@@ -115,6 +154,7 @@ export async function buildApi(options:ApiOptions) {
   app.post('/v1/runs/:id/shares',{schema:{params,response:responses}},async req=>({data:await new ShareService(db).create(req.principal,(req.params as {id:string}).id)}));
   app.delete('/v1/shares/:id',{schema:{params,response:responses}},async req=>{await content.revokeShare(req.principal,(req.params as {id:string}).id);return {data:{revoked:true}};});
   app.post('/v1/account/exports',{schema:{response:responses}},async(req,reply)=>reply.code(202).send({data:await lifecycle.requestExport(req.principal,idempotency(req),req.traceId)}));
+  app.get('/v1/account/exports/pending',{schema:{response:responses}},async req=>({data:{items:await lifecycle.recoverableJobs(req.principal,'account')}}));
   app.get('/v1/account/exports/:id',{schema:{params,response:responses}},async req=>({data:await lifecycle.getExport(req.principal,(req.params as {id:string}).id)}));
   app.delete('/v1/account',{schema:{response:responses}},async(req,reply)=>reply.code(202).send({data:await lifecycle.requestDeletion(req.principal,req.traceId)}));
   await registerProductRoutes(app,options);await app.ready();return app;
