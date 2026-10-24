@@ -1,0 +1,21 @@
+{
+  "historical_migrations_unchanged": true,
+  "files": [
+    {
+      "path": "portable/migrations/001_core.sql",
+      "sha256": "844b1c8edd9305a913de6bf6176cf81eb5db96dfc098e5a6bb2e9630a29c9c79"
+    },
+    {
+      "path": "portable/migrations/002_query_indexes.sql",
+      "sha256": "c4effa691458b977df204d9afc3665522b5a6e31caf14b553a9db3e2dc8b883d"
+    },
+    {
+      "path": "portable/migrations/003_product_services.sql",
+      "sha256": "fa345ea2cc79cdbda6d8f022d799c9fa7e0554dfbcbd5424272bfb4c64794e45"
+    },
+    {
+      "path": "portable/migrations/004_workspace_completion.sql",
+      "sha256": "d4917401a98b68512ded90162c81aead29afbf6a2699f59632b626ce6399df6f"
+    }
+  ]
+}

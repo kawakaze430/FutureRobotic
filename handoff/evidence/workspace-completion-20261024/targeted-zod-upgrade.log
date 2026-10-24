@@ -1,0 +1,32 @@
+
+   ╭──────────────────────────────────────────────────────────────────────╮
+   │                                                                      │
+   │                 Update available! 11.25.0 → 12.15.0.                 │
+   │                 Changelog: https://pnpm.io/v/12.15.0                 │
+   │   To update, run: curl -fsSL https://get.pnpm.io/install.sh | sh -   │
+   │                                                                      │
+   ╰──────────────────────────────────────────────────────────────────────╯
+
+✓ Lockfile passes supply-chain policies (verified 10h ago)
+Progress: resolved 1, reused 0, downloaded 0, added 0
+[WARN] deprecated eslint@9.39.4: This version is no longer supported. Please see https://eslint.org/version-support for other options.
+Progress: resolved 55, reused 9, downloaded 0, added 0
+Progress: resolved 71, reused 39, downloaded 0, added 0
+Progress: resolved 73, reused 71, downloaded 1, added 0
+Progress: resolved 195, reused 151, downloaded 1, added 0
+Progress: resolved 288, reused 187, downloaded 1, added 0
+Progress: resolved 341, reused 226, downloaded 1, added 0
+Progress: resolved 618, reused 319, downloaded 1, added 0
+Progress: resolved 729, reused 349, downloaded 1, added 0
+Progress: resolved 898, reused 445, downloaded 1, added 0
+Progress: resolved 1101, reused 906, downloaded 1, added 0
+[WARN] 2 deprecated subdependencies found: @esbuild-kit/core-utils@3.3.2, @esbuild-kit/esm-loader@2.6.5
+Packages: +3 -4
++++----
+Progress: resolved 1101, reused 906, downloaded 1, added 3, done
+
+dependencies:
+- zod 3.25.76
++ zod 4.6.6 (4.6.7 is available)
+
+Done in 15.4s using pnpm v11.25.0

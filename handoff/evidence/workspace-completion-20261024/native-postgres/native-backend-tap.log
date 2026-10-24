@@ -1,0 +1,570 @@
+TAP version 13
+# Subtest: BIL-005 monthly windows preserve the original UTC anchor across short months and leap years
+ok 1 - BIL-005 monthly windows preserve the original UTC anchor across short months and leap years
+  ---
+  duration_ms: 214.466947
+  type: 'test'
+  ...
+# Subtest: BIL-005 annual entitlements grant only the current month, once, without rolling earlier balances forward
+ok 2 - BIL-005 annual entitlements grant only the current month, once, without rolling earlier balances forward
+  ---
+  duration_ms: 119.797995
+  type: 'test'
+  ...
+# Subtest: FIL-003 every catalog extension has UTF-8 validation; binary and secret names are excluded
+ok 3 - FIL-003 every catalog extension has UTF-8 validation; binary and secret names are excluded
+  ---
+  duration_ms: 3.363726
+  type: 'test'
+  ...
+# Subtest: FIL-006 free cloud uploads fail before object writes and retries consume one paid slot
+ok 4 - FIL-006 free cloud uploads fail before object writes and retries consume one paid slot
+  ---
+  duration_ms: 1432.825383
+  type: 'test'
+  ...
+# Subtest: FIL-006 staging and retained revisions count against serialized file and byte capacity
+ok 5 - FIL-006 staging and retained revisions count against serialized file and byte capacity
+  ---
+  duration_ms: 55.812902
+  type: 'test'
+  ...
+# Subtest: FIL-007/010 selected context discloses Unicode truncation and file pages expose actual size/revision
+ok 6 - FIL-007/010 selected context discloses Unicode truncation and file pages expose actual size/revision
+  ---
+  duration_ms: 39.454115
+  type: 'test'
+  ...
+# Subtest: QTA-003 Unicode request limits match database character counting and include instructions
+ok 7 - QTA-003 Unicode request limits match database character counting and include instructions
+  ---
+  duration_ms: 30.329976
+  type: 'test'
+  ...
+# Subtest: CHT-003 newest chat page and earlier cursors recover all messages without overlap
+ok 8 - CHT-003 newest chat page and earlier cursors recover all messages without overlap
+  ---
+  duration_ms: 410.370126
+  type: 'test'
+  ...
+# Subtest: CHT-008 applied results preserve original and reject stale, cross-account, and changed retries
+ok 9 - CHT-008 applied results preserve original and reject stale, cross-account, and changed retries
+  ---
+  duration_ms: 57.942464
+  type: 'test'
+  ...
+# Subtest: HIS-004 ephemeral requests stay out of history and evaluation, and delete derived notes/output
+ok 10 - HIS-004 ephemeral requests stay out of history and evaluation, and delete derived notes/output
+  ---
+  duration_ms: 128.560177
+  type: 'test'
+  ...
+# Subtest: HIS-005 bulk jobs enforce ownership, retries, export content and queued deletion
+ok 11 - HIS-005 bulk jobs enforce ownership, retries, export content and queued deletion
+  ---
+  duration_ms: 103.291713
+  type: 'test'
+  ...
+# Subtest: AUT-007 profile/editor/pins round trip; API rejects unbounded and unknown preference fields
+ok 12 - AUT-007 profile/editor/pins round trip; API rejects unbounded and unknown preference fields
+  ---
+  duration_ms: 793.308404
+  type: 'test'
+  ...
+# Subtest: AUT-008 account deletion requires resolution of an active paid entitlement
+ok 13 - AUT-008 account deletion requires resolution of an active paid entitlement
+  ---
+  duration_ms: 32.184654
+  type: 'test'
+  ...
+# {"at":"2026-10-24T06:09:22.399Z","event":"api.completed","traceId":"1abf24d534cf3cde4e97154d2bab8653","requestId":"925cde65-f19f-42ca-a869-bf70d68c847c","status":200,"durationMs":139}
+# {"at":"2026-10-24T06:09:22.407Z","event":"api.completed","traceId":"9cf3bbddefca48dd8814d3c77195ae0d","requestId":"e2133488-8aad-4d95-84ff-5bd225df2671","status":200,"durationMs":2}
+# {"at":"2026-10-24T06:09:22.409Z","event":"api.completed","traceId":"a80dc3df4fb71d9fa7a95a14467f3cd5","requestId":"7cadaa62-1490-4ffb-a577-8ea0a9ceafd5","status":503,"durationMs":2}
+# Subtest: API-003 all registered routes publish their exact JSON, SSE, binary or redirect contract
+ok 14 - API-003 all registered routes publish their exact JSON, SSE, binary or redirect contract
+  ---
+  duration_ms: 818.823509
+  type: 'test'
+  ...
+# {"at":"2026-10-24T06:09:22.723Z","event":"api.failed","traceId":"d670feda5dee4d94c3eda15d1359700b","requestId":"b350a4c5-7557-44e1-a216-be12745cad7c","status":500,"errorCode":"RESPONSE_CONTRACT_VIOLATION"}
+# {"at":"2026-10-24T06:09:22.724Z","event":"api.completed","traceId":"d670feda5dee4d94c3eda15d1359700b","requestId":"b350a4c5-7557-44e1-a216-be12745cad7c","status":500,"durationMs":3}
+# {"at":"2026-10-24T06:09:22.725Z","event":"api.failed","traceId":"c9f1a1ca949af5b32df13e80d27a7f52","requestId":"b38f3061-11ea-4a20-b2ab-0d45830a5e68","status":401,"errorCode":"UNAUTHENTICATED"}
+# {"at":"2026-10-24T06:09:22.725Z","event":"api.completed","traceId":"c9f1a1ca949af5b32df13e80d27a7f52","requestId":"b38f3061-11ea-4a20-b2ab-0d45830a5e68","status":401,"durationMs":1}
+# Subtest: API-003 a successful handler with an invalid shape fails closed without leaking unexpected fields
+ok 15 - API-003 a successful handler with an invalid shape fails closed without leaking unexpected fields
+  ---
+  duration_ms: 315.446924
+  type: 'test'
+  ...
+# Subtest: API-003 resolves concrete UUID routes and query cursors to the precise method contract
+ok 16 - API-003 resolves concrete UUID routes and query cursors to the precise method contract
+  ---
+  duration_ms: 3.191036
+  type: 'test'
+  ...
+# Subtest: API-003 every declared JSON route emits a schema from the same runtime validator
+ok 17 - API-003 every declared JSON route emits a schema from the same runtime validator
+  ---
+  duration_ms: 15.3026
+  type: 'test'
+  ...
+# Subtest: API-003 transport preserves idempotency/CSRF/cookies, typed pagination and request IDs
+ok 18 - API-003 transport preserves idempotency/CSRF/cookies, typed pagination and request IDs
+  ---
+  duration_ms: 32.468672
+  type: 'test'
+  ...
+# Subtest: API-003 rejects malformed successful responses and enforces SSE delta/terminal payloads
+ok 19 - API-003 rejects malformed successful responses and enforces SSE delta/terminal payloads
+  ---
+  duration_ms: 1.396098
+  type: 'test'
+  ...
+# VERIFICATION_DATABASE=native-postgresql; PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+# Subtest: DAT-001 migration applies cleanly, reruns and rejects changed historical checksums
+ok 20 - DAT-001 migration applies cleanly, reruns and rejects changed historical checksums
+  ---
+  duration_ms: 329.97011
+  type: 'test'
+  ...
+# Subtest: DAT-001/002 database constraints reject duplicate workspace and foreign ownership
+ok 21 - DAT-001/002 database constraints reject duplicate workspace and foreign ownership
+  ---
+  duration_ms: 103.764239
+  type: 'test'
+  ...
+# Subtest: DAT-001 prior-release database upgrades forward without losing account records
+ok 22 - DAT-001 prior-release database upgrades forward without losing account records
+  ---
+  duration_ms: 290.785484
+  type: 'test'
+  ...
+# Subtest: AUT-006 verified identities are idempotent; matching email never silently links
+ok 23 - AUT-006 verified identities are idempotent; matching email never silently links
+  ---
+  duration_ms: 49.233882
+  type: 'test'
+  ...
+# Subtest: AUT-006 session fixation, revoked/expired token replay and unsafe linking fail
+ok 24 - AUT-006 session fixation, revoked/expired token replay and unsafe linking fail
+  ---
+  duration_ms: 31.532616
+  type: 'test'
+  ...
+# Subtest: AUT-006 identity linking requires a fresh authenticated session and rejects linking another account
+ok 25 - AUT-006 identity linking requires a fresh authenticated session and rejects linking another account
+  ---
+  duration_ms: 48.680604
+  type: 'test'
+  ...
+# Subtest: QTA-002 initial grant is once-only under parallel login and replay
+ok 26 - QTA-002 initial grant is once-only under parallel login and replay
+  ---
+  duration_ms: 132.07047
+  type: 'test'
+  ...
+# Subtest: DAT-006/QTA-004 parallel requests cannot overspend; cancellation releases once
+ok 27 - DAT-006/QTA-004 parallel requests cannot overspend; cancellation releases once
+  ---
+  duration_ms: 84.577303
+  type: 'test'
+  ...
+# Subtest: API-004 same idempotency key creates one logical run, job and reservation
+ok 28 - API-004 same idempotency key creates one logical run, job and reservation
+  ---
+  duration_ms: 63.523566
+  type: 'test'
+  ...
+# Subtest: DAT-007 run and quota changes roll back when durable enqueue fails
+ok 29 - DAT-007 run and quota changes roll back when durable enqueue fails
+  ---
+  duration_ms: 21.423523
+  type: 'test'
+  ...
+# Subtest: DAT-003/API-004 provider result persists and duplicate job delivery never charges twice
+ok 30 - DAT-003/API-004 provider result persists and duplicate job delivery never charges twice
+  ---
+  duration_ms: 82.241842
+  type: 'test'
+  ...
+# Subtest: API-004 cancellation before dispatch never calls provider or charges
+ok 31 - API-004 cancellation before dispatch never calls provider or charges
+  ---
+  duration_ms: 48.013849
+  type: 'test'
+  ...
+# Subtest: API-004 cancellation after accepted work settles once and records cancelled status
+ok 32 - API-004 cancellation after accepted work settles once and records cancelled status
+  ---
+  duration_ms: 62.411254
+  type: 'test'
+  ...
+# Subtest: QTA-004 rejected work releases; uncertain acceptance retains reservation without retry
+ok 33 - QTA-004 rejected work releases; uncertain acceptance retains reservation without retry
+  ---
+  duration_ms: 116.433663
+  type: 'test'
+  ...
+# Subtest: API-004 crashed dispatch fence and timeout cannot blindly redispatch
+ok 34 - API-004 crashed dispatch fence and timeout cannot blindly redispatch
+  ---
+  duration_ms: 96.701123
+  type: 'test'
+  ...
+# Subtest: DAT-007 queue leases reject stale acknowledgements and exhaust to an inspectable dead letter
+ok 35 - DAT-007 queue leases reject stale acknowledgements and exhaust to an inspectable dead letter
+  ---
+  duration_ms: 12.54949
+  type: 'test'
+  ...
+# Subtest: QTA-005 service replicas share rate/concurrency limits; expired leases cannot renew
+ok 36 - QTA-005 service replicas share rate/concurrency limits; expired leases cannot renew
+  ---
+  duration_ms: 59.890483
+  type: 'test'
+  ...
+# Subtest: DAT-005 billing replay, period grants, stale events and tenant conflicts are safe
+ok 37 - DAT-005 billing replay, period grants, stale events and tenant conflicts are safe
+  ---
+  duration_ms: 104.185206
+  type: 'test'
+  ...
+# Subtest: DAT-004 file retry and deletion preserve ownership and durable object cleanup
+ok 38 - DAT-004 file retry and deletion preserve ownership and durable object cleanup
+  ---
+  duration_ms: 94.259152
+  type: 'test'
+  ...
+# Subtest: DAT-004 failed object writes remain staged and expired staging is cleaned through the outbox
+ok 39 - DAT-004 failed object writes remain staged and expired staging is cleaned through the outbox
+  ---
+  duration_ms: 35.551907
+  type: 'test'
+  ...
+# Subtest: DAT-003 notes use optimistic revisions and chats restore from durable records
+ok 40 - DAT-003 notes use optimistic revisions and chats restore from durable records
+  ---
+  duration_ms: 58.543644
+  type: 'test'
+  ...
+# Subtest: SEC-006 server context contains only authorized data and exposes no tool authority
+ok 41 - SEC-006 server context contains only authorized data and exposes no tool authority
+  ---
+  duration_ms: 54.24127
+  type: 'test'
+  ...
+# Subtest: DAT-008 account export includes only owner data and excludes auth/objects/provider IDs
+ok 42 - DAT-008 account export includes only owner data and excludes auth/objects/provider IDs
+  ---
+  duration_ms: 65.610203
+  type: 'test'
+  ...
+# Subtest: DAT-008 account deletion immediately revokes access and replay safely redacts active content
+ok 43 - DAT-008 account deletion immediately revokes access and replay safely redacts active content
+  ---
+  duration_ms: 91.509176
+  type: 'test'
+  ...
+# Subtest: API-007 scheduler replay deduplicates jobs; cleanup and ledger reconciliation are idempotent
+ok 44 - API-007 scheduler replay deduplicates jobs; cleanup and ledger reconciliation are idempotent
+  ---
+  duration_ms: 97.670651
+  type: 'test'
+  ...
+# Subtest: QTA-004 reconciliation releases expired unsent holds but preserves uncertain dispatch
+ok 45 - QTA-004 reconciliation releases expired unsent holds but preserves uncertain dispatch
+  ---
+  duration_ms: 116.608486
+  type: 'test'
+  ...
+# Subtest: DAT-006 ledger and audit history reject mutation
+ok 46 - DAT-006 ledger and audit history reject mutation
+  ---
+  duration_ms: 14.928998
+  type: 'test'
+  ...
+# Subtest: API-001 health/readiness work outside Workers and report dependency failure without secrets
+ok 47 - API-001 health/readiness work outside Workers and report dependency failure without secrets
+  ---
+  duration_ms: 908.90277
+  type: 'test'
+  ...
+# Subtest: API-001 portable Node server answers real loopback HTTP requests
+ok 48 - API-001 portable Node server answers real loopback HTTP requests
+  ---
+  duration_ms: 343.520849
+  type: 'test'
+  ...
+# Subtest: AUT-006/API-002 portable API ignores forged Sites header and rejects CSRF and role injection
+ok 49 - AUT-006/API-002 portable API ignores forged Sites header and rejects CSRF and role injection
+  ---
+  duration_ms: 389.94874
+  type: 'test'
+  ...
+# Subtest: SEC-001 cross-user run, note, chat, file, share, billing and export reads/writes fail
+ok 50 - SEC-001 cross-user run, note, chat, file, share, billing and export reads/writes fail
+  ---
+  duration_ms: 519.566346
+  type: 'test'
+  ...
+# Subtest: API-003 typed transport, OpenAPI, pagination and idempotency agree on actual HTTP responses
+ok 51 - API-003 typed transport, OpenAPI, pagination and idempotency agree on actual HTTP responses
+  ---
+  duration_ms: 574.199034
+  type: 'test'
+  ...
+# Subtest: API-005 tracing propagates API-to-job-to-provider and logs contain only whitelisted metadata
+ok 52 - API-005 tracing propagates API-to-job-to-provider and logs contain only whitelisted metadata
+  ---
+  duration_ms: 285.083295
+  type: 'test'
+  ...
+# Subtest: DAT-003 persisted PostgreSQL storage restores users, notes and results after database restart
+ok 53 - DAT-003 persisted PostgreSQL storage restores users, notes and results after database restart # SKIP External database restart/failover requires a dedicated environment
+  ---
+  duration_ms: 1.506175
+  type: 'test'
+  ...
+# Subtest: HIS-001 local tool snapshots retain provenance, notes and one result without provider dispatch or credit use
+ok 54 - HIS-001 local tool snapshots retain provenance, notes and one result without provider dispatch or credit use
+  ---
+  duration_ms: 343.913199
+  type: 'test'
+  ...
+# Subtest: HIS-001 local result idempotency serializes duplicate writes and rejects changed retry content
+ok 55 - HIS-001 local result idempotency serializes duplicate writes and rejects changed retry content
+  ---
+  duration_ms: 86.624852
+  type: 'test'
+  ...
+# Subtest: HIS-001 local snapshots validate tool-specific Unicode limits, explicit cloud consent and empty output
+ok 56 - HIS-001 local snapshots validate tool-specific Unicode limits, explicit cloud consent and empty output
+  ---
+  duration_ms: 102.823008
+  type: 'test'
+  ...
+# Subtest: HIS-001 local snapshot API enforces session, CSRF, strict consent and account isolation
+ok 57 - HIS-001 local snapshot API enforces session, CSRF, strict consent and account isolation
+  ---
+  duration_ms: 719.339798
+  type: 'test'
+  ...
+# Subtest: HIS-001 API accepts a valid maximum-length comment source and output within its declared route bounds
+ok 58 - HIS-001 API accepts a valid maximum-length comment source and output within its declared route bounds
+  ---
+  duration_ms: 475.747329
+  type: 'test'
+  ...
+# Subtest: HIS-005 recovery discovers only the owner recent actionable jobs and unexpired completed exports
+ok 59 - HIS-005 recovery discovers only the owner recent actionable jobs and unexpired completed exports
+  ---
+  duration_ms: 95.376175
+  type: 'test'
+  ...
+# Subtest: HIS-005 pending discovery API publishes scoped serializable recovery data and reuses export intent
+ok 60 - HIS-005 pending discovery API publishes scoped serializable recovery data and reuses export intent
+  ---
+  duration_ms: 408.857446
+  type: 'test'
+  ...
+# Subtest: CHT-001 nullable chat selection clears the account choice and preserves authenticated legacy selection
+ok 61 - CHT-001 nullable chat selection clears the account choice and preserves authenticated legacy selection
+  ---
+  duration_ms: 641.921439
+  type: 'test'
+  ...
+# Subtest: HIS-005 a completed deletion retry keeps its job after run content has already been removed
+ok 62 - HIS-005 a completed deletion retry keeps its job after run content has already been removed
+  ---
+  duration_ms: 381.233164
+  type: 'test'
+  ...
+# Subtest: QAS-003 a Build 01 database upgrades once to Build 02 without losing identity or ledger data
+ok 63 - QAS-003 a Build 01 database upgrades once to Build 02 without losing identity or ledger data
+  ---
+  duration_ms: 494.537212
+  type: 'test'
+  ...
+# Subtest: DAT-009 tenant history uses an indexed plan for a 10,000-row fixture
+ok 64 - DAT-009 tenant history uses an indexed plan for a 10,000-row fixture
+  ---
+  duration_ms: 250.523841
+  type: 'test'
+  ...
+# Subtest: QAS-008 real HTTP readiness saturation remains bounded at concurrency ten
+ok 65 - QAS-008 real HTTP readiness saturation remains bounded at concurrency ten
+  ---
+  duration_ms: 808.85479
+  type: 'test'
+  ...
+# Subtest: CHT-006 chat history is trimmed within the current account context ceiling
+ok 66 - CHT-006 chat history is trimmed within the current account context ceiling
+  ---
+  duration_ms: 77.155268
+  type: 'test'
+  ...
+# Subtest: SEC-009/REL-006 financial reconciliation reports no violations after an ordinary completed run
+ok 67 - SEC-009/REL-006 financial reconciliation reports no violations after an ordinary completed run
+  ---
+  duration_ms: 68.079989
+  type: 'test'
+  ...
+# Subtest: AUT-004/005 OTP creates one safe session; replay, expiration and five wrong attempts fail
+ok 68 - AUT-004/005 OTP creates one safe session; replay, expiration and five wrong attempts fail
+  ---
+  duration_ms: 260.976612
+  type: 'test'
+  ...
+# Subtest: AUT-005 human verification, token replay and durable send limits precede sending email
+ok 69 - AUT-005 human verification, token replay and durable send limits precede sending email
+  ---
+  duration_ms: 31.450544
+  type: 'test'
+  ...
+# Subtest: AUT-002 Google callback is bound to browser state/PKCE and consumes state once
+ok 70 - AUT-002 Google callback is bound to browser state/PKCE and consumes state once
+  ---
+  duration_ms: 36.02365
+  type: 'test'
+  ...
+# Subtest: AUT-003 GitHub profile requires a primary verified email and never links by email alone
+ok 71 - AUT-003 GitHub profile requires a primary verified email and never links by email alone
+  ---
+  duration_ms: 18.151292
+  type: 'test'
+  ...
+# Subtest: AUT-004 API issues Secure host cookies with HttpOnly session and separate CSRF token
+ok 72 - AUT-004 API issues Secure host cookies with HttpOnly session and separate CSRF token
+  ---
+  duration_ms: 486.254234
+  type: 'test'
+  ...
+# Subtest: AUT-009/SEC-009 ordinary users and wrong roles fail; MFA is replay-proof and actions are audited
+ok 73 - AUT-009/SEC-009 ordinary users and wrong roles fail; MFA is replay-proof and actions are audited
+  ---
+  duration_ms: 17.38499
+  type: 'test'
+  ...
+# Subtest: QTA-006 budget holds share a ceiling, settle once and emergency stop prevents dispatch
+ok 74 - QTA-006 budget holds share a ceiling, settle once and emergency stop prevents dispatch
+  ---
+  duration_ms: 36.864449
+  type: 'test'
+  ...
+# Subtest: QTA-001 anonymous AI and execution reservations enforce two/three daily uses before dispatch
+ok 75 - QTA-001 anonymous AI and execution reservations enforce two/three daily uses before dispatch
+  ---
+  duration_ms: 36.342223
+  type: 'test'
+  ...
+# Subtest: TOL-010/CHT-006 server rejects Advanced model for Free and accepts a valid paid entitlement
+ok 76 - TOL-010/CHT-006 server rejects Advanced model for Free and accepts a valid paid entitlement
+  ---
+  duration_ms: 30.293288
+  type: 'test'
+  ...
+# Subtest: FIL-010 freezes exact file revision and checksum; later edits never change past context
+ok 77 - FIL-010 freezes exact file revision and checksum; later edits never change past context
+  ---
+  duration_ms: 30.75989
+  type: 'test'
+  ...
+# Subtest: FIL-009 deletion revokes file access and clears derived frozen context
+ok 78 - FIL-009 deletion revokes file access and clears derived frozen context
+  ---
+  duration_ms: 23.949119
+  type: 'test'
+  ...
+# Subtest: FIL-004/005 safe ZIP import excludes dependencies, build output and secret filenames
+ok 79 - FIL-004/005 safe ZIP import excludes dependencies, build output and secret filenames
+  ---
+  duration_ms: 4.449771
+  type: 'test'
+  ...
+# Subtest: SEC-005 archive traversal, case-colliding paths, binary data and high expansion are rejected
+ok 80 - SEC-005 archive traversal, case-colliding paths, binary data and high expansion are rejected
+  ---
+  duration_ms: 6.446863
+  type: 'test'
+  ...
+# Subtest: FIL-008 quarantined content becomes context only after exact checksum/length/UTF-8 verification
+ok 81 - FIL-008 quarantined content becomes context only after exact checksum/length/UTF-8 verification
+  ---
+  duration_ms: 17.82409
+  type: 'test'
+  ...
+# Subtest: SHR-001/002/003 sharing publishes only result snapshot and respects expiration/revocation
+ok 82 - SHR-001/002/003 sharing publishes only result snapshot and respects expiration/revocation
+  ---
+  duration_ms: 316.417668
+  type: 'test'
+  ...
+# Subtest: HIS-006 evaluation is opt-in and opt-out removes queued content immediately
+ok 83 - HIS-006 evaluation is opt-in and opt-out removes queued content immediately
+  ---
+  duration_ms: 46.391553
+  type: 'test'
+  ...
+# Subtest: API-006 account, support, files and selected chat CRUD enforce ownership
+ok 84 - API-006 account, support, files and selected chat CRUD enforce ownership
+  ---
+  duration_ms: 303.875189
+  type: 'test'
+  ...
+# Subtest: TOL-011/CHT-007 SSE parser preserves split UTF-8/CRLF frames and provider requires terminal marker
+ok 85 - TOL-011/CHT-007 SSE parser preserves split UTF-8/CRLF frames and provider requires terminal marker
+  ---
+  duration_ms: 2.841242
+  type: 'test'
+  ...
+# Subtest: CHT-003/007 streamed messages persist, partial output settles once and retry delivery does not redispatch
+ok 86 - CHT-003/007 streamed messages persist, partial output settles once and retry delivery does not redispatch
+  ---
+  duration_ms: 35.291203
+  type: 'test'
+  ...
+# Subtest: API-003/CHT-007 real HTTP event route replays persisted deltas and terminal output
+ok 87 - API-003/CHT-007 real HTTP event route replays persisted deltas and terminal output
+  ---
+  duration_ms: 312.21585
+  type: 'test'
+  ...
+# Subtest: BIL-003 Paddle signature validates raw bytes and rejects stale, future, tampered and unsigned bodies
+ok 88 - BIL-003 Paddle signature validates raw bytes and rejects stale, future, tampered and unsigned bodies
+  ---
+  duration_ms: 4.362659
+  type: 'test'
+  ...
+# Subtest: BIL-002/008 checkout uses verified server prices, rejects unapproved countries and reuses its intent
+ok 89 - BIL-002/008 checkout uses verified server prices, rejects unapproved countries and reuses its intent
+  ---
+  duration_ms: 17.095199
+  type: 'test'
+  ...
+# Subtest: BIL-003/004/005 confirmed signed payment grants once; checkout or active update alone grants nothing
+ok 90 - BIL-003/004/005 confirmed signed payment grants once; checkout or active update alone grants nothing
+  ---
+  duration_ms: 29.16344
+  type: 'test'
+  ...
+# Subtest: BIL-003 webhook API verifies the untouched raw body before processing
+ok 91 - BIL-003 webhook API verifies the untouched raw body before processing
+  ---
+  duration_ms: 249.687143
+  type: 'test'
+  ...
+# Subtest: RUN-005/008 execution admission enforces 10,000 characters, daily limits, fair lanes and tenant reads
+ok 92 - RUN-005/008 execution admission enforces 10,000 characters, daily limits, fair lanes and tenant reads
+  ---
+  duration_ms: 44.041915
+  type: 'test'
+  ...
+1..92
+# tests 92
+# suites 0
+# pass 91
+# fail 0
+# cancelled 0
+# skipped 1
+# todo 0
+# duration_ms 8011.780073

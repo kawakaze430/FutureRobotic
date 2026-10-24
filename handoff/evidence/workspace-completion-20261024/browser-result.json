@@ -1,0 +1,55 @@
+{
+  "suite": "trusted-local-Chromium-workspace",
+  "startedAt": "2026-10-24T06:08:03.902Z",
+  "database": "native-postgresql",
+  "providerConfigured": false,
+  "checks": [
+    {
+      "name": "cloud local-tool snapshot and first note are durable",
+      "status": "passed"
+    },
+    {
+      "name": "switching cloud results restores separate notes",
+      "status": "passed"
+    },
+    {
+      "name": "full reload recovers cloud history and notes",
+      "status": "passed"
+    },
+    {
+      "name": "late result response cannot overwrite the newer selected result",
+      "status": "passed"
+    },
+    {
+      "name": "second isolated account cannot display first account history",
+      "status": "passed"
+    },
+    {
+      "name": "browser-only results and per-result notes survive reload without cloud rows",
+      "status": "passed"
+    },
+    {
+      "name": "no-save result creates no cloud or browser history entry",
+      "status": "passed"
+    },
+    {
+      "name": "account export survives reload and downloads only after explicit check",
+      "status": "passed"
+    },
+    {
+      "name": "history export recovers by server metadata with browser job storage removed",
+      "status": "passed"
+    },
+    {
+      "name": "reset ignores a late saved snapshot and does not attach new notes to it",
+      "status": "passed"
+    }
+  ],
+  "failures": [],
+  "limitations": [
+    "One installed Chromium engine on loopback; no live provider, merchant, OAuth, production or physical second-device acceptance."
+  ],
+  "status": "passed",
+  "chromiumVersion": "Chrome/154.0.8037.57",
+  "finishedAt": "2026-10-24T06:08:19.671Z"
+}

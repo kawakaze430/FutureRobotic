@@ -9,13 +9,13 @@ ENV-007,Blocked,P0,External access and environment,Transactional email delivery 
 ENV-008,Blocked,P0,External access and environment,"Business, country, pricing and policy approval",B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
 ENV-010,Blocked,P0,External access and environment,CI repository and deployment-role trust,B09,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
 QAS-006,Blocked,P0,Quality and release verification,Live low-value payment and refund verification,B04,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
-API-003,Partial,P0,Portable backend contracts,OpenAPI specification and typed web client,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+API-003,Implemented,P0,Portable backend contracts,OpenAPI specification and typed web client,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
 AUT-001,Partial,P0,Authentication and accounts,"Portable public signup, login and logout",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
 AUT-007,Implemented,P0,Authentication and accounts,"Account profile, preferences and notification settings",,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
 AUT-008,Partial,P0,Authentication and accounts,Account export and deletion,B02/B04/B08,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
 DAT-004,Partial,P0,Database and durable jobs,"Files, revisions, extraction and share records",B02,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
 DAT-005,Partial,P0,Database and durable jobs,"Plans, prices, subscriptions and provider events",B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
-DAT-006,Partial,P0,Database and durable jobs,Usage reservations and append-only allowance ledger,B01,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
+DAT-006,Implemented,P0,Database and durable jobs,Usage reservations and append-only allowance ledger,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
 EDT-003,Partial,P0,Shared editor and result controls,Syntax highlighting in editable source panels,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
 EDT-004,Implemented,P0,Shared editor and result controls,Line numbers and editor preferences,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID
 EDT-005,Implemented,P0,Shared editor and result controls,Expanded input/output editor views,,CURRENT_TASK_REGISTER.json or IMPLEMENTED_AND_REMAINING.md; query this ID

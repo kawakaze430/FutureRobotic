@@ -1,0 +1,11 @@
+PASS cloud local-tool snapshot and first note are durable
+PASS switching cloud results restores separate notes
+PASS full reload recovers cloud history and notes
+PASS late result response cannot overwrite the newer selected result
+PASS second isolated account cannot display first account history
+PASS browser-only results and per-result notes survive reload without cloud rows
+PASS no-save result creates no cloud or browser history entry
+PASS account export survives reload and downloads only after explicit check
+PASS history export recovers by server metadata with browser job storage removed
+PASS reset ignores a late saved snapshot and does not attach new notes to it
+{"status":"passed","passed":10,"failures":[],"evidence":"outputs/workspace-browser-evidence.json"}

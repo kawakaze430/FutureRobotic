@@ -1,5 +1,8 @@
 # FutureRobotic AI — complete source and continuation package
 
+> Current 24 October 2026 source batch:75 Implemented / 57 Partial / 64 Blocked / 0 Not started / 196 total. API-003 and DAT-006 now complete their named scope; source `4dead9d`. See CLOUD_RETURN.md and handoff/evidence/workspace-completion-20261024/summary.json. Live setup/deployment deferred. Earlier counts/audits below are historical.
+
+
 **Current hosted-run blocker:** Delivery revalidation was not started by GitHub because recent account payments failed or the spending limit needs an increase. Resolve account Billing & plans before another hosted run. The same application/test/workflow code passed all seven jobs at `518ca8c`; see CLOUD_RETURN.md for exact evidence.
 
 **Current update, 24 October 2026:** Work and push directly on main. Tested code `518ca8cf430622bb3229ebe4f0519fe835835033` passed all seven hosted CI jobs, full local container/migration/HTTP checks, native database recovery and a zero-finding production dependency audit. Read [CLOUD_RETURN.md](CLOUD_RETURN.md) and [the next main-only Codex prompt](handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md) before the historical package notes below. Current hardening changes extend the original Build03 baseline; all historical SQL migration bytes and global feature counts remain unchanged. Production completion is still pending.

@@ -1,0 +1,54 @@
+Untagged: fr-cloud-db6779c08c85-migrate:latest
+Deleted: sha256:796d12153dc5073168c19e3b0809dda60ee9ecb1e318af358041d29f95eb9ee9
+Untagged: fr-cloud-db6779c08c85-api:latest
+Deleted: sha256:d62da16abb1d78e762021917384c5c5d87be6db2b8418c4aad330af0349709b5
+Untagged: fr-cloud-db6779c08c85-web:latest
+Deleted: sha256:8d26c94764830bc2448ac1928cab32e46a0d98864757fed6c74f2bffa2e2ca14
+Untagged: fr-cloud-d1462f339713-migrate:latest
+Deleted: sha256:0fcd4412e9a87905d27729251d63131f8e81385a232a21f61210fe6a2e7896a0
+Untagged: fr-cloud-d1462f339713-api:latest
+Deleted: sha256:6733cdc9559fe1195a8f7e9aa478c14844816d8d4ea20a8497ea7a4ff6ab7de9
+Untagged: fr-cloud-d1462f339713-web:latest
+Deleted: sha256:f5d00f53875c578c53c6a1b361f4e8c3532c8bdabec78ce50f68de607b36aa13
+Total:	0B
+Total:	0B
+Total:	0B
+Total:	0B
+Total:	0B
+ID						RECLAIMABLE	SIZE		LAST ACCESSED
+kpmesvge8l5liazczgi87heo2               	true 		16.37MB   	3 minutes ago
+Total:	16.37MB
+Total:	0B
+ID						RECLAIMABLE	SIZE		LAST ACCESSED
+mq7osazexrwwjs2zdolnm1des               	true 		7.192MB   	3 minutes ago
+Total:	7.192MB
+ID						RECLAIMABLE	SIZE		LAST ACCESSED
+xeceordo1pzgfidi8flulbsji               	true 		7.108MB   	10 hours ago
+Total:	7.108MB
+Total:	0B
+Total:	0B
+Total:	0B
+Total:	0B
+Total:	0B
+Total:	0B
+Total:	0B
+ID						RECLAIMABLE	SIZE		LAST ACCESSED
+ohu2v6p0f8elosznxdmdqshyy               	true 		174.6kB   	3 minutes ago
+Total:	174.6kB
+ID						RECLAIMABLE	SIZE		LAST ACCESSED
+38wwt3v6pkco2t6kcuyf7reql               	true 		174.6kB   	10 hours ago
+Total:	174.6kB
+ID						RECLAIMABLE	SIZE		LAST ACCESSED
+tafb2v0grg34yd03zk2l35b6v               	true 		18.95kB   	3 minutes ago
+Total:	18.95kB
+ID						RECLAIMABLE	SIZE		LAST ACCESSED
+23nx840s9u9nax0lib2p7u9uy               	true 		18.95kB   	10 hours ago
+Total:	18.95kB
+Total:	0B
+Total:	0B
+ID						RECLAIMABLE	SIZE		LAST ACCESSED
+vtpne2ggxpbe0izruhacy2fw8               	true 		622B      	3 minutes ago
+Total:	622B
+Total:	0B
+Total:	0B
+Total:	0B

@@ -1,87 +1,54 @@
-# FutureRobotic AI — main CI/build/test return, 24 October 2026
+# Workspace completion return — 24 October 2026
 
-Implemented and pushed directly to `main`. Tested code revision: `518ca8cf430622bb3229ebe4f0519fe835835033`. Hosted verification: https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240 — **all seven jobs passed**, including Node 22 and Node 24, workflow lint, native PostgreSQL/restart, full container builds/migrations/readiness, production audit and the required aggregate result. No new branch, worktree or pull request was created for this batch. Delivery/evidence commits on top of this code do not change application behavior.
+Implemented and tested source on `main`, application/workflow/lock commit **4dead9d722ab60eff22199a07d6ae9a88e373ac0**. No branch, worktree, PR, live service, financial transaction or AWS deployment was created. The owner deferred live setup/deployment. This report supersedes earlier historical counts and current-audit claims.
 
-**Delivery revalidation — BLOCKED_ACCOUNT:** The [delivery workflow](https://github.com/kawakaze430/FutureRobotic/actions/runs/40017143274) at `01f9d58` was rejected before any job step ran. GitHub reports: “The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings”. Its application, test and workflow code is byte-identical to the successfully verified `518ca8c` revision. This is an account/billing availability blocker, not a new application test failure. The account owner must resolve GitHub Billing & plans; the primary agent can then dispatch the current main workflow and inspect its exact SHA. No payment/spending limit was changed and no quota workaround was attempted. Evidence: `handoff/cloud-only/results/main-ci-20261024/delivery-account-block.json` and `delivery-check-run-annotations.json`.
+**75 Implemented / 57 Partial / 64 Blocked / 0 Not started / 196 total.** Closed: **API-003**, shared typed OpenAPI/server/client wire contracts; **DAT-006**, native usage-ledger race/replay/crash acceptance. Advanced WRK-006, HIS-003, HIS-005, CHT-003, TOL-004, AUT-008 and SEC-010 without closing broader provider/device/operational scope. The project is not production complete. The complete remaining register is `handoff/CURRENT_TASK_REGISTER.json` / `handoff/IMPLEMENTED_AND_REMAINING.md`.
 
-The current engineering batch is complete. **The whole production project is not complete:** remaining source scope, real integrations, approved isolated execution and deployed operational acceptance are still required. Global feature status remains **73 Implemented / 59 Partial / 64 Blocked / 0 Not started / 196 total**. Verification notes changed for QAS-003, AWS-013, SEC-010, DAT-003 and CHT-008; no feature status or stable ID was closed.
+## Concrete source changes
 
-## Concrete changes
+- Strict shared endpoint response/body/error/pagination/idempotency/SSE contracts drive OpenAPI and server/browser validation. Removed default-any client response escape hatches; malformed success envelopes fail safely.
+- Added owner-scoped, idempotent local-tool snapshots for comments/PDF/run/example conversions. Explicit cloud mode is required; local/none writes are rejected. Snapshots retain local provenance, create no provider job/reservation or AI credit debit, and are not sandbox/provider evidence.
+- Per-result browser notes and serialized optimistic cloud notes preserve original drafts on conflict; explicit reload discards a blocked draft. Selection/account epochs guard result reads, local save completions, file reads, notes, apply responses, reset, language/tool changes and deletion. Local snapshot reload restores tool/languages/notes; account transitions clear prior-owner state.
+- Account/history export recovery persists only request/job metadata, discovers owned server jobs after reload or disabled storage, retains uncertain keys, and requires explicit checks/downloads. Destructive retry never substitutes another selection. Completed deletion metadata remains recoverable within the bounded window. File/result revision panels ignore stale reads.
+- Chat restore/page/stream/attachment operations ignore obsolete responses; selected chat changes serialize, New chat/clear persist nullable selection, earlier pages deduplicate, attachment revision/hash/UTF-8 validation is bounded.
+- Checker output supports validated severity/Unicode source locations and optional corrections, safe Markdown fallback and partial-JSON streaming state. Its seven human-authored fixtures establish parsing/rendering only; actual model quality is untested.
+- Native runner now proves contention, replay, duplicate settlement and killed-transaction rollback across independent processes. TCP readiness avoids PostgreSQL's temporary initialization server. CI includes actual Chromium workflows in its native job and retains diagnostics. High-severity Zod advisory fixed with the targeted exact 4.6.6 release; seven-day dependency policy unchanged.
 
-- Independent CI jobs retain source-bound diagnostics even when another job fails; a required aggregate fails on any failed/cancelled/unrun gate. Added manual dispatch, official pinned Actions, checksum-verified actionlint, Node 22/24 coverage, existing utility/API and release-gate checks, both web builds and all existing suites. Verification has read-only repository permissions and never deploys or writes arbitrary fixes.
-- The old native wrapper now delegates to the canonical runner, automatically including completion and future existing suites. It proves native connection/transaction exclusion and seeds/reads actual data across a restart of its own PostgreSQL container. It rediscovers a changed loopback port and never restarts an external database.
-- Container builds preserve the pnpm workspace/lock policy, use pinned Node/nginx digests and optionally mount the supplied public CA through BuildKit for npm/pnpm. TLS, checksums and dependency release-age verification remain enabled. Buildx state stays in the writable workspace.
-- Fixed the unquoted Compose tmpfs comma; nginx health/ready now test the API/database. Non-root users own readable migration/certificate/static files even when source imports retain mode 0600. The selected nginx configuration is baked into the image, avoiding a private-mode bind mount; API and web root filesystems are read-only. Smoke tests request JSON health/ready/status, HTML, SVG and WOFF2 bytes.
-- Fixed a failing native concurrency fixture that assumed the first-started request wins. The assertion now finds the actual winner and checks exactly one acceptance, the losing version conflict, same-winner replay, changed retries, cross-account denial and preservation of original/content/origin. Production service logic and acceptance were not weakened.
-- Targeted Next.js 16.4.1 and matching lint configuration, sharp 0.35.5, browserslist 4.28.7, source-map-js 1.2.2, Babel 7.29.6, baseline-browser-mapping 2.11.0 and fast-uri 3.1.8. Registry publication dates satisfy the unchanged seven-day policy. **Production audit: 18 findings before → 0 after (all severities).** This is dependency audit evidence, not an image/fleet CVE scan.
+## Actual verification
 
-## Tests actually executed
-
-All commands ran at `/workspace/FutureRobotic`; exact command/exit/duration/log paths are in `handoff/cloud-only/results/final-zero-audit-regression/20261023T195322988663Z/result.json`, `handoff/cloud-only/results/native-postgres/20261023T195406973747Z/result.json` and `handoff/cloud-only/results/containers/20261023T195623284876Z/result.json`. Hosted jobs bind their evidence to the exact source SHA above. Logs/metadata from earlier source revisions are retained and labelled historical; repeated cases are not added as new unique tests.
-
-| Scope / command | Actual result | Limits |
+| Command / scope | Observed result | Limit |
 | --- | --- | --- |
-| `pnpm install --frozen-lockfile`; `pnpm exec tsc --noEmit`; `pnpm api:build`; actionlint | Passed | Exact pin/lock policy preserved |
-| `node --test portable/dist/tests/*.test.js` with no native URL | 77 passed / 0 failed / 0 skipped | PGlite SQL/services/HTTP and provider/merchant doubles |
-| `pnpm test:ui` | 15 passed / 0 failed | Rendering/export/grammar fixtures, not browser/device acceptance |
-| `node tests/tools.test.mjs` | Passed | Existing language/asset/route/utility/API fixtures |
-| Runner policy + release validator suites | 4 passed / 0 failed | No untrusted native execution or actual release |
-| `pnpm infra:build`; offline `INFRA_SYNTH_ONLY=true pnpm infra:synth`; `pnpm infra:test` | Build passed; six templates; 4 tests passed | Offline unapproved fixture, no AWS operation |
-| `pnpm web:build`; `pnpm build` | Both passed; 152 public candidate routes prerendered | Public indexing remains unapproved; bundle-size/deprecation warnings retained |
-| `pnpm api:test:native` / `python3 handoff/cloud-only/run_native.py` | 77 cases: **76 passed, 0 failed, 1 existing skip**, plus successful separate native locking and actual restart/recovery proof | The skipped PGlite-oriented restart fixture remains distinct; real RDS failover is unrun |
-| `python3 handoff/cloud-only/run_containers.py` | **PASSED_CONTAINER**: complete current-source image builds, four migrations, six successful HTTP checks, cleanup exit 0 | Local trusted development stack; no live account/provider/payment/storage acceptance |
-| `pnpm audit --prod --audit-level low --json` | Exit 0; **0 info/low/moderate/high/critical** | npm production dependency advisories only |
-| Hosted GitHub Actions | **7/7 jobs successful**, including both Node versions and the aggregate gate | Same cases under runtime variants; not new unique tests or production acceptance |
+| Frozen install; root/API TypeScript; actionlint | Pass | Existing pinned tools and seven-day policy retained |
+| `node --test portable/dist/tests/*.test.js` | **92 pass / 0 fail** | PGlite fixture; providers/merchant doubles clearly separate |
+| `pnpm test:ui` | **41 pass / 0 fail** | Renderers/controllers/parsers/export/grammar fixtures |
+| `pnpm web:build`; `pnpm test:browser` | Build + **10 real Chromium workflows pass** | Native disposable PostgreSQL; local API; two isolated account contexts; no live AI/login/device claim |
+| `python3 handoff/cloud-only/run_native.py` | **91 pass / 0 fail / 1 existing skip** + native locks/process/actual restart proofs | All seven discovered suites including completion/contracts/local-results; existing PGlite-oriented restart skip is distinct from actual owned-server restart proof |
+| `python3 handoff/cloud-only/run_containers.py` | **PASS**, four migrations, six HTTP/asset checks, cleanup0 | Full current-source image build; development Compose, no deployed account/provider/storage acceptance |
+| `pnpm build` | Pass | Existing Sites build; framework/chunk/deprecation warnings retained |
+| Infra build/offline synth/test; utility; runner policy/release checks | Pass: six templates, 4 infra + 4 policy/release | Offline fixture; no AWS or untrusted submitted-code execution |
+| Production audit at high threshold | Exit0; **0 high/critical**,2 low / 2 moderate | Four fast-uri 3.1.8 findings remain at low threshold; exact age blocker below |
 
-Native proof: `PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit`; distinct backend PIDs and advisory-lock exclusion/release recorded in the native result. Separate processes confirmed users, completed output, notes/chat and cancelled/failed run recovery after changing the actual PostgreSQL server start time. Test fixtures are disposable.
+Native ledger: 12 independent creators compete for 5 credits: 5 accepted / 7 quota denials; 6 replays create nothing; 10 settlers apply 5 and ignore 5 duplicates. Balance reconciles granted 5 / reserved 0 / consumed 5. A child is killed after observing its own uncommitted run/reservation/job/ledger; all writes remain invisible outside and roll back; a later same-key request succeeds once. Actual PostgreSQL restart restores users/results/notes/chats/cancelled/failed runs. These are trusted service fixtures, not native isolation probes or RDS failover.
 
-Actual full-stack image IDs:
+Chromium covers cloud local-tool result/notes, switching notes, full reload, delayed old result response, second-account isolation, browser-only per-result notes/reload, no-save mode, account export reload/actual download, server-discovered history export after removing job storage, and delayed snapshot response after Reset. Do not sum native repetitions as new unique cases. Browser checks use an internal fixture identity/session setup, with no public test-login endpoint.
 
-- `066167ff39c2a612402ce99b734ea1cff92a9d1f2ac52f697a5f0384f0d88d6b`
-- `796d12153dc5073168c19e3b0809dda60ee9ecb1e318af358041d29f95eb9ee9`
-- `8d26c94764830bc2448ac1928cab32e46a0d98864757fed6c74f2bffa2e2ca14`
-- `d62da16abb1d78e762021917384c5c5d87be6db2b8418c4aad330af0349709b5`
+Exact commands, versions, sanitized output, native source SHA/image IDs, per-step exits and browser check names are in `handoff/evidence/workspace-completion-20261024/summary.json` and adjacent logs. Root/API/UI/browser/web/native were rerun after the targeted Zod change. Historical migrations match the original manifest byte-for-byte; `migration-provenance.json` records hashes.
 
-Earlier failures are preserved: npm trust-chain rejection, read-only Buildx home, VFS disk exhaustion, private imported file permissions and the CHT-008 false scheduling assumption. Each was diagnosed and corrected; full current-source cold builds and readiness were rerun after clearing only obsolete images/cache belonging to recorded disposable projects from this task. Intermediate permission-only local reuse experiments are labelled as reused outputs and are superseded by the final full-stack pass. No unrelated runtime/user data was removed. No code check remains unexplained or failed at the verified revision; later delivery revalidation is blocked before execution by the account issue above.
+## Failures, skips and blockers
 
-## Source and status provenance
+- Demonstrated regressions fixed: valid 100k source + 100k local-result output previously hit the global 120 KB request limit; recovery SQL compared JSON text to UUID; old selection callbacks could attach notes/results to reset or another result. New regression tests pass after fixes.
+- Intermediate test-harness failures were a temporary PostgreSQL initialization readiness race, exact Account navigation text including its menu marker, and default-context download permissions not applying to isolated Chromium contexts. Corrected harness setup/selectors/context policy; final 10 checks pass. These were not concealed application passes.
+- An intermediate container attempt built images but PostgreSQL init failed `No space left on device` on the32 GB VFS host. Only explicitly recorded own fr-cloud image tags and exact own cache IDs were removed; no global prune. The final fresh build and smoke passed after reclaiming owned unshared cache post-build. Original failure, cleanup commands and final pass are retained separately.
+- Native suite's **one existing skip** remains explicit. RDS/load/failover, mobile/other engines/physical second-device and actual provider diagnostics are unrun.
+- **Hosted CI:** existing account gate reports: “The job was not started because recent account payments have failed or your spending limit needs to be increased. Please check the 'Billing & plans' section in your settings”. The historical 518ca8c run passed 7 jobs; it does not verify this newer source. No billing settings or quota controls were changed; no repeated unchanged dispatch was attempted.
+- **Audit age gate:** fixed fast-uri 3.1.9 was published 2026-10-19T23:05:26.357Z and is under the unchanged 7-day minimumReleaseAge10080. It becomes eligible **27 October 2026 at 04:35:26 IST** (26 October 23:05:26 UTC). Current3.1.8 has2 low / 2 moderate advisories;0 high / critical after Zod fix. Primary agent upgrades only this override after eligibility and reruns audit/affected checks. No age bypass was applied.
+- **Native sandbox probes skipped:** approved isolated gateway and protected test signing file do not exist (`RUNNER_TEST_ENDPOINT`, `RUNNER_TEST_PRIVATE_KEY_FILE`). No trusted-host substitution or platform workaround was attempted.
+- **Live/staging setup deferred by owner:** AI quota/models, merchant onboarding/policy, OAuth apps, verified sender, AWS/domain/protected OIDC deployment and public cutover remain gated. Use protected settings when resumed; never put credentials in chat. No payment or public deployment was run.
 
-Original application provenance remains `76dda7b040a95e96c529073240056678d9f12ba4` in `HANDOFF_MANIFEST.json`; it is a baseline record, not a claim that the current hardening source is byte-identical. All four historical migration files remain byte-identical. Current baseline differences and exact source/configuration file list are in `handoff/cloud-only/results/main-ci-20261024/summary.json`. Current implementation/configuration/document changes through the tested code revision:
+## Complete source delivery and primary agent next action
 
-- `.dockerignore`
-- `.github/workflows/verify.yml`
-- `AGENTS.md`
-- `README.md`
-- `handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md`
-- `handoff/cloud-only/_test_common.py`
-- `handoff/cloud-only/environment-start.md`
-- `handoff/cloud-only/run_containers.py`
-- `handoff/cloud-only/run_native.py`
-- `package.json`
-- `pnpm-lock.yaml`
-- `pnpm-workspace.yaml`
-- `portable/Dockerfile.api`
-- `portable/Dockerfile.web`
-- `portable/compose.yml`
-- `portable/scripts/test-native.mjs`
-- `portable/scripts/verify-native-restart.mjs`
-- `portable/tests/completion.test.ts`
-- `portable/web/nginx.compose.conf`
+Complete cumulative ZIP: `deliverables/FutureRobotic_AI_Workspace_Completion_20261024.zip`; adjacent `.zip.sha256` and `.verification.json` give its actual SHA-256, CRC/membership/hash integrity and source provenance. Inventory: `handoff/evidence/workspace-completion-20261024/package-inventory.json`. All current code, tests, lockfile, assets, four immutable migrations, CI, infra, reference archive, status register, operating docs and sanitized evidence are included. Git/dependencies/build outputs/runtime data/secrets and previous delivery ZIPs are excluded. Internal inventory omits its own hash; ZIP's own digest is outside the ZIP.
 
-Additional delivery changes update the current handoff/status/register verification notes and add sanitized evidence/inventories. Global classifications are unchanged. The original reference archive and all cumulative source/assets/tests/infra/CI remain included.
+Changed files are recorded in `changed-files.txt` / Git commit4dead9d plus the documentation/package delivery commit. Commit and push directly to existing `origin/main`, no force or extra branch/PR. Confirm remote HEAD after push. Updated continuation/testing instructions: `handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md`.
 
-## Remaining scope and next Codex prompt
-
-The requested copy/paste prompt is [handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md](handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md). It explicitly says **do not create a branch, worktree or PR; commit/push directly to main**, owns failure repair, lists current commands and all next acceptance groups, and directs the next agent to all 74 LIVE-* scenarios and the reviewed remaining feature work.
-
-- Approved isolated sandbox gate is still **BLOCKED_ENVIRONMENT**: `RUNNER_TEST_ENDPOINT` and `RUNNER_TEST_PRIVATE_KEY_FILE` are not supplied. No untrusted native probes ran on this trusted host; no new fleet was installed.
-- Live AI, OAuth/email, merchant, S3/queues, RDS/AWS deployment, production OIDC/branch-denial/rollback, restore/country/operational and browser/device acceptance are **not verified by this batch**. Protected inputs/account authority and policy decisions are prerequisites; variable presence was checked without revealing values. Absent process variables alone do not rule out other injected authentication. No production/public cutover, real payment or AWS resource creation occurred.
-- The 59 Partial / 64 Blocked source/acceptance rows remain. The primary coding agent owns implementation and integration after supplied access; the owner supplies account authorization/protected bindings and business/policy decisions, not coding labor. Do not mark a whole feature complete because one CI sub-gate passed.
-
-**Next action for the primary project agent:** Continue independent local engineering; after the account owner resolves GitHub Billing & plans, dispatch the current-main verification workflow and inspect its exact SHA. Use the main-only prompt, implement the reviewed source-owned P0 gaps with regression evidence, and execute the applicable 74 real acceptance scenarios only on approved environments with their required protected inputs; retain every unresolved gate explicitly.
-
-## Complete delivery and reusable environment
-
-Complete cumulative ZIP: `deliverables/FutureRobotic_AI_Main_CI_Hardening_20261024.zip`. External `.sha256`, CRC/completeness result and delivery metadata are saved beside it after assembly; the archive excludes its own delivery directory. The package contains all prior code/assets/migrations/tests/infra/CI/reference/status and current sanitized evidence. It excludes credentials, dependency directories, Git internals, build output and runtime databases/data; source file modes are normalized to Git modes for reproducible import. The real file is committed/pushed on main; no artifact or download URL is invented.
-
-Reusable install/start fields were saved in the environment draft and mirrored in `handoff/cloud-only/environment-install.sh` / `environment-start.md`. Startup now follows main and current scope, supports the corrected native/container workflows and public-CA mounts, and documents VFS capacity/owned-cache handling. Exact GitHub API/log/artifact destinations observed during this work were added without replacing preset access or adding credentials. Draft saving is not publication; environment settings review/save and publication remain product actions, separate from the completed repository push and validation. No live process is assumed to survive a snapshot.
+The primary agent retains engineering/integration ownership. Next independent source batch: inspect the57 Partial rows and finish protected operator enrollment/console, support acknowledgement outbox, authoritative external reconciliation source, first-deploy bootstrap, runtime artifact/drain automation, grounded evaluation harness, full grammar/PDF parity and remaining browser/device coverage. Do not call those complete from this batch. At the age deadline, fix fast-uri; after the account owner resolves billing, execute the current main workflow once and inspect every retained gate. Live setup/deployment remain deferred until the owner resumes them; continue independent source work meanwhile.

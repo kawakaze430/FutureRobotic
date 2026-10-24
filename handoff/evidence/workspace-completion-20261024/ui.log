@@ -1,0 +1,50 @@
+$ node --import tsx --test tests/*ui.test.tsx
+✔ CHT-003 a late restore or stream callback cannot replace a newer selected session (1.706406ms)
+✔ CHT-003 clear/stop invalidates even a transport which ignores abort, including captured cursor pages (0.324538ms)
+✔ CHT-003 overlapping older-message pages preserve order and prefer the current streamed copy (0.977209ms)
+✔ CHT-005 invalid UTF-8, binary controls and oversized attachments fail with actionable errors (0.716597ms)
+✔ CHT-005 local attachment truncation counts Unicode points and preserves text line breaks (0.490307ms)
+✔ TOL-009 all 26 enabled comment grammars remove comments and preserve strings and line positions (193.784264ms)
+✔ TOL-009 nested comments, regex slashes, interpolation, shebang and SQL literal escapes remain intact (2.28083ms)
+✔ EDT-007/009 every selectable language has an explicit code download extension (0.250537ms)
+✔ WEB-013 68 unique source directories link to real free-tool targets (12.8141ms)
+✔ WEB-009 help supports stable share anchors and factual categorized answers (3.812073ms)
+✔ EDT-012 every tool has its own three-step instructions and usable example (0.150757ms)
+✔ PDF-006 title inclusion and line numbers are independent in the printable preview (0.281874ms)
+✔ EDT-003/010 source editor has an accessible fallback and Unicode-aware tool limits (0.787494ms)
+✔ HIS-005/AUT-008 persists metadata before POST, blocks duplicate requests and checks queued/running/completed explicitly (2.464065ms)
+✔ HIS-005 uncertain mutation keeps its key and retries the original in-memory selection only after explicit action (0.564549ms)
+✔ HIS-005 reload reconciles a completed uncertain deletion by server request key without resending or storing selection (0.426642ms)
+✔ HIS-005 a reloaded unconfirmed destructive request cannot retry without its original private selection (0.238288ms)
+✔ AUT-008 account export recovery uses owned server metadata when storage is blocked and never downloads on restore (0.502846ms)
+✔ HIS-005 stopped jobs expose a safe status and expired exports can be explicitly dismissed (0.650969ms)
+✔ HIS-005 account change/unmount ignores late POST, lookup and download responses (0.552641ms)
+✔ HIS-005 definite rejections clear intents while completed prior jobs remain recoverable without automatic actions (0.305409ms)
+✔ HIS-005/AUT-008 server-rendered controls await owner recovery and describe explicit export/deletion actions (13.588274ms)
+✔ EDT-008 Markdown renders tables/code but never raw HTML, scripts, remote images or unsafe links (23.765999ms)
+✔ TOL-006/007 missing-colon diff identifies one replaced line and exports clean fixed code (2.490316ms)
+✔ WEB-014 all 68 observed converter URLs resolve to valid language pairs (1.610842ms)
+✔ WEB-008 plans and comparison show the same billing amounts and server model tiers (12.836814ms)
+✔ FIL-004/005 browser ZIP import validates CRC and excludes secrets/dependencies (3.415997ms)
+✔ PDF-003/004/005 all font sizes, themes and margin presets export valid multipage PDFs (2334.846028ms)
+✔ PDF-007 long lines paginate, unsupported glyphs are explicit and print HTML escapes active content (393.091362ms)
+✔ TOL-004 division-by-zero fixture validates and renders severity, source position and an unapplied correction (11.658972ms)
+✔ TOL-004 supports complete JSON fences and preserves existing plain/Markdown reviews (10.246408ms)
+✔ TOL-004 incomplete streamed JSON remains pending until a final response can be validated (0.49199ms)
+✔ TOL-004 rejects unknown/injected fields, unsupported severity and bounded issue/text overflow (1.82833ms)
+✔ TOL-004 validates one-based Unicode code-point ranges, CRLF and paired exclusive endpoints (0.670158ms)
+✔ TOL-004 HTML, URL and correction payloads render only as inert text (1.075207ms)
+✔ TOL-004 empty issues and invalid locations do not fabricate clean-code or executed-test evidence (0.779672ms)
+✔ WRK-006 note saves serialize per result and use the version returned by its own previous write (1.423861ms)
+✔ WRK-006 a conflicting note keeps its draft and blocks automatic overwrite until explicit reload (0.652271ms)
+✔ WRK-006 queued writes are invalidated when accounts change (0.285359ms)
+✔ HIS-003 selection epochs reject out-of-order reads even when transport ignores abort (0.157968ms)
+✔ AUT-008 history/account recovery metadata is owner scoped and tolerates blocked or invalid storage (0.484829ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 41
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3489.263212

@@ -51,3 +51,7 @@ yarn-error.log*
 
 # Public AWS RDS CA certificate (contains no private key)
 !/portable/certs/rds-global-bundle.pem
+
+# Python verification bytecode (not source evidence)
+__pycache__/
+*.py[cod]

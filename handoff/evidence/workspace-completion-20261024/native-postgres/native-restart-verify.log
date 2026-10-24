@@ -1,0 +1,1 @@
+{"phase":"verify","database":"native-postgresql","postgresRestartObserved":true,"userRestored":true,"completedResultRestored":true,"noteRestored":true,"chatRestored":true,"cancelledRunRestored":true,"failedRunRestored":true}

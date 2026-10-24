@@ -1,0 +1,191 @@
+{
+  "scope": "All existing backend suites, native connections/advisory exclusion, independent-process ledger contention/replay/settlement and killed-transaction rollback; no live provider/payment/AWS/runner acceptance.",
+  "verification_status": "PASSED_NATIVE_WITH_SKIPS",
+  "detail": "Native backend suites completed. Inspect counts/skips and exact scenario scope before closing any feature gate; skipped scenarios remain unverified.",
+  "recorded_at": "2026-10-24T06:09:31.971488+00:00",
+  "application_baseline": "76dda7b040a95e96c529073240056678d9f12ba4",
+  "actual_checkout_commit": "4dead9d722ab60eff22199a07d6ae9a88e373ac0",
+  "source_worktree_dirty": false,
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "steps": [
+    {
+      "step": "docker-engine",
+      "command": "docker info --format '{{.ServerVersion}}'",
+      "exit_code": 0,
+      "seconds": 0.1,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/docker-engine.log"
+    },
+    {
+      "step": "postgres-start",
+      "command": "docker run --rm -d --name fr-native-7e8ca8c2db79 -e POSTGRES_PASSWORD -p 127.0.0.1::5432 postgres:16",
+      "exit_code": 0,
+      "seconds": 3.54,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/postgres-start.log"
+    },
+    {
+      "step": "postgres-port",
+      "command": "docker port fr-native-7e8ca8c2db79 5432/tcp",
+      "exit_code": 0,
+      "seconds": 0.01,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/postgres-port.log"
+    },
+    {
+      "step": "postgres-image",
+      "command": "docker inspect --format '{{.Image}}' fr-native-7e8ca8c2db79",
+      "exit_code": 0,
+      "seconds": 0.02,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/postgres-image.log"
+    },
+    {
+      "step": "api-build",
+      "command": "node node_modules/typescript/bin/tsc -p portable/tsconfig.json",
+      "exit_code": 0,
+      "seconds": 3.34,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/api-build.log"
+    },
+    {
+      "step": "native-connections",
+      "command": "node --input-type=module -e '\nimport pg from '\"'\"'pg'\"'\"';\nimport {randomInt} from '\"'\"'node:crypto'\"'\"';\nconst pool=new pg.Pool({connectionString:process.env.TEST_DATABASE_URL,max:2,connectionTimeoutMillis:5000,query_timeout:5000});\nlet a,b;\ntry {\n  a=await pool.connect();b=await pool.connect();\n  const first=(await a.query('\"'\"'SELECT version() AS version,pg_backend_pid() AS pid'\"'\"')).rows[0];\n  const second=(await b.query('\"'\"'SELECT pg_backend_pid() AS pid'\"'\"')).rows[0];\n  if(first.pid===second.pid)throw Error('\"'\"'Distinct native backends required'\"'\"');\n  const key=randomInt(1,2147483647);\n  await a.query('\"'\"'BEGIN'\"'\"');await b.query('\"'\"'BEGIN'\"'\"');\n  const owns=(await a.query('\"'\"'SELECT pg_try_advisory_xact_lock($1) AS ok'\"'\"',[key])).rows[0].ok;\n  const denied=(await b.query('\"'\"'SELECT pg_try_advisory_xact_lock($1) AS ok'\"'\"',[key])).rows[0].ok;\n  if(!owns||denied)throw Error('\"'\"'Native transaction lock exclusion failed'\"'\"');\n  await a.query('\"'\"'ROLLBACK'\"'\"');\n  const released=(await b.query('\"'\"'SELECT pg_try_advisory_xact_lock($1) AS ok'\"'\"',[key])).rows[0].ok;\n  if(!released)throw Error('\"'\"'Native transaction lock release failed'\"'\"');\n  await b.query('\"'\"'ROLLBACK'\"'\"');\n  console.log(JSON.stringify({database:'\"'\"'native-postgresql'\"'\"',version:first.version,distinctBackendPids:[first.pid,second.pid],transactionLockExclusion:true}));\n} catch(error) {\n  console.error('\"'\"'Native connection/transaction proof failed:'\"'\"',error?.code||'\"'\"'NATIVE_PROOF_FAILED'\"'\"');\n  process.exitCode=1;\n} finally {\n  for(const c of [a,b])if(c){await c.query('\"'\"'ROLLBACK'\"'\"').catch(()=>{});c.release();}\n  await pool.end();\n}\n'",
+      "exit_code": 0,
+      "seconds": 0.08,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/native-connections.log"
+    },
+    {
+      "step": "native-backend-tap",
+      "command": "node --test --test-reporter=tap portable/dist/tests/completion.test.js portable/dist/tests/contract-server.test.js portable/dist/tests/contracts.test.js portable/dist/tests/integration.test.js portable/dist/tests/local-results.test.js portable/dist/tests/operations.test.js portable/dist/tests/product.test.js",
+      "exit_code": 0,
+      "seconds": 8.05,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/native-backend-tap.log"
+    },
+    {
+      "step": "native-ledger-concurrency",
+      "command": "node portable/scripts/verify-ledger-concurrency.mjs",
+      "exit_code": 0,
+      "seconds": 1.39,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/native-ledger-concurrency.log"
+    },
+    {
+      "step": "native-restart-seed",
+      "command": "node portable/scripts/verify-native-restart.mjs seed /workspace/FutureRobotic/.sites-runtime/native-restart-ib6khwvp/state.json",
+      "exit_code": 0,
+      "seconds": 0.35,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/native-restart-seed.log"
+    },
+    {
+      "step": "native-postgres-restart",
+      "command": "docker restart --time 5 fr-native-7e8ca8c2db79",
+      "exit_code": 0,
+      "seconds": 0.36,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/native-postgres-restart.log"
+    },
+    {
+      "step": "postgres-port-after-restart",
+      "command": "docker port fr-native-7e8ca8c2db79 5432/tcp",
+      "exit_code": 0,
+      "seconds": 0.01,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/postgres-port-after-restart.log"
+    },
+    {
+      "step": "native-restart-verify",
+      "command": "node portable/scripts/verify-native-restart.mjs verify /workspace/FutureRobotic/.sites-runtime/native-restart-ib6khwvp/state.json",
+      "exit_code": 0,
+      "seconds": 0.21,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/native-restart-verify.log"
+    },
+    {
+      "step": "postgres-cleanup",
+      "command": "docker rm -f fr-native-7e8ca8c2db79",
+      "exit_code": 0,
+      "seconds": 0.28,
+      "log": "handoff/evidence/workspace-completion-20261024/native-postgres/postgres-cleanup.log"
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed_by_this_runner": false,
+  "native_connection_proof": {
+    "database": "native-postgresql",
+    "version": "PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit",
+    "distinctBackendPids": [
+      86,
+      87
+    ],
+    "transactionLockExclusion": true
+  },
+  "suites": [
+    "portable/dist/tests/completion.test.js",
+    "portable/dist/tests/contract-server.test.js",
+    "portable/dist/tests/contracts.test.js",
+    "portable/dist/tests/integration.test.js",
+    "portable/dist/tests/local-results.test.js",
+    "portable/dist/tests/operations.test.js",
+    "portable/dist/tests/product.test.js"
+  ],
+  "tap_counts": {
+    "tests": 92,
+    "pass": 91,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 1
+  },
+  "native_ledger_concurrency_proof": {
+    "database": "native-postgresql",
+    "fixture": "trusted-service-no-provider",
+    "independentCreateProcesses": 12,
+    "distinctCreateBackendPids": [
+      152,
+      158,
+      151,
+      150,
+      156,
+      159,
+      157,
+      153,
+      160,
+      161,
+      155,
+      154
+    ],
+    "createProcessPids": [
+      50768,
+      50769,
+      50770,
+      50771,
+      50772,
+      50778,
+      50789,
+      50800,
+      50808,
+      50820,
+      50822,
+      50823
+    ],
+    "admitted": 5,
+    "quotaDenied": 7,
+    "independentReplayProcesses": 6,
+    "replayedWithoutAdditionalReservation": true,
+    "independentSettlementProcesses": 10,
+    "settlementsApplied": 5,
+    "duplicateSettlementsIgnored": 5,
+    "ledgerMatchesBalance": true,
+    "reservedAfterSettlement": 0,
+    "consumedAfterSettlement": 5,
+    "killedProcessPid": 51157,
+    "uncommittedWritesObservedInsideTransaction": true,
+    "uncommittedWritesInvisibleOutside": true,
+    "killedTransactionRolledBack": true,
+    "rolledBackRequestKeyReusable": true
+  },
+  "native_restart_proof": {
+    "phase": "verify",
+    "database": "native-postgresql",
+    "postgresRestartObserved": true,
+    "userRestored": true,
+    "completedResultRestored": true,
+    "noteRestored": true,
+    "chatRestored": true,
+    "cancelledRunRestored": true,
+    "failedRunRestored": true
+  },
+  "owned_container_cleanup_exit": 0,
+  "original_evidence_directory": "work/end-to-end-final-20261024/native-postgres/20261024T060912850423Z"
+}

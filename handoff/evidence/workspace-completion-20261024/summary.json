@@ -1,0 +1,233 @@
+{
+  "scope": "Workspace/source completion and bounded local end-to-end verification; live setup/deployment deferred by owner",
+  "application_source_commit": "4dead9d722ab60eff22199a07d6ae9a88e373ac0",
+  "tested_tree": "application/workflow/lock source exactly matches4dead9d; documentation/package-only follow-up differs",
+  "recorded_at_utc": "2026-10-24T06:15:10.294402+00:00",
+  "totals": {
+    "Implemented": 75,
+    "Partial": 57,
+    "Blocked": 64,
+    "Not started": 0,
+    "total": 196
+  },
+  "closed_ids": [
+    "API-003",
+    "DAT-006"
+  ],
+  "progress_ids": [
+    "WRK-006",
+    "HIS-003",
+    "HIS-005",
+    "CHT-003",
+    "TOL-004",
+    "AUT-008",
+    "SEC-010"
+  ],
+  "versions": {
+    "node": "v24.19.0",
+    "pnpm": "11.25.0",
+    "python": "Python 3.12.14",
+    "docker": "Docker version 28.4.0, build d8eb465",
+    "compose": "Docker Compose version v2.40.3",
+    "chromium": "Chromium 154.0.8037.57 built on Debian GNU/Linux 13 (trixie)"
+  },
+  "checks": [
+    {
+      "command": "pnpm install --frozen-lockfile",
+      "result": "PASS"
+    },
+    {
+      "command": "pnpm exec tsc --noEmit; pnpm api:build",
+      "result": "PASS"
+    },
+    {
+      "command": "node --test portable/dist/tests/*.test.js",
+      "result": "PASS:92/92; PGlite fixture; no live provider"
+    },
+    {
+      "command": "pnpm test:ui",
+      "result": "PASS:41/41; includes9job,5assistant,5notes/epoch and7structured-review cases"
+    },
+    {
+      "command": "pnpm web:build; pnpm test:browser",
+      "result": "PASS:portable build152routes;10real Chromium workflows/native PostgreSQL, two isolated browser contexts"
+    },
+    {
+      "command": "python3 handoff/cloud-only/run_native.py",
+      "result": "PASS_WITH_SKIP:91pass0fail1existing skip, separate connections/locks, independent-process ledger proof and actual PostgreSQL restart"
+    },
+    {
+      "command": "python3 handoff/cloud-only/run_containers.py",
+      "result": "PASS:current-source pinned images, four migrations, six HTTP/asset checks, owned cleanup exit0"
+    },
+    {
+      "command": "pnpm build",
+      "result": "PASS:existing Sites build; warnings retained"
+    },
+    {
+      "command": "pnpm infra:build; INFRA_SYNTH_ONLY=true pnpm infra:synth; pnpm infra:test",
+      "result": "PASS:offline six templates/four tests; no AWS operation"
+    },
+    {
+      "command": "node tests/tools.test.mjs",
+      "result": "PASS:existing utilities, route/asset/API fixtures"
+    },
+    {
+      "command": "node --test runner/tests/*.test.mjs tests/release-gates.test.mjs",
+      "result": "PASS:4/4 policy/release tests; no untrusted native execution"
+    },
+    {
+      "command": "/tmp/futurerobotic-tools/actionlint",
+      "result": "PASS:checksum-verified v1.7.7; new Chromium workflow step included"
+    },
+    {
+      "command": "pnpm audit --prod --audit-level high --json",
+      "result": "PASS:0high/critical;2low/2moderate retained"
+    },
+    {
+      "command": "pnpm audit --prod --audit-level low --json",
+      "result": "FAIL/advisories:four fast-uri3.1.8 lower-severity findings; age gate prevents fixed3.1.9 until2026-10-26T23:05:26.357Z"
+    }
+  ],
+  "native": {
+    "tap_counts": {
+      "tests": 92,
+      "pass": 91,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 1
+    },
+    "ledger": {
+      "database": "native-postgresql",
+      "fixture": "trusted-service-no-provider",
+      "independentCreateProcesses": 12,
+      "distinctCreateBackendPids": [
+        152,
+        158,
+        151,
+        150,
+        156,
+        159,
+        157,
+        153,
+        160,
+        161,
+        155,
+        154
+      ],
+      "createProcessPids": [
+        50768,
+        50769,
+        50770,
+        50771,
+        50772,
+        50778,
+        50789,
+        50800,
+        50808,
+        50820,
+        50822,
+        50823
+      ],
+      "admitted": 5,
+      "quotaDenied": 7,
+      "independentReplayProcesses": 6,
+      "replayedWithoutAdditionalReservation": true,
+      "independentSettlementProcesses": 10,
+      "settlementsApplied": 5,
+      "duplicateSettlementsIgnored": 5,
+      "ledgerMatchesBalance": true,
+      "reservedAfterSettlement": 0,
+      "consumedAfterSettlement": 5,
+      "killedProcessPid": 51157,
+      "uncommittedWritesObservedInsideTransaction": true,
+      "uncommittedWritesInvisibleOutside": true,
+      "killedTransactionRolledBack": true,
+      "rolledBackRequestKeyReusable": true
+    },
+    "restart": {
+      "phase": "verify",
+      "database": "native-postgresql",
+      "postgresRestartObserved": true,
+      "userRestored": true,
+      "completedResultRestored": true,
+      "noteRestored": true,
+      "chatRestored": true,
+      "cancelledRunRestored": true,
+      "failedRunRestored": true
+    }
+  },
+  "container_image_ids": [
+    "066167ff39c2a612402ce99b734ea1cff92a9d1f2ac52f697a5f0384f0d88d6b",
+    "26476e87fd690655dc3fb7730d1f8c76b49286513aa16693667c0d8ee3179c64",
+    "f3e3b8f0b65879da535e17dcd880cb72fc565d407fb876e5d107cc44b8c2c1d0",
+    "f918134ed1434b913a750e529d262b5cd1c707f2deed2de68587dd23dfb2e260"
+  ],
+  "browser_checks": [
+    {
+      "name": "cloud local-tool snapshot and first note are durable",
+      "status": "passed"
+    },
+    {
+      "name": "switching cloud results restores separate notes",
+      "status": "passed"
+    },
+    {
+      "name": "full reload recovers cloud history and notes",
+      "status": "passed"
+    },
+    {
+      "name": "late result response cannot overwrite the newer selected result",
+      "status": "passed"
+    },
+    {
+      "name": "second isolated account cannot display first account history",
+      "status": "passed"
+    },
+    {
+      "name": "browser-only results and per-result notes survive reload without cloud rows",
+      "status": "passed"
+    },
+    {
+      "name": "no-save result creates no cloud or browser history entry",
+      "status": "passed"
+    },
+    {
+      "name": "account export survives reload and downloads only after explicit check",
+      "status": "passed"
+    },
+    {
+      "name": "history export recovers by server metadata with browser job storage removed",
+      "status": "passed"
+    },
+    {
+      "name": "reset ignores a late saved snapshot and does not attach new notes to it",
+      "status": "passed"
+    }
+  ],
+  "blockers": [
+    {
+      "operation": "Hosted GitHub Actions verification",
+      "reason": "Prior latest delivery was rejected before starting by account payment/spending-limit restriction. Not rerun unchanged; current local source tested.",
+      "owner": "GitHub account owner; primary agent runs current verification after resolution."
+    },
+    {
+      "operation": "Upgrade fast-uri3.1.8 to3.1.9",
+      "reason": "Fixed version published2026-10-19T23:05:26.357Z, under existing seven-day minimum release age.2low+2moderate findings; high/critical0.",
+      "next_action": "After2026-10-26T23:05:26.357Z upgrade only fast-uri override, frozen install, audit and affected API/build/native/container regression. Do not bypass age policy.",
+      "owner": "Primary implementation agent"
+    },
+    {
+      "operation": "Live provider/merchant/OAuth/email/AWS/domain/deployment/device acceptance",
+      "reason": "Owner expressly deferred setup. No staging identity/protected configuration supplied; real paid transactions/public deployment not part of this run.",
+      "owner": "Owner authorizes approved protected configuration; agent implements and verifies."
+    },
+    {
+      "operation": "Native untrusted-code sandbox probes",
+      "reason": "Approved isolated RUNNER_TEST_ENDPOINT and protected RUNNER_TEST_PRIVATE_KEY_FILE absent. No host execution or platform workaround substituted.",
+      "owner": "Owner/operator supplies approved isolated fleet/signing; agent runs probes."
+    }
+  ],
+  "production_ready": false,
+  "aws_deployed": false
+}

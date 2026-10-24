@@ -1,5 +1,8 @@
 # FutureRobotic AI — project handoff
 
+> Current 24 October 2026 source batch:75 Implemented / 57 Partial / 64 Blocked / 0 Not started / 196 total. API-003 and DAT-006 now complete their named scope; source `4dead9d`. See CLOUD_RETURN.md and handoff/evidence/workspace-completion-20261024/summary.json. Live setup/deployment deferred. Earlier counts/audits below are historical.
+
+
 **24 October 2026 main update:** CI/build/test hardening is verified at `518ca8cf430622bb3229ebe4f0519fe835835033` ([seven successful hosted jobs](https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240)); full current-source local containers and native restart/recovery passed; production dependency audit has zero findings in all severities. Feature totals stay **73 / 59 / 64 / 0, total 196**. See [the current return](../CLOUD_RETURN.md) and `MAIN_CI_HARDENING_20261024.md`. Earlier environment-unavailable statements below are historical; production/live/isolated-runner acceptance is still pending.
 
 Reviewed 22 October 2026. Application baseline: Build03, commit `76dda7b040a95e96c529073240056678d9f12ba4`. This document records the cumulative current project; it does not claim a new implementation release.

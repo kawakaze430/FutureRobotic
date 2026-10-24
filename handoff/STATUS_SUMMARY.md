@@ -1,22 +1,16 @@
-# Quick status and read map
+# Current status and read map
 
-**Current hosted-run blocker:** Delivery revalidation was not started by GitHub because recent account payments failed or the spending limit needs an increase. Resolve account Billing & plans before another hosted run. The same application/test/workflow code passed all seven jobs at `518ca8c`; see CLOUD_RETURN.md for exact evidence.
+**75 Implemented / 57 Partial / 64 Blocked / 0 Not started / 196 total.** Source batch `4dead9d` closes API-003 (shared typed/wire contracts) and DAT-006 (native ledger contention/crash proof). Application implementation is not complete production acceptance. Live-service setup and deployment are deferred by the owner.
 
-**24 October 2026 main update:** CI/build/test hardening is verified at `518ca8cf430622bb3229ebe4f0519fe835835033` ([seven successful hosted jobs](https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240)); full current-source local containers and native restart/recovery passed; production dependency audit has zero findings in all severities. Feature totals stay **73 / 59 / 64 / 0, total 196**. See [the current return](../CLOUD_RETURN.md) and `MAIN_CI_HARDENING_20261024.md`. Earlier environment-unavailable statements below are historical; production/live/isolated-runner acceptance is still pending.
-
-The earlier 23 October bounded run is preserved in VERIFICATION_EVIDENCE.md and cloud-only/CLOUD_RETURN_20261023.md; its container trust blocker has now been resolved.
-
-**Build03: 73 Implemented / 59 Partial / 64 Blocked / 0 Not started, 196 total.** Feature classifications are unchanged. Native development and container verification now have the evidence above; no AWS production deployment or real provider/merchant acceptance is claimed.
-
-The private Sites Worker/browser preview is separate from the portable Fastify/PostgreSQL backend. Source/local evidence is not deployed/live evidence. Build03 recorded 100 automated passes; the later 77-backend + 4-infrastructure checks repeat a subset. Six templates synthesize offline; the earlier native gates exited 2; current native/containers pass, while isolated-runner acceptance remains blocked.
+Read [CLOUD_RETURN.md](../CLOUD_RETURN.md) for actual current tests/blockers and [the complete register](CURRENT_TASK_REGISTER.json) for every remaining item. The current complete source ZIP is `deliverables/FutureRobotic_AI_Workspace_Completion_20261024.zip`; its adjacent checksum/verification file records integrity and source provenance.
 
 | Area | Implemented | Partial | Blocked | Total |
 | --- | ---: | ---: | ---: | ---: |
 | External access and environment | 1 | 0 | 9 | 10 |
 | Quality and release verification | 1 | 3 | 7 | 11 |
-| Portable backend contracts | 5 | 2 | 0 | 7 |
+| Portable backend contracts | 6 | 1 | 0 | 7 |
 | Authentication and accounts | 2 | 5 | 2 | 9 |
-| Database and durable jobs | 5 | 3 | 2 | 10 |
+| Database and durable jobs | 6 | 2 | 2 | 10 |
 | Shared editor and result controls | 10 | 2 | 0 | 12 |
 | Signed-in workspace | 5 | 2 | 0 | 7 |
 | Right-side AI chatbot | 5 | 2 | 2 | 9 |
@@ -33,14 +27,8 @@ The private Sites Worker/browser preview is separate from the portable Fastify/P
 | AWS platform and delivery | 0 | 6 | 10 | 16 |
 | Launch and operations | 1 | 2 | 4 | 7 |
 
-## Read efficiently
+Current local evidence: 92 backend fixture cases, 41 UI/controller/parser cases, 10 real Chromium workflows, native 91 pass/1existing skip plus independent-process ledger and actual restart proofs. Exact current container/build/audit results are in the return and evidence summary. Do not sum repeated native cases as new unique features/tests.
 
-Start with PROJECT_HANDOFF.md and ARCHITECTURE_AND_SETUP.md. NEXT_20_TASKS.md proposes the next source batch. Use TASK_INDEX.csv to find IDs, then inspect full evidence/remaining work/acceptance in CURRENT_TASK_REGISTER.json or its Markdown edition. Both contain the same 196 items; do not spend context loading duplicate registers. Original field wording is preserved; 35 reviewed clarifications explain historical descriptions.
+GitHub Actions is blocked before executing by the existing account payment/spending-limit restriction; no settings were changed. The previous 518ca8c run passed 7 jobs and is historical evidence only. Latest workflow source adds actual Chromium workflows to native testing, retaining read-only permissions and failure gates.
 
-PRODUCTION_TEST_MATRIX contains 74 pending real scenarios, grouped into 12 existing release-validator groups plus full product acceptance. Read the scenarios relevant to the selected work now and the complete matrix before release. CROSS_AI_PROMPTS.md defines the handoff/output contract.
-
-## Access that cannot be supplied by code
-
-B01 native Docker/gVisor test host; B02 scoped AWS authority/config; B03 protected approved AI provider/quota; B04 merchant onboarding/sandbox/live authority; B05 domain; B06 OAuth applications; B07 verified sender/support mailbox; B08 business/country/pricing/fair-use/refund/retention/legal/asset decisions; B09 protected owner repository/OIDC trust. The coding model owns engineering and actual test/deployment execution after access.
-
-Every substantive implementation reply must report evidence-based status, actual checks/limits, blockers/next work, and a complete cumulative source ZIP with provenance and SHA-256. For unchanged source, link the last verified complete ZIP and say unchanged. Never fabricate file delivery or test/deployment evidence.
+Full production test matrix remains74named scenarios; record observations per row instead of assuming a local suite closes it. Remaining engineering is owned by the coding agent; owner supplies approved policy/account/secret-store configuration when live testing resumes. Never request plaintext credentials.

@@ -1,0 +1,65 @@
+$ node scripts/run-framework.mjs build
+
+  vinext build  (Vite 8.0.13)
+
+[33m▲ [43;33m[[43;30mWARNING[43;33m][0m [1mProxy environment variables detected. We'll use your proxy for fetch requests.[0m
+
+
+[1/5] analyze client references...
+[2Ktransforming...✓ 268 modules transformed.
+rendering chunks...
+✓ built in 1.20s
+[2/5] analyze server references...
+[2Ktransforming...✓ 786 modules transformed.
+rendering chunks...
+✓ built in 2.14s
+[3/5] build rsc environment...
+[2Ktransforming...✓ 265 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 692ms
+[4/5] build client environment...
+[2Ktransforming...✓ 849 modules transformed.
+rendering chunks...
+computing gzip size...
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 2.46s
+[5/5] build ssr environment...
+[2Ktransforming...✓ 810 modules transformed.
+rendering chunks...
+computing gzip size...
+✓ built in 1.79s
+[0m
+  Route (app)
+  ┌ ? /                         
+  ├ ƒ /:converter               
+  ├ ? /code-privacy             
+  ├ ? /code-runner              
+  ├ ? /contact                  
+  ├ ? /faqs                     
+  ├ ? /free-code-checker        
+  ├ ? /free-code-comment-remover
+  ├ ? /free-code-explainer      
+  ├ ? /free-code-fixer          
+  ├ ? /free-code-generator      
+  ├ ? /free-code-to-pdf         
+  ├ ? /free-converter           
+  ├ ? /partnerships             
+  ├ ? /pricing                  
+  ├ ? /privacy                  
+  ├ ? /shared                   
+  ├ ? /terms                    
+  └ ? /workspace                
+
+  ƒ Dynamic  ? Unknown
+
+  ? Some routes could not be classified. vinext currently uses static analysis
+    and cannot detect dynamic API usage (headers(), cookies(), etc.) at build time.
+    Automatic classification will be improved in a future release.
+
+  Build complete. Run `vinext start` to start the production server.
+

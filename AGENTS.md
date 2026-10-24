@@ -16,7 +16,7 @@ Read `START_HERE.md`, `handoff/PROJECT_HANDOFF.md`, `handoff/CURRENT_TASK_REGIST
 
 ## Evidence and implementation
 
-- Preserve stable IDs. Current totals: 73 Implemented, 59 Partial, 64 Blocked, 0 Not started, 196 total. Read reviewed clarifications; original descriptions can be stale. Inspect code before rebuilding existing features.
+- Preserve stable IDs. Current totals: 75 Implemented, 57 Partial, 64 Blocked, 0 Not started, 196 total. Read reviewed clarifications; original descriptions can be stale. Inspect code before rebuilding existing features.
 - Implemented means the precise named scope has evidence. It never means live AI, real merchant, native isolation or AWS operation merely because source/mock tests exist.
 - Separate application implementation, local test results, native/deployed acceptance, and owner decisions. Do not mark an item complete just by updating its status. Do not treat all 126 former partial tasks as still partial.
 - Use appropriate tests for changed behavior. Do not fabricate outputs, screenshots, benchmarks, runtime versions, payment outcomes or launch records. Exit 2 from native/release gates means blocked.

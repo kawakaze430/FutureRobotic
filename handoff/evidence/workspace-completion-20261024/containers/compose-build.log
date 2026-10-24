@@ -1,0 +1,555 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 2.37kB done
+#1 DONE 0.0s
+
+#2 [api internal] load build definition from Dockerfile.api
+#2 transferring dockerfile: 1.80kB done
+#2 DONE 0.0s
+
+#3 [web internal] load build definition from Dockerfile.web
+#3 transferring dockerfile: 1.09kB done
+#3 DONE 0.0s
+
+#4 [web internal] load metadata for docker.io/nginxinc/nginx-unprivileged:stable-alpine@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03
+#4 DONE 0.0s
+
+#5 [migrate internal] load metadata for docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914
+#5 DONE 0.0s
+
+#6 [web internal] load .dockerignore
+#6 transferring context: 253B done
+#6 DONE 0.0s
+
+#7 [migrate build 1/7] FROM docker.io/library/node:22-alpine@sha256:fe4f6d74e20370acb04ad889077d14d0f64a9c8ea6a42bc60cddf1e844699914
+#7 DONE 0.0s
+
+#8 [web stage-1 1/3] FROM docker.io/nginxinc/nginx-unprivileged:stable-alpine@sha256:f5116ed4606f3eb015dd4a8e28cb9b351476dc0ad4bc6e9f93b19cec130cdf03
+#8 CACHED
+
+#9 [migrate internal] load build context
+#9 transferring context: 2.07MB 0.0s done
+#9 transferring context: 2.07MB 0.0s done
+#9 DONE 0.1s
+
+#10 [api build 2/7] WORKDIR /app
+#10 CACHED
+
+#11 [api build 3/7] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     npm install --global pnpm@11.25.0
+#11 CACHED
+
+#12 [api runtime 3/9] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     npm install --global pnpm@11.25.0
+#12 CACHED
+
+#13 [web internal] load build context
+#13 transferring context: 17.14MB 0.2s done
+#13 DONE 0.2s
+
+#14 [web build 4/7] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#14 ...
+
+#15 [web stage-1 2/3] COPY --chown=101:101 portable/web/nginx.compose.conf /etc/nginx/conf.d/default.conf
+#15 DONE 0.4s
+
+#14 [web build 4/7] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#14 DONE 0.7s
+
+#16 [migrate build 5/7] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     pnpm install --frozen-lockfile
+#16 ...
+
+#17 [api runtime 4/9] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#17 DONE 1.3s
+
+#18 [api runtime 5/9] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     pnpm install --prod --frozen-lockfile && pnpm store prune
+#18 1.865 ? Verifying lockfile against supply-chain policies (1100 entries)...
+#18 1.874 Lockfile is up to date, resolution step is skipped
+#18 1.972 Progress: resolved 1, reused 0, downloaded 0, added 0
+#18 2.038 Packages: +461
+#18 2.038 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#18 2.731 
+#18 2.731    ╭──────────────────────────────────────────────────────────────────────╮
+#18 2.731    │                                                                      │
+#18 2.731    │                 Update available! 11.25.0 → 12.15.0.                 │
+#18 2.731    │                 Changelog: https://pnpm.io/v/12.15.0                 │
+#18 2.731    │   To update, run: curl -fsSL https://get.pnpm.io/install.sh | sh -   │
+#18 2.731    │                                                                      │
+#18 2.731    ╰──────────────────────────────────────────────────────────────────────╯
+#18 2.731 
+#18 2.974 Progress: resolved 461, reused 0, downloaded 0, added 0
+#18 4.517 Progress: resolved 461, reused 0, downloaded 1, added 0
+#18 4.524 Packages are hard linked from the content-addressable store to the virtual store.
+#18 4.524   Content-addressable store is at: /app/.sites-runtime/pnpm-store/v11
+#18 4.524   Virtual store is at:             node_modules/.pnpm
+#18 5.519 Progress: resolved 461, reused 0, downloaded 27, added 22
+#18 6.524 Progress: resolved 461, reused 0, downloaded 32, added 26
+#18 7.523 Progress: resolved 461, reused 0, downloaded 57, added 26
+#18 8.526 Progress: resolved 461, reused 0, downloaded 93, added 92
+#18 ...
+
+#16 [migrate build 5/7] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     pnpm install --frozen-lockfile
+#16 1.719 ? Verifying lockfile against supply-chain policies (1100 entries)...
+#16 1.729 Lockfile is up to date, resolution step is skipped
+#16 1.875 Progress: resolved 1, reused 0, downloaded 0, added 0
+#16 1.992 Packages: +898
+#16 1.992 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+#16 2.351 
+#16 2.351    ╭──────────────────────────────────────────────────────────────────────╮
+#16 2.351    │                                                                      │
+#16 2.351    │                 Update available! 11.25.0 → 12.15.0.                 │
+#16 2.351    │                 Changelog: https://pnpm.io/v/12.15.0                 │
+#16 2.351    │   To update, run: curl -fsSL https://get.pnpm.io/install.sh | sh -   │
+#16 2.351    │                                                                      │
+#16 2.351    ╰──────────────────────────────────────────────────────────────────────╯
+#16 2.351 
+#16 2.876 Progress: resolved 898, reused 0, downloaded 0, added 0
+#16 3.057 Packages are hard linked from the content-addressable store to the virtual store.
+#16 3.057   Content-addressable store is at: /app/.sites-runtime/pnpm-store/v11
+#16 3.057   Virtual store is at:             node_modules/.pnpm
+#16 3.877 Progress: resolved 898, reused 0, downloaded 21, added 18
+#16 4.880 Progress: resolved 898, reused 0, downloaded 58, added 55
+#16 5.882 Progress: resolved 898, reused 0, downloaded 61, added 61
+#16 6.880 Progress: resolved 898, reused 0, downloaded 68, added 67
+#16 7.882 Progress: resolved 898, reused 0, downloaded 81, added 69
+#16 8.899 Progress: resolved 898, reused 0, downloaded 124, added 96
+#16 9.913 Progress: resolved 898, reused 0, downloaded 153, added 148
+#16 ...
+
+#18 [api runtime 5/9] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     pnpm install --prod --frozen-lockfile && pnpm store prune
+#18 9.541 Progress: resolved 461, reused 0, downloaded 110, added 110
+#18 10.55 Progress: resolved 461, reused 0, downloaded 135, added 129
+#18 11.55 Progress: resolved 461, reused 0, downloaded 194, added 194
+#18 12.55 Progress: resolved 461, reused 0, downloaded 231, added 231
+#18 13.55 Progress: resolved 461, reused 0, downloaded 261, added 261
+#18 14.55 Progress: resolved 461, reused 0, downloaded 297, added 296
+#18 15.55 Progress: resolved 461, reused 0, downloaded 332, added 332
+#18 16.55 Progress: resolved 461, reused 0, downloaded 364, added 364
+#18 17.55 Progress: resolved 461, reused 0, downloaded 400, added 400
+#18 18.55 Progress: resolved 461, reused 0, downloaded 428, added 427
+#18 ...
+
+#16 [migrate build 5/7] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     pnpm install --frozen-lockfile
+#16 10.91 Progress: resolved 898, reused 0, downloaded 186, added 158
+#16 11.92 Progress: resolved 898, reused 0, downloaded 242, added 241
+#16 12.92 Progress: resolved 898, reused 0, downloaded 263, added 263
+#16 13.92 Progress: resolved 898, reused 0, downloaded 299, added 299
+#16 14.92 Progress: resolved 898, reused 0, downloaded 327, added 327
+#16 15.92 Progress: resolved 898, reused 0, downloaded 369, added 369
+#16 16.92 Progress: resolved 898, reused 0, downloaded 389, added 389
+#16 17.92 Progress: resolved 898, reused 0, downloaded 433, added 433
+#16 18.92 Progress: resolved 898, reused 0, downloaded 455, added 455
+#16 19.92 Progress: resolved 898, reused 0, downloaded 502, added 502
+#16 ...
+
+#18 [api runtime 5/9] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     pnpm install --prod --frozen-lockfile && pnpm store prune
+#18 19.44 Progress: resolved 461, reused 0, downloaded 461, added 461, done
+#18 ...
+
+#16 [migrate build 5/7] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     pnpm install --frozen-lockfile
+#16 20.96 Progress: resolved 898, reused 0, downloaded 520, added 520
+#16 21.96 Progress: resolved 898, reused 0, downloaded 575, added 575
+#16 22.96 Progress: resolved 898, reused 0, downloaded 598, added 598
+#16 23.96 Progress: resolved 898, reused 0, downloaded 643, added 643
+#16 24.96 Progress: resolved 898, reused 0, downloaded 674, added 674
+#16 25.96 Progress: resolved 898, reused 0, downloaded 712, added 712
+#16 26.96 Progress: resolved 898, reused 0, downloaded 761, added 761
+#16 27.96 Progress: resolved 898, reused 0, downloaded 785, added 785
+#16 28.96 Progress: resolved 898, reused 0, downloaded 834, added 834
+#16 29.96 Progress: resolved 898, reused 0, downloaded 857, added 857
+#16 30.44 Progress: resolved 898, reused 0, downloaded 898, added 898, done
+#16 ...
+
+#18 [api runtime 5/9] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     pnpm install --prod --frozen-lockfile && pnpm store prune
+#18 30.40 ✓ Lockfile passes supply-chain policies (1100 entries in 28.5s)
+#18 30.46 
+#18 30.46 dependencies:
+#18 30.46 + @aws-sdk/client-s3 3.1152.0
+#18 30.46 + @aws-sdk/client-sesv2 3.1152.0
+#18 30.46 + @aws-sdk/client-sqs 3.1152.0
+#18 30.46 + @aws-sdk/s3-request-presigner 3.1152.0
+#18 30.46 + @base-ui/react 1.7.0
+#18 30.46 + @codemirror/commands 6.11.1
+#18 30.46 + @codemirror/lang-php 6.0.2
+#18 30.46 + @codemirror/lang-sql 6.10.0
+#18 30.46 + @codemirror/language 6.13.1
+#18 30.46 + @codemirror/language-data 6.5.2
+#18 30.46 + @codemirror/state 6.7.6
+#18 30.46 + @codemirror/theme-one-dark 6.1.3
+#18 30.46 + @codemirror/view 6.43.14
+#18 30.46 + @fastify/cookie 11.1.3
+#18 30.46 + @fastify/swagger 9.9.2
+#18 30.46 + @hookform/resolvers 5.7.1
+#18 30.46 + @pdf-lib/fontkit 1.1.1
+#18 30.46 + @shadcn/react 0.3.0
+#18 30.46 + class-variance-authority 0.7.1
+#18 30.46 + clsx 2.1.1
+#18 30.46 + cmdk 1.1.1
+#18 30.46 + codemirror 6.0.2
+#18 30.46 + date-fns 4.4.0
+#18 30.46 + diff 9.0.0
+#18 30.46 + drizzle-orm 0.45.2
+#18 30.46 + embla-carousel-react 8.6.0
+#18 30.46 + fastify 5.12.7
+#18 30.46 + fflate 0.8.3
+#18 30.46 + input-otp 1.4.2
+#18 30.46 + jose 6.2.12
+#18 30.46 + lucide-react 1.31.0
+#18 30.46 + next 16.4.1
+#18 30.46 + next-themes 0.4.6
+#18 30.46 + pdf-lib 1.17.1
+#18 30.46 + pg 8.23.1
+#18 30.46 + radix-ui 1.6.7
+#18 30.46 + react 19.2.6
+#18 30.46 + react-day-picker 10.0.1
+#18 30.46 + react-dom 19.2.6
+#18 30.46 + react-hook-form 7.85.0
+#18 30.46 + react-markdown 10.1.0
+#18 30.46 + react-resizable-panels 4.12.2
+#18 30.46 + recharts 3.8.0
+#18 30.46 + remark-gfm 4.0.1
+#18 30.46 + sonner 2.0.8
+#18 30.46 + tailwind-merge 3.6.0
+#18 30.46 + vaul 1.1.2
+#18 30.46 + zod 4.6.6
+#18 30.46 
+#18 30.46 devDependencies: skipped
+#18 30.46 
+#18 30.54 Done in 29.5s using pnpm v11.25.0
+#18 31.16 Removed all cached metadata files
+#18 31.98 Removed 0 files (0 B)
+#18 32.06 Removed 0 packages
+#18 DONE 32.1s
+
+#19 [migrate runtime 6/9] RUN mkdir -p /data/objects && chown node:node /data/objects
+#19 ...
+
+#20 [web build 4/7] COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+#20 CACHED
+
+#21 [web build 5/7] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     pnpm install --frozen-lockfile
+#21 CACHED
+
+#16 [api build 5/7] RUN --mount=type=secret,id=build_ca     if [ -s /run/secrets/build_ca ]; then export NODE_EXTRA_CA_CERTS=/run/secrets/build_ca; fi;     pnpm install --frozen-lockfile
+#16 33.70 ✓ Lockfile passes supply-chain policies (1100 entries in 31.9s)
+#16 33.71 .../node_modules/workerd postinstall$ node install.js
+#16 33.72 .../esbuild@0.27.3/node_modules/esbuild postinstall$ node install.js
+#16 33.72 .../esbuild@0.25.12/node_modules/esbuild postinstall$ node install.js
+#16 33.73 .../esbuild@0.18.20/node_modules/esbuild postinstall$ node install.js
+#16 33.78 .../esbuild@0.28.0/node_modules/esbuild postinstall$ node install.js
+#16 33.78 .../node_modules/workerd postinstall: [workerd] Failed to validate workerd binary
+#16 33.78 .../node_modules/workerd postinstall: Local development will not work. This usually means you're on an unsupported
+#16 33.78 .../node_modules/workerd postinstall: operating system, or missing some shared libraries. On Debian-based systems,
+#16 33.78 .../node_modules/workerd postinstall: make sure you've installed the `libc++1` package.
+#16 33.80 .../node_modules/workerd postinstall: Done
+#16 33.84 .../esbuild@0.25.12/node_modules/esbuild postinstall: Done
+#16 33.84 .../esbuild@0.18.20/node_modules/esbuild postinstall: Done
+#16 33.85 .../esbuild@0.27.3/node_modules/esbuild postinstall: Done
+#16 33.85 .../esbuild@0.28.0/node_modules/esbuild postinstall: Done
+#16 33.90 .../node_modules/unrs-resolver postinstall$ napi-postinstall unrs-resolver 1.11.1 check
+#16 34.01 .../node_modules/unrs-resolver postinstall: Done
+#16 34.37 
+#16 34.37 dependencies:
+#16 34.37 + @aws-sdk/client-s3 3.1152.0
+#16 34.37 + @aws-sdk/client-sesv2 3.1152.0
+#16 34.37 + @aws-sdk/client-sqs 3.1152.0
+#16 34.37 + @aws-sdk/s3-request-presigner 3.1152.0
+#16 34.37 + @base-ui/react 1.7.0
+#16 34.37 + @codemirror/commands 6.11.1
+#16 34.37 + @codemirror/lang-php 6.0.2
+#16 34.37 + @codemirror/lang-sql 6.10.0
+#16 34.37 + @codemirror/language 6.13.1
+#16 34.37 + @codemirror/language-data 6.5.2
+#16 34.37 + @codemirror/state 6.7.6
+#16 34.37 + @codemirror/theme-one-dark 6.1.3
+#16 34.37 + @codemirror/view 6.43.14
+#16 34.37 + @fastify/cookie 11.1.3
+#16 34.37 + @fastify/swagger 9.9.2
+#16 34.37 + @hookform/resolvers 5.7.1
+#16 34.37 + @pdf-lib/fontkit 1.1.1
+#16 34.37 + @shadcn/react 0.3.0
+#16 34.37 + class-variance-authority 0.7.1
+#16 34.37 + clsx 2.1.1
+#16 34.37 + cmdk 1.1.1
+#16 34.37 + codemirror 6.0.2
+#16 34.37 + date-fns 4.4.0
+#16 34.37 + diff 9.0.0
+#16 34.37 + drizzle-orm 0.45.2
+#16 34.37 + embla-carousel-react 8.6.0
+#16 34.37 + fastify 5.12.7
+#16 34.37 + fflate 0.8.3
+#16 34.37 + input-otp 1.4.2
+#16 34.37 + jose 6.2.12
+#16 34.37 + lucide-react 1.31.0
+#16 34.37 + next 16.4.1
+#16 34.37 + next-themes 0.4.6
+#16 34.37 + pdf-lib 1.17.1
+#16 34.37 + pg 8.23.1
+#16 34.37 + radix-ui 1.6.7
+#16 34.37 + react 19.2.6
+#16 34.37 + react-day-picker 10.0.1
+#16 34.37 + react-dom 19.2.6
+#16 34.37 + react-hook-form 7.85.0
+#16 34.37 + react-markdown 10.1.0
+#16 34.37 + react-resizable-panels 4.12.2
+#16 34.37 + recharts 3.8.0
+#16 34.37 + remark-gfm 4.0.1
+#16 34.37 + sonner 2.0.8
+#16 34.37 + tailwind-merge 3.6.0
+#16 34.37 + vaul 1.1.2
+#16 34.37 + zod 4.6.6
+#16 34.37 
+#16 34.37 devDependencies:
+#16 34.37 + @cloudflare/vite-plugin 1.37.1
+#16 34.37 + @cloudflare/workers-types 4.20260515.1
+#16 34.37 + @electric-sql/pglite 0.3.16
+#16 34.37 + @tailwindcss/postcss 4.2.1
+#16 34.37 + @types/node 22.19.19
+#16 34.37 + @types/pg 8.23.1
+#16 34.37 + @types/react 19.2.14
+#16 34.37 + @types/react-dom 19.2.3
+#16 34.37 + @vitejs/plugin-react 6.0.2
+#16 34.37 + @vitejs/plugin-rsc 0.5.26
+#16 34.37 + aws-cdk-lib 2.273.0
+#16 34.37 + constructs 10.8.1
+#16 34.37 + drizzle-kit 0.31.10
+#16 34.37 + eslint 9.39.4
+#16 34.37 + eslint-config-next 16.4.1
+#16 34.37 + json-rpc-2.0 1.7.1
+#16 34.37 + raw-body 3.0.2
+#16 34.37 + react-server-dom-webpack 19.2.6
+#16 34.37 + tailwindcss 4.2.1
+#16 34.37 + tsx 4.23.15
+#16 34.37 + tw-animate-css 1.4.0
+#16 34.37 + typescript 5.9.3
+#16 34.37 + vinext 1.0.0-beta.5
+#16 34.37 + vite 8.0.13
+#16 34.37 + wrangler 4.92.0
+#16 34.37 
+#16 34.47 Done in 33.4s using pnpm v11.25.0
+#16 DONE 34.6s
+
+#22 [api build 6/7] COPY portable/ portable/
+#22 ...
+
+#19 [api runtime 6/9] RUN mkdir -p /data/objects && chown node:node /data/objects
+#19 DONE 8.7s
+
+#23 [web build 6/7] COPY . .
+#23 ...
+
+#22 [api build 6/7] COPY portable/ portable/
+#22 DONE 9.6s
+
+#23 [web build 6/7] COPY . .
+#23 DONE 9.7s
+
+#24 [migrate build 7/7] RUN pnpm api:build
+#24 ...
+
+#25 [web build 7/7] RUN pnpm web:build
+#25 15.97 $ vite build --config portable/web/vite.config.ts && node --import tsx ops/prerender.mjs
+#25 16.19 vite v8.0.13 building client environment for production...
+#25 16.20 [2K
+transforming...
+#25 ...
+
+#24 [migrate build 7/7] RUN pnpm api:build
+#24 16.73 $ tsc -p portable/tsconfig.json
+#24 ...
+
+#25 [web build 7/7] RUN pnpm web:build
+#25 16.20 [2K
+transforming...✓ 749 modules transformed.
+#25 17.51 rendering chunks...
+#25 17.80 computing gzip size...
+#25 17.83 outputs/web/index.html                           0.46 kB │ gzip:   0.31 kB
+#25 17.83 outputs/web/assets/index-C6BfjRVR.css          260.03 kB │ gzip:  45.84 kB
+#25 17.83 outputs/web/assets/diff-C-FgDxsZ.js              0.30 kB │ gzip:   0.23 kB
+#25 17.83 outputs/web/assets/brainfuck-DS57JWzW.js         0.59 kB │ gzip:   0.32 kB
+#25 17.83 outputs/web/assets/properties-C7pe-l6K.js        0.66 kB │ gzip:   0.34 kB
+#25 17.83 outputs/web/assets/cmake-BQrQFYrO.js             0.78 kB │ gzip:   0.46 kB
+#25 17.83 outputs/web/assets/asciiarmor-F7o63iZp.js        0.79 kB │ gzip:   0.40 kB
+#25 17.83 outputs/web/assets/protobuf-kvcJCnFl.js          0.80 kB │ gzip:   0.51 kB
+#25 17.83 outputs/web/assets/http-YdyRc1Oy.js              0.84 kB │ gzip:   0.42 kB
+#25 17.83 outputs/web/assets/solr-Rl-NDlh-.js              0.86 kB │ gzip:   0.45 kB
+#25 17.83 outputs/web/assets/troff-B6ZIN-A0.js             0.95 kB │ gzip:   0.43 kB
+#25 17.83 outputs/web/assets/spreadsheet-D40wMmPG.js       1.13 kB │ gzip:   0.53 kB
+#25 17.83 outputs/web/assets/toml-ClZMF6Q0.js              1.19 kB │ gzip:   0.53 kB
+#25 17.83 outputs/web/assets/mbox-Cm7wv7_f.js              1.38 kB │ gzip:   0.65 kB
+#25 17.83 outputs/web/assets/rpm-CnFc7qcW.js               1.59 kB │ gzip:   0.81 kB
+#25 17.83 outputs/web/assets/sieve-FagYiU1U.js             1.61 kB │ gzip:   0.77 kB
+#25 17.83 outputs/web/assets/factor-Dv8V4v0h.js            1.66 kB │ gzip:   0.60 kB
+#25 17.83 outputs/web/assets/eiffel-DvFFNsuL.js            1.69 kB │ gzip:   0.90 kB
+#25 17.83 outputs/web/assets/z80-BW-hwD0z.js               1.75 kB │ gzip:   0.79 kB
+#25 17.83 outputs/web/assets/mumps-BNCCG4mf.js             1.83 kB │ gzip:   0.95 kB
+#25 17.83 outputs/web/assets/elm-Bl5p43_x.js               1.86 kB │ gzip:   0.81 kB
+#25 17.83 outputs/web/assets/mathematica-C3rSXjLi.js       1.89 kB │ gzip:   0.80 kB
+#25 17.83 outputs/web/assets/dockerfile-nW9gYVY5.js        1.90 kB │ gzip:   0.65 kB
+#25 17.83 outputs/web/assets/turtle-C3cLALkT.js            1.95 kB │ gzip:   0.88 kB
+#25 17.83 outputs/web/assets/ebnf-DjPrLno-.js              1.97 kB │ gzip:   0.80 kB
+#25 17.83 outputs/web/assets/dist-d-6kgWI9.js              1.99 kB │ gzip:   1.26 kB
+#25 17.83 outputs/web/assets/smalltalk-Dmd8QOBz.js         1.99 kB │ gzip:   0.85 kB
+#25 17.83 outputs/web/assets/fcl-C66p-cU6.js               2.02 kB │ gzip:   0.95 kB
+#25 17.83 outputs/web/assets/ntriples-CAw5ZNib.js          2.07 kB │ gzip:   0.73 kB
+#25 17.83 outputs/web/assets/dtd-BkcBTebG.js               2.09 kB │ gzip:   0.87 kB
+#25 17.83 outputs/web/assets/octave-BJNw1bQ8.js            2.10 kB │ gzip:   1.07 kB
+#25 17.83 outputs/web/assets/yacas-CziN6ZCD.js             2.14 kB │ gzip:   1.08 kB
+#25 17.83 outputs/web/assets/pascal-BvuvULxs.js            2.25 kB │ gzip:   1.17 kB
+#25 17.83 outputs/web/assets/apl-BHozfEGa.js               2.29 kB │ gzip:   1.22 kB
+#25 17.83 outputs/web/assets/simple-mode-CMwMTHlO.js       2.29 kB │ gzip:   1.09 kB
+#25 17.83 outputs/web/assets/commonlisp-C8P3kMWj.js        2.32 kB │ gzip:   1.10 kB
+#25 17.83 outputs/web/assets/tcl-Hr_aQysE.js               2.35 kB │ gzip:   1.22 kB
+#25 17.83 outputs/web/assets/shell-BuL85rHI.js             2.44 kB │ gzip:   1.20 kB
+#25 17.83 outputs/web/assets/webidl-VN_SZNKy.js            2.44 kB │ gzip:   1.24 kB
+#25 17.83 outputs/web/assets/pig-CscR2LcX.js               2.51 kB │ gzip:   1.37 kB
+#25 17.83 outputs/web/assets/puppet-7IZP2Mpq.js            2.54 kB │ gzip:   1.20 kB
+#25 17.83 outputs/web/assets/forth-Bh5HuCnl.js             2.54 kB │ gzip:   1.32 kB
+#25 17.83 outputs/web/assets/dist-DxXVt6gS.js              2.60 kB │ gzip:   1.49 kB
+#25 17.83 outputs/web/assets/dist-A0tY6tcy.js              2.69 kB │ gzip:   1.17 kB
+#25 17.83 outputs/web/assets/velocity-D1kWQJp0.js          2.70 kB │ gzip:   1.11 kB
+#25 17.83 outputs/web/assets/tiddlywiki-B7_ajHe6.js        2.76 kB │ gzip:   1.07 kB
+#25 17.83 outputs/web/assets/modelica-BBuObysX.js          2.79 kB │ gzip:   1.28 kB
+#25 17.83 outputs/web/assets/oz-BY1M1V6T.js                2.88 kB │ gzip:   1.27 kB
+#25 17.83 outputs/web/assets/r-Tgc82Afy.js                 3.00 kB │ gzip:   1.34 kB
+#25 17.83 outputs/web/assets/stex-B9Jmxd2A.js              3.12 kB │ gzip:   1.18 kB
+#25 17.83 outputs/web/assets/lua-D-z6A0dj.js               3.13 kB │ gzip:   1.40 kB
+#25 17.83 outputs/web/assets/cypher-DKLV2noE.js            3.18 kB │ gzip:   1.49 kB
+#25 17.83 outputs/web/assets/tiki-DznzV5Us.js              3.23 kB │ gzip:   1.26 kB
+#25 17.83 outputs/web/assets/vhdl-DBegw3wp.js              3.31 kB │ gzip:   1.49 kB
+#25 17.83 outputs/web/assets/dist-BSrWlXMX.js              3.32 kB │ gzip:   1.69 kB
+#25 17.83 outputs/web/assets/sparql-D80JYSSH.js            3.33 kB │ gzip:   1.59 kB
+#25 17.83 outputs/web/assets/mscgen-BfOhr8eA.js            3.49 kB │ gzip:   0.97 kB
+#25 17.83 outputs/web/assets/vb-liLxgAHT.js                3.65 kB │ gzip:   1.81 kB
+#25 17.83 outputs/web/assets/d-fG7S0X09.js                 3.67 kB │ gzip:   1.67 kB
+#25 17.83 outputs/web/assets/q-DrNfG0K0.js                 3.69 kB │ gzip:   1.69 kB
+#25 17.83 outputs/web/assets/swift-C_3ADj_i.js             3.76 kB │ gzip:   1.81 kB
+#25 17.83 outputs/web/assets/coffeescript-DjYgLAaW.js      3.85 kB │ gzip:   1.69 kB
+#25 17.83 outputs/web/assets/fortran-CB1ZQavS.js           3.86 kB │ gzip:   1.93 kB
+#25 17.83 outputs/web/assets/asn1-DyR3TB-A.js              3.95 kB │ gzip:   1.95 kB
+#25 17.83 outputs/web/assets/dylan-CmW5NY8o.js             4.04 kB │ gzip:   1.63 kB
+#25 17.83 outputs/web/assets/ttcn-cfg-DKOaibcb.js          4.07 kB │ gzip:   1.72 kB
+#25 17.83 outputs/web/assets/asterisk-CkTJ_WY3.js          4.07 kB │ gzip:   1.74 kB
+#25 17.83 outputs/web/assets/livescript-BIlmddWw.js        4.08 kB │ gzip:   1.62 kB
+#25 17.83 outputs/web/assets/groovy-DS7zRB9h.js            4.10 kB │ gzip:   1.74 kB
+#25 17.83 outputs/web/assets/haskell-CLRfPq5S.js           4.15 kB │ gzip:   1.91 kB
+#25 17.83 outputs/web/assets/gas-Cwgl3-hz.js               4.55 kB │ gzip:   1.27 kB
+#25 17.83 outputs/web/assets/mllike-Bjs67v9x.js            4.82 kB │ gzip:   1.57 kB
+#25 17.83 outputs/web/assets/ttcn-CXwowe9f.js              4.82 kB │ gzip:   2.13 kB
+#25 17.83 outputs/web/assets/dist-Bs1Ps4pM.js              4.93 kB │ gzip:   2.34 kB
+#25 17.83 outputs/web/assets/crystal-BiVn1POT.js           5.02 kB │ gzip:   2.10 kB
+#25 17.83 outputs/web/assets/ecl-CUht_Ybn.js               5.09 kB │ gzip:   2.30 kB
+#25 17.83 outputs/web/assets/ruby-CaNzPzuR.js              5.15 kB │ gzip:   2.16 kB
+#25 17.83 outputs/web/assets/julia-C0CzgJFk.js             5.26 kB │ gzip:   2.16 kB
+#25 17.83 outputs/web/assets/vbscript-BdC4NG41.js          5.43 kB │ gzip:   2.56 kB
+#25 17.83 outputs/web/assets/mirc-3uMttQkU.js              5.91 kB │ gzip:   2.70 kB
+#25 17.83 outputs/web/assets/cobol-C09l_xl7.js             6.22 kB │ gzip:   3.01 kB
+#25 17.83 outputs/web/assets/xquery-BYIvuRHA.js            6.22 kB │ gzip:   2.57 kB
+#25 17.83 outputs/web/assets/python-aEsLsQQh.js            6.28 kB │ gzip:   2.67 kB
+#25 17.83 outputs/web/assets/scheme-DEOV3kIm.js            6.36 kB │ gzip:   2.38 kB
+#25 17.83 outputs/web/assets/pug-ZtNqxQ3_.js               6.67 kB │ gzip:   1.99 kB
+#25 17.83 outputs/web/assets/textile-yQagq3CN.js           6.77 kB │ gzip:   2.44 kB
+#25 17.83 outputs/web/assets/nsis-CWmmxvBu.js              7.06 kB │ gzip:   3.08 kB
+#25 17.83 outputs/web/assets/nginx-DL7IMebz.js             7.40 kB │ gzip:   2.73 kB
+#25 17.83 outputs/web/assets/powershell-Dl25QJ-n.js        7.69 kB │ gzip:   3.29 kB
+#25 17.83 outputs/web/assets/erlang-Beexakyc.js            7.84 kB │ gzip:   2.89 kB
+#25 17.83 outputs/web/assets/haxe-DTR0Iae0.js              7.86 kB │ gzip:   2.93 kB
+#25 17.83 outputs/web/assets/verilog-BBYVXMkD.js           8.43 kB │ gzip:   3.53 kB
+#25 17.83 outputs/web/assets/sas-Co9UMVBr.js               9.33 kB │ gzip:   4.11 kB
+#25 17.83 outputs/web/assets/clojure-58GtEZUJ.js           9.40 kB │ gzip:   4.02 kB
+#25 17.83 outputs/web/assets/perl-CJajETLp.js              9.75 kB │ gzip:   3.51 kB
+#25 17.83 outputs/web/assets/idl-De49ADre.js               9.82 kB │ gzip:   4.40 kB
+#25 17.83 outputs/web/assets/gherkin-BZDYnX9v.js          10.15 kB │ gzip:   5.09 kB
+#25 17.83 outputs/web/assets/dist-CAqMJTKX.js             11.55 kB │ gzip:   5.17 kB
+#25 17.83 outputs/web/assets/dist-F8QTK5hZ.js             14.39 kB │ gzip:   5.80 kB
+#25 17.83 outputs/web/assets/dist-CCkvF-WN.js             16.23 kB │ gzip:   7.47 kB
+#25 17.83 outputs/web/assets/javascript-DqA9Hs9G.js       17.02 kB │ gzip:   5.74 kB
+#25 17.83 outputs/web/assets/dist-D_WVGrAy.js             19.70 kB │ gzip:   4.49 kB
+#25 17.83 outputs/web/assets/dist-3Wmrkl3Y.js             20.77 kB │ gzip:   9.35 kB
+#25 17.83 outputs/web/assets/dist-BJS4rd5s.js             21.78 kB │ gzip:  10.12 kB
+#25 17.83 outputs/web/assets/clike-SwnF-1sx.js            22.06 kB │ gzip:   7.75 kB
+#25 17.83 outputs/web/assets/dist-37DTZDHv.js             22.95 kB │ gzip:  10.41 kB
+#25 17.83 outputs/web/assets/stylus-CyRBGwks.js           23.52 kB │ gzip:   8.56 kB
+#25 17.83 outputs/web/assets/css-CSGwuX9R.js              24.70 kB │ gzip:   8.25 kB
+#25 17.83 outputs/web/assets/dist-XBNcW7wh.js             26.85 kB │ gzip:  12.78 kB
+#25 17.83 outputs/web/assets/dist-CFZdZgfY.js             26.89 kB │ gzip:   8.81 kB
+#25 17.83 outputs/web/assets/dist-BUDGk-rF.js             28.42 kB │ gzip:  11.54 kB
+#25 17.83 outputs/web/assets/dist-E0KgtOxB.js             28.88 kB │ gzip:   9.55 kB
+#25 17.83 outputs/web/assets/dist-CH5IQBkU.js             30.72 kB │ gzip:  12.73 kB
+#25 17.83 outputs/web/assets/dist-DpL-4tF3.js             31.78 kB │ gzip:  10.85 kB
+#25 17.83 outputs/web/assets/dist-PUq0WOuP.js             34.15 kB │ gzip:  13.05 kB
+#25 17.83 outputs/web/assets/dist-yvD-zLDp.js             35.07 kB │ gzip:  12.38 kB
+#25 17.83 outputs/web/assets/sql-BXvrFyKn.js              36.85 kB │ gzip:  10.90 kB
+#25 17.83 outputs/web/assets/dist-HpFvuAPM.js             44.02 kB │ gzip:  15.20 kB
+#25 17.83 outputs/web/assets/dist-DhOlo8Rv.js             44.59 kB │ gzip:  19.32 kB
+#25 17.83 outputs/web/assets/dist-HnlKA2K3.js             47.73 kB │ gzip:  19.53 kB
+#25 17.83 outputs/web/assets/dist-CFTUkWfs.js             49.73 kB │ gzip:  16.71 kB
+#25 17.83 outputs/web/assets/dist-nR-wwopv.js             68.02 kB │ gzip:  23.12 kB
+#25 17.83 outputs/web/assets/dist-11rZS9We.js             83.69 kB │ gzip:  30.66 kB
+#25 17.83 outputs/web/assets/dist-DWKUpmf1.js             84.72 kB │ gzip:  33.77 kB
+#25 17.83 outputs/web/assets/dist-ZxhRtoOD.js             98.13 kB │ gzip:  28.76 kB
+#25 17.83 outputs/web/assets/dist-C_4diOZO.js            103.89 kB │ gzip:  34.75 kB
+#25 17.83 outputs/web/assets/dist-DXdyW2Vm.js            201.20 kB │ gzip:  65.08 kB
+#25 17.83 outputs/web/assets/index-3DCI58LD.js           653.28 kB │ gzip: 199.62 kB
+#25 17.83 outputs/web/assets/pdf-export-MUEhgNnZ.js    1,133.71 kB │ gzip: 506.03 kB
+#25 17.83 
+#25 17.83 ✓ built in 1.65s
+#25 17.83 [plugin builtin:vite-reporter] 
+#25 17.83 (!) Some chunks are larger than 500 kB after minification. Consider:
+#25 17.83 - Using dynamic import() to code-split the application
+#25 17.83 - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+#25 17.83 - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+#25 18.58 {"pairRoutes":68,"sourceDirectories":68,"indexingApproved":false,"routes":152}
+#25 DONE 18.6s
+
+#26 [web stage-1 3/3] COPY --chown=101:101 --from=build /app/outputs/web /usr/share/nginx/html
+#26 DONE 0.2s
+
+#24 [migrate build 7/7] RUN pnpm api:build
+#24 ...
+
+#27 [web] exporting to image
+#27 exporting layers 0.8s done
+#27 writing image sha256:f3e3b8f0b65879da535e17dcd880cb72fc565d407fb876e5d107cc44b8c2c1d0 done
+#27 naming to docker.io/library/fr-cloud-5914e258b771-web done
+#27 DONE 0.8s
+
+#28 [web] resolving provenance for metadata file
+#28 DONE 0.0s
+
+#24 [migrate build 7/7] RUN pnpm api:build
+#24 DONE 21.9s
+
+#29 [migrate runtime 7/9] COPY --from=build /app/portable/dist portable/dist
+#29 DONE 12.1s
+
+#30 [migrate runtime 8/9] COPY --chown=node:node portable/migrations portable/migrations
+#30 DONE 9.4s
+
+#31 [api runtime 9/9] COPY --chown=node:node portable/certs portable/certs
+#31 DONE 8.3s
+
+#32 [api] exporting to image
+#32 exporting layers
+#32 ...
+
+#33 [migrate] exporting to image
+#33 ...
+
+#32 [api] exporting to image
+#32 exporting layers 11.2s done
+#32 writing image sha256:26476e87fd690655dc3fb7730d1f8c76b49286513aa16693667c0d8ee3179c64 done
+#32 naming to docker.io/library/fr-cloud-5914e258b771-api done
+#32 DONE 11.3s
+
+#33 [migrate] exporting to image
+#33 exporting layers 11.2s done
+#33 writing image sha256:f918134ed1434b913a750e529d262b5cd1c707f2deed2de68587dd23dfb2e260 done
+#33 naming to docker.io/library/fr-cloud-5914e258b771-migrate done
+#33 DONE 11.3s
+
+#34 [api] resolving provenance for metadata file
+#34 DONE 0.0s
+
+#35 [migrate] resolving provenance for metadata file
+#35 DONE 0.0s
+ fr-cloud-5914e258b771-web  Built
+ fr-cloud-5914e258b771-api  Built
+ fr-cloud-5914e258b771-migrate  Built

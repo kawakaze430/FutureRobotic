@@ -1,0 +1,12 @@
+✔ RUN-005 only five runtimes and 10,000 Unicode characters are accepted (2.227103ms)
+✔ RUN-006 signed capabilities bind source, stdin, runtime and job; replay and forgery fail (2.53773ms)
+✔ RUN-007/010 container launch has explicit isolation, resource ceilings and immutable image (0.349696ms)
+✔ REL-004 release stays closed when owner approval or any measured evidence is missing (9.359589ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 83.897634
