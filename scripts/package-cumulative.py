@@ -75,7 +75,7 @@ def package(repo: Path, destination: Path) -> dict:
         raise RuntimeError('Original reference assets are missing')
     destination.mkdir(parents=True, exist_ok=True)
     zip_path = destination / f'FutureRobotic_AI_Cumulative_{revision[:12]}.zip'
-    if zip_path.resolve().is_relative_to(repo) and zip_path.relative_to(repo).as_posix() in selected:
+    if zip_path.resolve().is_relative_to(repo) and zip_path.resolve().relative_to(repo).as_posix() in selected:
         raise RuntimeError('Output archive cannot be an included tracked source member')
     files = []
     with zipfile.ZipFile(zip_path, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6, allowZip64=True) as output:
