@@ -3,8 +3,9 @@ import React,{useMemo,useState} from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import {diffLines} from 'diff';
+import {safeMarkdownUrl} from '../lib/safe-markdown-url';
 export function MarkdownResult({content}:{content:string}){
- return <div className="markdown-result"><ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml urlTransform={url=>/^(https?:|mailto:|#|\/[^/])/.test(url)?url:''} components={{a:({children,href})=><a href={href} rel="noreferrer noopener" target="_blank">{children}</a>,img:({alt})=><span>[Image: {alt??'omitted'}]</span>}}>{content.slice(0,200000)}</ReactMarkdown></div>;
+ return <div className="markdown-result"><ReactMarkdown remarkPlugins={[remarkGfm]} skipHtml urlTransform={safeMarkdownUrl} components={{a:({children,href})=><a href={href} rel="noreferrer noopener" target="_blank">{children}</a>,img:({alt})=><span>[Image: {alt??'omitted'}]</span>}}>{content.slice(0,200000)}</ReactMarkdown></div>;
 }
 export function fixedCode(value:string){const match=/```[^\n]*\n([\s\S]*?)```/.exec(value);return match?match[1].trimEnd():value;}
 export function changeSummary(before:string,after:string){

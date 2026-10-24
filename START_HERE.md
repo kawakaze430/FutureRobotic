@@ -1,5 +1,7 @@
 # FutureRobotic AI — complete source and continuation package
 
+> Markdown link hardening (SEC-003, partial) is documented in [handoff/SECURITY_MARKDOWN_20261024.md](handoff/SECURITY_MARKDOWN_20261024.md). See its source-bound test and remaining acceptance gates.
+
 > Current 24 October 2026 source batch:75 Implemented / 57 Partial / 64 Blocked / 0 Not started / 196 total. API-003 and DAT-006 now complete their named scope; source `4dead9d`. See CLOUD_RETURN.md and handoff/evidence/workspace-completion-20261024/summary.json. Live setup/deployment deferred. Earlier counts/audits below are historical.
 
 
