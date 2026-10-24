@@ -2479,7 +2479,8 @@
       "reference": "Production requirement",
       "blockers": "B01/B02/B09",
       "last_reviewed": "2026-10-22",
-      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates"
+      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | WORKSPACE-20261024: seven hosted jobs successful at397d0e1; https://github.com/kawakaze430/FutureRobotic/actions/runs/40069616534; application code4dead9d.",
+      "reviewed_remaining_work": "Current owner-repository CI verification passed all seven jobs at397d0e1, including actual local browser/native/container gates. Protected production environments/OIDC role assumption and untrusted-branch denial, first deploy, rollout/failed-smoke rollback and B02/B09 operational acceptance remain pending."
     },
     {
       "id": "AWS-014",
@@ -2547,7 +2548,8 @@
       "reference": "Production requirement",
       "blockers": "B01/B02",
       "last_reviewed": "2026-10-22",
-      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates"
+      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | WORKSPACE-20261024: native91pass/1existing skip; separate-process ledger/crash and actual restart proof; Compose migrations/smoke; hosted run40069616534.",
+      "reviewed_remaining_work": "Native multi-process contention/replay/settlement/killed-transaction rollback, actual restart and full container gates verified locally and in hosted CI. Actual RDS production privileges/load/failover and applicable live matrix acceptance remain pending."
     },
     {
       "id": "QAS-004",

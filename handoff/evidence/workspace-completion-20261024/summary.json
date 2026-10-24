@@ -207,11 +207,6 @@
   ],
   "blockers": [
     {
-      "operation": "Hosted GitHub Actions verification",
-      "reason": "Prior latest delivery was rejected before starting by account payment/spending-limit restriction. Not rerun unchanged; current local source tested.",
-      "owner": "GitHub account owner; primary agent runs current verification after resolution."
-    },
-    {
       "operation": "Upgrade fast-uri3.1.8 to3.1.9",
       "reason": "Fixed version published2026-10-19T23:05:26.357Z, under existing seven-day minimum release age.2low+2moderate findings; high/critical0.",
       "next_action": "After2026-10-26T23:05:26.357Z upgrade only fast-uri override, frozen install, audit and affected API/build/native/container regression. Do not bypass age policy.",
@@ -229,5 +224,53 @@
     }
   ],
   "production_ready": false,
-  "aws_deployed": false
+  "aws_deployed": false,
+  "hosted_ci": {
+    "run_id": 40069616534,
+    "url": "https://github.com/kawakaze430/FutureRobotic/actions/runs/40069616534",
+    "head_sha": "397d0e1fe2ac6907b7b690c60a36189622c5c6c2",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "Native PostgreSQL, ledger processes and browser workflows",
+        "conclusion": "success"
+      },
+      {
+        "name": "Source, unit tests and builds (Node 22)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Production dependency audit",
+        "conclusion": "success"
+      },
+      {
+        "name": "Validate GitHub Actions workflows",
+        "conclusion": "success"
+      },
+      {
+        "name": "Container images, migrations and HTTP readiness",
+        "conclusion": "success"
+      },
+      {
+        "name": "Source, unit tests and builds (Node 24)",
+        "conclusion": "success"
+      },
+      {
+        "name": "Required verification result",
+        "conclusion": "success"
+      }
+    ],
+    "application_source_identical_to": "4dead9d722ab60eff22199a07d6ae9a88e373ac0",
+    "scope": "Real hosted Node22/24, native/process/restart/Chromium, containers, workflow, high-threshold audit and aggregate; no live-service release"
+  },
+  "historical_ci_block": "Prior f028244 failed before starting for payment/spending-limit reasons. Current397d0e1 ran and passed7jobs; no billing settings changed.",
+  "hosted_artifact_download": {
+    "operation": "Download hosted native/container/audit artifact archives",
+    "command": "gh run download 40069616534 --repo kawakaze430/FutureRobotic --pattern 'native-postgres-*' --pattern 'containers-*' --pattern 'dependency-audit-*' --dir /tmp/futurerobotic-workspace-hosted-ci",
+    "result": "HTTP403 Forbidden at productionresultssa13.blob.core.windows.net; no archive downloaded",
+    "sanitization": "Signed temporary artifact URL/query omitted. GitHub API job and step metadata were read successfully.",
+    "next_action": "Use the authenticated GitHub run artifact download UI or a normally authorized network configuration; no hostname substitution, privilege escalation or restriction workaround attempted.",
+    "impact": "Does not change seven successful hosted job conclusions. Local sanitized native/container/browser logs are included."
+  }
 }

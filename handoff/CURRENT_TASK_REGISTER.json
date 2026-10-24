@@ -3000,9 +3000,9 @@
       "reference": "Production requirement",
       "blockers": "B01/B02/B09",
       "last_reviewed": "2026-10-24",
-      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: Main-only owner delivery tested; official pinned Actions, independent Node 22/24 checks, native/restart, container and audit jobs, always-retained source-bound diagnostics and a failing aggregate gate all executed successfully in the owner repository. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240.",
+      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: Main-only owner delivery tested; official pinned Actions, independent Node 22/24 checks, native/restart, container and audit jobs, always-retained source-bound diagnostics and a failing aggregate gate all executed successfully in the owner repository. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240. | WORKSPACE-20261024: seven hosted jobs successful at397d0e1; https://github.com/kawakaze430/FutureRobotic/actions/runs/40069616534; application code4dead9d.",
       "handoff_current_clarification": "Verification and protected OIDC service-release workflow source exist but were not run in the owner repository.",
-      "reviewed_remaining_work": "Current delivery revalidation is BLOCKED_ACCOUNT: GitHub reports recent failed account payments or a spending limit requiring an increase. Account owner resolves Billing & plans; the primary agent then dispatches verification on current main. Protected production environments/OIDC role assumption and untrusted-branch denial, first deploy, real rollout/failed-smoke rollback and B02/B09 operational acceptance remain pending.",
+      "reviewed_remaining_work": "Current owner-repository CI verification passed all seven jobs at397d0e1, including actual local browser/native/container gates. Protected production environments/OIDC role assumption and untrusted-branch denial, first deploy, rollout/failed-smoke rollback and B02/B09 operational acceptance remain pending.",
       "handoff_reviewed_at": "2026-10-24T01:35:11.394904+05:30",
       "status_changed_in_handoff": false
     },
@@ -3084,9 +3084,9 @@
       "reference": "Production requirement",
       "blockers": "B01/B02",
       "last_reviewed": "2026-10-24",
-      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: All four backend suites including completion passed on native PostgreSQL 16.15 (76 pass, 0 fail, 1 existing skip); separate native connection/transaction-lock and actual restart/recovery proof passed; full Compose image/migration/HTTP readiness passed. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240.",
+      "verification": "BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: All four backend suites including completion passed on native PostgreSQL 16.15 (76 pass, 0 fail, 1 existing skip); separate native connection/transaction-lock and actual restart/recovery proof passed; full Compose image/migration/HTTP readiness passed. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240. | WORKSPACE-20261024: native91pass/1existing skip; separate-process ledger/crash and actual restart proof; Compose migrations/smoke; hosted run40069616534.",
       "handoff_current_clarification": "Use the original evidence with the scope/limits in PROJECT_HANDOFF.md; inspect current source before implementing.",
-      "reviewed_remaining_work": "Native/local container gates are verified. Actual RDS, production privilege/contender/process-death/load/failover acceptance and applicable LIVE matrix requirements remain pending.",
+      "reviewed_remaining_work": "Native multi-process contention/replay/settlement/killed-transaction rollback, actual restart and full container gates verified locally and in hosted CI. Actual RDS production privileges/load/failover and applicable live matrix acceptance remain pending.",
       "handoff_reviewed_at": "2026-10-24T01:35:11.394904+05:30",
       "status_changed_in_handoff": false
     },

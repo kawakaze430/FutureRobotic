@@ -29,6 +29,6 @@ Read [CLOUD_RETURN.md](../CLOUD_RETURN.md) for actual current tests/blockers and
 
 Current local evidence: 92 backend fixture cases, 41 UI/controller/parser cases, 10 real Chromium workflows, native 91 pass/1existing skip plus independent-process ledger and actual restart proofs. Exact current container/build/audit results are in the return and evidence summary. Do not sum repeated native cases as new unique features/tests.
 
-GitHub Actions is blocked before executing by the existing account payment/spending-limit restriction; no settings were changed. The previous 518ca8c run passed 7 jobs and is historical evidence only. Latest workflow source adds actual Chromium workflows to native testing, retaining read-only permissions and failure gates.
+GitHub Actions now passed all seven jobs at `397d0e1` ([run40069616534](https://github.com/kawakaze430/FutureRobotic/actions/runs/40069616534)), including actual Chromium/native/process/restart and container workflows. The earlier f028244 billing rejection is historical; no billing settings were changed. This documentation/archive update reuses that identical application/workflow/lock source.
 
 Full production test matrix remains74named scenarios; record observations per row instead of assuming a local suite closes it. Remaining engineering is owned by the coding agent; owner supplies approved policy/account/secret-store configuration when live testing resumes. Never request plaintext credentials.

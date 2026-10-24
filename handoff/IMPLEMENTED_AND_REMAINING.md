@@ -2050,10 +2050,10 @@ Updated 24 October 2026. **75 Implemented / 57 Partial / 64 Blocked / 0 Not star
 - **Priority:** P0
 - **Owner:** Owner supplies access/decision; Codex executes verification
 - **Evidence:** infra/src/stacks.ts; runner-stack.ts; Pinned official Actions revisions, verify/container workflows, exact repo-environment OIDC, gated digest ECS rollout/rollback Build03 review: remaining acceptance requires the named external gate; not represented as verified.
-- **Remaining work:** Current delivery revalidation is BLOCKED_ACCOUNT: GitHub reports recent failed account payments or a spending limit requiring an increase. Account owner resolves Billing & plans; the primary agent then dispatches verification on current main. Protected production environments/OIDC role assumption and untrusted-branch denial, first deploy, real rollout/failed-smoke rollback and B02/B09 operational acceptance remain pending.
+- **Remaining work:** Current owner-repository CI verification passed all seven jobs at397d0e1, including actual local browser/native/container gates. Protected production environments/OIDC role assumption and untrusted-branch denial, first deploy, rollout/failed-smoke rollback and B02/B09 operational acceptance remain pending.
 - **Acceptance:** Untrusted branches cannot assume production role; a failed smoke test triggers controlled rollback.
 - **Blockers:** B01/B02/B09
-- **Verification:** BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: Main-only owner delivery tested; official pinned Actions, independent Node 22/24 checks, native/restart, container and audit jobs, always-retained source-bound diagnostics and a failing aggregate gate all executed successfully in the owner repository. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240.
+- **Verification:** BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: Main-only owner delivery tested; official pinned Actions, independent Node 22/24 checks, native/restart, container and audit jobs, always-retained source-bound diagnostics and a failing aggregate gate all executed successfully in the owner repository. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240. | WORKSPACE-20261024: seven hosted jobs successful at397d0e1; https://github.com/kawakaze430/FutureRobotic/actions/runs/40069616534; application code4dead9d.
 
 ### AWS-016 — Budgets, autoscaling ceilings and runner kill switch
 
@@ -2072,10 +2072,10 @@ Updated 24 October 2026. **75 Implemented / 57 Partial / 64 Blocked / 0 Not star
 - **Priority:** P0
 - **Owner:** Owner supplies access/decision; Codex executes verification
 - **Evidence:** 64 DB/service fixtures include clean + Build01-to02 upgrade/checksum/replay/ownership/deletion; PostgreSQL WASM passes Build03 review: remaining acceptance requires the named external gate; not represented as verified.
-- **Remaining work:** Native/local container gates are verified. Actual RDS, production privilege/contender/process-death/load/failover acceptance and applicable LIVE matrix requirements remain pending.
+- **Remaining work:** Native multi-process contention/replay/settlement/killed-transaction rollback, actual restart and full container gates verified locally and in hosted CI. Actual RDS production privileges/load/failover and applicable live matrix acceptance remain pending.
 - **Acceptance:** Concurrent ledger, identity and deletion fixtures pass on a clean and upgraded database.
 - **Blockers:** B01/B02
-- **Verification:** BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: All four backend suites including completion passed on native PostgreSQL 16.15 (76 pass, 0 fail, 1 existing skip); separate native connection/transaction-lock and actual restart/recovery proof passed; full Compose image/migration/HTTP readiness passed. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240.
+- **Verification:** BUILD-03: named application scope verified locally; native/cloud/provider/merchant claims require separate gates | MAIN-CI-20261024: All four backend suites including completion passed on native PostgreSQL 16.15 (76 pass, 0 fail, 1 existing skip); separate native connection/transaction-lock and actual restart/recovery proof passed; full Compose image/migration/HTTP readiness passed. Source 518ca8cf430622bb3229ebe4f0519fe835835033; https://github.com/kawakaze430/FutureRobotic/actions/runs/40014946240. | WORKSPACE-20261024: native91pass/1existing skip; separate-process ledger/crash and actual restart proof; Compose migrations/smoke; hosted run40069616534.
 
 ### QAS-004 — Real provider end-to-end quality and failures
 

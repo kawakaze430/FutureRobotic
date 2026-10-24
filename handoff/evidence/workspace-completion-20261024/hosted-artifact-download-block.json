@@ -1,0 +1,8 @@
+{
+  "operation": "Download hosted native/container/audit artifact archives",
+  "command": "gh run download 40069616534 --repo kawakaze430/FutureRobotic --pattern 'native-postgres-*' --pattern 'containers-*' --pattern 'dependency-audit-*' --dir /tmp/futurerobotic-workspace-hosted-ci",
+  "result": "HTTP403 Forbidden at productionresultssa13.blob.core.windows.net; no archive downloaded",
+  "sanitization": "Signed temporary artifact URL/query omitted. GitHub API job and step metadata were read successfully.",
+  "next_action": "Use the authenticated GitHub run artifact download UI or a normally authorized network configuration; no hostname substitution, privilege escalation or restriction workaround attempted.",
+  "impact": "Does not change seven successful hosted job conclusions. Local sanitized native/container/browser logs are included."
+}
