@@ -71,7 +71,7 @@ jobs:
       run: node tests/tools.test.mjs 2>&1 | tee work/ci/tools.log
     - name: Runner policy and release gates (no untrusted execution)
       if: ${{ !cancelled() && steps.install.outcome == 'success' }}
-      run: node --test --test-reporter=tap runner/tests/*.test.mjs tests/release-gates.test.mjs 2>&1 | tee work/ci/policy-release.tap
+      run: node --test --test-reporter=tap runner/tests/*.test.mjs tests/release-gates.test.mjs tests/support-relay.test.mjs 2>&1 | tee work/ci/policy-release.tap
     - name: Portable web build and prerender
       if: ${{ !cancelled() && steps.install.outcome == 'success' }}
       run: pnpm web:build 2>&1 | tee work/ci/web-build.log
@@ -84,6 +84,7 @@ jobs:
         pnpm infra:build 2>&1 | tee work/ci/infra-build.log
         pnpm infra:synth 2>&1 | tee work/ci/infra-synth.log
         pnpm infra:test 2>&1 | tee work/ci/infra.tap
+        node --test --test-reporter=tap tests/platform-source.test.mjs 2>&1 | tee work/ci/platform.tap
       env:
         INFRA_SYNTH_ONLY: 'true'
     - name: Retain source-bound evidence even on failure
@@ -127,6 +128,7 @@ jobs:
         path: |
           work/ci/
           outputs/workspace-browser-evidence.json
+          outputs/workspace-screenshots/
         if-no-files-found: warn
         retention-days: 14
   containers:

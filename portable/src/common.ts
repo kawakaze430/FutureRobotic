@@ -6,7 +6,7 @@ export const token = () => randomBytes(32).toString('base64url');
 export class AppError extends Error {
   constructor(public code: string, public status = 400) { super(code); }
 }
-export const fail = (code:string, status=400):never => { throw new AppError(code,status); };
+export function fail(code:string,status=400):never { throw new AppError(code,status); }
 export interface Principal { userId: string; workspaceId: string; sessionId: string }
 export const iso = (ms:number) => new Date(ms).toISOString();
 export async function scope(db: Db, p: Principal) {

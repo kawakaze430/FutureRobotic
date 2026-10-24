@@ -1,6 +1,6 @@
 import type { Db } from './db.js';
 import { id, iso } from './common.js';
-export type JobKind='dispatch'|'cleanup'|'reconcile'|'export'|'delete_account'|'delete_object'|'extract_text'|'delete_history'|'history_export';
+export type JobKind='dispatch'|'cleanup'|'reconcile'|'export'|'delete_account'|'delete_object'|'extract_text'|'delete_history'|'history_export'|'support_ack';
 export interface Job {id:string; kind:JobKind; payload:Record<string,any>; trace_id:string; lease_token:string; attempts:number; max_attempts:number}
 export async function enqueue(tx:Db,kind:JobKind,key:string,payload:Record<string,unknown>,trace:string,availableAt=iso(Date.now())) {
   const jobId=id();

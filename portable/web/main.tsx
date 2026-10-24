@@ -2,6 +2,7 @@ import React from 'react';
 import {createRoot} from 'react-dom/client';
 import LanguageDirectory from '../../app/language-directory';
 import {resolveDirectory} from '../../lib/language-directories';
+import OperatorConsole from '../../app/operator-console';
 import FutureApp from '../../app/future-app';
 import Partnerships from '../../app/partnerships-content';
 import CodePrivacy from '../../app/code-privacy/page';
@@ -16,5 +17,5 @@ const path=decodeURIComponent(location.pathname).replace(/\/$/,'')||'/',pair=res
 const free=Object.entries(freePaths).find(([,url])=>url===path)?.[0] as ToolId|undefined;
 const pages:Record<string,string>={'/':'home','/workspace':'workspace','/pricing':'pricing','/faqs':'faqs','/contact':'contact','/privacy':'privacy','/terms':'terms'};
 const directory=resolveDirectory(path.slice(1));
-const component=path==='/partnerships'?<Partnerships/>:directory?<LanguageDirectory source={directory.name}/>:path==='/code-privacy'?<CodePrivacy/>:path==='/shared'?<SharedResult/>:pair?<FutureApp initialPage="free" initialTool="convert" initialPair initialSource={pair.source} initialTarget={pair.target}/>:free?<FutureApp initialPage="free" initialTool={free}/>:pages[path]?<FutureApp initialPage={pages[path]}/>:<main><h1>Page not found</h1><a href="/">Return to FutureRobotic AI</a></main>;
+const component=path==='/operator'?<OperatorConsole/>:path==='/partnerships'?<Partnerships/>:directory?<LanguageDirectory source={directory.name}/>:path==='/code-privacy'?<CodePrivacy/>:path==='/shared'?<SharedResult/>:pair?<FutureApp initialPage="free" initialTool="convert" initialPair initialSource={pair.source} initialTarget={pair.target}/>:free?<FutureApp initialPage="free" initialTool={free}/>:pages[path]?<FutureApp initialPage={pages[path]}/>:<main><h1>Page not found</h1><a href="/">Return to FutureRobotic AI</a></main>;
 createRoot(document.getElementById('root')!).render(component);

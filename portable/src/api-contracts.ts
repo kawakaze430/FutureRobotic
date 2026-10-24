@@ -1,6 +1,10 @@
 // Shared, browser-safe wire contracts. These schemas also drive OpenAPI and
 // server response validation; no database or server-only module is imported here.
 import {z} from 'zod/v4';
+import {reconciliationContracts} from './reconciliation-contracts.js';
+import {operatorContracts} from './operator-contracts.js';
+import {supportContracts} from './support-contracts.js';
+import {anonymousContracts} from './anonymous-contracts.js';
 export type JsonValue = null | boolean | number | string | JsonValue[] | {[key:string]:JsonValue};
 export type Schema<T> = z.ZodType<T>;
 export type Infer<S extends z.ZodType> = z.infer<S>;
@@ -40,7 +44,7 @@ const providers=object({google:boolean,github:boolean,email:boolean});
 const support=object({id:uuid,subject:string,message:string,status:string,created_at:timestamp});
 const pendingJob=object({id:uuid,kind:enumeration(['history_export','delete_history']),status:string,created_at:timestamp,requestKey:string});
 const plan=object({id:enumeration(['free','pro','premium']),name:string,monthly:integer,yearly:integer,advancedCredits:integer,contextLimit:integer,fileLimit:integer});
-const runInput=object({tool,source:string,language:string,instructions:string,targetLanguage:string,modelId,fileIds:array(uuid),chatThreadId:uuid,chatMessage:string,historyMode},['instructions','targetLanguage','modelId','fileIds','chatThreadId','chatMessage','historyMode']);
+const runInput=object({tool,source:string,language:string,instructions:string,targetLanguage:string,modelId,fileIds:array(uuid),fileRevisions:array(object({id:uuid,revision:integer})),chatThreadId:uuid,chatMessage:string,historyMode},['instructions','targetLanguage','modelId','fileIds','fileRevisions','chatThreadId','chatMessage','historyMode']);
 const localResultInput=object({tool:enumeration(['comments','pdf','run','convert']),kind:enumeration(['local','example']),source:string,output:string,language:string,targetLanguage:string,historyMode:enumeration(['cloud'])},['targetLanguage','kind']);
 export type RunInput=Infer<typeof runInput>;
 export type LocalResultInput=Infer<typeof localResultInput>;
@@ -58,6 +62,7 @@ const get=<R>(response:Schema<R>,envelope=true):Contract<R>=>({response,idempote
 const write=<R,B=undefined,I extends boolean=false>(response:Schema<R>,body?:Schema<B>,idempotency?:I):Contract<R,B,I>=>({response,body,idempotency:(idempotency??false) as I,envelope:true});
 
 export const apiContracts={
+ ...operatorContracts,...supportContracts,...anonymousContracts,...reconciliationContracts,
  'GET /health':get(object({status:enumeration(['ok']),service:string}),false),
  'GET /ready':get(object({status:string,dependencies:object({database:string,durableQueue:string},['durableQueue'])}),false),
  'GET /api/status':get(object({cloudEnabled:boolean,signedIn:boolean,aiConfigured:boolean,providers}),false),
@@ -114,7 +119,7 @@ export const apiContracts={
  'POST /v1/projects/import':write(object({files:array(object({path:string,id:uuid,revision:integer})),excluded:array(string)}),object({archiveBase64:string}),true),
  'POST /v1/uploads':write(object({id:uuid,url:string,headers:z.record(string,string),expiresIn:integer}),object({name:string,size:integer,sha256:string})),
  'POST /v1/uploads/:id/complete':write(object({id:uuid,status:string})),
- 'POST /v1/support':write(object({id:uuid,status:string}),object({subject:string,message:string})),
+ 'POST /v1/support':write(object({id:uuid,status:string}),object({subject:string,message:string}),true),
  'GET /v1/support':get(items(support)),
  'GET /v1/support/:id':get(support),
  'POST /v1/billing/checkout':write(object({id:uuid,url:string}),object({plan:enumeration(['pro','premium']),interval:enumeration(['month','year']),country:string}),true),
@@ -143,6 +148,11 @@ type Concrete<P extends string>=P extends `${infer A}:id${infer B}`?`${A}${strin
 export type ApiPath=Concrete<PathOf<ContractKey>> | `${Concrete<PathOf<ContractKey>>}?${string}`;
 type Bare<P extends string>=P extends `${infer B}?${string}`?B:P;
 type CanonicalPath<P extends string> = P extends PathOf<ContractKey> ? P
+ : P extends `/v1/operator/tickets/${string}/status`?'/v1/operator/tickets/:id/status'
+ : P extends `/v1/operator/support/${string}/retry`?'/v1/operator/support/:id/retry'
+ : P extends `/v1/support/${string}/delivery`?'/v1/support/:id/delivery'
+ : P extends `/v1/public/anonymous/requests/${string}/cancel`?'/v1/public/anonymous/requests/:id/cancel'
+ : P extends `/v1/public/anonymous/requests/${string}`?'/v1/public/anonymous/requests/:id'
  : P extends `/v1/runs/${string}/cancel`?'/v1/runs/:id/cancel'
  : P extends `/v1/runs/${string}/note`?'/v1/runs/:id/note'
  : P extends `/v1/runs/${string}/results`?'/v1/runs/:id/results'

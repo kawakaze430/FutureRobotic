@@ -45,7 +45,7 @@ export class AnonymousAllowance {
   });
  }
 }
-const permissions={support:['support.read','support.close'],billing:['billing.read'],operations:['controls.read','controls.write'],administrator:['support.read','support.close','billing.read','controls.read','controls.write']} as const;
+const permissions={support:['support.read','support.close'],billing:['billing.read','billing.reconcile'],operations:['controls.read','controls.write'],administrator:['support.read','support.close','billing.read','billing.reconcile','controls.read','controls.write']} as const;
 export class OperatorService {
  constructor(private db:Db,private sealer:Sealer){}
  async authorize(p:Principal,permission:string,code:string){

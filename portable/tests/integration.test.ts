@@ -28,19 +28,20 @@ before(async()=>{
   console.log(`VERIFICATION_DATABASE=${kind}; ${String((await db.query('SELECT version() AS v')).rows[0].v)}`);
 });
 after(async()=>{await db?.close();await dispose?.();await rm(root,{recursive:true,force:true});});
-beforeEach(async()=>{await db.query("UPDATE jobs SET status='completed',lease_token=NULL,lease_until=NULL WHERE status<>'completed'");});
+beforeEach(async()=>{await db.query('UPDATE runtime_controls SET provider_enabled=true WHERE id=1');await db.query("UPDATE jobs SET status='completed',lease_token=NULL,lease_until=NULL WHERE status<>'completed'");});
 const rejectsCode=(code:string)=>(error:unknown)=>error instanceof AppError&&error.code===code;
 
 test('DAT-001 migration applies cleanly, reruns and rejects changed historical checksums',async()=>{
-  assert.equal(await migrate(db),4);
+  assert.equal(await migrate(db),8);
   const dir=join(root,'changed-migrations');await mkdir(dir);
   const sql=await readFile(fileURLToPath(new URL('../../migrations/001_core.sql',import.meta.url)),'utf8');
   await writeFile(join(dir,'001_core.sql'),sql+'\n-- forbidden historical edit\n');
   await writeFile(join(dir,'002_query_indexes.sql'),await readFile(fileURLToPath(new URL('../../migrations/002_query_indexes.sql',import.meta.url))));
   await writeFile(join(dir,'003_product_services.sql'),await readFile(fileURLToPath(new URL('../../migrations/003_product_services.sql',import.meta.url))));
   await writeFile(join(dir,'004_workspace_completion.sql'),await readFile(fileURLToPath(new URL('../../migrations/004_workspace_completion.sql',import.meta.url))));
+  for(const name of ['005_operator_admin.sql','006_support_delivery.sql','007_reconciliation.sql','008_anonymous_dispatch.sql'])await writeFile(join(dir,name),await readFile(fileURLToPath(new URL('../../migrations/'+name,import.meta.url))));
   await assert.rejects(migrate(db,dir),/checksum changed/);
-  assert.equal((await db.query('SELECT count(*)::int AS n FROM schema_migrations')).rows[0].n,4);
+  assert.equal((await db.query('SELECT count(*)::int AS n FROM schema_migrations')).rows[0].n,8);
 });
 test('DAT-001/002 database constraints reject duplicate workspace and foreign ownership',async()=>{
   const a=await account(db),b=await account(db);const run=await new RunService(db).create(a.p,input,'constraints-1','a'.repeat(32));
@@ -53,7 +54,7 @@ test('DAT-001 prior-release database upgrades forward without losing account rec
   const earlier=await testDatabase(join(root,'upgrade-db'));
   try{
     assert.equal(await migrate(earlier.db,previous),1);const a=await account(earlier.db);
-    assert.equal(await migrate(earlier.db),4);
+    assert.equal(await migrate(earlier.db),8);
     assert.equal((await new IdentityService(earlier.db).authenticate(a.session.sessionToken)).principal.userId,a.p.userId);
     assert.equal((await new QuotaService(earlier.db).balances(a.p))[0].granted,5);
   }finally{await earlier.db.close();await earlier.dispose();}
@@ -330,7 +331,7 @@ test('API-005 tracing propagates API-to-job-to-provider and logs contain only wh
 });
 test('DAT-003 persisted PostgreSQL storage restores users, notes and results after database restart',async t=>{
   if(kind==='native-postgresql'){t.skip('External database restart/failover requires a dedicated environment');return;}
-  const path=join(root,'restart-db');let persistent:Db=new WasmPostgres(path);await migrate(persistent);
+  const path=join(root,'restart-db');let persistent:Db=new WasmPostgres(path);await migrate(persistent);await persistent.query('UPDATE runtime_controls SET provider_enabled=true WHERE id=1');
   const a=await account(persistent),runs=new RunService(persistent),r=await runs.create(a.p,input,'restart-request-1','f'.repeat(32));await runs.saveNote(a.p,r.id,'survives restart',null);
   const chat=await new ContentService(persistent,objects).createThread(a.p,'Persistent chat');await new ContentService(persistent,objects).addUserMessage(a.p,chat.id,'restored chat message');
   await new Worker(persistent,objects,{async generate(){return 'persisted result';}},silent).tick();

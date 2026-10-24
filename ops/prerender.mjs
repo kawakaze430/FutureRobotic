@@ -4,6 +4,7 @@ import {readFile,writeFile,mkdir} from 'node:fs/promises';
 import {languageDirectories} from '../lib/language-directories.ts';
 import LanguageDirectory from '../app/language-directory.tsx';
 import {freePaths} from '../lib/reference-data.ts';
+import {runnerSource} from '../lib/runner-source.ts';
 const out='outputs/web',template=await readFile(`${out}/index.html`,'utf8'),pairs=JSON.parse(await readFile('lib/language-pairs.json','utf8'));
 const escape=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let origin=null;if(process.env.PUBLIC_SITE_URL){const u=new URL(process.env.PUBLIC_SITE_URL);if(u.protocol!=='https:'||u.pathname!=='/'||u.username||u.password||u.hash||u.search)throw new Error('PUBLIC_SITE_URL must be a bare HTTPS origin');origin=u.origin;}
@@ -15,3 +16,4 @@ for(const path of ['/workspace','/shared']){await mkdir(out+path,{recursive:true
 await writeFile(`${out}/sitemap.xml`,`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${indexed?routes.map(p=>`<url><loc>${escape(origin+p)}</loc></url>`).join(''):''}</urlset>`);
 await writeFile(`${out}/robots.txt`,indexed?`User-agent: *\nAllow: /\nDisallow: /workspace\nDisallow: /shared\nDisallow: /v1/\nDisallow: /auth/\nDisallow: /api/\nSitemap: ${origin}/sitemap.xml\n`:'User-agent: *\nDisallow: /\n');
 console.log(JSON.stringify({pairRoutes:pairs.length,sourceDirectories:languageDirectories.length,indexingApproved:indexed,routes:routes.length}));
+await writeFile(`${out}/runner-worker.js`,runnerSource);

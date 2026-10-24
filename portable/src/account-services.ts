@@ -32,12 +32,18 @@ export class AccountService {
   if(threadId!==null)await new ContentService(this.db,{} as ObjectStore).thread(p,threadId);
   await this.db.query('UPDATE users SET selected_chat_id=$2 WHERE id=$1',[p.userId,threadId]);return {id:threadId};
  }
- async ticket(p:Principal,subject:string,message:string){
-  if(!subject.trim()||subject.length>200||message.length<10||message.length>10000)fail('INVALID_SUPPORT_TICKET');
+ async ticket(p:Principal,subject:string,message:string,requestKey?:string,trace='support'){
+  if(typeof subject!=='string'||typeof message!=='string'||!subject.trim()||subject.length>200||message.length<10||message.length>10000)fail('INVALID_SUPPORT_TICKET');
+  if(requestKey!==undefined&&!/^[A-Za-z0-9_-]{8,100}$/.test(requestKey))fail('INVALID_IDEMPOTENCY_KEY');
+  const fingerprint=hash(JSON.stringify({subject,message}));
   return this.db.transaction(async tx=>{
    await scope(tx,p);const subjectHash=hash(p.userId),hour=iso(Math.floor(Date.now()/3600000)*3600000);await lock(tx,`support-rate:${p.userId}`);
+   if(requestKey){const previous=(await tx.query('SELECT id,request_hash FROM support_tickets WHERE workspace_id=$1 AND owner_id=$2 AND request_key=$3',[p.workspaceId,p.userId,requestKey])).rows[0];if(previous){if(previous.request_hash!==fingerprint)fail('IDEMPOTENCY_CONFLICT',409);return {id:previous.id as string,status:'open'};}}
    const rate=await tx.query("INSERT INTO auth_windows(subject_hash,operation,window_start) VALUES($1,'support', $2) ON CONFLICT(subject_hash,operation,window_start) DO UPDATE SET hits=auth_windows.hits+1 RETURNING hits",[subjectHash,hour]);if(rate.rows[0].hits>5)fail('SUPPORT_RATE_LIMIT',429);
-   const ticketId=id();await tx.query('INSERT INTO support_tickets(id,workspace_id,owner_id,subject,message) VALUES($1,$2,$3,$4,$5)',[ticketId,p.workspaceId,p.userId,subject,message]);return {id:ticketId,status:'open'};
+   const ticketId=id();await tx.query('INSERT INTO support_tickets(id,workspace_id,owner_id,subject,message,request_key,request_hash) VALUES($1,$2,$3,$4,$5,$6,$7)',[ticketId,p.workspaceId,p.userId,subject,message,requestKey??null,fingerprint]);
+   await tx.query('INSERT INTO support_deliveries(ticket_id) VALUES($1)',[ticketId]);
+   await enqueue(tx,'support_ack',`support-ack:${ticketId}:1`,{ticketId},trace);
+   await audit(tx,p,'support.ticket_created',ticketId,trace);return {id:ticketId,status:'open'};
   });
  }
  async tickets(p:Principal,ticketId?:string){await scope(this.db,p);const r=await this.db.query('SELECT id,subject,message,status,created_at FROM support_tickets WHERE workspace_id=$1 AND owner_id=$2 AND ($3::uuid IS NULL OR id=$3) ORDER BY created_at DESC LIMIT 50',[p.workspaceId,p.userId,ticketId??null]);if(ticketId&&!r.rowCount)fail('NOT_FOUND',404);return r.rows;}
@@ -90,10 +96,12 @@ export class FileService {
   if(bytes.length!==Number(r.rows[0].size_bytes)||hash(Buffer.from(bytes).toString('utf8'))!==r.rows[0].sha256)fail('OBJECT_INTEGRITY_FAILURE',503);
   return {name:r.rows[0].name as string,bytes};
  }
- async freeze(tx:Db,p:Principal,runId:string,fileIds:string[]){
+ async freeze(tx:Db,p:Principal,runId:string,fileIds:string[],expected?:{id:string;revision:number}[]){
+  if(!fileIds.length)return;
+  await lock(tx,`files-capacity:${p.workspaceId}`);
   for(const fileId of fileIds){
-   const r=await tx.query('SELECT f.name,r.id,r.sha256,r.extracted_text FROM files f JOIN file_revisions r ON r.file_id=f.id WHERE f.id=$1 AND f.workspace_id=$2 AND f.owner_id=$3 AND f.status=\'ready\' AND r.extraction_status=\'ready\' ORDER BY r.revision DESC LIMIT 1',[fileId,p.workspaceId,p.userId]);
-   if(!r.rowCount)fail('CONTEXT_FILE_UNAVAILABLE',404);const f=r.rows[0];if(excludedFile(f.name))fail('CONTEXT_FILE_EXCLUDED');
+   const r=await tx.query('SELECT f.name,r.id,r.sha256,r.extracted_text,r.revision FROM files f JOIN file_revisions r ON r.file_id=f.id WHERE f.id=$1 AND f.workspace_id=$2 AND f.owner_id=$3 AND f.status=\'ready\' AND r.extraction_status=\'ready\' ORDER BY r.revision DESC LIMIT 1 FOR SHARE OF f',[fileId,p.workspaceId,p.userId]);
+   if(!r.rowCount)fail('CONTEXT_FILE_UNAVAILABLE',404);const f=r.rows[0];if(expected&&expected.find(item=>item.id===fileId)?.revision!==f.revision)fail('CONTEXT_REVISION_CHANGED',409);if(excludedFile(f.name))fail('CONTEXT_FILE_EXCLUDED');
    await tx.query('INSERT INTO run_context_files(run_id,revision_id,workspace_id,owner_id,name,sha256,content,original_characters,included_characters) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9)',[runId,f.id,p.workspaceId,p.userId,f.name,f.sha256,takeCharacters(f.extracted_text,6000),characters(f.extracted_text),Math.min(6000,characters(f.extracted_text))]);
   }
  }

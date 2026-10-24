@@ -123,14 +123,16 @@ test('FIL-008 quarantined content becomes context only after exact checksum/leng
  const promoted=(await db.query('SELECT object_key FROM file_revisions WHERE id=$1',[rev])).rows[0].object_key;assert.ok(promoted.startsWith('text/'));await objects.put(key,Buffer.from('tampered'));await extractQuarantine(db,objects,fileId);assert.equal(Buffer.from((await new FileService(db,objects).download(a.p,fileId)).bytes).toString(),text);
  await db.query("UPDATE files SET status='staged' WHERE id=$1",[fileId]);await assert.rejects(extractQuarantine(db,objects,fileId),codeError('UPLOAD_INTEGRITY_FAILURE'));
 });
-test('SHR-001/002/003 sharing publishes only result snapshot and respects expiration/revocation',async()=>{
+test('SHR-001/002/003 sharing publishes only result snapshot and respects expiration/revocation',async()=>{await db.query('UPDATE runtime_controls SET provider_enabled=true WHERE id=1');
+ await db.query('UPDATE runtime_controls SET provider_enabled=true WHERE id=1');
  const a=await account(db),runs=new RunService(db),r=await runs.create(a.p,{...input,source:'HIDDEN_SOURCE',instructions:'HIDDEN_INSTRUCTIONS'},'share-result-1','5'.repeat(32));await new Worker(db,objects,{async generate(){return 'PUBLIC_RESULT';}},silent).tick();
  const shares=new ShareService(db),shared=await shares.create(a.p,r.id),data=await shares.resolve(shared.token);assert.equal(data.result,'PUBLIC_RESULT');assert.ok(!JSON.stringify(data).includes('HIDDEN'));
  const app=await buildApi({db,objects,origin:'http://localhost:3001',telemetry:silent});try{const response=await app.inject({method:'POST',url:'/v1/public/shares/resolve',payload:{token:shared.token}});assert.equal(response.statusCode,200);assert.ok(String(response.headers['x-robots-tag']).includes('noindex'));const ownerList=await app.inject({url:`/v1/runs/${r.id}/shares`,headers:authHeaders(a.session)});assert.equal(ownerList.statusCode,200);assert.equal(ownerList.json().data.items.length,1);assert.ok(!ownerList.body.includes(shared.token));const other=await account(db);assert.equal((await app.inject({url:`/v1/runs/${r.id}/shares`,headers:authHeaders(other.session)})).statusCode,404);}finally{await app.close();}
  await new ContentService(db,objects).revokeShare(a.p,shared.id);await assert.rejects(shares.resolve(shared.token),codeError('SHARE_NOT_FOUND'));
  const expires=await shares.create(a.p,r.id);await db.query("UPDATE shares SET expires_at=now()-interval '1 second' WHERE id=$1",[expires.id]);await assert.rejects(shares.resolve(expires.token),codeError('SHARE_NOT_FOUND'));await assert.rejects(shares.resolve(a.p.workspaceId),codeError('SHARE_NOT_FOUND'));
 });
-test('HIS-006 evaluation is opt-in and opt-out removes queued content immediately',async()=>{
+test('HIS-006 evaluation is opt-in and opt-out removes queued content immediately',async()=>{await db.query('UPDATE runtime_controls SET provider_enabled=true WHERE id=1');
+ await db.query('UPDATE runtime_controls SET provider_enabled=true WHERE id=1');
  const a=await account(db),accounts=new AccountService(db),runs=new RunService(db);const first=await runs.create(a.p,input,'evaluation-default','6'.repeat(32));await new Worker(db,objects,{async generate(){return 'no evaluation';}},silent).tick();assert.ok(!(await accounts.evaluationDataset()).some(r=>r.id===first.id));
  await accounts.update(a.p,{evaluationOptOut:false});const included=await runs.create(a.p,input,'evaluation-optin','6'.repeat(32));await new Worker(db,objects,{async generate(){return 'explicitly shared';}},silent).tick();assert.ok((await accounts.evaluationDataset()).some(r=>r.id===included.id));
  await accounts.update(a.p,{evaluationOptOut:true});assert.ok(!(await accounts.evaluationDataset()).some(r=>r.id===included.id));
@@ -138,7 +140,7 @@ test('HIS-006 evaluation is opt-in and opt-out removes queued content immediatel
 test('API-006 account, support, files and selected chat CRUD enforce ownership',async()=>{
  const a=await account(db),b=await account(db),app=await buildApi({db,objects,origin:'http://localhost:3001',telemetry:silent});
  try{const headers=authHeaders(a.session);assert.equal((await app.inject({method:'PATCH',url:'/v1/account',headers,payload:{displayName:'Account A',evaluationOptOut:true}})).statusCode,200);
- const ticket=await app.inject({method:'POST',url:'/v1/support',headers,payload:{subject:'Help',message:'A private support request'}});assert.equal(ticket.statusCode,201);const tid=ticket.json().data.id;
+ const ticket=await app.inject({method:'POST',url:'/v1/support',headers:{...headers,'idempotency-key':'support-owner-fixture'},payload:{subject:'Help',message:'A private support request'}});assert.equal(ticket.statusCode,201);const tid=ticket.json().data.id;
  assert.equal((await app.inject({url:`/v1/support/${tid}`,headers:authHeaders(b.session)})).statusCode,404);assert.equal((await app.inject({url:`/v1/support/${tid}`,headers})).statusCode,200);
  const thread=(await app.inject({method:'POST',url:'/v1/chats',headers,payload:{title:'Stored conversation'}})).json().data;
  assert.equal((await app.inject({method:'POST',url:`/v1/chats/${thread.id}/select`,headers:authHeaders(b.session)})).statusCode,404);assert.equal((await app.inject({method:'POST',url:`/v1/chats/${thread.id}/select`,headers})).statusCode,200);
@@ -152,13 +154,13 @@ test('TOL-011/CHT-007 SSE parser preserves split UTF-8/CRLF frames and provider 
  let messages:any;const provider=new HttpCodeProvider({endpoint:'https://model.example.com/v1/chat/completions',key:'fixture-only',models:{'standard-auto':'fixture'},inputMicroUsdPerMillion:10,outputMicroUsdPerMillion:20,retentionApproved:true},(async(_url:any,init:any)=>{messages=JSON.parse(init.body);return new Response('data: {"choices":[{"delta":{"content":"hello"}}]}\n\ndata: [DONE]\n\n');}) as typeof fetch);
  let delta='';const result=await provider.generate({runId:id(),traceId:'7'.repeat(32),idempotencyKey:id(),modelId:'standard-auto',messages:[{role:'user',content:'code'}],tools:[],signal:new AbortController().signal,onDelta:async s=>{delta+=s;}});assert.equal(result,'hello');assert.equal(delta,'hello');assert.equal(messages.stream,true);assert.equal(messages.max_tokens,4096);assert.equal(messages.tools,undefined);
 });
-test('CHT-003/007 streamed messages persist, partial output settles once and retry delivery does not redispatch',async()=>{
+test('CHT-003/007 streamed messages persist, partial output settles once and retry delivery does not redispatch',async()=>{await db.query('UPDATE runtime_controls SET provider_enabled=true WHERE id=1');
  const a=await account(db),content=new ContentService(db,objects),thread=await content.createThread(a.p,'Streaming conversation'),runs=new RunService(db),r=await runs.create(a.p,{...input,tool:'chat',chatThreadId:thread.id,chatMessage:'Please help'},'chat-stream-1','8'.repeat(32));let calls=0;
  const worker=new Worker(db,objects,{async generate(request){calls++;await request.onDelta!('partial answer');throw new Error('stream interrupted');}},silent);await worker.tick();
  const restored=await new ContentService(db,objects).thread(a.p,thread.id);assert.equal(restored.messages[0].content,'Please help');assert.equal(restored.messages[1].content,'partial answer');assert.equal(restored.messages[1].state,'partial');assert.equal((await new QuotaService(db).balances(a.p))[0].consumed,1);
  await db.query('UPDATE jobs SET status=\'queued\',available_at=now() WHERE dedupe_key=$1',[`dispatch:${r.id}`]);await worker.tick();assert.equal(calls,1);
 });
-test('API-003/CHT-007 real HTTP event route replays persisted deltas and terminal output',async()=>{
+test('API-003/CHT-007 real HTTP event route replays persisted deltas and terminal output',async()=>{await db.query('UPDATE runtime_controls SET provider_enabled=true WHERE id=1');
  const a=await account(db),r=await new RunService(db).create(a.p,input,'sse-replay-1','9'.repeat(32));await new Worker(db,objects,{async generate(req){await req.onDelta!('one ');await req.onDelta!('two');return 'one two';}},silent).tick();
  const app=await buildApi({db,objects,origin:'http://localhost:3001',telemetry:silent});try{const url=await app.listen({host:'127.0.0.1',port:0});const response=await fetch(`${url}/v1/runs/${r.id}/events`,{headers:{cookie:`fr_session=${a.session.sessionToken}`}});const stream=await response.text();assert.equal(response.status,200);assert.ok(stream.includes('event: delta'));assert.ok(stream.includes('one two'));assert.ok(stream.includes('event: done'));const other=await account(db);assert.equal((await fetch(`${url}/v1/runs/${r.id}/events`,{headers:{cookie:`fr_session=${other.session.sessionToken}`}})).status,404);}finally{await app.close();}
 });

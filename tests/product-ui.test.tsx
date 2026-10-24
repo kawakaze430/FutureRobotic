@@ -38,5 +38,5 @@ test('PDF-003/004/005 all font sizes, themes and margin presets export valid mul
 test('PDF-007 long lines paginate, unsupported glyphs are explicit and print HTML escapes active content',async()=>{
  const blob=await exportCodePDF('x'.repeat(9000),defaultPDF,font);assert.ok((await PDFDocument.load(await blob.arrayBuffer())).getPageCount()>1);
  await assert.rejects(exportCodePDF('🧪',defaultPDF,font),/another font/);await assert.rejects(exportCodePDF('x',{...defaultPDF,fontSize:999},font),/Invalid/);
- const html=printDocument('</pre><script>alert("x")</script>',defaultPDF);assert.ok(!html.includes('<script>'));assert.ok(html.includes('&lt;script&gt;'));assert.ok(html.includes('window.print()'));
+ const html=printDocument('</pre><script>alert("x")</script>',defaultPDF);assert.ok(!html.includes('<script>'));assert.ok(html.includes('&lt;script&gt;'));assert.ok(html.includes('data-print-button'));assert.ok(!html.includes('onclick='));
 });

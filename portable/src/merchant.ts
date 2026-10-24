@@ -41,6 +41,29 @@ export class PaddleGateway {
    await this.db.query('UPDATE checkout_intents SET provider_transaction_id=$2,checkout_url=$3,state=\'ready\' WHERE id=$1',[intent.id,transaction.id,url]);return {id:intent.id,url};
   }catch(e){await this.db.query('UPDATE checkout_intents SET state=\'uncertain\' WHERE id=$1 AND state=\'creating\'',[intent.id]);throw e;}
  }
+ // These are read-only authoritative lookups. Reconciliation never creates a
+ // second checkout, charge, refund or portal session to discover an outcome.
+ async reconciliationRead(kind:'transactions'|'subscriptions'|'adjustments',externalId:string):Promise<unknown>{
+  if(!/^[A-Za-z0-9_-]{3,200}$/.test(externalId))fail('INVALID_MERCHANT_REFERENCE');
+  return this.request(`/${kind}/${encodeURIComponent(externalId)}`);
+ }
+ async reconciliationCountry(customerId:string,addressId:string):Promise<string>{
+  if(![customerId,addressId].every(value=>/^[A-Za-z0-9_-]{3,200}$/.test(value)))fail('INVALID_MERCHANT_REFERENCE');
+  const address=await this.request(`/customers/${encodeURIComponent(customerId)}/addresses/${encodeURIComponent(addressId)}`);
+  if(address?.id!==addressId||typeof address.country_code!=='string'||!this.config.countries.includes(address.country_code))fail('UNVERIFIED_BILLING_COUNTRY',409);
+  return address.country_code;
+ }
+ async reconciliationPrice(priceId:string):Promise<{plan:'pro'|'premium';interval:'month'|'year';currency:'USD';amountMinor:number}>{
+  const configured=Object.entries(this.config.priceIds).find(([,value])=>value===priceId);
+  if(!configured)fail('UNAPPROVED_PAID_PRICE',409);
+  const [plan,interval]=configured[0].split(':');
+  if((plan!=='pro'&&plan!=='premium')||(interval!=='month'&&interval!=='year'))fail('UNAPPROVED_PAID_PRICE',409);
+  const catalog=planCatalog.find(row=>row.id===plan)!;
+  const price=await this.request(`/prices/${encodeURIComponent(priceId)}`);
+  const amount=interval==='month'?catalog.monthly:catalog.yearly;
+  if(price?.id!==priceId||price.status!=='active'||price.unit_price?.currency_code!=='USD'||Number(price.unit_price?.amount)!==amount||price.billing_cycle?.interval!==interval||price.billing_cycle?.frequency!==1)fail('CATALOG_PRICE_MISMATCH',409);
+  return {plan,interval,currency:'USD',amountMinor:amount};
+ }
  async portal(p:Principal){await scope(this.db,p);const link=(await this.db.query('SELECT customer_id FROM billing_links WHERE workspace_id=$1 AND owner_id=$2 LIMIT 1',[p.workspaceId,p.userId])).rows[0];if(!link)fail('NO_BILLING_CUSTOMER',404);const data=await this.request(`/customers/${encodeURIComponent(link.customer_id)}/portal-sessions`,'POST',{});return {url:this.safeUrl(data.urls?.general?.overview)};}
  async webhook(body:string,signature:string){
   verifyPaddleSignature(body,signature,this.config.webhookSecrets);let event:any;
@@ -61,6 +84,8 @@ export class PaddleGateway {
     const [plan,interval]=planEntry![0].split(':');
     if(intent.rowCount&&(owner.plan_id!==plan||owner.interval!==interval))fail('PAID_PRICE_MISMATCH');
     const p:Principal={userId:owner.owner_id,workspaceId:owner.workspace_id,sessionId:''};
+    const paidSub=(await tx.query("SELECT plan_id,period_end FROM subscriptions WHERE provider='paddle' AND provider_id=$1",[d.subscription_id])).rows[0];
+    if(paidSub&&paidSub.plan_id!==plan&&Date.parse(d.billing_period?.starts_at)<new Date(paidSub.period_end).getTime())fail('PLAN_CHANGE_REQUIRES_POLICY',409);
     const existingLink=(await tx.query('SELECT owner_id FROM billing_links WHERE subscription_id=$1',[d.subscription_id])).rows[0];
     if(existingLink&&existingLink.owner_id!==p.userId)fail('BILLING_OWNER_CONFLICT',409);
     await tx.query('INSERT INTO billing_links(subscription_id,customer_id,workspace_id,owner_id) VALUES($1,$2,$3,$4) ON CONFLICT DO NOTHING',[d.subscription_id,d.customer_id,p.workspaceId,p.userId]);

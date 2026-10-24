@@ -13,9 +13,10 @@ import {RunService} from './runs.js';
 import {Sealer} from './crypto.js';
 import {PaddleGateway} from './merchant.js';
 import {LifecycleService} from './lifecycle.js';
+import type {AnonymousDispatchService} from './anonymous-dispatch.js';
 import {supportedTextExtensions} from './product-policy.js';
 import {ExecutionService,executionLanguages} from './execution.js';
-export interface ProductOptions {db:Db;objects:ObjectStore;origin:string;production?:boolean;proxyHops?:number;auth?:PublicAuth;sealer?:Sealer;merchant?:PaddleGateway;providerReady?:boolean;turnstileSiteKey?:string;anonymousHashSecret?:string}
+export interface ProductOptions {db:Db;objects:ObjectStore;origin:string;production?:boolean;proxyHops?:number;auth?:PublicAuth;sealer?:Sealer;merchant?:PaddleGateway;providerReady?:boolean;turnstileSiteKey?:string;anonymousHashSecret?:string;anonymousService?:AnonymousDispatchService;supportEventSecrets?:readonly string[]}
 const uuid={type:'string',format:'uuid'},str=(n:number)=>({type:'string',maxLength:n}),obj=(properties:Record<string,any>,required=Object.keys(properties))=>({type:'object',additionalProperties:false,properties,required});
 const publicConfig={config:{public:true}};
 const principalId=(r:FastifyRequest)=>(r.params as {id:string}).id;
@@ -90,7 +91,7 @@ export async function registerProductRoutes(app:FastifyInstance,o:ProductOptions
   if(!(objects instanceof S3Objects))return fail('CLOUD_STORAGE_NOT_CONFIGURED',503);return {data:await new QuarantineService(db,objects).complete(req.principal,principalId(req))};
  });
  app.delete('/v1/history/:id',{schema:param},async req=>({data:await accounts.deleteHistory(req.principal,principalId(req))}));
- app.post('/v1/support',{schema:{body:obj({subject:str(200),message:{type:'string',minLength:10,maxLength:10000}})}},async(req,reply)=>{const b=req.body as {subject:string;message:string};return reply.code(201).send({data:await accounts.ticket(req.principal,b.subject,b.message)});});
+ app.post('/v1/support',{schema:{body:obj({subject:str(200),message:{type:'string',minLength:10,maxLength:10000}})}},async(req,reply)=>{const b=req.body as {subject:string;message:string};return reply.code(201).send({data:await accounts.ticket(req.principal,b.subject,b.message,headerKey(req),req.traceId)});});
  app.get('/v1/support',{},async req=>({data:{items:await accounts.tickets(req.principal)}}));
  app.get('/v1/support/:id',{schema:param},async req=>({data:(await accounts.tickets(req.principal,principalId(req)))[0]}));
  app.post('/v1/public/shares/resolve',{...publicConfig,schema:{body:obj({token:str(100)})}},async(req,reply)=>{reply.header('x-robots-tag','noindex, nofollow, noarchive');return {data:await shares.resolve((req.body as {token:string}).token)};});

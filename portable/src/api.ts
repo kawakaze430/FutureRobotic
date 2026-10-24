@@ -11,6 +11,10 @@ import { QuotaService } from './quota.js';
 import { BillingService } from './billing.js';
 import { LifecycleService } from './lifecycle.js';
 import { Telemetry, traceFromParent } from './telemetry.js';
+import {registerReconciliationRoutes} from './reconciliation-routes.js';
+import {registerOperatorRoutes} from './operator-routes.js';
+import {registerSupportRoutes} from './support-routes.js';
+import {registerAnonymousRoutes} from './anonymous-routes.js';
 import {registerProductRoutes,type ProductOptions} from './product-routes.js';
 import {AccountService,FileService,ShareService} from './account-services.js';
 import {LocalResultService,type LocalResultInput} from './local-results.js';
@@ -24,7 +28,7 @@ const object=(properties:Record<string,unknown>,required=Object.keys(properties)
 const params=object({id:uuid});
 const errorSchema=z.toJSONSchema(contractErrorSchema,{target:'draft-7'});
 const responses:Record<number,unknown>={400:errorSchema,401:errorSchema,402:errorSchema,403:errorSchema,404:errorSchema,409:errorSchema,410:errorSchema,413:errorSchema,415:errorSchema,429:errorSchema,500:errorSchema,503:errorSchema};
-const accepted=new Set(['POST /v1/runs','POST /v1/account/exports','DELETE /v1/account','POST /v1/history/delete','POST /v1/history/export','POST /v1/executions']);
+const accepted=new Set(['POST /v1/runs','POST /v1/account/exports','DELETE /v1/account','POST /v1/history/delete','POST /v1/history/export','POST /v1/executions','POST /v1/public/anonymous/ai','POST /v1/public/anonymous/executions']);
 const created=new Set(['POST /v1/local-results','POST /v1/files','POST /v1/chats','POST /v1/support']);
 
 export async function buildApi(options:ApiOptions) {
@@ -117,7 +121,7 @@ export async function buildApi(options:ApiOptions) {
   });
   app.get('/v1/allowance',{schema:{response:responses}},async req=>({data:{items:await new QuotaService(db).balances(req.principal)}}));
   app.get('/v1/billing',{schema:{response:responses}},async req=>({data:{items:await new BillingService(db).get(req.principal)}}));
-  const runBody=object({tool:{type:'string',enum:[...toolNames]},source:text(100000,1),instructions:text(3000),language:text(60,1),targetLanguage:text(60,1),modelId:{type:'string',enum:['standard-auto','advanced-code']},fileIds:{type:'array',items:uuid,maxItems:5,uniqueItems:true},chatThreadId:uuid,chatMessage:text(4000,1),historyMode:{type:'string',enum:['cloud','local','none']}},['tool','source','language']);
+  const runBody=object({tool:{type:'string',enum:[...toolNames]},source:text(100000,1),instructions:text(3000),language:text(60,1),targetLanguage:text(60,1),modelId:{type:'string',enum:['standard-auto','advanced-code']},fileIds:{type:'array',items:uuid,maxItems:5,uniqueItems:true},fileRevisions:{type:'array',items:object({id:uuid,revision:{type:'integer',minimum:1}}),maxItems:5},chatThreadId:uuid,chatMessage:text(4000,1),historyMode:{type:'string',enum:['cloud','local','none']}},['tool','source','language']);
   app.post('/v1/runs',{schema:{body:runBody,response:responses}},async(req,reply)=>reply.code(202).send({data:await runs.create(req.principal,req.body as RunInput,idempotency(req),req.traceId)}));
   app.post('/v1/local-results',{bodyLimit:2000000,schema:{body:object({tool:{type:'string',enum:['comments','pdf','run','convert']},kind:{type:'string',enum:['local','example']},source:text(100000,1),output:text(200000),language:text(60,1),targetLanguage:text(60,1),historyMode:{const:'cloud',type:'string'}},['tool','source','output','language','historyMode']),response:responses}},async(req,reply)=>reply.code(201).send({data:await new LocalResultService(db).record(req.principal,req.body as LocalResultInput,idempotency(req),req.traceId)}));
   app.get('/v1/runs',{schema:{querystring:object({cursor:text(500),limit:{type:'string',pattern:'^(?:[1-9]|[1-4][0-9]|50)$'}},[]),response:responses}},async req=>{
@@ -157,7 +161,10 @@ export async function buildApi(options:ApiOptions) {
   app.get('/v1/account/exports/pending',{schema:{response:responses}},async req=>({data:{items:await lifecycle.recoverableJobs(req.principal,'account')}}));
   app.get('/v1/account/exports/:id',{schema:{params,response:responses}},async req=>({data:await lifecycle.getExport(req.principal,(req.params as {id:string}).id)}));
   app.delete('/v1/account',{schema:{response:responses}},async(req,reply)=>reply.code(202).send({data:await lifecycle.requestDeletion(req.principal,req.traceId)}));
-  await registerProductRoutes(app,options);await app.ready();return app;
+  await registerProductRoutes(app,options);
+  await registerOperatorRoutes(app,options);await registerReconciliationRoutes(app,options);await registerSupportRoutes(app,{db,sealer:options.sealer,eventSecrets:options.supportEventSecrets});
+  await registerAnonymousRoutes(app,{service:options.anonymousService,origin,production,edgeMode:options.proxyHops?'trusted-proxy':'direct',trustedEdgeHops:options.proxyHops});
+  await app.ready();return app;
 }
 function idempotency(req:FastifyRequest) {
   const key=req.headers['idempotency-key'];if(typeof key!=='string') return fail('IDEMPOTENCY_KEY_REQUIRED');return key;

@@ -1,0 +1,595 @@
+{
+  "schemaVersion": 1,
+  "artGenerator": "scripts/generate-original-assets.mjs",
+  "artwork": [
+    {
+      "path": "public/languages/python.svg",
+      "sha256": "b49107b60f76cca69a39cd7c388863021673858b421d5e1ae6e1ba4cb5f448ad",
+      "description": "Python identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/javascript.svg",
+      "sha256": "1e4b710497f0c5d81045099cbce65eaf1f8287bf2fa4e33042092c787565613a",
+      "description": "JavaScript identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/typescript.svg",
+      "sha256": "6a8dcd5024c2ba56418db3e16b03beacea8348e0a88e64d8d70f636781a3171d",
+      "description": "TypeScript identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/java.svg",
+      "sha256": "3d0881ed2ab957d2b5cccb83035588848c9a71622c691a8985a90b7d7873594d",
+      "description": "Java identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/c++.svg",
+      "sha256": "60b489275692ad46faf995eb82715878520369eef768cdcaa991a1890957df07",
+      "description": "C++ identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/c.svg",
+      "sha256": "a546668ee8faba71f3fa4484e9fc6a36c954406ad48601bc8b1e4e084b20ccc6",
+      "description": "C identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/csharp.svg",
+      "sha256": "d2012872c436b23752ec2b8351bdb0bc2ce2cbb012f5bd4e0ec223db0d74c5f2",
+      "description": "C# identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/golang.svg",
+      "sha256": "65d81ba2da4daa0c4d90c256ac1a59081a2a9c924e18b953ba2b0291613858b4",
+      "description": "Go identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/rust.svg",
+      "sha256": "b93d3beb03e76a4229dba0500f1cb9e724a0672510f379b157b5ec5c0ca644bd",
+      "description": "Rust identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/ruby.svg",
+      "sha256": "04ac77fd53c42443f4874587c5afdcd5b6af9c6cf8f208a2eba1a7efd3fe6436",
+      "description": "Ruby identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/php.svg",
+      "sha256": "248b328269bfbbdafb6de83259fcff267eaff3aa73f1db85ba8d601c329be498",
+      "description": "PHP identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/swift.svg",
+      "sha256": "a835d23fcc0325aa57236577f36d441a7314ddff72174cbcc8838a4cd0e76bc4",
+      "description": "Swift identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/kotlin.svg",
+      "sha256": "d23b573a2288fec321d31e1967013dbe1dd542fecfe80db2607a2fbe9454f381",
+      "description": "Kotlin identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/dart.svg",
+      "sha256": "6c29384ba6a537b0c56d7bfe5f3bc66d5f462e95ea4040d15690aa1c084fec3b",
+      "description": "Dart identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/r.svg",
+      "sha256": "2abca42ac2bd699012029e9b1eea35fb8019d958d372f8e465092ed44428970d",
+      "description": "R identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/matlab.svg",
+      "sha256": "11688ad5a73e6d2918c87f93cafa686049eb48f4695c444a795764e88303bf1c",
+      "description": "MATLAB identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/julia.svg",
+      "sha256": "9b25db61bf879cde766e7b93ed04537e1cac97491c96a43289a804374cfbe385",
+      "description": "Julia identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/perl.svg",
+      "sha256": "ca594499d113d6982f3df5adb77c1241afc265c629697aaf8114cb59cec85002",
+      "description": "Perl identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/lua.svg",
+      "sha256": "c60150b96a7957065e409e6f7d58fc84d66a4cec0f5fc4266d4b9d6773c5af2f",
+      "description": "Lua identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/scala.svg",
+      "sha256": "ba8cd6dba2cfc5154390b6207546cd2bb97100eb90ba5ff186ba9f94da10399f",
+      "description": "Scala identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/bash.svg",
+      "sha256": "be49315761865adbe287446cdeb29f123043f8260d0c7b9624887166ad83c4ff",
+      "description": "Bash identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/powershell.svg",
+      "sha256": "3e3156677adbc552fea29449ecf668171f101ecda136528fae1b8463153ebe81",
+      "description": "PowerShell identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/sql.svg",
+      "sha256": "a02f3174eeb4bc590571fd8608a0aa067571a0cf2259035c8d21e962ed589ec6",
+      "description": "SQL identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/postgresql.svg",
+      "sha256": "8a48e136436be414e70bd44358fc3f9d9074f06ab06229c18f0a5183e1212e1c",
+      "description": "PostgreSQL identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/mysql.svg",
+      "sha256": "f9fa09a991ab722bd4a358f1adfeecebaa535d83a6ce832671c6f0d3c86b1318",
+      "description": "MySQL identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/mongodb.svg",
+      "sha256": "e20fe1dd43c44cd913c7746848c2e5c2189cb818cc12f809cb7649278ced0632",
+      "description": "MongoDB identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/html.svg",
+      "sha256": "2aa40e87f5fbaa86f5963c9f7169c9cba96581fd5700d6c6d194c7f6b1f8a790",
+      "description": "HTML identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/css.svg",
+      "sha256": "78f86579998d23861970cb3c1872e33640241c38f139c808150d718c5d59c7b8",
+      "description": "CSS identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/objc.svg",
+      "sha256": "2b9cb3005354780eb1f6143845b639dc78c97cb9f2f29006bac56fe108c50980",
+      "description": "Objective-C identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/fsharp.svg",
+      "sha256": "80b9fbea9bf0660fcbd03987e9b6f4ab6ded16bbad14f5e6e7de29b9f60d439f",
+      "description": "F# identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/vb.net.svg",
+      "sha256": "6a812e13810422511bd95508dcb0a1d0bdfb61cacfb097929b568bce455416c9",
+      "description": "VB.NET identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/vba.svg",
+      "sha256": "ee3111c4970392203f56bd1119e2624c900bd89fbeb1e309ffce3a4bac1c8aa2",
+      "description": "VBA identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/vbscript.svg",
+      "sha256": "e330c4a0960ce02c9bc63f6e07e467944d0ba789c72fd70d0faec9adb02e0897",
+      "description": "VBScript identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/visual-basic.svg",
+      "sha256": "7e144d9781df95caec766ea76bcc1541af3c05f728a8c8d2dcb940ac29c92da7",
+      "description": "Visual Basic identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/groovy.svg",
+      "sha256": "9487f1ba74c0b6a371308216b13615c7b3e020c07256397dc2e20a3170f3c04f",
+      "description": "Groovy identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/haskell.svg",
+      "sha256": "35a27b0eed342ba3bb87010d42fefeb2382b036d65b8c539a468830d25898d43",
+      "description": "Haskell identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/clojure.svg",
+      "sha256": "78349728d188d2c817b00cdc9de7df023e8f4bf378f81df7f1b09adb09d034f1",
+      "description": "Clojure identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/elixir.svg",
+      "sha256": "7404ca7b30c1f9711180f3739d51e053701758c2cd0c35f64fff7dc71de78607",
+      "description": "Elixir identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/erlang.svg",
+      "sha256": "f5c599fd99a3d18ea2d6597e411d187ab3ee79ae8c2d28405c420485d63fc88e",
+      "description": "Erlang identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/fortran.svg",
+      "sha256": "5c963cad06fb8697dc0c0f6880a7910511b506c845202ec8f47fa12279124b0b",
+      "description": "Fortran identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/cobol.svg",
+      "sha256": "ffc4a33fc831e58a202ecbdda6cd6d07434f315842a81fac4d8e7a1a87e9de0a",
+      "description": "COBOL identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/pascal.svg",
+      "sha256": "4e015d7961f871f7094b235e6e279054efa4264603dc6acd78a90eb690b40a0c",
+      "description": "Pascal identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/delphi.svg",
+      "sha256": "faf43baec3a99d3322ee76ef6f868e5ac1c03ba9530d47188fef85d748ed9de1",
+      "description": "Delphi identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/assembly.svg",
+      "sha256": "2d11cf14879bb001e4f7ff7e8bf6ae1c92cb7ac766b202591c821c7ec6e3ad45",
+      "description": "Assembly identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/ada.svg",
+      "sha256": "fed3e8920997f552c13437b5b3ee0b6a900ff26f5b73f0f9cab0e626c70827e5",
+      "description": "Ada identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/lisp.svg",
+      "sha256": "7f8ca459dfe30547a0b613b674bfcff431f3119766911e9dfef7ba142bae1d4b",
+      "description": "Lisp identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/scheme.svg",
+      "sha256": "52cf1f81aba400a119ca6d6238ff91bf1aafb210191e712020891bcfb88c444c",
+      "description": "Scheme identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/racket.svg",
+      "sha256": "76ca36b9b16359459db395b484bb8917fa0a0ceebc52031b11b1c4833867cce7",
+      "description": "Racket identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/ocaml.svg",
+      "sha256": "b954193bba76a9087c57bc9bf1436417f32e1e421ca83570a74a113530a7b337",
+      "description": "OCaml identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/elm.svg",
+      "sha256": "c062af24342ec1ea9e9c1ade75ff32ababc4b1bd8df12eaf6b238dd6dfc1d8ed",
+      "description": "Elm identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/haxe.svg",
+      "sha256": "cea7ac0ed35ca13fa25548514d6c7891add3150889cc8d46d8a1478943a5faf2",
+      "description": "Haxe identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/crystal.svg",
+      "sha256": "6c7c53d9a1e9d31ad7be9f0cb41b442dbb4abed8e6bc7407b61ec3ed896cfbee",
+      "description": "Crystal identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/tcl.svg",
+      "sha256": "0ecc0060f63035382c9571057bc53ddfaf36d1cbec45c3631f57c4cecd30b60e",
+      "description": "Tcl identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/zig.svg",
+      "sha256": "bf9c0824df480c2b16d530ec0e7944a1f4699f7bc6a84e0b2ff7e3f2814dd849",
+      "description": "Zig identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/nim.svg",
+      "sha256": "9d8a34ac3ac048149cf35b3c762f2beca847f75366090d1773d12275bb6fb4d6",
+      "description": "Nim identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/gleam.svg",
+      "sha256": "2ff99fb699169fdd1bafeff5c16a8845229fa4b1b195483a2a199f331a6e7bcf",
+      "description": "Gleam identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/solidity.svg",
+      "sha256": "8c7ee96ced6d74f1a6c20c45aed6eab8db8ee23df318119d1685f0cb199b6896",
+      "description": "Solidity identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/sas.svg",
+      "sha256": "10ddb22426717332a5ee49d2be434f6e3b2e16140bab4ffc52545845d6fb9db2",
+      "description": "SAS identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/pyspark.svg",
+      "sha256": "27af28138a948922a30d4d439dc24adf105ca46582f5d782f86455e45070bb8f",
+      "description": "PySpark identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/raku.svg",
+      "sha256": "1322944ec27b6bfbb2ced8c11526937dae48f3450798c3bf48030544b5ed99c5",
+      "description": "Raku identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/vala.svg",
+      "sha256": "57096be4009b5016606f31f6610ae24e1fcb07a43f20c3a99c979ff2a6207a9a",
+      "description": "Vala identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/coffeescript.svg",
+      "sha256": "8126f80fcec3e31f6b0067a0bee6b33de111a6e868e066a2e9610dd68ad93221",
+      "description": "CoffeeScript identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/actionscript.svg",
+      "sha256": "81a892b29db6bf2be85487dac773542eec6167b5581e2acdb24138d92bac14a8",
+      "description": "ActionScript identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/vb6.svg",
+      "sha256": "0b622f16b4111306c8ca02df2b4ceb278db7ea545c005c04e66aa03ed72fe392",
+      "description": "VB6 identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/carbon.svg",
+      "sha256": "20835eec57b1860a659a0eade7ee932f22bebafd2c234940d70f68fccbe451d3",
+      "description": "Carbon identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/grain.svg",
+      "sha256": "c27bfc0bf21ac6400221ab0742bcd5987b4e7c49574c3b38a1d19653c0076c9b",
+      "description": "Grain identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/wren.svg",
+      "sha256": "e1eb2a543fbe6628d87876dc229feb66802555f1503fe84c9395b4aad965b7db",
+      "description": "Wren identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/janet.svg",
+      "sha256": "2677f70407fe94647a87d1582e7701ffd025eacf97dc8516f887775b312017f9",
+      "description": "Janet identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/oberon+.svg",
+      "sha256": "e3854766a5fc1a2170e60df363a79a74be84a56785227127d9326758ae67b72c",
+      "description": "Oberon+ identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/cql.svg",
+      "sha256": "62f08091e9ac4d45c8ad6896d86a1633253f420b5cce79e0dddd03c248b7fe1e",
+      "description": "CQL identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/redis.svg",
+      "sha256": "858b2fd0cfd8a44fa67533a30b6ead8b25dfb2d48661b5e92c6c7785c5bec288",
+      "description": "Redis identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/elasticsearch.svg",
+      "sha256": "26f67a12b1a88cc80bef80bb6eba6e438f3e6ea2c8de6013f459d2eef42d9027",
+      "description": "Elasticsearch identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/languages/generic.svg",
+      "sha256": "9a8ca9c725a12edc82263c4550f6d1ee48823dc9c4f931a6b1fcaab35443e83d",
+      "description": "Code identifier badge; language name used descriptively, no third-party logo reproduced",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/previews/workspace-original.svg",
+      "sha256": "6abd8528048baba212472bde885298683338feaeb3c0c5da55ca61fb03193177",
+      "description": "Your coding workspace original illustrative code panels; displayed examples are not provider evidence",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/previews/convert-original.svg",
+      "sha256": "eb8ca1c33e25990b6a71eefd691cf3b5ab72a8868b784b34b4d7033a148a8ef2",
+      "description": "Convert across languages original illustrative code panels; displayed examples are not provider evidence",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/previews/generate-original.svg",
+      "sha256": "ca7b325ba47ae70669732a06a639c12879d81e9ff00ae7c574b4fe4d98ebf5c8",
+      "description": "Build from a description original illustrative code panels; displayed examples are not provider evidence",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/previews/explain-original.svg",
+      "sha256": "c2b9bdee67060b2bb60e7233791d5e266abafb2c8b164661ff8fdb84578bf578",
+      "description": "Understand your code original illustrative code panels; displayed examples are not provider evidence",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/previews/assistant-original.svg",
+      "sha256": "ce5e963f71a94e1b53a1304c2d16d7faae3978ad1aaee950b0f6b5729cb42bfb",
+      "description": "Refine with the assistant original illustrative code panels; displayed examples are not provider evidence",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/previews/background-pattern.svg",
+      "sha256": "fad74c4fcc085ca6fefef3b5a5832a1ef8b234badb55e0bce734585389017e4d",
+      "description": "Original geometric grid",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    },
+    {
+      "path": "public/favicon.svg",
+      "sha256": "7d5760eb0147a2be2f8cdb4fdce0774a0f50473c2afbb9fbaaffea9f2c44e173",
+      "description": "Original FutureRobotic F circuit monogram",
+      "provenance": "Original project vector artwork; generated from checked-in source without third-party product art",
+      "license": "Project-original; owner controls distribution terms"
+    }
+  ],
+  "fonts": [
+    {
+      "path": "public/fonts/geist-sans.woff2",
+      "sha256": "46525b05bbf4527d263f8624ca7024c7d0dce3c64430267d30c31c6dd3821e4d",
+      "licenseFile": "public/fonts/Geist-OFL.txt",
+      "licenseSha256": "c683bfbcc7e087f5d37a54ef628f10387c451a83ddc459b151403a164ac46c90",
+      "licenseSource": "https://github.com/vercel/geist-font/blob/main/OFL.txt",
+      "modification": "Font binary unchanged; license included with distribution"
+    },
+    {
+      "path": "public/fonts/geist-mono.woff2",
+      "sha256": "3ef2c50dc1042ebfa89ca66bb6901e9dde5737970547c21b4de7a44dfb2ab948",
+      "licenseFile": "public/fonts/Geist-OFL.txt",
+      "licenseSha256": "c683bfbcc7e087f5d37a54ef628f10387c451a83ddc459b151403a164ac46c90",
+      "licenseSource": "https://github.com/vercel/geist-font/blob/main/OFL.txt",
+      "modification": "Font binary unchanged; license included with distribution"
+    },
+    {
+      "path": "public/fonts/DejaVuSansMono.ttf",
+      "sha256": "c805f9436dbc268644c1d9584f01a601a653e028e08fd74b9b949f6cf8304d88",
+      "licenseFile": "public/fonts/DejaVu-LICENSE.txt",
+      "licenseSha256": "63d3ba759d12804c5b31a9d5940d855c1820d1f5999e6b0872eb1c7ff045fbc9",
+      "licenseSource": "https://dejavu-fonts.github.io/License.html",
+      "modification": "Font binary unchanged; license included with distribution"
+    }
+  ],
+  "historicalReferenceDirectory": "reference/historical-public-assets",
+  "historicalReferenceNotServed": true,
+  "limits": "Language names are descriptive identifiers. This manifest does not approve business policies or transfer third-party trademark rights."
+}

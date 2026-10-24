@@ -2,6 +2,7 @@
 import React,{useEffect,useRef,useState} from 'react';
 import type {EditorView} from '@codemirror/view';
 import {characters} from '../lib/input-policy';
+import {loadCodeLanguage} from '../lib/code-syntax';
 type Props={value:string;onChange:(value:string)=>void;language:string;label?:string;dark?:boolean;lineNumbers?:boolean;fontSize?:number;limit:number;onRun?:()=>void;placeholder?:string;readOnly?:boolean};
 // Load grammars in the browser. Plain text stays usable if an extension cannot load.
 export default function StudioEditor(props:Props){
@@ -24,10 +25,8 @@ export default function StudioEditor(props:Props){
      state.EditorState.readOnly.of(!!p.readOnly),ui.EditorView.editable.of(!p.readOnly),
      ui.placeholder(p.placeholder??'Your input code here'),
     ])});
-    const next=++generation,alias:Record<string,string>={'C++':'C++','C#':'C#','VB.NET':'VB.NET','PySpark':'Python','PostgreSQL':'SQL','MySQL':'SQL','MongoDB':'JSON','Elasticsearch':'JSON','Redis':'Plain Text','Bash':'Shell','PowerShell':'PowerShell','MATLAB':'Octave'};
-    const name=alias[p.language]??p.language,description=data.languages.find(l=>l.name.toLowerCase()===name.toLowerCase()||l.alias.some(a=>a.toLowerCase()===name.toLowerCase()));
-    if(!description){setGrammar(`${p.language} · plain text`);view.current?.dispatch({effects:syntax.reconfigure([])});return;}
-    void description.load().then(support=>{if(alive&&next===generation){view.current?.dispatch({effects:syntax.reconfigure(support)});setGrammar(`${p.language} syntax`);}}).catch(()=>{if(alive&&next===generation)setGrammar(`${p.language} · plain text`);});
+    const next=++generation;
+    void loadCodeLanguage(p.language).then(({support,mode})=>{if(alive&&next===generation){view.current?.dispatch({effects:syntax.reconfigure(support)});setGrammar(`${p.language} ${mode==='native'?'syntax':'lexical syntax'}`);}}).catch(()=>{if(alive&&next===generation){view.current?.dispatch({effects:syntax.reconfigure([])});setGrammar(`${p.language} · syntax unavailable; use plain text`);}});
    };
    const basic=cm.minimalSetup;
    const v=new ui.EditorView({parent:host.current,state:state.EditorState.create({doc:current.current.value,extensions:[basic,options.of([]),syntax.of([]),

@@ -30,6 +30,7 @@ try {
   }
   db = new Postgres({ connectionString: process.env.TEST_DATABASE_URL, options: `-c search_path=${schema}` });
   await migrate(db);
+  if(phase==='seed')await db.query('UPDATE runtime_controls SET provider_enabled=true WHERE id=1');
   const started = (await admin.query('SELECT pg_postmaster_start_time()::text AS started')).rows[0].started;
   if (phase === 'seed') {
     const objects = new LocalObjects(join(dirname(stateFile), 'objects'));

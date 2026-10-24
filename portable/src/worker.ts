@@ -7,6 +7,7 @@ import { QuotaService } from './quota.js';
 import { Telemetry } from './telemetry.js';
 import {SpendService} from './protection.js';
 import {extractQuarantine} from './cloud-files.js';
+import {SupportDeliveryService,type SupportSender} from './support-delivery.js';
 export interface ProviderRequest {runId:string; traceId:string; idempotencyKey:string;modelId?:string; messages:{role:'system'|'user'|'assistant'; content:string}[]; tools:never[]; signal:AbortSignal;onDelta?:(delta:string)=>Promise<void>}
 export interface Provider { generate(request:ProviderRequest):Promise<string>;estimateMicroUsd?:(request:ProviderRequest)=>number }
 export class ProviderFailure extends Error {
@@ -14,7 +15,7 @@ export class ProviderFailure extends Error {
 }
 export class Worker {
   private queue:JobQueue; private quota:QuotaService; private lifecycle:LifecycleService;
-  constructor(private db:Db,private objects:ObjectStore,private provider:Provider|null,private telemetry=new Telemetry(),private timeoutMs=30000) {
+  constructor(private db:Db,private objects:ObjectStore,private provider:Provider|null,private telemetry=new Telemetry(),private timeoutMs=30000,private supportSender?:SupportSender|null,private externalReconcile?:{reconcilePending(limit:number):Promise<unknown>}) {
     this.queue=new JobQueue(db);this.quota=new QuotaService(db);this.lifecycle=new LifecycleService(db);
   }
   async tick() {
@@ -23,8 +24,9 @@ export class Worker {
     try {
       switch(job.kind) {
         case 'dispatch':await this.dispatch(job);break;
+        case 'support_ack':await new SupportDeliveryService(this.db).dispatch(job,this.supportSender,this.timeoutMs);break;
         case 'cleanup':await this.lifecycle.cleanup();break;
-        case 'reconcile':await this.lifecycle.reconcile();break;
+        case 'reconcile':await this.lifecycle.reconcile();if(this.externalReconcile)await this.externalReconcile.reconcilePending(20);break;
         case 'delete_history':await this.lifecycle.deleteHistory(job.payload.userId,job.payload.workspaceId,job.payload.runIds);break;
         case 'history_export':await this.lifecycle.historyExport(job.payload.userId,job.payload.workspaceId,job.payload.runIds,job.id);break;
         case 'export':await this.lifecycle.buildExport(job.payload.userId,job.payload.workspaceId,job.id);break;
@@ -35,6 +37,7 @@ export class Worker {
       await this.queue.complete(job);this.telemetry.emit({event:'job.completed',jobId:job.id,traceId:job.trace_id});
     } catch(e) {
       const code=e instanceof AppError?e.code:'JOB_FAILED';
+      if(job.kind==='support_ack')await new SupportDeliveryService(this.db).failedJob(job,code);
       await this.queue.reject(job,code);this.telemetry.emit({event:'job.failed',jobId:job.id,traceId:job.trace_id,errorCode:code});
     }
     return true;
@@ -85,6 +88,8 @@ export class Worker {
           if(claim.chat_thread_id)await tx.query('INSERT INTO chat_messages(id,thread_id,workspace_id,owner_id,role,content,run_id,state,operation_key) VALUES($1,$2,$3,$4,\'assistant\',$5,$6,\'streaming\',$7) ON CONFLICT(id) DO UPDATE SET content=excluded.content',[claim.id,claim.chat_thread_id,p.workspaceId,p.userId,partial,claim.id,`assistant:${claim.id}`]);
         });
       }};
+      const admission=(await this.db.query('SELECT provider_enabled FROM runtime_controls WHERE id=1')).rows[0];
+      if(!admission?.provider_enabled||process.env.NODE_ENV==='production'&&!this.provider!.estimateMicroUsd)throw new ProviderFailure('not_sent');
       if(this.provider!.estimateMicroUsd)await new SpendService(this.db).reserve(claim.id,this.provider!.estimateMicroUsd(request));
       this.telemetry.emit({event:'provider.started',jobId:job.id,runId:claim.id,traceId:job.trace_id});
       const deadline=new Promise<never>((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(new ProviderFailure('unknown'));},this.timeoutMs);});

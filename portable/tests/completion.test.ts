@@ -95,7 +95,7 @@ test('CHT-008 applied results preserve original and reject stale, cross-account,
  await assert.rejects(runs.applyResult(b.p,r.id,'other',2,'apply-other-1'),error('NOT_FOUND'));
  const result=await runs.get(a.p,r.id);assert.equal(result.results.length,2);assert.equal(result.results[0].content,'original');assert.equal(result.results[1].content,winner.content);assert.equal(result.results[1].origin,'user_applied_assistant');
 });
-test('HIS-004 ephemeral requests stay out of history and evaluation, and delete derived notes/output',async()=>{
+test('HIS-004 ephemeral requests stay out of history and evaluation, and delete derived notes/output',async()=>{await db.query('UPDATE runtime_controls SET provider_enabled=true WHERE id=1');
  const a=await account(db),runs=new RunService(db),accounts=new AccountService(db),life=new LifecycleService(db);await accounts.update(a.p,{evaluationOptOut:false});
  const r=await runs.create(a.p,{...input,historyMode:'none'},'ephemeral-request-1','d'.repeat(32));const worker=new Worker(db,objects,{async generate(){return 'temporary output';}},silent);for(let i=0;i<4&&await worker.tick();i++){}
  assert.equal((await runs.list(a.p)).items.length,0);assert.equal((await accounts.evaluationDataset()).some(v=>v.id===r.id),false);await runs.saveNote(a.p,r.id,'temporary note',null);
@@ -119,4 +119,21 @@ test('AUT-007 profile/editor/pins round trip; API rejects unbounded and unknown 
 test('AUT-008 account deletion requires resolution of an active paid entitlement',async()=>{
  const a=await fileAccount(db),life=new LifecycleService(db);await assert.rejects(life.requestDeletion(a.p,'f'.repeat(32)),error('SUBSCRIPTION_ACTION_REQUIRED'));assert.ok(await a.identity.authenticate(a.session.sessionToken));
  await db.query("UPDATE subscriptions SET status='cancelled' WHERE workspace_id=$1",[a.p.workspaceId]);await life.requestDeletion(a.p,'f'.repeat(32));await assert.rejects(a.identity.authenticate(a.session.sessionToken),error('UNAUTHENTICATED'));
+});
+
+test('FIL-010 reviewed context revisions are frozen; stale revisions fail without a reservation or dispatch',async()=>{
+ const a=await fileAccount(db),content=new ContentService(db,objects),files=new FileService(db,objects),runs=new RunService(db),f=await content.uploadText(a.p,'reviewed.py','print("version one")','reviewed-file-upload');
+ const original=await runs.create(a.p,{...input,fileIds:[f.id],fileRevisions:[{id:f.id,revision:1}]},'reviewed-run-original','f'.repeat(32));
+ await files.revision(a.p,f.id,'print("version two")',1,'reviewed-file-revision');
+ const before=(await db.query('SELECT count(*)::int n FROM reservations WHERE owner_id=$1',[a.p.userId])).rows[0].n;
+ await assert.rejects(runs.create(a.p,{...input,fileIds:[f.id],fileRevisions:[{id:f.id,revision:1}]},'reviewed-run-stale','f'.repeat(32)),error('CONTEXT_REVISION_CHANGED'));
+ assert.equal((await db.query('SELECT count(*)::int n FROM reservations WHERE owner_id=$1',[a.p.userId])).rows[0].n,before);
+ const updated=await runs.create(a.p,{...input,fileIds:[f.id],fileRevisions:[{id:f.id,revision:2}]},'reviewed-run-updated','f'.repeat(32));
+ assert.equal((await runs.get(a.p,original.id)).contextFiles[0].revision,1);assert.equal((await runs.get(a.p,updated.id)).contextFiles[0].revision,2);
+ const b=await fileAccount(db);await assert.rejects(runs.create(b.p,{...input,fileIds:[f.id],fileRevisions:[{id:f.id,revision:2}]},'reviewed-run-foreign','f'.repeat(32)),error('CONTEXT_FILE_UNAVAILABLE'));
+});
+test('FIL-010 native-compatible concurrent revision/freeze never silently switches a reviewed snapshot',async()=>{
+ const a=await fileAccount(db),content=new ContentService(db,objects),files=new FileService(db,objects),runs=new RunService(db),f=await content.uploadText(a.p,'race.py','print(1)','freeze-race-upload');
+ const [edited,frozen]=await Promise.allSettled([files.revision(a.p,f.id,'print(2)',1,'freeze-race-edit'),runs.create(a.p,{...input,fileIds:[f.id],fileRevisions:[{id:f.id,revision:1}]},'freeze-race-run','f'.repeat(32))]);
+ assert.equal(edited.status,'fulfilled');if(frozen.status==='fulfilled')assert.equal((await runs.get(a.p,frozen.value.id)).contextFiles[0].revision,1);else assert.ok(error('CONTEXT_REVISION_CHANGED')(frozen.reason));
 });

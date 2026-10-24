@@ -5,7 +5,7 @@ Run from the repository root. Inventory hashes bind every included file except
 the inventory itself. The archive's own hash is recorded beside the archive.
 """
 from pathlib import Path
-import hashlib,json,subprocess,zipfile,stat
+import argparse,hashlib,json,subprocess,zipfile,stat
 
 ROOT=Path(__file__).resolve().parents[1]
 NAME='FutureRobotic_AI_Workspace_Completion_20261024.zip'
@@ -23,6 +23,15 @@ def included(name):
     return True
 
 def main():
+    global NAME, INVENTORY
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--name',default=NAME)
+    parser.add_argument('--inventory',default=INVENTORY)
+    args=parser.parse_args()
+    if Path(args.name).name!=args.name or not args.name.endswith('.zip'):parser.error('--name must be a ZIP filename')
+    candidate=(ROOT/args.inventory).resolve()
+    if not candidate.is_relative_to(ROOT/'handoff/evidence') or candidate.suffix!='.json':parser.error('--inventory must be a JSON file under handoff/evidence')
+    NAME=args.name;INVENTORY=args.inventory
     raw=subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','-z'],cwd=ROOT)
     files=sorted({n for n in raw.decode().split('\0') if n and included(n)}|{INVENTORY})
     modes={}

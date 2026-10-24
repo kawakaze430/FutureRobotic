@@ -7,7 +7,7 @@ import {characters} from './input-policy.js';
 import {FileService} from './account-services.js';
 import type {ObjectStore} from './content.js';
 export const toolNames=['convert','generate','explain','fix','refactor','review','tests','chat'] as const;
-export interface RunInput { tool:typeof toolNames[number]; source:string; instructions?:string; language:string; targetLanguage?:string;modelId?:string;fileIds?:string[];chatThreadId?:string;chatMessage?:string;historyMode?:'cloud'|'local'|'none' }
+export interface RunInput { tool:typeof toolNames[number]; source:string; instructions?:string; language:string; targetLanguage?:string;modelId?:string;fileIds?:string[];fileRevisions?:{id:string;revision:number}[];chatThreadId?:string;chatMessage?:string;historyMode?:'cloud'|'local'|'none' }
 export class RunService {
   quota:QuotaService;
   constructor(private db:Db) {this.quota=new QuotaService(db);}
@@ -15,8 +15,9 @@ export class RunService {
     if(!/^[A-Za-z0-9_-]{8,100}$/.test(key)) fail('INVALID_IDEMPOTENCY_KEY');
     if(!toolNames.includes(input.tool)||typeof input.source!=='string'||!input.source.trim()||characters(input.source)>100000||!input.language||input.language.length>60||(input.instructions?.length??0)>3000) fail('INVALID_RUN');
     if((input.fileIds?.length??0)>5||new Set(input.fileIds??[]).size!==(input.fileIds??[]).length)fail('INVALID_CONTEXT_FILES');
+    if(input.fileRevisions&&(!Array.isArray(input.fileRevisions)||input.fileRevisions.length!==(input.fileIds?.length??0)||new Set(input.fileRevisions.map(f=>f.id)).size!==input.fileRevisions.length||input.fileRevisions.some(f=>!input.fileIds?.includes(f.id)||!Number.isSafeInteger(f.revision)||f.revision<1)))fail('INVALID_CONTEXT_REVISIONS');
     if((input.chatMessage?.length??0)>4000)fail('MESSAGE_TOO_LARGE');
-    const normalized={tool:input.tool,source:input.source,instructions:input.instructions??'',language:input.language,targetLanguage:input.targetLanguage??null,model:input.modelId??'standard-auto',fileIds:input.fileIds??[],chatThreadId:input.chatThreadId??null,chatMessage:input.chatMessage??null,historyMode:input.historyMode??'cloud'};
+    const normalized={tool:input.tool,source:input.source,instructions:input.instructions??'',language:input.language,targetLanguage:input.targetLanguage??null,model:input.modelId??'standard-auto',fileIds:input.fileIds??[],chatThreadId:input.chatThreadId??null,chatMessage:input.chatMessage??null,historyMode:input.historyMode??'cloud',...(input.fileRevisions?{fileRevisions:input.fileRevisions}: {})};
     if(!['cloud','local','none'].includes(normalized.historyMode)||normalized.historyMode!=='cloud'&&normalized.chatThreadId)fail('INVALID_HISTORY_MODE');
     const fingerprint=hash(JSON.stringify(normalized));
     return this.db.transaction(async tx=>{
@@ -32,7 +33,7 @@ export class RunService {
       const runId=id();
       await tx.query('INSERT INTO tool_runs(id,workspace_id,owner_id,tool,source,instructions,language,target_language,model,idempotency_key,request_hash,trace_id,retention_until,history_mode) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)',[runId,p.workspaceId,p.userId,normalized.tool,normalized.source,normalized.instructions,normalized.language,normalized.targetLanguage,normalized.model,key,fingerprint,trace,iso(Date.now()+(normalized.historyMode==='cloud'?30*86400000:3600000)),normalized.historyMode]);
       await this.quota.reserve(tx,p,runId,policy.period);
-      await new FileService(tx,{} as ObjectStore).freeze(tx,p,runId,normalized.fileIds);
+      await new FileService(tx,{} as ObjectStore).freeze(tx,p,runId,normalized.fileIds,normalized.fileRevisions);
       const totalContext=await tx.query('SELECT coalesce(sum(length(content)),0)::int AS n FROM run_context_files WHERE run_id=$1',[runId]);
       if(characters(input.source)+characters(input.instructions??'')+totalContext.rows[0].n>policy.contextLimit)fail('CONTEXT_LIMIT',413);
       const user=(await tx.query('SELECT preferences FROM users WHERE id=$1',[p.userId])).rows[0];

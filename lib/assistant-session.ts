@@ -27,3 +27,10 @@ export function decodeAssistantAttachment(bytes:ArrayBuffer):string {
  if(/[\x00-\x08\x0b\x0c\x0e-\x1f]/.test(content))throw new Error('This attachment must be a text or code file.');
  return takeCharacters(content,3000);
 }
+
+export function contextFileSelection(selected:string[],attached:{id:string;revision:number}[],files:{id:string;revision?:number}[]){
+ const fileIds=[...new Set([...selected,...attached.map(file=>file.id)])];
+ if(fileIds.length>5)throw new Error('Select at most five reference files, including chat attachments.');
+ const fileRevisions=fileIds.map(id=>{const latest=files.find(file=>file.id===id),explicit=attached.find(file=>file.id===id);if(!latest||!latest.revision)throw new Error('Refresh cloud files before attaching this file.');if(explicit&&explicit.revision!==latest.revision)throw new Error('An attached file changed. Remove it and attach the reviewed revision again.');return {id,revision:explicit?.revision??latest.revision};});
+ return {fileIds,fileRevisions};
+}

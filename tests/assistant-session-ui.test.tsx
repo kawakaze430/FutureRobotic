@@ -33,3 +33,13 @@ test('CHT-005 local attachment truncation counts Unicode points and preserves te
  const source='😀'.repeat(3001);assert.equal(decodeAssistantAttachment(new TextEncoder().encode(source).buffer),'😀'.repeat(3000));
  const text='line 1\r\n\tline 2';assert.equal(decodeAssistantAttachment(new TextEncoder().encode(text).buffer),text);
 });
+
+test('CHT-005 multiple attachments deduplicate references, retain reviewed revisions and reject stale/over-limit context',async()=>{
+ const {contextFileSelection}=await import('../lib/assistant-session');
+ const files=Array.from({length:6},(_,i)=>({id:'file-'+i,revision:i+1}));
+ const selected=contextFileSelection(['file-0'],[{id:'file-0',revision:1},{id:'file-1',revision:2}],files);
+ assert.deepEqual(selected.fileIds,['file-0','file-1']);assert.deepEqual(selected.fileRevisions,[{id:'file-0',revision:1},{id:'file-1',revision:2}]);
+ assert.throws(()=>contextFileSelection(['file-0'],[{id:'file-1',revision:1}],files),/changed/);
+ assert.throws(()=>contextFileSelection(files.map(f=>f.id),[],files),/five/);
+ assert.throws(()=>contextFileSelection(['missing'],[],files),/Refresh/);
+});
