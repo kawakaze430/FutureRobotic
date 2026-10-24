@@ -1,5 +1,5 @@
 {
-  "application_source_commit": "0071f98678f90539574dbf4bce4271f4e9d0d29b",
+  "application_source_commit": "495d0d94398fd561079610c9f5964cf48620a7f3",
   "baseline_source_commit": "76dda7b040a95e96c529073240056678d9f12ba4",
   "scope": "Complete current cumulative source including handoff/evidence; delivery ZIPs, Git, credentials, dependencies, build outputs and runtime data excluded.",
   "self_hash_omitted": "handoff/evidence/workspace-completion-20261024/package-inventory.json",
@@ -48,8 +48,8 @@
     },
     {
       "path": "CLOUD_RETURN.md",
-      "bytes": 10385,
-      "sha256": "2d299b3d7f7e8c11307b1758ef6aa1a96dd160edba4d4dae166ad31899e56585",
+      "bytes": 11393,
+      "sha256": "b7684ab0073e96e75635acc77c2c0256d9a6f24a5bea528c3d6a3f0aa96cb553",
       "mode": "0o100644"
     },
     {
@@ -792,8 +792,8 @@
     },
     {
       "path": "handoff/CODEX_MAIN_TEST_AND_COMPLETE_PROMPT.md",
-      "bytes": 11917,
-      "sha256": "3f515cecbfff7fe6d3aa01f2836431e692d3ae70211b37e763f7037394578c67",
+      "bytes": 11886,
+      "sha256": "ff0391bfd2895422aa7af711ded279c7c223e5b045200c3956bebf2ad08ca1fc",
       "mode": "0o100644"
     },
     {
@@ -804,26 +804,26 @@
     },
     {
       "path": "handoff/CURRENT_TASK_REGISTER.csv",
-      "bytes": 167908,
-      "sha256": "9c99951e10064bc1a5d357e49b45ac4b66bba8597317981c63f8832d7e70b0b8",
+      "bytes": 168177,
+      "sha256": "f61c87f3628aefbcb6ecee508663b8264b47135e6892564a63213ec71f896cec",
       "mode": "0o100644"
     },
     {
       "path": "handoff/CURRENT_TASK_REGISTER.json",
-      "bytes": 265675,
-      "sha256": "ec18f8c02e2f6310ff92a0b4f0b08cfeea54009f2d99034df24730edf287c815",
+      "bytes": 265944,
+      "sha256": "c08a14c610e5026e69e6ed905a6c7b2cb41dd5f62a44e53362e38f83ab794fb9",
       "mode": "0o100644"
     },
     {
       "path": "handoff/FEATURE_STATUS.csv",
-      "bytes": 122193,
-      "sha256": "d0c55332c6a84124d4e981f5af7316fafbc653105bc46c2d952bb4acfab2d4e5",
+      "bytes": 123072,
+      "sha256": "c06b5b39de19640e710c8079307e8724fdad384dfaa27b521dbb3e083f2c2cdc",
       "mode": "0o100644"
     },
     {
       "path": "handoff/FEATURE_STATUS.json",
-      "bytes": 199332,
-      "sha256": "f6ac0c4c135fc35e4f5324187d14efe4761531b39c534baad7adc393d7124db5",
+      "bytes": 200281,
+      "sha256": "c73369d9401d122c4a422b16bf476f16707f031eee42fbc14367d06fb64f2bc6",
       "mode": "0o100644"
     },
     {
@@ -834,8 +834,8 @@
     },
     {
       "path": "handoff/IMPLEMENTED_AND_REMAINING.md",
-      "bytes": 139086,
-      "sha256": "0195b3502c890b8bcce95c5144c7cf36d367045faebe9220706e430e206e5753",
+      "bytes": 139355,
+      "sha256": "85504b814d4aee1c63b9dfb1e03ddd8ced7c58c709aa011d3a4d10539e72fb30",
       "mode": "0o100644"
     },
     {
@@ -906,8 +906,8 @@
     },
     {
       "path": "handoff/STATUS_SUMMARY.md",
-      "bytes": 2669,
-      "sha256": "3327c0477d98cd8265c823f74d056f2dc701c644da62bc44a29612847b8a838a",
+      "bytes": 2740,
+      "sha256": "2ec1191a7dcebadbb8c1475e0e982d72b09ebab9777197768c796943604f51c5",
       "mode": "0o100644"
     },
     {
@@ -2550,8 +2550,8 @@
     },
     {
       "path": "handoff/evidence/workspace-completion-20261024/README.md",
-      "bytes": 487,
-      "sha256": "bf12cc8fa8bdf2a0e2eeea11f5243d9f55ff2dce650ecb1136c0cf7d865d2c6a",
+      "bytes": 890,
+      "sha256": "2188ca7605759feeedab4b6966d9b4a8c2f77c8983daf838806d7d35f7698776",
       "mode": "0o100644"
     },
     {
@@ -2648,6 +2648,18 @@
       "path": "handoff/evidence/workspace-completion-20261024/frozen-install.log",
       "bytes": 1008,
       "sha256": "1094fb600214942d2d9dff3ac8b6e13edaf554ef79ed4dab160bebf70c5769b0",
+      "mode": "0o100644"
+    },
+    {
+      "path": "handoff/evidence/workspace-completion-20261024/hosted-artifact-download-block.json",
+      "bytes": 850,
+      "sha256": "1ce8509d12e41d4e8da5fe4666e7d74ad240ede178491fcec8e0d8b246eeb23c",
+      "mode": "0o100644"
+    },
+    {
+      "path": "handoff/evidence/workspace-completion-20261024/hosted-ci.json",
+      "bytes": 9340,
+      "sha256": "18a4df7ac3bac34d17d04d97de31ab4f5e22ed2559b64446e84c09d6cfcfc690",
       "mode": "0o100644"
     },
     {
@@ -2832,8 +2844,8 @@
     },
     {
       "path": "handoff/evidence/workspace-completion-20261024/summary.json",
-      "bytes": 7839,
-      "sha256": "968fec0cb243a26f51f33487058da29eadfad8a7c5fa6443de9deed2c4280703",
+      "bytes": 9824,
+      "sha256": "fccf8c0c66b4b7288926f0981763d0ac79772892ded933ded128c08cb5c33bad",
       "mode": "0o100644"
     },
     {

@@ -1,8 +1,8 @@
 {
   "archive": "deliverables/FutureRobotic_AI_Workspace_Completion_20261024.zip",
-  "source_commit": "0071f98678f90539574dbf4bce4271f4e9d0d29b",
-  "file_count": 755,
-  "bytes": 16799441,
+  "source_commit": "495d0d94398fd561079610c9f5964cf48620a7f3",
+  "file_count": 757,
+  "bytes": 16803913,
   "zip_integrity": "PASS: CRC, exact membership and all inventory hashes",
-  "sha256": "2616d026ea533c760fdb300573755187b01d8a5973d02d6381a2e316e1b9be01"
+  "sha256": "5ade4ec28bd23d8d499b2a5412484e30e192e0e01c015e75d808f8a17b786d5b"
 }
