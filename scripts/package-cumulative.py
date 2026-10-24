@@ -36,9 +36,15 @@ def tracked_paths(repo: Path) -> tuple[list[str], list[str]]:
                 or name.startswith('deliverables/') and name.endswith(('.zip', '.tar', '.tar.gz'))):
             excluded.append(name)
             continue
-        if Path(name).name in EXCLUDED_FILENAMES or any(part.lower().endswith(('.pem', '.p12', '.pfx', '.key')) for part in parts):
-            raise RuntimeError('Refusing tracked secret-like path: ' + name)
         path = repo / name
+        public_ca = name == 'portable/certs/rds-global-bundle.pem'
+        if (Path(name).name in EXCLUDED_FILENAMES or any(part.lower().endswith(('.pem', '.p12', '.pfx', '.key')) for part in parts)) and not public_ca:
+            raise RuntimeError('Refusing tracked secret-like path: ' + name)
+        if public_ca:
+            ca_bytes = path.read_bytes()
+            if (len(ca_bytes) > 1024 * 1024 or b'-----BEGIN CERTIFICATE-----' not in ca_bytes
+                    or b'PRIVATE KEY' in ca_bytes):
+                raise RuntimeError('The allowlisted public RDS CA is missing or contains private-key material')
         st = path.lstat()
         if not stat.S_ISREG(st.st_mode):
             raise RuntimeError('Refusing non-regular tracked path: ' + name)
