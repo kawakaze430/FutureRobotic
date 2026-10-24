@@ -1,5 +1,7 @@
 # FutureRobotic AI — complete source and continuation package
 
+> **Current source delivery:** [Cumulative source package workflow](handoff/CUMULATIVE_SOURCE_DELIVERY_20261024.md). GitHub Actions produces a current-HEAD ZIP/verification manifest, not a patch. Never describe the older handoff ZIP as latest.
+
 > **24 October incomplete-work continuation:** see [full 57 Partial + 64 Blocked task inventory](handoff/ALL_PARTIAL_AND_BLOCKED_20261024.md) and [Codex implementation/testing prompt](handoff/CODEX_FINISH_121_TASKS_20261024.md). The parent source c1ac4ba CI failed its Chromium startup gate; launch diagnostics are now explicit in the browser harness. Do not claim that run passed. Canonical feature totals remain **75 / 57 / 64 / 0 = 196**.
 
 > Markdown link hardening (SEC-003, partial) is documented in [handoff/SECURITY_MARKDOWN_20261024.md](handoff/SECURITY_MARKDOWN_20261024.md). See its source-bound test and remaining acceptance gates.

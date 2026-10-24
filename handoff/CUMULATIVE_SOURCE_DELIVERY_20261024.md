@@ -1,0 +1,8 @@
+# Automated cumulative source delivery
+The `Cumulative source package` GitHub Actions workflow runs on each main push (or manual dispatch). It archives tracked current source, references, tests, infrastructure, CI, lockfile and handoff, excluding prior delivery ZIPs, generated/build/runtime data, tracked secret-like paths and dependency trees. It refuses symlinks and dirty tracked trees.
+
+The packaging script `scripts/package-cumulative.py` verifies expected members, reference assets, ZIP CRC, every member SHA-256 and the overall archive SHA-256; records the exact Git source SHA in `PACKAGE_VERIFICATION.json`; and emits a `.zip.sha256` file. The workflow publishes all three files as a downloadable GitHub Actions artifact, not an unverifiable link or a source patch. Retention is 30 days. Source integrity is **not** live production acceptance.
+
+Local isolated fixture proof: the same standalone Python algorithm was executed under Python 3.13 against a disposable Git repository containing the required minimal files and reference path; it passed ZIP verification and excluded a prior deliverable ZIP. A second fixture with uncommitted/tracked secret-like content was rejected. This is not a pass of the current full repository package until hosted execution completes.
+
+Observe https://github.com/kawakaze430/FutureRobotic/actions for the current source-bound artifact and independently verify its checksum. The canonical feature register remains 75 Implemented / 57 Partial / 64 Blocked / 0 Not started / 196 total.
